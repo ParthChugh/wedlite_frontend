@@ -13,6 +13,9 @@
 .space-around {
   justify-content: space-around;
 }
+.space-between {
+  justify-content: space-between;
+}
 .App-logo {
   height: 20vmin;
   pointer-events: none;
