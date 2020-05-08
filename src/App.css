@@ -36,3 +36,10 @@
 .color-white{
   color: white;
 }
+.margin-top-10 {
+  margin-top: 10px;
+}
+.margin-vertical-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
