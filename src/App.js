@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
 import logo from './wedlite.png';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useForm } from 'react-hook-form'
+import * as LoginActionCreators from './actions/loginActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import SearchBar from './Components/common/SearchBar';
-// import 'semantic-ui-css/semantic.min.css';
 import {Card, Modal, Button} from 'react-bootstrap';
-import {  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CATEGORY, NORMAL} from './constants';
-import { REGISTER_API, LOGIN_API } from './urls';
 
-const App = () => {
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App = (props) => {
+  const { LoginActions } = props;
+  const { RegisterUser, loginUser } = LoginActions;
   const defaultPlace = 'Udaipur'
   
   const [place, updatePlace] = useState(defaultPlace);
@@ -23,39 +26,6 @@ const App = () => {
 
   const goToAppLink = () => {
     console.log("App link is clicked")
-  }
-
-  const RegisterUser = (data) => {
-    fetch(REGISTER_API, {
-      method: 'POST', 
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-      .then((response) => {
-        if(response.status === 201) {
-          response.json().then((json) => {
-            toast("Welcome")
-          })
-        } else {
-          toast("Some problem please contact supportas")
-        }
-      })
-      .catch(() => {
-
-    });
-  }
-  const loginUser = (data) => {
-    fetch(LOGIN_API, {
-      method: 'POST', 
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json().then((json) => {
-        console.log(json);
-      }))
-      .catch(() => {
-    });
   }
 
   const handleClose = () => {
@@ -210,4 +180,20 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { auth } = state;
+  console.log(auth)
+  return { auth };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
+
