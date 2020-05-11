@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './wedlite.png';
 import { ToastContainer } from 'react-toastify';
 import { useForm } from 'react-hook-form'
@@ -14,8 +14,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = (props) => {
-  const { LoginActions } = props;
-  const { RegisterUser, loginUser } = LoginActions;
+  const { LoginActions, auth } = props;
+  const isLoggedIn = auth.get('isLoggedIn');
+  const { RegisterUser, loginUser, handleClearData } = LoginActions;
   const defaultPlace = 'Udaipur'
   
   const [place, updatePlace] = useState(defaultPlace);
@@ -23,6 +24,11 @@ const App = (props) => {
   const { register, handleSubmit, errors } = useForm()
 
   const [SignUpShow, setSignUpShow] = useState(false);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    setSignUpShow(false)
+    setShow(false)
+  },[isLoggedIn]);
 
   const goToAppLink = () => {
     console.log("App link is clicked")
@@ -47,14 +53,21 @@ const App = (props) => {
         <div  onClick={goToAppLink} style={{cursor:'pointer', fontSize: 14}}>
           Get the App
         </div>
-        <div className="row ">
-          <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} to="/login">
-            Login
+        {
+        !isLoggedIn ?
+          <div className="row ">
+            <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} >
+              Login
+            </div>
+            <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+              Sign up
+            </div>
           </div>
-          <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Sign up
+          : 
+          <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Logout
           </div>
-        </div>
+        }
       </div>
     )
   }
@@ -86,7 +99,7 @@ const App = (props) => {
     {image: require("./assets/4.jpg"),title: "Book Now"}
   ];
 
-  const [show, setShow] = useState(false);
+
 
   const showSignUpModal = () => (
     <Modal show={SignUpShow}  onHide={handleClose}>
@@ -108,8 +121,13 @@ const App = (props) => {
         </div>
         <div className="form-group">
         <label>Password</label>
-          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true})} />
-          {errors.password && <span style={{color: 'red'}}>Please enter a valid password</span>}    
+          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register(
+            {
+              required: true,
+              minLength: 8
+            }
+            )} />
+          {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
         </div>
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
@@ -132,7 +150,7 @@ const App = (props) => {
           <label>Email address</label>
           <input name="email"  className="form-control" placeholder="Enter your email" ref={
             register({
-              required: true, 
+              required: true,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 message: "Invalid email address"
@@ -142,8 +160,8 @@ const App = (props) => {
         </div>
         <div className="form-group">
         <label>Password</label>
-          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true})} />
-          {errors.password && <span style={{color: 'red'}}>Please enter a valid password</span>}    
+          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true, minLength: 8})} />
+          {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
         </div>
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
@@ -182,7 +200,6 @@ const App = (props) => {
 
 const mapStateToProps = state => {
   const { auth } = state;
-  console.log(auth)
   return { auth };
 };
 

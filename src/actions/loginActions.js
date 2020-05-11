@@ -16,6 +16,14 @@ export function updateLoggedIn(isLoggedIn) {
   };
 }
 
+export function handleClearData() {
+  return (dispatch) => {
+    dispatch(updateLoginResponse({}))
+    dispatch(updateLoggedIn(false))
+  
+  }
+}
+
 export function  RegisterUser(data) {
   return (dispatch) => {
     fetch(REGISTER_API, {
@@ -33,24 +41,26 @@ export function  RegisterUser(data) {
             toast("Welcome")
           })
         } else {
-          toast("Some problem please contact supportas")
+          toast("Email already exist")
           dispatch(updateLoggedIn(false));
         }
       })
       .catch(() => {
-        toast("Some problem please contact supportas")
+        toast("Email already exist")
         dispatch(updateLoggedIn(false));
     });
   }
   
 }
 export function loginUser(data) {
+  console.log(data);
   return (dispatch) => {
     fetch(LOGIN_API, {
       method: 'POST', 
       body: JSON.stringify(data),
     })
-      .then((response) => response.json().then((json) => {
+      .then((response) => {
+        console.log(response);
         if(response.status === 201) {
           response.json().then((json) => {
             dispatch(updateLoginResponse(json));
@@ -58,14 +68,12 @@ export function loginUser(data) {
             toast("Welcome")
           })
         } else {
-          toast("Some problem please contact supportas")
+          toast("Email/Password is Incorrect")
           dispatch(updateLoggedIn(false));
         }
-        
-  
-      }))
+      })
       .catch(() => {
-        toast("Some problem please contact supportas")
+        toast("Email/Password is Incorrect")
         dispatch(updateLoggedIn(false));
     });
   }
