@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import logo from './wedlite.png';
+import logo from './logo.png';
 import { ToastContainer } from 'react-toastify';
 import { useForm } from 'react-hook-form'
 import * as LoginActionCreators from './actions/loginActions';
@@ -80,7 +80,7 @@ const App = (props) => {
     return (
       <div className="text-align-center margin-top-150 color-white" >
         <img src={logo} alt="logo" className="App-logo" />
-        <div style={{marginTop: -50}}>
+        <div>
           <span style={{fontSize: CATEGORY}}>
             Commission free wedding planner in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
           </span>
