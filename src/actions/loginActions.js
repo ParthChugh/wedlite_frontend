@@ -53,15 +53,17 @@ export function  RegisterUser(data) {
   
 }
 export function loginUser(data) {
-  console.log(data);
   return (dispatch) => {
     fetch(LOGIN_API, {
       method: 'POST', 
       body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      }
     })
       .then((response) => {
         console.log(response);
-        if(response.status === 201) {
+        if(response.status === 200) {
           response.json().then((json) => {
             dispatch(updateLoginResponse(json));
             dispatch(updateLoggedIn(true));
