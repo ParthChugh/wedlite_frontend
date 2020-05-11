@@ -1,51 +1,37 @@
-import React, {useState} from 'react';
-import logo from './wedlite.png';
+import React, {useState, useEffect} from 'react';
+import logo from './logo.png';
+import { ToastContainer } from 'react-toastify';
+import { useForm } from 'react-hook-form'
+import * as LoginActionCreators from './actions/loginActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import SearchBar from './Components/common/SearchBar';
+import {Card, Modal, Button} from 'react-bootstrap';
+import 'react-toastify/dist/ReactToastify.css';
+import { CATEGORY, NORMAL} from './constants';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchBar from './Components/common/SearchBar';
-import {Card, Modal} from 'react-bootstrap';
-import { CATEGORY, NORMAL} from './constants';
-import { REGISTER_API } from './urls';
 
-const App = () => {
+const App = (props) => {
+  const { LoginActions, auth } = props;
+  const isLoggedIn = auth.get('isLoggedIn');
+  const { RegisterUser, loginUser, handleClearData } = LoginActions;
   const defaultPlace = 'Udaipur'
+  
   const [place, updatePlace] = useState(defaultPlace);
+  
+  const { register, handleSubmit, errors } = useForm()
+
   const [SignUpShow, setSignUpShow] = useState(false);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    setSignUpShow(false)
+    setShow(false)
+  },[isLoggedIn]);
+
   const goToAppLink = () => {
     console.log("App link is clicked")
-  }
-
-  const RegisterUser = () => {
-    console.log('yahan aaya ')
-    const formData = {
-      "email": "user@example.com",
-      "password": "string"
-    };
-    fetch(REGISTER_API, {
-      method: 'POST', 
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-      .then((response) => response.json().then((json) => {
-        console.log(json);
-      }))
-      .catch(() => {
-        
-    });
-  }
-  const loginUser = (event) => {
-    console.log(event);
-    // fetch(LOGIN_API, {
-    //   method: 'POST', 
-    //   body: data,
-    // })
-    //   .then((response) => response.json().then((json) => {
-
-    //   }))
-    //   .catch(() => {
-    // });
   }
 
   const handleClose = () => {
@@ -67,14 +53,21 @@ const App = () => {
         <div  onClick={goToAppLink} style={{cursor:'pointer', fontSize: 14}}>
           Get the App
         </div>
-        <div className="row ">
-          <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} to="/login">
-            Login
+        {
+        !isLoggedIn ?
+          <div className="row ">
+            <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} >
+              Login
+            </div>
+            <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+              Sign up
+            </div>
           </div>
-          <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Sign up
+          : 
+          <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Logout
           </div>
-        </div>
+        }
       </div>
     )
   }
@@ -87,9 +80,9 @@ const App = () => {
     return (
       <div className="text-align-center margin-top-150 color-white" >
         <img src={logo} alt="logo" className="App-logo" />
-        <div style={{marginTop: -50}}>
+        <div>
           <span style={{fontSize: CATEGORY}}>
-            Search the next place with your loved ones in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
+            Commission free wedding planner in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
           </span>
           <SearchBar
             handleSearch={handleSearch}
@@ -106,8 +99,80 @@ const App = () => {
     {image: require("./assets/4.jpg"),title: "Book Now"}
   ];
 
-  const [show, setShow] = useState(false);
 
+
+  const showSignUpModal = () => (
+    <Modal show={SignUpShow}  onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Sign Up</Modal.Title>
+      </Modal.Header>
+      <form className="container margin-top-10" onSubmit={handleSubmit(RegisterUser)}>  
+        <div className="form-group">
+          <label>Email address</label>
+          <input name="email"  className="form-control" placeholder="Enter your email" ref={
+            register({
+              required: true, 
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email address"
+              }
+              })} />
+            {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}
+        </div>
+        <div className="form-group">
+        <label>Password</label>
+          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register(
+            {
+              required: true,
+              minLength: 8
+            }
+            )} />
+          {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
+        </div>
+        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+          Submit
+        </Button>
+        <div className="forgot-password row container margin-vertical-10" >
+          Already Registered? &nbsp;
+          <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleShow}>Login</div>
+        </div>        
+      </form>
+    </Modal>
+  )
+
+  const showLoginModal = () => (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
+        <div>Login</div>
+      </Modal.Header>
+      <form className="container margin-top-10" onSubmit={handleSubmit(loginUser)}>  
+        <div className="form-group">
+          <label>Email address</label>
+          <input name="email"  className="form-control" placeholder="Enter your email" ref={
+            register({
+              required: true,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email address"
+              }
+            })} />
+            {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
+        </div>
+        <div className="form-group">
+        <label>Password</label>
+          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true, minLength: 8})} />
+          {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
+        </div>
+        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+          Submit
+        </Button>
+        <div className="forgot-password row container margin-vertical-10" >
+          New to WedLite? &nbsp;
+          <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleSignUpShow}>Create Account</div>
+        </div>        
+      </form>
+    </Modal>
+  )
   return (
     <div>
       <div className="image-background">
@@ -116,67 +181,9 @@ const App = () => {
           {LogoSearchBar()}
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
-          <div>Login</div>
-        </Modal.Header>
-        <form className="container margin-top-10" onSubmit={loginUser}>
-          <div className="form-group">
-            <label>Email address</label>
-            <input type="email" className="form-control" placeholder="Enter email" />
-          </div>
-
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" placeholder="Enter password" />
-          </div>
-
-          <div className="form-group">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheck1" />
-              <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-            </div>
-          </div>
-
-          <button type="submit" className="btn btn-primary btn-block">Submit</button>
-          
-          <div className="forgot-password row container margin-vertical-10" >
-            
-            New to WedLite? &nbsp;
-          
-            <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleSignUpShow}>Create Account</div>
-            
-          </div>          
-        </form>
-      </Modal>
-      <Modal show={SignUpShow}  onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
-        </Modal.Header>
-        <form className="container margin-top-10" onSubmit={RegisterUser}>
-          <div className="form-group">
-              <label>Email address</label>
-              <input type="email" className="form-control" placeholder="Enter email" />
-          </div>
-
-          <div className="form-group">
-              <label>Password</label>
-              <input type="password" className="form-control" placeholder="Enter password" />
-          </div>
-
-          <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-          
-          
-            <div className="forgot-password row container margin-vertical-10" >
-              <div>
-              Already registered &nbsp;
-              </div>
-              <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleShow}>
-                Sign in?
-              </div>
-            </div>          
-        </form>
-      </Modal>
+      {showLoginModal()}
+      {showSignUpModal()}
+      <ToastContainer />
       <div className="row space-around" style={{marginLeft: 100, marginRight: 100, marginTop: 50, marginBottom: 50}}>
         {cards.map((card, index) => (
           <Card style={{ width: '18rem', borderRadius: 10,elevation: 5 }} key={index}>
@@ -191,4 +198,19 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { auth } = state;
+  return { auth };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
+
