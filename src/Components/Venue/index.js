@@ -35,7 +35,7 @@ const Venue = () => {
   
   useEffect(() => {
     fetchVenue();
-  },[]);
+  },[data]);
 
   const handleSearch = (cityObject, categoryObject) => {
     history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
