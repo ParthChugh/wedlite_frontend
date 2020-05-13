@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {useHistory, useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import './Place.css';
 
 const Venue = () => {
-  const data = useParams()
-  const history = useHistory();
+  const data = useParams() 
   const [place, updatePlace] = useState({});
   const fetchPlace = () => {
     console.log(`${VENUE_CATEGORY_CITY}${data.placeId}`);
@@ -35,13 +34,6 @@ const Venue = () => {
     fetchPlace();
   },[]);
 
-  const handleSearch = (cityObject, categoryObject) => {
-    history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
-  }
-
-  const navigateToPlace = (placeId) => {
-    history.push(`/venue/place/${placeId}`)
-  }
   return (
     <div className='Venue'>
       {
