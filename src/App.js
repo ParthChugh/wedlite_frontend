@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 import * as LoginActionCreators from './actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 import SearchBar from './Components/common/SearchBar';
 import {Card, Modal, Button} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { CATEGORY, NORMAL} from './constants';
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,6 +25,7 @@ const App = (props) => {
 
   const [SignUpShow, setSignUpShow] = useState(false);
   const [show, setShow] = useState(false);
+  
   useEffect(() => {
     setSignUpShow(false)
     setShow(false)
@@ -71,9 +72,10 @@ const App = (props) => {
       </div>
     )
   }
-
-  const handleSearch = (data) => {
-    updatePlace(data);
+  const history = useHistory();
+  const handleSearch = (cityObject, categoryObject) => {
+    updatePlace(cityObject.city);
+    history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
   }
 
   const LogoSearchBar = () => {
