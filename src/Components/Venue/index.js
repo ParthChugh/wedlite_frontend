@@ -22,7 +22,6 @@ const Venue = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
             updateVenus(json.results);
           })
         } else {
@@ -45,13 +44,21 @@ const Venue = () => {
     history.push(`/venue/place/${placeId}`)
   }
   return (
-    <div className='Venue'>
-      <SearchBar
-        handleSearch={handleSearch}
-      />
+    <div >
+      <div className='image-background' style={{flex: 1, display: 'flex',justifyContent: 'center', flexDirection: 'column' }}>
+        <div style={{marginBottom: 20}}>
+          <SearchBar
+            defaultSelectedCity={data.cityId}
+            defaultSelectedCategory={data.categoryId}
+            handleSearch={handleSearch}
+          />
+        </div>
+        
+        <h1 className="container" style={{color: 'white'}}>Search Results</h1>  
+      </div>
       {
       venues.length > 0 ? 
-        <div className="row space-around">
+        <div className="row space-around" style={{marginTop: -100}}>
           {
             venues.map((card, index) => {
               return(
@@ -60,9 +67,9 @@ const Venue = () => {
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
-                  {card.photos.length > 0 ?
-                    <Card.Img variant="top" src={ `${BASE_URL}${card.photos[0].path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
-                  : <div/>
+                  { card.display_photo ?
+                    <Card.Img variant="top" src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
+                    : <div />
                   }
                   
                   <Card.Body>

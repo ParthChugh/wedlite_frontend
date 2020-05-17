@@ -1,6 +1,6 @@
-import {UPDATE_RESPONSE, UPDATE_LOGGED_IN} from './actionTypes';
+import {UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES} from './actionTypes';
 import {  toast } from 'react-toastify';
-import { REGISTER_API, LOGIN_API } from '../urls';
+import { REGISTER_API, LOGIN_API,  } from '../urls';
 
 export function updateLoginResponse(response) {
   return {
@@ -22,6 +22,14 @@ export function handleClearData() {
     dispatch(updateLoggedIn(false))
   
   }
+}
+
+export function updateCities(cities) {
+  return {
+    type:  UPDATE_CITIES,
+    payload: cities,
+  };
+
 }
 
 export function  RegisterUser(data) {

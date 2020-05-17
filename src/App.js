@@ -63,6 +63,12 @@ const App = (props) => {
             <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
               Sign up
             </div>
+            <div className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+              Register your Business
+            </div>
+            <div onClick={() => history.push('/about-us')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+              About Us
+            </div>
           </div>
           : 
           <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
@@ -84,7 +90,7 @@ const App = (props) => {
         <img src={logo} alt="logo" className="App-logo" />
         <div>
           <span style={{fontSize: CATEGORY}}>
-            Commission free wedding planner in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
+            Commission free venue booking in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
           </span>
           <SearchBar
             handleSearch={handleSearch}
@@ -100,8 +106,6 @@ const App = (props) => {
     {image: require("./assets/3.jpg"),title: "Get amazing offers on your doorstep"},
     {image: require("./assets/4.jpg"),title: "Book Now"}
   ];
-
-
 
   const showSignUpModal = () => (
     <Modal show={SignUpShow}  onHide={handleClose}>
@@ -134,6 +138,12 @@ const App = (props) => {
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
         </Button>
+        <div className="forgot-password row container margin-vertical-10" >
+          
+          Pressing this means you are accepting the&nbsp;
+          <div style={{cursor:'pointer', color: '#3366BB'}} onClick={() => {history.push('/terms-and-conditions')}}>Terms and Conditions</div>
+          
+        </div>        
         <div className="forgot-password row container margin-vertical-10" >
           Already Registered? &nbsp;
           <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleShow}>Login</div>
@@ -187,14 +197,19 @@ const App = (props) => {
       {showSignUpModal()}
       <ToastContainer />
       <div className="row space-around" style={{marginLeft: 100, marginRight: 100, marginTop: 50, marginBottom: 50}}>
-        {cards.map((card, index) => (
-          <Card style={{ width: '18rem', borderRadius: 10,elevation: 5 }} key={index}>
-            <Card.Img variant="top" src={card.image} style={{height: 300, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
-            <Card.Body>
-              <Card.Title>{card.title}</Card.Title>
-            </Card.Body>
-          </Card>
-        ))}
+        {auth.get('cities').map((card, index) => {
+          console.log(card)
+          return (
+            <Card style={{ width: '10rem', borderRadius: 10,elevation: 5 }} key={index}>
+              <Card.Title style={{padding: 20,borderRadius: 10,backgroundColor: 'grey'}}>{card.city}</Card.Title>
+              <Card.Body>
+                {card.is_data_available ? "Yes" : "No"}
+              </Card.Body>
+            </Card>
+          )
+        }
+          
+        )}
       </div>
     </div>
   );

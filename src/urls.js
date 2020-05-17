@@ -4,6 +4,8 @@ const LOGIN_API = `${BASE_URL}/api/users/login/`
 const CITY_LIST_API = `${BASE_URL}/places/cities/`
 const CATEGORIES = `${BASE_URL}/places/categories/`
 const VENUE_CATEGORY_CITY = `${BASE_URL}/places/venues/`
+const TERMS_AND_CONDTION = `${BASE_URL}/content/misc/TandC/`
+const ABOUT_US = `${BASE_URL}/content/misc/aboutUs/`
 
 export {
   BASE_URL,
@@ -11,5 +13,7 @@ export {
   LOGIN_API,
   CITY_LIST_API,
   CATEGORIES,
-  VENUE_CATEGORY_CITY
+  VENUE_CATEGORY_CITY,
+  ABOUT_US,
+  TERMS_AND_CONDTION
 }

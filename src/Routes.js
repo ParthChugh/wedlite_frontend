@@ -7,6 +7,7 @@ import {
 import Home from './App';
 import Venue from './Components/Venue';
 import Place from './Components/Place';
+import TextPage from './Components/TextPage'
 
 export default function App() {
   return (
@@ -15,6 +16,19 @@ export default function App() {
         {/* <Route path="/login">
           <Login />
         </Route> */}
+        <Route path="/terms-and-conditions">
+          <TextPage 
+            slug="terms-and-conditions"
+          />
+        </Route>
+        <Route path="/about-us">
+          <TextPage
+            slug="about-us"
+          />
+        </Route>
+        <Route path="/venue/place/:placeId">
+          <Place />
+        </Route>
         <Route path="/venue/place/:placeId">
           <Place />
         </Route>
