@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import {  toast } from 'react-toastify';
+import * as LoginActionCreators from '../../actions/loginActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {CITY_LIST_API, CATEGORIES} from '../../urls';
 import './SearchBar.css';
 const SearchBar = (props) => {
@@ -8,6 +11,10 @@ const SearchBar = (props) => {
   const [addressDefinitionsCategories, updateCategories] = useState([]);
   const [selectedCategory, updateCategory] = useState('');
   const [selectedCity, updateCity] = useState('');
+  const { defaultSelectedCity, 
+    defaultSelectedCategory, 
+    LoginActions: {updateCities}
+  } = props;
   
   const fetchCities = () => {
     fetch(CITY_LIST_API, {
@@ -19,7 +26,8 @@ const SearchBar = (props) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            updateAddressDefinitions(json.results);
+            updateAddressDefinitions(json);
+            updateCities(json);
           })
         } else {
           toast("Contact Support")
@@ -40,7 +48,7 @@ const SearchBar = (props) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            updateCategories(json.results);
+            updateCategories(json);
           })
         } else {
           toast("Contact Support")
@@ -90,6 +98,7 @@ const SearchBar = (props) => {
         <Dropdown 
           className="dropdown"
           placeholder='cities' 
+          defaultValue={defaultSelectedCity ? parseInt(defaultSelectedCity) : defaultSelectedCity}
           search selection
           onChange={updateSelectedCity} 
           options={cityOptions} 
@@ -97,6 +106,7 @@ const SearchBar = (props) => {
         <Dropdown 
           className="dropdown"
           placeholder='Categories' 
+          defaultValue={defaultSelectedCategory ? parseInt(defaultSelectedCategory): defaultSelectedCategory}
           search selection
           onChange={updateSelectedCategory} 
           options={categoriesData} 
@@ -122,4 +132,18 @@ const SearchBar = (props) => {
   
 }
 
-export default SearchBar
+const mapStateToProps = state => {
+  // const { auth } = state;
+  // return { auth };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchBar);
