@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { url } from 'react-router-dom';
+import Layout from '../Layout';
 import {  toast } from 'react-toastify';
+import { CATEGORY } from '../../constants';
 import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls'
+import logo from '../../logo.png'
 import './TextPage.css';
 
 const TextPage = ({slug}) => {
@@ -28,6 +30,20 @@ const TextPage = ({slug}) => {
     });
   }
   
+  const LogoSearchBar = () => {
+    return (
+      <div className="text-align-center margin-top-150 color-white" >
+        <img src={logo} alt="logo" className="App-logo" />
+        <div>
+          <span style={{fontSize: CATEGORY}}>
+            Commission free venue booking 
+          </span>
+        </div>
+        
+      </div>
+    )
+  }
+  
   useEffect(() => {
     switch(slug) {
       case 'terms-and-conditions': 
@@ -42,24 +58,24 @@ const TextPage = ({slug}) => {
         updateData(" NO data");
       break;
     }
-  },[]);
+  },[slug]);
 
   return (
-    <div style={{backgroundColor: 'black', flex: 1}} >
-      <div className="image-background">
-        <h1 className="container" style={{color: 'white'}}>{header}</h1>
-      </div>
+    <Layout
+      headerComponent={LogoSearchBar()}
+      >
       {
         data !== '' ?
-        <div style={{marginTop: -200 }} className="container">
-          <span style={{color: "white"}}> {data}</span>
+        <div className="container">
+          <h1>{header}</h1>
+          <span style={{fontSize: 20}}> {data}</span>
         </div>
         : 
         <span>
           Loading
         </span>
       }
-    </div>
+    </Layout>
     
   )
   
