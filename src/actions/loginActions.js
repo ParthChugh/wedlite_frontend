@@ -1,6 +1,6 @@
-import {UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES} from './actionTypes';
+import {UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES, UPDATE_CATEGORIES} from './actionTypes';
 import {  toast } from 'react-toastify';
-import { REGISTER_API, LOGIN_API,  } from '../urls';
+import { REGISTER_API, LOGIN_API, CITY_LIST_API, CATEGORIES, BUSINESS_SIGN_UP } from '../urls';
 
 export function updateLoginResponse(response) {
   return {
@@ -20,21 +20,27 @@ export function handleClearData() {
   return (dispatch) => {
     dispatch(updateLoginResponse({}))
     dispatch(updateLoggedIn(false))
-  
   }
 }
 
 export function updateCities(cities) {
   return {
-    type:  UPDATE_CITIES,
+    type: UPDATE_CITIES,
     payload: cities,
   };
-
 }
 
-export function  RegisterUser(data) {
+export function updateCategories(categories) {
+  return {
+    type: UPDATE_CATEGORIES,
+    payload: categories,
+  };
+}
+
+export function RegisterUser(data, isVendor = false) {
   return (dispatch) => {
-    fetch(REGISTER_API, {
+    const url = isVendor ? BUSINESS_SIGN_UP : REGISTER_API
+    fetch(url, {
       method: 'POST', 
       body: JSON.stringify(data),
       headers: {
@@ -58,8 +64,8 @@ export function  RegisterUser(data) {
         dispatch(updateLoggedIn(false));
     });
   }
-  
 }
+
 export function loginUser(data) {
   return (dispatch) => {
     fetch(LOGIN_API, {
@@ -87,4 +93,53 @@ export function loginUser(data) {
         dispatch(updateLoggedIn(false));
     });
   }
+}
+
+
+
+export const fetchCities = () => {
+  return (dispatch) => {
+    fetch(CITY_LIST_API, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            dispatch(updateCities(json));
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  }
+  
+}
+
+export const fetchCategories = () => {
+  return (dispatch) => {
+    fetch(CATEGORIES, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            dispatch(updateCategories(json));
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
 }

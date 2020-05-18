@@ -5,6 +5,9 @@ import {  toast } from 'react-toastify';
 import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
+import { CATEGORY } from '../../constants';
+import logo from '../../logo.png'
+import Layout from '../Layout';
 import './Venue.css';
 
 
@@ -43,22 +46,31 @@ const Venue = () => {
   const navigateToPlace = (placeId) => {
     history.push(`/venue/place/${placeId}`)
   }
-  return (
-    <div >
-      <div className='image-background' style={{flex: 1, display: 'flex',justifyContent: 'center', flexDirection: 'column' }}>
-        <div style={{marginBottom: 20}}>
-          <SearchBar
-            defaultSelectedCity={data.cityId}
-            defaultSelectedCategory={data.categoryId}
-            handleSearch={handleSearch}
-          />
-        </div>
-        
-        <h1 className="container" style={{color: 'white'}}>Search Results</h1>  
+
+  
+  const LogoSearchBar = () => (
+    <div className="text-align-center margin-top-150 color-white" >
+      <img src={logo} alt="logo" className="App-logo" />
+      <div>
+        <span style={{fontSize: CATEGORY}}>
+          Commission free venue booking
+        </span>
+        <SearchBar
+          defaultSelectedCity={data.cityId}
+          defaultSelectedCategory={data.categoryId}
+          handleSearch={handleSearch}
+        />
       </div>
+    </div>  
+  )
+  return (
+    <Layout 
+      headerComponent={LogoSearchBar()}
+    >
       {
       venues.length > 0 ? 
         <div className="row space-around" style={{marginTop: -100}}>
+          <h1 className="container" style={{color: 'white'}}>Search Results</h1>  
           {
             venues.map((card, index) => {
               return(
@@ -93,10 +105,10 @@ const Venue = () => {
         </div> 
       : 
         <span>
-          Loading
+          Loading / No Data Available
         </span>
     }
-    </div>
+    </Layout>
   )
   
 }
