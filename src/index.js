@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import store, { persistor } from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
 import * as serviceWorker from './serviceWorker';
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
 
 ReactDOM.render(
   <Provider store={store}>
