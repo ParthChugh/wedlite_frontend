@@ -8,6 +8,7 @@ import Home from './App';
 import Venue from './Components/Venue';
 import Place from './Components/Place';
 import TextPage from './Components/TextPage'
+import VendorRegistration from './Components/VendorRegistration'
 
 export default function App() {
   return (
@@ -23,6 +24,11 @@ export default function App() {
         </Route>
         <Route path="/about-us">
           <TextPage
+            slug="about-us"
+          />
+        </Route>
+        <Route path="/vendor-registration">
+          <VendorRegistration
             slug="about-us"
           />
         </Route>

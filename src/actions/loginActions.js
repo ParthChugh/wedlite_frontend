@@ -1,5 +1,5 @@
 import {UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES, UPDATE_CATEGORIES} from './actionTypes';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { REGISTER_API, LOGIN_API, CITY_LIST_API, CATEGORIES, BUSINESS_SIGN_UP } from '../urls';
 
 export function updateLoginResponse(response) {
