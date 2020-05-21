@@ -143,6 +143,9 @@ const Header = (props) => {
           <div onClick={() => history.push('/about-us')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
             About Us
           </div>
+          <div onClick={() => history.push('/contact-us')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Contact Us
+          </div>
         </div>
         : 
         <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>

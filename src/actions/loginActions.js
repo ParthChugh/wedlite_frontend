@@ -76,7 +76,6 @@ export function loginUser(data) {
       }
     })
       .then((response) => {
-        console.log(response);
         if(response.status === 200) {
           response.json().then((json) => {
             dispatch(updateLoginResponse(json));

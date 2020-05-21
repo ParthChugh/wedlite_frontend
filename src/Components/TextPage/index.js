@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../Layout';
 import {  toast } from 'react-toastify';
-import { CATEGORY } from '../../constants';
 import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls'
 import logo from '../../logo.png'
 import './TextPage.css';
 
 const TextPage = ({slug}) => {
-  
   const [data, updateData] = useState('');
   const [header, updateHeader] = useState('');
   const fetchData = (newUrl) => {
