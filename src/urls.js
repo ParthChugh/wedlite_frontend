@@ -7,6 +7,7 @@ const VENUE_CATEGORY_CITY = `${BASE_URL}/places/venues/`
 const TERMS_AND_CONDTION = `${BASE_URL}/content/misc/TandC/`
 const ABOUT_US = `${BASE_URL}/content/misc/aboutUs/`
 const BUSINESS_SIGN_UP = `${BASE_URL}/business/users/`
+const CONTACT_US = `${BASE_URL}/support/`
 
 export {
   BASE_URL,
@@ -17,5 +18,6 @@ export {
   VENUE_CATEGORY_CITY,
   ABOUT_US,
   TERMS_AND_CONDTION,
-  BUSINESS_SIGN_UP
+  BUSINESS_SIGN_UP,
+  CONTACT_US
 }

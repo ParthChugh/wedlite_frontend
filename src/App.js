@@ -9,10 +9,10 @@ import {useHistory} from 'react-router-dom'
 import SearchBar from './Components/common/SearchBar';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
-import { CATEGORY } from './constants';
 import Layout from './Components/Layout';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
 const App = (props) => {
   const defaultPlace = 'Udaipur'

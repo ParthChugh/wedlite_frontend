@@ -54,7 +54,7 @@ const Layout = (props) => {
               <h5 className="title">LEGAL</h5>
               <ul>
                 <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-                  <a onClick={() => history.push('/vendor-registration')}>Terms & Conditions</a>
+                  <a onClick={() => history.push('/terms-and-conditions')}>Terms & Conditions</a>
                 </li>                
               </ul>
             </MDBCol>

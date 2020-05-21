@@ -9,6 +9,7 @@ import Venue from './Components/Venue';
 import Place from './Components/Place';
 import TextPage from './Components/TextPage'
 import VendorRegistration from './Components/VendorRegistration'
+import Contact from './Components/Contact'
 
 export default function App() {
   return (
@@ -38,9 +39,7 @@ export default function App() {
           </div>
         </Route>
         <Route path="/contact-us">
-          <div>
-            COMING SOON
-          </div>
+          <Contact />
         </Route>
         <Route path="/venue/place/:placeId">
           <Place />
