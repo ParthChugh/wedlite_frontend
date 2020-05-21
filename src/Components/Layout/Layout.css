@@ -1,0 +1,8 @@
+.logo-container  {
+  justify-content: center;
+}
+.logo {
+  height: 10vmin;
+  align-items: center;
+  pointer-events: none;
+}

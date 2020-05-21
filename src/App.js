@@ -28,12 +28,9 @@ const App = (props) => {
 
   const LogoSearchBar = () => {
     return (
-      <div className="text-align-center margin-top-150 color-white" >
+      <div className="text-align-center  color-white" >
         <img src={logo} alt="logo" className="App-logo" />
         <div>
-          <span style={{fontSize: CATEGORY}}>
-            Commission free venue booking in  <span className="font-bold ">{place === '' ? defaultPlace: place}</span>
-          </span>
           {
             <SearchBar
               handleSearch={handleSearch}
@@ -63,7 +60,7 @@ const App = (props) => {
                 <div>
                   <a href="/">Vendors</a> | <a href="/">Venue</a>
                 </div>
-                : "No Data Available"}
+                : "Coming Soon"}
               </Card.Body>
             </Card>
           )
