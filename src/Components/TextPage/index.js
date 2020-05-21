@@ -32,13 +32,9 @@ const TextPage = ({slug}) => {
   
   const LogoSearchBar = () => {
     return (
-      <div className="text-align-center margin-top-150 color-white" >
+      <div className="text-align-center color-white" >
         <img src={logo} alt="logo" className="App-logo" />
-        <div>
-          <span style={{fontSize: CATEGORY}}>
-            Commission free venue booking 
-          </span>
-        </div>
+       
         
       </div>
     )

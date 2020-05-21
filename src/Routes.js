@@ -32,6 +32,16 @@ export default function App() {
             slug="about-us"
           />
         </Route>
+        <Route path="/careers">
+          <div>
+            COMING SOON
+          </div>
+        </Route>
+        <Route path="/contact-us">
+          <div>
+            COMING SOON
+          </div>
+        </Route>
         <Route path="/venue/place/:placeId">
           <Place />
         </Route>

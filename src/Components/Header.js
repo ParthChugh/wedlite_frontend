@@ -3,7 +3,6 @@ import * as LoginActionCreators from '../actions/loginActions';
 import { Modal, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Dropdown } from 'semantic-ui-react'
 import { CATEGORY, NORMAL} from '../constants';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';

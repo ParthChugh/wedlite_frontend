@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 import Layout from '../Layout';
 
 const VendorRegistration = (props) => {
-  const {auth, LoginActions} = props;
+  const { auth, LoginActions } = props;
   const { RegisterUser, fetchCities, fetchCategories } = LoginActions;
   const { register, handleSubmit, errors, reset } = useForm()
 
