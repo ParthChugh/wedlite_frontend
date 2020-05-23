@@ -50,7 +50,7 @@ const SearchBar = (props) => {
       <form onSubmit={e => e.preventDefault()} className="align-items-center">
         <Dropdown 
           className="dropdown"
-          placeholder='cities' 
+          placeholder='Select your City' 
           defaultValue={defaultSelectedCity ? parseInt(defaultSelectedCity) : defaultSelectedCity}
           search selection
           onChange={updateSelectedCity} 
@@ -58,7 +58,7 @@ const SearchBar = (props) => {
         />
         <Dropdown 
           className="dropdown"
-          placeholder='Categories' 
+          placeholder='Select your Category' 
           defaultValue={defaultSelectedCategory ? parseInt(defaultSelectedCategory): defaultSelectedCategory}
           search selection
           onChange={updateSelectedCategory} 

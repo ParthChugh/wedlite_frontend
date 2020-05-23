@@ -11,8 +11,6 @@ import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from './Components/Layout';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
 const App = (props) => {
   const defaultPlace = 'Udaipur'
@@ -45,28 +43,29 @@ const App = (props) => {
     <Layout
       headerComponent={LogoSearchBar()}
     >        
+    <div style={{marginBottom: 40}}>
       <ToastContainer />
-      <div className="row space-around" style={{marginLeft: 100, marginRight: 100, marginTop: 50, marginBottom: 50}}>
-        {cities.map((card, index) => {
-          return (
-            <Card style={{ width: '20rem', borderRadius: 10,elevation: 5 }} key={index}>
-              <Card.Img variant="top" src={`${BASE_URL}/${card.photo}`} />
-              <Card.Body>
-                <Card.Title>
-                  {card.city}
-                </Card.Title>
-                
-                {card.is_data_available ? 
-                <div>
-                  <a href="/">Vendors</a> | <a href="/">Venue</a>
-                </div>
-                : "Coming Soon"}
-              </Card.Body>
-            </Card>
-          )
-        }
-        )}
-      </div>
+        <div className="row space-around" >
+          {cities.map((card, index) => {
+            return (
+              <Card style={{ width: '20rem', borderRadius: 10,elevation: 5 }} key={index}>
+                <Card.Img variant="top" src={`${BASE_URL}/${card.photo}`} />
+                <Card.Body>
+                  <Card.Title>
+                    {card.city}
+                  </Card.Title>
+                  {card.is_data_available ? 
+                  <div>
+                    <a href="/">Vendors</a> | <a href="/">Venue</a>
+                  </div>
+                  : "Coming Soon"}
+                </Card.Body>
+              </Card>
+            )
+          }
+          )}
+        </div>
+    </div>
     </Layout>
   );
 }

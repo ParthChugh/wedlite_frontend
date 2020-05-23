@@ -1,7 +1,17 @@
-.image-back {
+.image {
   height: 500px; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; 
   padding-top: 20px; 
+}
+
+.carousel .thumb img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.carousel .slide img {
+  max-height: 300px;  /* change this to whatever you want */
+  width: auto;
 }

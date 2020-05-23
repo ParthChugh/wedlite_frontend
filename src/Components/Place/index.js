@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useParams} from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
+import RUG from 'react-upload-gallery'
 import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
+import Layout from '../Layout';
+import Loader from 'react-loader-spinner'
 import './Place.css';
 
 const Venue = () => {
@@ -35,50 +38,66 @@ const Venue = () => {
   },[]);
 
   return (
-    <div className='Venue'>
-      {
-        Object.values(place).length > 0 ?
-        <div>
-          { place.photos.length > 0 ?
-          <Carousel>
-            {
-              place.photos.map((el) => (
-                <div>
-                  <img src={`${BASE_URL}${el.path}`} />
-                </div>
-              ))
+    <Layout className='Venue container' >
+      <div className="row space-around" style={{marginTop: -350}}>
+        {
+          Object.values(place).length > 0 ?
+          <div>
+            { place.photos.length > 0 ?
+            <Carousel>
+              {
+                place.photos.map((el) => (
+                  <div>
+                    <img src={`${BASE_URL}${el.path}`} />
+                  </div>
+                ))
+              }
+            </Carousel> : <div/>
             }
-          </Carousel> : <div/>
-          }
-          {/* {
-          place.photos.length > 0 ?
-            
-          : <div/>
-          } */}
-          <div className="container">
-            <h1>{place.name}</h1>
-            <h3>{place.category.type}</h3>
-            <h5>{place.formatted_address}</h5>
-            <StarRatings
-              rating={parseInt(place.rating)}
-              starDimension="20px"
-              starSpacing="10px"
-              numberOfStars={5}
-              name='rating'
+            {/* {
+            place.photos.length > 0 ?
+              
+            : <div/>
+            } */}
+            <div className="container">
+              <h1>{place.name}</h1>
+              <h3>{place.category.type}</h3>
+              <h5>{place.formatted_address}</h5>
+              <StarRatings
+                rating={parseInt(place.rating)}
+                starDimension="20px"
+                starSpacing="10px"
+                numberOfStars={5}
+                name='rating'
+              />
+              <p>User Rating Total: {place.user_ratings_total}</p>
+              <p>Phone Number: {place.formatted_phone_number}</p>
+              Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
+            </div>     
+            <RUG
+              action="/api/upload"
+              onConfirmDelete={() => {
+                return window.confirm('Are you sure you want to delete?')
+              }}
+              // customRequest={(file, data) => customRequest(data)}
+              accept={['jpg', 'jpeg', 'png', 'gif']}
             />
-            <p>User Rating Total: {place.user_ratings_total}</p>
-            <p>Phone Number: {place.formatted_phone_number}</p>
-            Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
-          </div>     
-        </div>
-        : 
-        <span>
-          Loading
-        </span>
-      }
-    </div>
+          </div>
+          : 
+          <div className="row space-around" style={{marginTop: -350}}>
+            <Loader
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={3000} //3 secs
+            />
+          </div>
+        }
+      </div>
+      
+    </Layout>
   )
-  
 }
 
 export default Venue

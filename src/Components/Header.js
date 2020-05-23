@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import * as LoginActionCreators from '../actions/loginActions';
 import { Modal, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import logo from '../logo1.png';
 import { CATEGORY, NORMAL} from '../constants';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -96,8 +97,8 @@ const Header = (props) => {
       </Modal.Header>
       <form className="container margin-top-10" onSubmit={handleSubmit(loginUser)}>  
         <div className="form-group">
-          <label>Email address</label>
-          <input name="email"  className="form-control" placeholder="Enter your email" ref={
+          <label>Email address/Phone Number</label>
+          <input name="email"  className="form-control" placeholder="Enter your email/Phone Number" ref={
             register({
               required: true,
               pattern: {
@@ -111,9 +112,12 @@ const Header = (props) => {
         <label>Password</label>
           <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true, minLength: 8})} />
           {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
-        </div>
+        </div>    
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
+        </Button>
+        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+          Login via OTP
         </Button>
         <div className="forgot-password row container margin-vertical-10" >
           New to WedLite? &nbsp;
@@ -124,13 +128,17 @@ const Header = (props) => {
   )
 
   const header = () => (
-    <div className="row space-around color-white">
-      <div  onClick={goToAppLink} style={{cursor:'pointer', fontSize: 14}}>
-        Get the App
+    <div className="row space-around" style={{backgroundColor: 'black', paddingTop: 20, alignItems: 'center', paddingBottom: 10}}>
+      <div onClick={()=> history.push('/')} style={{cursor: 'pointer'}}>
+        <img src={logo} alt="logo" className="logo" />
       </div>
+      
       {
       !isLoggedIn ?
         <div className="row ">
+          <div onClick={() => history.push('/')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Home
+          </div>
           <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} >
             Login
           </div>
@@ -147,10 +155,18 @@ const Header = (props) => {
             Contact Us
           </div>
         </div>
-        : 
-        <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-          Logout
-        </div>
+        :
+        <div className="row">
+          <div onClick={() => history.push('/')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Home
+          </div>
+          <div onClick={() => history.push('/profile')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Profile
+          </div>
+          <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+            Logout
+          </div>
+        </div>   
       }
     </div>
   ) 
@@ -158,7 +174,7 @@ const Header = (props) => {
   
   
   return (
-    <div className="image-background">
+    <div style={{height: 100}}>
       <div>
         {header()}
         {props.children}
