@@ -10,6 +10,7 @@ import Place from './Components/Place';
 import TextPage from './Components/TextPage'
 import VendorRegistration from './Components/VendorRegistration'
 import Contact from './Components/Contact'
+import Profile from './Components/Profile'
 
 export default function App() {
   return (
@@ -22,6 +23,9 @@ export default function App() {
           <TextPage 
             slug="terms-and-conditions"
           />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/about-us">
           <TextPage

@@ -5,8 +5,7 @@ import {  toast } from 'react-toastify';
 import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
-import { CATEGORY } from '../../constants';
-import logo from '../../logo.png'
+import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
 
@@ -37,7 +36,7 @@ const Venue = () => {
   
   useEffect(() => {
     fetchVenue();
-  },[data]);
+  },[data.categoryId, data.cityId]);
 
   const handleSearch = (cityObject, categoryObject) => {
     history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
@@ -50,7 +49,6 @@ const Venue = () => {
   
   const LogoSearchBar = () => (
     <div className="text-align-center color-white" >
-      <img src={logo} alt="logo" className="App-logo" />
       <div>
         <SearchBar
           defaultSelectedCity={data.cityId}
@@ -66,7 +64,7 @@ const Venue = () => {
     >
       {
       venues.length > 0 ? 
-        <div className="row space-around" style={{marginTop: -100}}>
+        <div className="row space-around" style={{marginTop: -350}}>
           <h1 className="container" style={{color: 'white'}}>Search Results</h1>  
           {
             venues.map((card, index) => {
@@ -101,9 +99,15 @@ const Venue = () => {
           }
         </div> 
       : 
-        <span>
-          Loading / Coming soon
-        </span>
+      <div className="row space-around" style={{marginTop: -350}}>
+        <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </div>
     }
     </Layout>
   )

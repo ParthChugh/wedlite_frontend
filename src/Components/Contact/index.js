@@ -43,8 +43,8 @@ const TextPage = () => {
     <Layout
       headerComponent={LogoSearchBar()}
     >
-      <form className="container margin-top-10" onSubmit={handleSubmit(postData)}>  
-      <ToastContainer/>
+      <form className="container" style={{marginTop: -80}} onSubmit={handleSubmit(postData)}>  
+        <ToastContainer/>
         <div className="form-group">
           <div>
             <label>Name</label>
@@ -61,24 +61,23 @@ const TextPage = () => {
               }
             })} />
             {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
-        </div>
-        <div className="form-group">
-        <label>Phone Number</label>
-          <input type="number" className="form-control" name="phone" placeholder="Phone" autoComplete="phone-number" ref={register({required: true, minLength: 10})} />
-          {errors.phone && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
-        </div>
-        <label>Query</label>
-        <input 
-          placeholder="What issue you are facing"
-          style={{height: 100}} 
-          className="form-control" 
-          name="query" 
-          ref={register({ required: true, maxLength: 50 })} 
-        />
-        {errors.query && <span style={{color: 'red'}}>This field is necessary</span>}    
-        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
-          Submit
-        </Button>
+            <label>Phone Number</label>
+            <input type="number" className="form-control" name="phone" placeholder="Phone" autoComplete="phone-number" ref={register({required: true, minLength: 10})} />
+            {errors.phone && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
+          
+            <label>Query</label>
+            <input 
+              placeholder="What issue you are facing"
+              style={{height: 100}} 
+              className="form-control" 
+              name="query" 
+              ref={register({ required: true, maxLength: 50 })} 
+            />
+            {errors.query && <span style={{color: 'red'}}>This field is necessary</span>}    
+            <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+              Submit
+            </Button>
+          </div>
       </form>
     </Layout>  
   )

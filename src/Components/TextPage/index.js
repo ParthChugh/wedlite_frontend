@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../Layout';
 import {  toast } from 'react-toastify';
-import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls'
+import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls';
+import Loader from 'react-loader-spinner'
 import logo from '../../logo.png'
 import './TextPage.css';
 
@@ -32,8 +33,6 @@ const TextPage = ({slug}) => {
     return (
       <div className="text-align-center color-white" >
         <img src={logo} alt="logo" className="App-logo" />
-       
-        
       </div>
     )
   }
@@ -60,14 +59,20 @@ const TextPage = ({slug}) => {
       >
       {
         data !== '' ?
-        <div className="container">
+        <div className="container" style={{marginTop: -80}}>
           <h1>{header}</h1>
           <span style={{fontSize: 20}}> {data}</span>
         </div>
         : 
-        <span>
-          Loading
-        </span>
+        <div className="row space-around" style={{marginTop: -350}}>
+          <Loader
+            type="Puff"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        </div>
       }
     </Layout>
     
