@@ -15,7 +15,7 @@ const Layout = (props) => {
     showSearchBar
   } = props;
   return (
-    <div>
+    <div style={{ height:"100vh" }}>
       <div>
         <Header
           defaultSelectedCity={defaultSelectedCity}

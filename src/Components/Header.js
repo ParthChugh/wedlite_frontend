@@ -169,16 +169,16 @@ const Header = (props) => {
   )
 
   const header = () => (
-    <div className="row space-around" style={{backgroundColor: 'black', paddingTop: 20, alignItems: 'center', paddingBottom: 10}}>
+    <div className="row space-around" style={{backgroundColor: 'black', padding: 10, alignItems: 'center', position: 'fixed', top: 0, display: 'block', width: '100%', zIndex:9999}}>
       <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20}}>
         <img src={logo} alt="logo" className="logo" />
       </Navbar.Brand>
       {  
-      <Navbar  className="ml-auto" collapseOnSelect expand="lg"  variant="dark">
+      <Navbar  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{display: 'inline-block', float: 'right'}}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto" style={{ alignItems: 'right' }}>
             <Nav.Link onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
@@ -227,7 +227,7 @@ const Header = (props) => {
     <div>
       <div>
         {header()}
-        <div className="text-align-center  color-white" >
+        <div className="text-align-center  color-white" style={{ marginTop: 50 }} >
           {
             showLogo ?
             <img src={backgroundLogo} alt="logo" className="App-logo" />
