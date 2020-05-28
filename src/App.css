@@ -51,9 +51,14 @@
   margin-bottom: 10px;
 }
 footer.page-footer .footer-copyright {
-  position: fixed;
   bottom: 0;
   width: 100%;
   background: black;
-  z-index:9999999;
+  z-index:999;
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
