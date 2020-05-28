@@ -3,7 +3,9 @@ import * as LoginActionCreators from '../../actions/loginActions';
 import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { Dropdown } from 'semantic-ui-react'
-
+import Invoice from '../../assets/invoice';
+import Commission from '../../assets/commission';
+import Graph from '../../assets/graph';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import Layout from '../Layout';
@@ -75,8 +77,30 @@ const VendorRegistration = (props) => {
     <Layout
       showSearchBar={false}
     >
-      <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
-        <h1>Vendor Registration</h1>
+      <div>
+        <h1 className="container" >Vendor Registration</h1>
+        <div className="row " style={{justifyContent: 'space-around', }} >
+          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+            <Invoice />
+            <h4>
+              No broker between you and your client
+            </h4>
+          </div>
+          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+            <Commission />
+            <h4>Partner With India's top NO commission Venue search Company</h4>
+          </div>
+          
+          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+            <div style={{width: 100, height: 100,}}>
+              <Graph />
+            </div>
+            <h4>
+              Get your business visibility in Major cities across India
+            </h4>
+          </div>
+        </div>
+       <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
         <div className="form-group">
           <div className="form-group">
             <label>First Name</label>
@@ -166,12 +190,11 @@ const VendorRegistration = (props) => {
             {selectedCategory === "" && <span style={{color: 'red'}}>Please select one business type</span>}    
           </div>
         }
-        
-        
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
         </Button>       
       </form>
+      </div>
     </Layout>
     
   )

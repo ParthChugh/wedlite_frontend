@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
-import logo from '../logo1.png';
+import logo from '../logo.png';
 import { CATEGORY, NORMAL} from '../constants';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
@@ -71,7 +71,7 @@ const Header = (props) => {
   }
 
   const showSignUpModal = () => (
-    <Modal show={SignUpShow}  onHide={handleClose}>
+    <Modal style={{marginTop: 100}} show={SignUpShow}  onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
@@ -132,7 +132,7 @@ const Header = (props) => {
   )
 
   const showLoginModal = () => (
-    <Modal show={show} onHide={handleClose}>
+    <Modal style={{marginTop: 100}} show={show} onHide={handleClose}>
       <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
         <div>Login</div>
       </Modal.Header>
@@ -171,7 +171,7 @@ const Header = (props) => {
   const header = () => (
     <div className="row space-around" style={{backgroundColor: 'black', padding: 10, alignItems: 'center', position: 'fixed', top: 0, display: 'block', width: '100%', zIndex:9999}}>
       <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20}}>
-        <img src={logo} alt="logo" className="logo" />
+        <img src={logo} alt="logo" className="logo-size" />
       </Navbar.Brand>
       {  
       <Navbar  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{display: 'inline-block', float: 'right'}}>

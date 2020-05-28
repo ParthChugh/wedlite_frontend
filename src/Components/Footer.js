@@ -23,10 +23,10 @@ export default function Footer() {
             <MDBCol md="3">
               <h5 className="title">GENERAL</h5>
               <ul>
-                <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+                <li className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
                   <a onClick={() => history.push('/vendor-registration')}>Vendor Registration</a>
                 </li>
-                <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+                <li className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
                   <a onClick={() => history.push('/about-us')}>About Us</a>
                 </li>                
               </ul>
@@ -34,10 +34,10 @@ export default function Footer() {
             <MDBCol md="3">
               <h5 className="title">COMPANY</h5>
               <ul>
-                <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+                <li className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
                   <a onClick={() => history.push('/careers')}>Careers</a>
                 </li>                
-                <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+                <li className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
                   <a onClick={() => history.push('/contact-us')}>Contact Us</a>
                 </li>                
               </ul>
@@ -45,7 +45,7 @@ export default function Footer() {
             <MDBCol md="3">
               <h5 className="title">LEGAL</h5>
               <ul>
-                <li className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
+                <li className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
                   <a onClick={() => history.push('/terms-and-conditions')}>Terms & Conditions</a>
                 </li>                
               </ul>

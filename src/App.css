@@ -21,10 +21,13 @@
   border-radius: 10px;
   pointer-events: none;
 }
-.logo {
+.logo-size {
   height: 5vmin;
   background-color:  rgba(255, 255, 255, 0.3);
-  
+  pointer-events: none;
+}
+.logo {
+  height: 5vmin;
   pointer-events: none;
 }
 .margin-left-right-10 {
@@ -61,4 +64,20 @@ footer.page-footer .footer-copyright {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.text:hover {
+  background-color: gray;
+}
+.horizontal-line {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid #000; 
+  line-height: 0.1em;
+  margin: 20px 0 20px; 
+}
+
+.horizontal-line span { 
+  background:#fff; 
+  padding:0 10px; 
 }
