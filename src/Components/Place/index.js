@@ -38,8 +38,11 @@ const Venue = () => {
   },[]);
 
   return (
-    <Layout className='Venue container' >
-      <div className="row space-around" style={{marginTop: -350}}>
+    <Layout className='Venue container' 
+    showLogo={false}
+    showSearchBar={false}
+    >
+      <div className="row space-around">
         {
           Object.values(place).length > 0 ?
           <div>
@@ -59,32 +62,35 @@ const Venue = () => {
               
             : <div/>
             } */}
-            <div className="container">
-              <h1>{place.name}</h1>
-              <h3>{place.category.type}</h3>
-              <h5>{place.formatted_address}</h5>
-              <StarRatings
-                rating={parseInt(place.rating)}
-                starDimension="20px"
-                starSpacing="10px"
-                numberOfStars={5}
-                name='rating'
+            <div className="container row space-between">
+              <div >
+                <h1>{place.name}</h1>
+                <h3>{place.category.type}</h3>
+                <h5>{place.formatted_address}</h5>
+                <StarRatings
+                  rating={parseInt(place.rating)}
+                  starDimension="20px"
+                  starSpacing="10px"
+                  numberOfStars={5}
+                  name='rating'
+                />
+                <p>User Rating Total: {place.user_ratings_total}</p>
+                <p>Phone Number: {place.formatted_phone_number}</p>
+                Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
+              </div>
+              <RUG
+                action="/api/upload"
+                onConfirmDelete={() => {
+                  return window.confirm('Are you sure you want to delete?')
+                }}
+                // customRequest={(file, data) => customRequest(data)}
+                accept={['jpg', 'jpeg', 'png', 'gif']}
               />
-              <p>User Rating Total: {place.user_ratings_total}</p>
-              <p>Phone Number: {place.formatted_phone_number}</p>
-              Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
             </div>     
-            <RUG
-              action="/api/upload"
-              onConfirmDelete={() => {
-                return window.confirm('Are you sure you want to delete?')
-              }}
-              // customRequest={(file, data) => customRequest(data)}
-              accept={['jpg', 'jpeg', 'png', 'gif']}
-            />
+            
           </div>
           : 
-          <div className="row space-around" style={{marginTop: -350}}>
+          <div className="row space-around" >
             <Loader
               type="Puff"
               color="#00BFFF"

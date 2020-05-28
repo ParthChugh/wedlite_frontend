@@ -73,9 +73,9 @@ const VendorRegistration = (props) => {
 
   return(
     <Layout
-      headerComponent={<div/>}
+      showSearchBar={false}
     >
-      <form className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
+      <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
         <h1>Vendor Registration</h1>
         <div className="form-group">
           <div className="form-group">
@@ -108,7 +108,7 @@ const VendorRegistration = (props) => {
           <label>Phone Number</label>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
             <span style={{ paddingRight: 10 }}>+91</span>
-            <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, minLength: 10})} />
+            <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, minLength: 10, maxLength: 10})} />
           </div>
           {errors.number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
         </div>

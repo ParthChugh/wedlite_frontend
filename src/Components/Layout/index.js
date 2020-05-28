@@ -5,11 +5,25 @@ import './Layout.css'
 
 const Layout = (props) => {  
 
-  const {headerComponent, children} = props;
+  const {
+    headerComponent, 
+    children, 
+    handleSearch, 
+    defaultSelectedCity, 
+    defaultSelectedCategory,
+    showLogo,
+    showSearchBar
+  } = props;
   return (
     <div>
-      <div className="image-background">
-        <Header>
+      <div>
+        <Header
+          defaultSelectedCity={defaultSelectedCity}
+          defaultSelectedCategory={defaultSelectedCategory}
+          handleSearch={handleSearch}
+          showLogo={showLogo}
+          showSearchBar={showSearchBar}
+        >
           {headerComponent}
         </Header>
       </div>

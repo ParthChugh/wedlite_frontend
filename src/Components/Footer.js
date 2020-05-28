@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom'
 export default function Footer() {
   const history = useHistory();
   return (
-    <MDBFooter color="black" className="font-small pt-4 mt-4 footer">
+    <MDBFooter color="black" className="font-small pt-4 mt-4 footer" style={{padding: 10}}>
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
             <MDBCol md="3">

@@ -29,8 +29,10 @@ const SearchBar = (props) => {
 
 
   const handleGoClick = () => {
-    if(selectedCity !== '' && selectedCategory !== '') {
+    if((selectedCity !== '' && selectedCategory !== '')) {
       props.handleSearch(selectedCity, selectedCategory);
+    } else if((typeof defaultSelectedCity !== 'undefined' && typeof defaultSelectedCategory !== 'undefined')) {
+      props.handleSearch(selectedCity ? selectedCity : {id: defaultSelectedCity},selectedCategory ? selectedCategory : {id: defaultSelectedCategory});
     }
   }
   

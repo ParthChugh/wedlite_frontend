@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Layout from '../Layout';
 import {  toast } from 'react-toastify';
-import logo from '../../logo.png'
 import './Profile.css';
 
 const Profile = ({slug}) => {
@@ -26,22 +25,13 @@ const Profile = ({slug}) => {
     });
   }
   
-  const LogoSearchBar = () => {
-    return (
-      <div className="text-align-center color-white" >
-        <img src={logo} alt="logo" className="App-logo" />
-      </div>
-    )
-  }
 
   const customRequest = (data) => {
     console.log(data);
   }
   
   return (
-    <Layout
-      headerComponent={LogoSearchBar()}
-    >
+    <Layout >
       <div>
       
         

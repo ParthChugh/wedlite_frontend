@@ -55,16 +55,16 @@ const TextPage = ({slug}) => {
 
   return (
     <Layout
-      headerComponent={LogoSearchBar()}
-      >
+    showSearchBar={false}
+    >
       {
         data !== '' ?
-        <div className="container" style={{marginTop: -80}}>
+        <div className="container">
           <h1>{header}</h1>
           <span style={{fontSize: 20}}> {data}</span>
         </div>
         : 
-        <div className="row space-around" style={{marginTop: -350}}>
+        <div className="row space-around" >
           <Loader
             type="Puff"
             color="#00BFFF"
