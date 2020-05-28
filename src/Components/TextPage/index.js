@@ -17,9 +17,10 @@ const TextPage = ({slug}) => {
       }
     })
       .then((response) => {
+        console.log(response);
         if(response.status === 200) {
-          response.json().then((json) => {
-            updateData(json.content);
+          response.text().then((json) => {
+            updateData(json);
           })
         } else {
           toast("Contact Support")
@@ -28,15 +29,7 @@ const TextPage = ({slug}) => {
       .catch(() => {
     });
   }
-  
-  const LogoSearchBar = () => {
-    return (
-      <div className="text-align-center color-white" >
-        <img src={logo} alt="logo" className="App-logo" />
-      </div>
-    )
-  }
-  
+    
   useEffect(() => {
     switch(slug) {
       case 'terms-and-conditions': 
@@ -61,7 +54,11 @@ const TextPage = ({slug}) => {
         data !== '' ?
         <div className="container">
           <h1>{header}</h1>
-          <span style={{fontSize: 20}}> {data}</span>
+          <div dangerouslySetInnerHTML={{
+            __html: data
+          }}>
+
+          </div>
         </div>
         : 
         <div className="row space-around" >

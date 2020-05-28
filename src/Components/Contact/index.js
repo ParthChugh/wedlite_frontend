@@ -35,7 +35,10 @@ const TextPage = () => {
     <Layout
       showSearchBar={false}
     >
-      <form className="container" onSubmit={handleSubmit(postData)}>  
+      <>      
+      <form className="container" style={{maxWidth: '50%'}} onSubmit={handleSubmit(postData)}>  
+        <h3>If urgent please contact us at support@wedlite.in</h3>
+        <div className="horizontal-line"><span>OR</span></div>
         <ToastContainer/>
         <div className="form-group">
           <div>
@@ -71,6 +74,7 @@ const TextPage = () => {
             </Button>
           </div>
       </form>
+      </>
     </Layout>  
   )
   

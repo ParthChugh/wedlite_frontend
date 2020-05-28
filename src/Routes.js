@@ -30,6 +30,8 @@ export default function App() {
     );
   };
   
+ 
+
   return (
     <Router>
       <Switch>
@@ -55,9 +57,15 @@ export default function App() {
           />
         </Route>
         <Route path="/careers">
-          <div>
-            COMING SOON
+        <Layout
+          showSearchBar={false}
+        >
+          <div >
+            <h3 style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+              Please write us at carrer@wedlite.in with your cv to get more information about career at wedlite.in .
+            </h3>
           </div>
+         </Layout> 
         </Route>
         <Route path="/contact-us">
           <Contact />
