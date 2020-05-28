@@ -39,38 +39,32 @@ const Venue = () => {
   },[data.categoryId, data.cityId]);
 
   const handleSearch = (cityObject, categoryObject) => {
-    history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
+    if(data.categoryId !== categoryObject.id || data.categoryId !== cityObject.id) {
+      updateVenus([]);
+      history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
+    }
   }
 
   const navigateToPlace = (placeId) => {
     history.push(`/venue/place/${placeId}`)
   }
 
-  
-  const LogoSearchBar = () => (
-    <div className="text-align-center color-white" >
-      <div>
-        <SearchBar
-          defaultSelectedCity={data.cityId}
-          defaultSelectedCategory={data.categoryId}
-          handleSearch={handleSearch}
-        />
-      </div>
-    </div>  
-  )
   return (
-    <Layout 
-      headerComponent={LogoSearchBar()}
+    <Layout
+      defaultSelectedCity={data.cityId}
+      defaultSelectedCategory={data.categoryId} 
+      handleSearch={handleSearch}
+      showLogo={false}
     >
       {
       venues.length > 0 ? 
-        <div className="row space-around" style={{marginTop: -350}}>
-          <h1 className="container" style={{color: 'white'}}>Search Results</h1>  
+        <div className="row space-around">
+          <h1 className="container" >Search Results</h1>  
           {
             venues.map((card, index) => {
               return(
                 <Card 
-                  style={{ marginTop: 10,marginBottom: 10 ,width: '28rem', borderRadius: 10,elevation: 5 }}
+                  style={{ marginBottom: 20 ,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
@@ -99,7 +93,7 @@ const Venue = () => {
           }
         </div> 
       : 
-      <div className="row space-around" style={{marginTop: -350}}>
+      <div className="row space-around">
         <Loader
           type="Puff"
           color="#00BFFF"

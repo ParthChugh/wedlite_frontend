@@ -2,15 +2,26 @@ import React, { useEffect, useState } from 'react'
 import * as LoginActionCreators from '../actions/loginActions';
 import { Modal, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
+import backgroundLogo from '../logo.png';
+import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import logo from '../logo1.png';
 import { CATEGORY, NORMAL} from '../constants';
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 const Header = (props) => {  
   const history = useHistory();
-  const { LoginActions, auth } = props;
+  const { 
+    LoginActions, 
+    auth, 
+    handleSearch, 
+    defaultSelectedCity, 
+    defaultSelectedCategory,
+    showLogo,
+    showSearchBar
+   } = props;
   const { RegisterUser, loginUser, handleClearData, fetchCities, fetchCategories } = LoginActions;
 
   const isLoggedIn = auth.get('isLoggedIn');
@@ -44,15 +55,37 @@ const Header = (props) => {
     setSignUpShow(true)
   };
 
- 
-
+  const handleData = (data) => {
+    const newData =  {
+      "first_name": data.first_name,
+      "last_name": data.last_name,
+      "phone":  {
+        "country_code": "+91",
+        "number": data.number
+      },
+      "email": data.email,
+      "password": data.password
+    }
+    console.log(newData);
+    RegisterUser(newData, false)
+  }
 
   const showSignUpModal = () => (
     <Modal show={SignUpShow}  onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
-      <form className="container margin-top-10" onSubmit={handleSubmit((data) => RegisterUser(data, false))}>  
+      <form className="container margin-top-10" onSubmit={handleSubmit((data) => handleData(data))}>  
+        <div className="form-group">
+          <label>First Name</label>
+          <input  name="first_name" className="form-control" placeholder="First Name"  ref={register({required: true})} />
+          {errors.first_name && <span style={{color: 'red'}}>This field is required</span>}    
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input  name="last_name" className="form-control"  placeholder="Last Name" ref={register({required: true})} />
+          {errors.last_name && <span style={{color: 'red'}}>This field is required</span>}    
+        </div>
         <div className="form-group">
           <label>Email address</label>
           <input name="email"  className="form-control" placeholder="Enter your email" ref={
@@ -64,6 +97,14 @@ const Header = (props) => {
               }
               })} />
             {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}
+        </div>
+        <div className="form-group">
+          <label>Phone Number</label>
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+            <span style={{ paddingRight: 10 }}>+91</span>
+            <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, maxLength: 10, minLength: 10})} />
+          </div>
+          {errors.number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
         </div>
         <div className="form-group">
         <label>Password</label>
@@ -129,44 +170,53 @@ const Header = (props) => {
 
   const header = () => (
     <div className="row space-around" style={{backgroundColor: 'black', paddingTop: 20, alignItems: 'center', paddingBottom: 10}}>
-      <div onClick={()=> history.push('/')} style={{cursor: 'pointer'}}>
+      <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20}}>
         <img src={logo} alt="logo" className="logo" />
-      </div>
-      
-      {
-      !isLoggedIn ?
-        <div className="row ">
-          <div onClick={() => history.push('/')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Home
-          </div>
-          <div onClick={handleShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}} >
-            Login
-          </div>
-          <div onClick={handleSignUpShow} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Sign up
-          </div>
-          <div onClick={() => history.push('/vendor-registration')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Register your Business
-          </div>
-          <div onClick={() => history.push('/about-us')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            About Us
-          </div>
-          <div onClick={() => history.push('/contact-us')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Contact Us
-          </div>
-        </div>
+      </Navbar.Brand>
+      {  
+      <Navbar  className="ml-auto" collapseOnSelect expand="lg"  variant="dark">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        { !isLoggedIn ?
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Home
+            </Nav.Link>
+            <Nav.Link onClick={handleShow} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
+              Login
+            </Nav.Link>
+            <Nav.Link onClick={handleSignUpShow} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Sign up
+            </Nav.Link>
+            <Nav.Link onClick={() => history.push('/vendor-registration')}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
+              Register your Business
+            </Nav.Link>
+            <Nav.Link onClick={() => history.push('/about-us')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              About Us
+            </Nav.Link>
+            <Nav.Link onClick={() => history.push('/contact-us')}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
+              Contact Us
+            </Nav.Link>  
+          </Nav>
+        </Navbar.Collapse> 
         :
-        <div className="row">
-          <div onClick={() => history.push('/')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Home
-          </div>
-          <div onClick={() => history.push('/profile')} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Profile
-          </div>
-          <div onClick={handleClearData} className="margin-left-right-10 color-white" style={{cursor:'pointer',fontSize: NORMAL}}>
-            Logout
-          </div>
-        </div>   
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link onClick={() => history.push('/')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Home
+            </Nav.Link>
+            <Nav.Link onClick={() => history.push('/profile')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Profile
+            </Nav.Link>
+            <Nav.Link onClick={handleClearData}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Logout
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+        }
+      </Navbar>
+        
+       
       }
     </div>
   ) 
@@ -174,16 +224,37 @@ const Header = (props) => {
   
   
   return (
-    <div style={{height: 100}}>
+    <div>
       <div>
         {header()}
+        <div className="text-align-center  color-white" >
+          {
+            showLogo ?
+            <img src={backgroundLogo} alt="logo" className="App-logo" />
+            : <div/>
+          }
+          {
+            showSearchBar ?
+            <div style={{padding: 20}}>
+              <SearchBar
+                handleSearch={handleSearch}
+                defaultSelectedCity={defaultSelectedCity}
+                defaultSelectedCategory={defaultSelectedCategory}
+              />   
+            </div> : <div/>
+          }
+          </div>
         {props.children}
       </div>
       {showLoginModal()}
       {showSignUpModal()}
     </div>
-  )
-  
+  ) 
+}
+
+Header.defaultProps = {
+  showLogo: true,
+  showSearchBar: true,
 }
 
 const mapStateToProps = state => {

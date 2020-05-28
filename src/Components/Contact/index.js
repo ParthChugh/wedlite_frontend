@@ -30,20 +30,12 @@ const TextPage = () => {
         toast("Error");
     });
   }
-  
-  const LogoSearchBar = () => {
-    return (
-      <div className="text-align-center color-white" >
-        <img src={logo} alt="logo" className="App-logo" />
-      </div>
-    )
-  }
-  
+    
   return (
     <Layout
-      headerComponent={LogoSearchBar()}
+      showSearchBar={false}
     >
-      <form className="container" style={{marginTop: -80}} onSubmit={handleSubmit(postData)}>  
+      <form className="container" onSubmit={handleSubmit(postData)}>  
         <ToastContainer/>
         <div className="form-group">
           <div>
@@ -62,7 +54,7 @@ const TextPage = () => {
             })} />
             {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
             <label>Phone Number</label>
-            <input type="number" className="form-control" name="phone" placeholder="Phone" autoComplete="phone-number" ref={register({required: true, minLength: 10})} />
+            <input type="number" className="form-control" name="phone" placeholder="Phone" autoComplete="phone-number" ref={register({required: true,minLength: 10, maxLength: 10})} />
             {errors.phone && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
           
             <label>Query</label>
