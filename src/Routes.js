@@ -13,6 +13,7 @@ import VendorRegistration from './Components/VendorRegistration'
 import Contact from './Components/Contact'
 import Profile from './Components/Profile'
 import Layout from './Components/Layout'
+import ShowAllVenues from './Components/ShowAllVenues'
 
 export default function App() {
   
@@ -62,7 +63,7 @@ export default function App() {
         >
           <div >
             <h3 style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
-              Please write us at carrer@wedlite.in with your cv to get more information about career at wedlite.in .
+              Please write us at carrer@wedlite.in with your CV to get more information about career at wedlite.in .
             </h3>
           </div>
          </Layout> 

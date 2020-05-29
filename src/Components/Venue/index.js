@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from '../common/SearchBar';
-import {useHistory, useParams} from 'react-router-dom';
+import {useHistory, useParams, useRouteMatch} from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
 import StarRatings from 'react-star-ratings';
@@ -9,13 +9,14 @@ import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
 
-
 const Venue = () => {
   const data = useParams()
+  const url = useRouteMatch().url;
   const history = useHistory();
   const [venues, updateVenus] = useState([]);
-  const fetchVenue = () => {
-    fetch(`${VENUE_CATEGORY_CITY}?category=${data.categoryId}&location=${data.cityId}`, {
+  const [nextUrl, updateNextUrl] = useState('');
+  const fetchVenue = (url) => {
+    fetch(url, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +25,9 @@ const Venue = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            updateVenus(json.results);
+            console.log(json.next);
+            updateNextUrl(json.next);
+            updateVenus(searches => searches.concat(json.results))
           })
         } else {
           toast("Contact Support")
@@ -35,7 +38,7 @@ const Venue = () => {
   }
   
   useEffect(() => {
-    fetchVenue();
+    fetchVenue(`${VENUE_CATEGORY_CITY}?category=${data.categoryId}&location=${data.cityId}`);
   },[data.categoryId, data.cityId]);
 
   const handleSearch = (cityObject, categoryObject) => {
@@ -49,6 +52,10 @@ const Venue = () => {
     history.push(`/venue/place/${placeId}`)
   }
 
+  const getMoreData = () => {
+    fetchVenue(nextUrl);
+  }
+
   return (
     <Layout
       defaultSelectedCity={data.cityId}
@@ -58,8 +65,9 @@ const Venue = () => {
     >
       {
       venues.length > 0 ? 
-        <div className="row space-around">
-          <h1 className="container" >Search Results</h1>  
+      <div>
+        <h1 style={{marginLeft: 40}}>Search Results</h1>  
+        <div className="row space-around">        
           {
             venues.map((card, index) => {
               return(
@@ -72,7 +80,6 @@ const Venue = () => {
                     <Card.Img variant="top" src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
                     : <div />
                   }
-                  
                   <Card.Body>
                   <StarRatings
                     rating={parseInt(card.rating)}
@@ -92,6 +99,16 @@ const Venue = () => {
             )
           }
         </div> 
+        {
+          nextUrl !== null ?
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <button className="see-more-button" onClick={getMoreData}>
+              See More
+            </button>
+          </div> : <div />
+        }
+        
+      </div>
       : 
       <div className="row space-around">
         <Loader

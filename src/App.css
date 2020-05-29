@@ -67,7 +67,7 @@ footer.page-footer .footer-copyright {
 }
 
 .text:hover {
-  background-color: gray;
+  text-decoration: underline;
 }
 .horizontal-line {
   width: 100%; 
