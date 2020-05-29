@@ -13,7 +13,6 @@ import VendorRegistration from './Components/VendorRegistration'
 import Contact from './Components/Contact'
 import Profile from './Components/Profile'
 import Layout from './Components/Layout'
-import ShowAllVenues from './Components/ShowAllVenues'
 
 export default function App() {
   
