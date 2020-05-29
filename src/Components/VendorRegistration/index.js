@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Dropdown } from 'semantic-ui-react'
 import Invoice from '../../assets/invoice';
 import Commission from '../../assets/commission';
+import {useHistory} from 'react-router-dom'
 import Graph from '../../assets/graph';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
@@ -12,6 +13,7 @@ import Layout from '../Layout';
 
 const VendorRegistration = (props) => {
   const { auth, LoginActions } = props;
+  const history = useHistory();
   const { RegisterUser, fetchCities, fetchCategories } = LoginActions;
   const { register, handleSubmit, errors, reset } = useForm()
 
@@ -47,12 +49,21 @@ const VendorRegistration = (props) => {
     updateCategory(newData[0])
   } 
   
+  const callbackFunction = () => {
+    history.push('/');
+  }
   const createVendorData = (props) => {
     if(selectedCity && selectedCategory) {
       const data = {
         "user": {
           "email": props.email,
-          "password": props.password
+          "password": props.password,
+          "phone": {
+            "country_code": "+91",
+            "number": props.number
+          },
+          "first_name": props.first_name,
+          "last_name": props.last_name
         },
         "business": {
           "name": props.business_name,
@@ -61,15 +72,9 @@ const VendorRegistration = (props) => {
           "city_id": selectedCity.id,
           "category_id": selectedCategory.id
         },
-        "phone": {
-          "country_code": "+91",
-          "number": props.number
-        },
-        "first_name": props.first_name,
-        "last_name": props.last_name
       }
-      RegisterUser(data, true);
-      reset()
+      console.log(data);
+      RegisterUser(data, true, callbackFunction);
     }
   }
 

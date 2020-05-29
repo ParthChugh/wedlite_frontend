@@ -1,6 +1,19 @@
-import {UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES, UPDATE_CATEGORIES} from './actionTypes';
+import {
+  UPDATE_RESPONSE, 
+  UPDATE_LOGGED_IN, 
+  UPDATE_CITIES, 
+  UPDATE_CATEGORIES,
+  UPDATE_POPULAR_VENUES
+} from './actionTypes';
 import { toast } from 'react-toastify';
-import { REGISTER_API, LOGIN_API, CITY_LIST_API, CATEGORIES, BUSINESS_SIGN_UP } from '../urls';
+import { 
+  REGISTER_API,
+  LOGIN_API, 
+  CITY_LIST_API, 
+  CATEGORIES, 
+  BUSINESS_SIGN_UP,
+  POPULAR_VENUES
+  } from '../urls';
 
 export function updateLoginResponse(response) {
   return {
@@ -37,7 +50,14 @@ export function updateCategories(categories) {
   };
 }
 
-export function RegisterUser(data, isVendor = false) {
+export function updatePopularVenues(venues) {
+  return {
+    type: UPDATE_POPULAR_VENUES,
+    payload: venues,
+  };
+}
+
+export function RegisterUser(data, isVendor = false, callbackFunction) {
   return (dispatch) => {
     const url = isVendor ? BUSINESS_SIGN_UP : REGISTER_API
     fetch(url, {
@@ -49,10 +69,16 @@ export function RegisterUser(data, isVendor = false) {
     })
       .then((response) => {
         if(response.status === 201) {
-          response.json().then((json) => {  
+          response.json().then((json) => { 
             dispatch(updateLoginResponse(json));
             dispatch(updateLoggedIn(true));
             toast("Welcome")
+            if( typeof callbackFunction !== 'undefined') {
+              setTimeout(() => {
+                callbackFunction()
+              },1000);
+            }
+            
           })
         } else {
           toast("Email already exist")
@@ -67,6 +93,7 @@ export function RegisterUser(data, isVendor = false) {
 }
 
 export function loginUser(data) {
+  console.log(data);
   return (dispatch) => {
     fetch(LOGIN_API, {
       method: 'POST', 
@@ -78,6 +105,7 @@ export function loginUser(data) {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
+            console.log(json);
             dispatch(updateLoginResponse(json));
             dispatch(updateLoggedIn(true));
             toast("Welcome")
@@ -132,6 +160,31 @@ export const fetchCategories = () => {
         if(response.status === 200) {
           response.json().then((json) => {
             dispatch(updateCategories(json));
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
+}
+
+export const fetchPopularVenues = (locationId) => {
+  return (dispatch) => {
+    fetch(`${POPULAR_VENUES}${locationId}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            console.log('00000')
+            console.log(json);
+            dispatch(updatePopularVenues(json));
           })
         } else {
           toast("Contact Support")

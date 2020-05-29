@@ -23,6 +23,7 @@ const Venue = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
+            console.log(json);
             updatePlace(json);
           })
         } else {

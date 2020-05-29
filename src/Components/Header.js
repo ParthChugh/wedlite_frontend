@@ -7,7 +7,7 @@ import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import logo from '../logo.png';
 import { CATEGORY, NORMAL} from '../constants';
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -102,7 +102,7 @@ const Header = (props) => {
           <label>Phone Number</label>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
             <span style={{ paddingRight: 10 }}>+91</span>
-            <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, maxLength: 10, minLength: 10})} />
+            <input placeholder="Phone Number" name="number" type="tel" className="form-control"   ref={register({required: true, maxLength: 10, minLength: 10})} />
           </div>
           {errors.number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
         </div>
@@ -138,16 +138,17 @@ const Header = (props) => {
       </Modal.Header>
       <form className="container margin-top-10" onSubmit={handleSubmit(loginUser)}>  
         <div className="form-group">
-          <label>Email address/Phone Number</label>
-          <input name="email"  className="form-control" placeholder="Enter your email/Phone Number" ref={
-            register({
-              required: true,
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address"
-              }
-            })} />
-            {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
+          <label>Phone Number</label>
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+            <span style={{ paddingRight: 10 }}>+91</span>
+            <input name="username" type="tel" className="form-control" placeholder="Enter your Phone Number" ref={
+              register({
+                required: true,
+                minLength: 10,
+                maxLength: 10,
+              })} />
+          </div>
+          {errors.username && <span style={{color: 'red'}}>Invalid Phone Number address</span>}
         </div>
         <div className="form-group">
         <label>Password</label>
@@ -157,9 +158,9 @@ const Header = (props) => {
         <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Submit
         </Button>
-        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+        {/* <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
           Login via OTP
-        </Button>
+        </Button> */}
         <div className="forgot-password row container margin-vertical-10" >
           New to WedLite? &nbsp;
           <div style={{cursor:'pointer', color: '#3366BB'}} onClick={handleSignUpShow}>Create Account</div>
@@ -179,7 +180,7 @@ const Header = (props) => {
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" style={{ alignItems: 'right' }}>
-            <Nav.Link onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
             <Nav.Link onClick={handleShow} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
@@ -202,13 +203,13 @@ const Header = (props) => {
         :
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link onClick={() => history.push('/')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => history.push('/')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
-            <Nav.Link onClick={() => history.push('/profile')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => history.push('/profile')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Profile
             </Nav.Link>
-            <Nav.Link onClick={handleClearData}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={handleClearData}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Logout
             </Nav.Link>
           </Nav>

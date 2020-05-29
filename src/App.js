@@ -1,22 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { ToastContainer } from 'react-toastify';
 import {BASE_URL} from './urls';
 import * as LoginActionCreators from './actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom'
-import SearchBar from './Components/common/SearchBar';
+import StarRatings from 'react-star-ratings';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from './Components/Layout';
 import './App.css';
 
 const App = (props) => {
-  const {auth} = props;
+  const {auth, LoginActions: {fetchPopularVenues}} = props;
+  useEffect(()=> {
+    fetchPopularVenues(1);
+  },[]);
+
+
   const cities = auth.get('cities');
+  const venues = auth.get('popularVenues');
   const history = useHistory();
   const handleSearch = (cityObject, categoryObject) => {
     history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
+  }
+
+  const navigateToPlace = (placeId) => {
+    history.push(`/venue/place/${placeId}`)
   }
 
   return (
@@ -45,6 +55,32 @@ const App = (props) => {
             }
             )}
           </div>
+          <h3 style={{padding: 10, marginLeft: 20 }}>Best venues in Town</h3>
+          <div className="row space-around">        
+          {
+            venues.map((card, index) => {
+              return(
+                <Card 
+                  style={{ marginBottom: 20 ,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
+                  key={index}
+                  onClick={() => navigateToPlace(card.place_id)}  
+                >
+                  {/* { card.display_photo ?
+                    <Card.Img variant="top" src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
+                    : <div />
+                  } */}
+                  <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>
+                      {card.formatted_address}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              )
+            }
+            )
+          }
+        </div> 
       </div>
     </Layout>
   );
