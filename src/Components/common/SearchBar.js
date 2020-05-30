@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Dropdown } from 'semantic-ui-react'
-
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import './SearchBar.css';
+
 const SearchBar = (props) => {
   const {auth} = props;
   const cities = auth.get('cities');
