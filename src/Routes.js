@@ -18,14 +18,11 @@ import Layout from './Components/Layout'
 export default function App() {
   const NoMatchPage = () => {
     const history = useHistory();
-    const handleSearch = (cityObject, categoryObject) => {
-      history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
-    }
     return (
       <Layout
-        handleSearch={handleSearch}
+        showSearchBar={false}
       >
-        <h1>Page not found Return to <Link to="/">Home</Link> Page</h1>
+        <h1>Page not found, return to <Link to="/">Home</Link> Page</h1>
       </Layout>
     );
   };
