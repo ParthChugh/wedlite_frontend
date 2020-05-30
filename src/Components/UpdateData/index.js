@@ -65,16 +65,11 @@ const VendorRegistration = (props) => {
       }
     })
       .then((response) => {
-        if(response.status === 200) {
-          response.json().then(() => {
-            toast("Photo Deleted");
-            callbackFunction();
-          })
-        } else {
-          toast("Contact Support");
-        }
+        toast("Photo Deleted");
+        callbackFunction();
       })
       .catch(() => {
+        toast("Contact Support");
     });
   }
 
