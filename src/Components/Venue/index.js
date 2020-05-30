@@ -81,13 +81,13 @@ const Venue = () => {
                     : <div />
                   }
                   <Card.Body>
-                  <StarRatings
-                    rating={parseInt(card.rating)}
-                    starDimension="20px"
-                    starSpacing="10px"
-                    numberOfStars={5}
-                    name='rating'
-                  />
+                    <StarRatings
+                      rating={parseInt(card.rating)}
+                      starDimension="20px"
+                      starSpacing="10px"
+                      numberOfStars={5}
+                      name='rating'
+                    />
                     <Card.Title>{card.name}</Card.Title>
                     <Card.Text>
                       {card.formatted_address}

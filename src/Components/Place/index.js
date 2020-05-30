@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { useParams} from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
-import RUG from 'react-upload-gallery'
+import RUG from 'react-upload-gallery';
+import * as LoginActionCreators from '../../actions/loginActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import Layout from '../Layout';
 import Loader from 'react-loader-spinner'
 import './Place.css';
 
-const Venue = () => {
+const Venue = (props) => {
+  const {auth} = props;
+  const isLoggedIn = auth.get('isLoggedIn');
   const data = useParams() 
   const [place, updatePlace] = useState({});
   const fetchPlace = () => {
-    console.log(`${VENUE_CATEGORY_CITY}${data.placeId}`);
     fetch(`${VENUE_CATEGORY_CITY}${data.placeId}`, {
       method: 'GET', 
       headers: {
@@ -23,7 +27,6 @@ const Venue = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
             updatePlace(json);
           })
         } else {
@@ -79,14 +82,19 @@ const Venue = () => {
                 <p>Phone Number: {place.formatted_phone_number}</p>
                 Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
               </div>
-              <RUG
-                action="/api/upload"
-                onConfirmDelete={() => {
-                  return window.confirm('Are you sure you want to delete?')
-                }}
-                // customRequest={(file, data) => customRequest(data)}
-                accept={['jpg', 'jpeg', 'png', 'gif']}
-              />
+              {
+                isLoggedIn ?
+                <RUG
+                  action="/api/upload"
+                  onConfirmDelete={() => {
+                    return window.confirm('Are you sure you want to delete?')
+                  }}
+                  // customRequest={(file, data) => customRequest(data)}
+                  accept={['jpg', 'jpeg', 'png', 'gif']}
+                /> : <div />
+
+              }
+              
             </div>     
             
           </div>
@@ -107,4 +115,18 @@ const Venue = () => {
   )
 }
 
-export default Venue
+const mapStateToProps = state => {
+  const { auth } = state;
+  return { auth };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Venue);

@@ -65,10 +65,6 @@ const App = (props) => {
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
-                  {/* { card.display_photo ?
-                    <Card.Img variant="top" src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
-                    : <div />
-                  } */}
                   <Card.Body>
                     <Card.Title>{card.name}</Card.Title>
                     <Card.Text>

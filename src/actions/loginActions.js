@@ -182,8 +182,6 @@ export const fetchPopularVenues = (locationId) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log('00000')
-            console.log(json);
             dispatch(updatePopularVenues(json));
           })
         } else {

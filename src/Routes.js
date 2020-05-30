@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  useHistory,
+  Link
 } from "react-router-dom";
 import Home from './App';
 import Venue from './Components/Venue';
@@ -15,7 +16,6 @@ import Profile from './Components/Profile'
 import Layout from './Components/Layout'
 
 export default function App() {
-  
   const NoMatchPage = () => {
     const history = useHistory();
     const handleSearch = (cityObject, categoryObject) => {
@@ -25,7 +25,7 @@ export default function App() {
       <Layout
         handleSearch={handleSearch}
       >
-        <h1>Page not found</h1>
+        <h1>Page not found Return to <Link to="/">Home</Link> Page</h1>
       </Layout>
     );
   };

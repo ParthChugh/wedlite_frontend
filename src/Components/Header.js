@@ -26,6 +26,8 @@ const Header = (props) => {
 
   const isLoggedIn = auth.get('isLoggedIn');
 
+  const [expanded, setExpanded] = useState(false);
+
   const { register, handleSubmit, errors } = useForm()
 
   const [SignUpShow, setSignUpShow] = useState(false);
@@ -175,41 +177,65 @@ const Header = (props) => {
         <img src={logo} alt="logo" className="logo-size" />
       </Navbar.Brand>
       {  
-      <Navbar  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{display: 'inline-block', float: 'right'}}>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{display: 'inline-block', float: 'right'}}>
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" style={{ alignItems: 'right' }}>
             <Nav.Link className="text" onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
-            <Nav.Link onClick={handleShow} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
+            <Nav.Link onClick={() => {
+              handleShow()
+              setExpanded(false)
+              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
               Login
             </Nav.Link>
-            <Nav.Link onClick={handleSignUpShow} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link onClick={() => {
+              handleSignUpShow()
+              setExpanded(false)
+              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Sign up
             </Nav.Link>
-            <Nav.Link onClick={() => history.push('/vendor-registration')}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
+            <Nav.Link onClick={() => {
+              history.push('/vendor-registration')
+              setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Register your Business
             </Nav.Link>
-            <Nav.Link onClick={() => history.push('/about-us')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link onClick={() => {
+              history.push('/about-us')
+              setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               About Us
             </Nav.Link>
-            <Nav.Link onClick={() => history.push('/contact-us')}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
+            <Nav.Link onClick={() => {
+              history.push('/contact-us')
+              setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Contact Us
             </Nav.Link>  
           </Nav>
         </Navbar.Collapse> 
         :
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse expanded={expanded} id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="text" onClick={() => history.push('/')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => {
+              history.push('/')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
-            <Nav.Link className="text" onClick={() => history.push('/profile')}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => {
+              history.push('/profile')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Profile
             </Nav.Link>
-            <Nav.Link className="text" onClick={handleClearData}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            <Nav.Link className="text" onClick={() => {
+              handleClearData()
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Logout
             </Nav.Link>
           </Nav>
