@@ -68,13 +68,12 @@ const Header = (props) => {
       "email": data.email,
       "password": data.password
     }
-    console.log(newData);
     RegisterUser(newData, false)
   }
 
   const showSignUpModal = () => (
     <Modal style={{marginTop: 100}} show={SignUpShow}  onHide={handleClose}>
-      <Modal.Header closeButton>
+      <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <form className="container margin-top-10" onSubmit={handleSubmit((data) => handleData(data))}>  
@@ -172,7 +171,9 @@ const Header = (props) => {
   )
 
   const header = () => (
-    <div className="row space-around" style={{width:"-webkit-fill-available", backgroundColor: 'black', padding: 10, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
+    <div>
+      <div style={{ height: 80 }} />
+      <div className="row space-around" style={{width:"-webkit-fill-available", backgroundColor: 'black', padding: 10, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
       <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
         <img src={logo} alt="logo" className="logo-size" />
       </Navbar.Brand>
@@ -245,6 +246,8 @@ const Header = (props) => {
       </Navbar>
       }
     </div>
+    </div>
+    
   ) 
   
   
@@ -259,7 +262,7 @@ const Header = (props) => {
       }
         
       {showSearchBar &&
-        <div style={{padding: 20}}>
+        <div style={{marginTop: 40}}>
           <SearchBar
             handleSearch={handleSearch}
             defaultSelectedCity={defaultSelectedCity}

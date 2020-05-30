@@ -27,7 +27,9 @@ const Layout = (props) => {
           {headerComponent}
         </Header>
       </div>
-      {children}
+      <div>
+        {children}
+      </div>
       <Footer />
     </div>
     

@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { useParams} from 'react-router-dom';
+import { useParams, useRouteMatch, useHistory} from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
-import RUG from 'react-upload-gallery';
+import { ToastContainer } from 'react-toastify';
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
+import ImageUploader from "react-images-upload";
 import {connect} from 'react-redux';
 import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import Layout from '../Layout';
 import Loader from 'react-loader-spinner'
 import './Place.css';
+import { Button } from 'react-bootstrap';
 
 const Venue = (props) => {
-  const {auth} = props;
+  const url = useRouteMatch().url;
+  const history = useHistory()
+  const {auth, LoginActions: {uploadPicture}} = props;
   const isLoggedIn = auth.get('isLoggedIn');
   const data = useParams() 
   const [place, updatePlace] = useState({});
+  const [pictures, setPictures] = useState([]);
+  const [guid, setGuid] = useState(0);
+  
+  const onDrop = picture => {
+    setPictures([...pictures, picture]);
+  };
+
   const fetchPlace = () => {
     fetch(`${VENUE_CATEGORY_CITY}${data.placeId}`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`
       }
     })
       .then((response) => {
@@ -37,80 +51,115 @@ const Venue = (props) => {
     });
   }
   
+  const getGuid = () => {
+    const s4 = () => {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    };
+    return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  };
+  
   useEffect(() => {
     fetchPlace();
-  },[]);
+  },[auth.getIn([
+    'response', 'token'
+  ]), guid]);
+
+  const callbackFunction = () => {
+    const data = getGuid()
+    setGuid(data)
+  }
+
+  const upload = () => {
+    pictures[0].map((el, index) => {
+      uploadPicture(data.placeId, el, callbackFunction)
+    })
+    setPictures([]);
+  }
 
   return (
-    <Layout className='Venue container' 
-    showLogo={false}
-    showSearchBar={false}
+    <Layout 
+      showLogo={false}
+      showSearchBar={false}
     >
-      <div className="row space-around">
-        {
-          Object.values(place).length > 0 ?
-          <div>
-            { place.photos.length > 0 ?
-            <Carousel>
-              {
-                place.photos.map((el) => (
+      <div className="Venue container">
+        <ToastContainer />
+        <div className="row space-around">
+          {
+            Object.values(place).length > 0 ?
+            <div>
+              { place.photos.length > 0 ?
+              <Carousel>
+                {
+                  place.photos.map((el) => (
+                    <div>
+                      <img src={`${BASE_URL}${el.path}`} />
+                    </div>
+                  ))
+                }
+              </Carousel> : <div/>
+              }
+              <div className="container row space-between">
+                <div >
+                  <h1>{place.name}</h1>
+                  <h3>{place.category.type}</h3>
+                  <h5>{place.formatted_address}</h5>
+                  <StarRatings
+                    rating={parseInt(place.rating)}
+                    starDimension="20px"
+                    starSpacing="10px"
+                    numberOfStars={5}
+                    name='rating'
+                  />
+                  <p>User Rating Total: {place.user_ratings_total}</p>
+                  <p>Phone Number: {place.formatted_phone_number}</p>
+                  Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
+                </div>
+                {
+                  isLoggedIn && place.editable ?
                   <div>
-                    <img src={`${BASE_URL}${el.path}`} />
+                    <Button onClick={() => {history.push(`${url}/edit`)}}>
+                      Edit Registered Data
+                    </Button>
+                    <ImageUploader
+                      {...props}
+                      withIcon={true}
+                      // withPreview={true}
+                      onChange={onDrop}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      maxFileSize={5242880}
+                    />
+                    {
+                      pictures.length > 0 ?
+                      <div>
+                        <Button onClick={() => upload()}>
+                          Upload
+                        </Button>
+                      </div> : <div />
+                    }
+                    
                   </div>
-                ))
-              }
-            </Carousel> : <div/>
-            }
-            {/* {
-            place.photos.length > 0 ?
-              
-            : <div/>
-            } */}
-            <div className="container row space-between">
-              <div >
-                <h1>{place.name}</h1>
-                <h3>{place.category.type}</h3>
-                <h5>{place.formatted_address}</h5>
-                <StarRatings
-                  rating={parseInt(place.rating)}
-                  starDimension="20px"
-                  starSpacing="10px"
-                  numberOfStars={5}
-                  name='rating'
-                />
-                <p>User Rating Total: {place.user_ratings_total}</p>
-                <p>Phone Number: {place.formatted_phone_number}</p>
-                Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
-              </div>
-              {
-                isLoggedIn ?
-                <RUG
-                  action="/api/upload"
-                  onConfirmDelete={() => {
-                    return window.confirm('Are you sure you want to delete?')
-                  }}
-                  // customRequest={(file, data) => customRequest(data)}
-                  accept={['jpg', 'jpeg', 'png', 'gif']}
-                /> : <div />
+                  : <div />
 
-              }
+                }
+                
+              </div>     
               
-            </div>     
-            
-          </div>
-          : 
-          <div className="row space-around" >
-            <Loader
-              type="Puff"
-              color="#00BFFF"
-              height={100}
-              width={100}
-              timeout={3000} //3 secs
-            />
-          </div>
-        }
+            </div>
+            : 
+            <div className="row space-around" >
+              <Loader
+                type="Puff"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                timeout={3000} //3 secs
+              />
+            </div>
+          }
+        </div>
       </div>
-      
     </Layout>
   )
 }

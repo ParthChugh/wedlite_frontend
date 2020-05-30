@@ -81,3 +81,7 @@ footer.page-footer .footer-copyright {
   background:#fff; 
   padding:0 10px; 
 }
+.coming-soon {
+  color: rgb(128,0,0);
+  text-align: center;
+}

@@ -12,7 +12,8 @@ import {
   CITY_LIST_API, 
   CATEGORIES, 
   BUSINESS_SIGN_UP,
-  POPULAR_VENUES
+  POPULAR_VENUES,
+  VENUE_CATEGORY_CITY
   } from '../urls';
 
 export function updateLoginResponse(response) {
@@ -93,7 +94,6 @@ export function RegisterUser(data, isVendor = false, callbackFunction) {
 }
 
 export function loginUser(data) {
-  console.log(data);
   return (dispatch) => {
     fetch(LOGIN_API, {
       method: 'POST', 
@@ -105,7 +105,6 @@ export function loginUser(data) {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
             dispatch(updateLoginResponse(json));
             dispatch(updateLoggedIn(true));
             toast("Welcome")
@@ -183,6 +182,67 @@ export const fetchPopularVenues = (locationId) => {
         if(response.status === 200) {
           response.json().then((json) => {
             dispatch(updatePopularVenues(json));
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
+}
+
+export const uploadPicture = (placeId, picture, callbackFunction) => {
+  console.log(picture);
+  return (dispatch,getState) => {
+    const {auth} = getState();
+    fetch(`${VENUE_CATEGORY_CITY}${placeId}/photos/upload/`, {
+      method: 'PUT', 
+      body: picture,
+      headers: {
+        'Content-Type': 'image/jpeg',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+        'Content-Disposition': `attachment; filename=${picture.name}`,
+      }
+      
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            toast("Photo Uploaded")
+            callbackFunction();
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
+}
+
+export const updateVenue = (placeId, data) => {
+  return (dispatch,getState) => {
+    const {auth} = getState();
+    fetch(`${VENUE_CATEGORY_CITY}${placeId}/`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            dispatch(updateLoginResponse(json));
+            toast('Venue Updated')
           })
         } else {
           toast("Contact Support")

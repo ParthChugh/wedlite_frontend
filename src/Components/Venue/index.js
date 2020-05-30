@@ -25,7 +25,6 @@ const Venue = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json.next);
             updateNextUrl(json.next);
             updateVenus(searches => searches.concat(json.results))
           })

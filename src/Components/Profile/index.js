@@ -27,7 +27,7 @@ const Profile = ({slug}) => {
   
 
   const customRequest = (data) => {
-    console.log(data);
+  
   }
   
   return (

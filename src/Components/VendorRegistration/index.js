@@ -73,7 +73,6 @@ const VendorRegistration = (props) => {
           "category_id": selectedCategory.id
         },
       }
-      console.log(data);
       RegisterUser(data, true, callbackFunction);
     }
   }
@@ -81,28 +80,29 @@ const VendorRegistration = (props) => {
   return(
     <Layout
       showSearchBar={false}
+      showLogo={false}
     >
-      <div>
-        <h1 className="container" >Vendor Registration</h1>
-        <div className="row " style={{justifyContent: 'space-around', }} >
+      <div className="container" >
+        <h1 className="container">Vendor Registration</h1>
+        <div className="row " style={{ justifyContent: 'space-around', }} >
           <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
             <Invoice />
-            <h4>
+            <h6 style={{marginTop: 10}}>
               No broker between you and your client
-            </h4>
+            </h6>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
             <Commission />
-            <h4>Partner With India's top NO commission Venue search Company</h4>
+            <h6 style={{marginTop: 10}}>Partner With India's top NO commission Venue search Company</h6>
           </div>
           
           <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
             <div style={{width: 100, height: 100,}}>
               <Graph />
             </div>
-            <h4>
+            <h6 style={{marginTop: 10}}>
               Get your business visibility in Major cities across India
-            </h4>
+            </h6>
           </div>
         </div>
        <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
