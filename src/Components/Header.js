@@ -172,30 +172,18 @@ const Header = (props) => {
   )
 
   const header = () => (
-    <div className="row space-around" style={{backgroundColor: 'black', padding: 10, alignItems: 'center', position: 'fixed', top: 0, display: 'block', width: '100%', zIndex:9999}}>
-      <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20}}>
+    <div className="row space-around" style={{width:"-webkit-fill-available", backgroundColor: 'black', padding: 10, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
+      <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
         <img src={logo} alt="logo" className="logo-size" />
       </Navbar.Brand>
       {  
-      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{display: 'inline-block', float: 'right'}}>
+      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{padding: 0, display: 'inline-block', float: 'right'}}>
         <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" style={{ alignItems: 'right' }}>
+          <Nav className="mr-auto" style={{ alignItems: 'right'}}>
             <Nav.Link className="text" onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
-            </Nav.Link>
-            <Nav.Link onClick={() => {
-              handleShow()
-              setExpanded(false)
-              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
-              Login
-            </Nav.Link>
-            <Nav.Link onClick={() => {
-              handleSignUpShow()
-              setExpanded(false)
-              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Sign up
             </Nav.Link>
             <Nav.Link onClick={() => {
               history.push('/vendor-registration')
@@ -214,7 +202,20 @@ const Header = (props) => {
               setExpanded(false)
             }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Contact Us
-            </Nav.Link>  
+            </Nav.Link> 
+
+            <Nav.Link onClick={() => {
+              handleShow()
+              setExpanded(false)
+              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
+              Login
+            </Nav.Link>
+            <Nav.Link onClick={() => {
+              handleSignUpShow()
+              setExpanded(false)
+              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Sign up
+            </Nav.Link> 
           </Nav>
         </Navbar.Collapse> 
         :
@@ -242,8 +243,6 @@ const Header = (props) => {
         </Navbar.Collapse>
         }
       </Navbar>
-        
-       
       }
     </div>
   ) 
@@ -251,32 +250,30 @@ const Header = (props) => {
   
   
   return (
-    <div>
-      <div>
-        {header()}
-        <div className="text-align-center  color-white" style={{ marginTop: 50 }} >
-          {
-            showLogo ?
-            <img src={backgroundLogo} alt="logo" className="App-logo" />
-            : <div/>
-          }
-          {
-            showSearchBar ?
-            <div style={{padding: 20}}>
-              <SearchBar
-                handleSearch={handleSearch}
-                defaultSelectedCity={defaultSelectedCity}
-                defaultSelectedCategory={defaultSelectedCategory}
-              />   
-            </div> : <div/>
-          }
-          </div>
-        {props.children}
-      </div>
+    <div style={{ width:"100%" }}>
+      {header()}
+      {showLogo &&
+        <div className="text-align-center color-white" style={{ marginTop: 60, display: "block" }}>
+          <img src={backgroundLogo} alt="logo" className="App-logo" />
+        </div>
+      }
+        
+      {showSearchBar &&
+        <div style={{padding: 20}}>
+          <SearchBar
+            handleSearch={handleSearch}
+            defaultSelectedCity={defaultSelectedCity}
+            defaultSelectedCategory={defaultSelectedCategory}
+          />   
+        </div>
+      }
+
+      {props.children}
       {showLoginModal()}
       {showSignUpModal()}
     </div>
-  ) 
+  )
+
 }
 
 Header.defaultProps = {
