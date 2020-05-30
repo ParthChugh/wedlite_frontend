@@ -38,7 +38,7 @@ const App = (props) => {
           <div className="row space-around" >
             {cities.map((card, index) => {
               return (
-                <Card style={{ marginTop: 10, marginBottom: 10, width: '20rem', borderRadius: 10,elevation: 2 }} key={index}>
+                <Card style={{ marginTop: 10, marginBottom: 10, width: '20rem', borderRadius: 10}} key={index}>
                   <Card.Img variant="top" src={`${BASE_URL}/${card.photo}`} />
                   <Card.Body>
                     <Card.Title>
@@ -61,7 +61,7 @@ const App = (props) => {
             venues.map((card, index) => {
               return(
                 <Card 
-                  style={{ marginTop: 10, marginBottom: 10 ,width: '28rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }}
+                  style={{ marginTop: 10, marginBottom: 10 ,width: '28rem', borderRadius: 10, cursor: 'pointer' }}
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >

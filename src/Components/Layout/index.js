@@ -15,7 +15,7 @@ const Layout = (props) => {
     showSearchBar
   } = props;
   return (
-    <div style={{ height:"100vh" }}>
+    <div style={{ marginTop: '50px', position: 'relative', minHeight:"100vh" }}>
       <div>
         <Header
           defaultSelectedCity={defaultSelectedCity}
@@ -27,7 +27,9 @@ const Layout = (props) => {
           {headerComponent}
         </Header>
       </div>
+      <div style={{ paddingBottom: '14rem' }}>
       {children}
+      </div>
       <Footer />
     </div>
     
