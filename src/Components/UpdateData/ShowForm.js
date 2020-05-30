@@ -33,7 +33,7 @@ const VendorRegistration = (props) => {
 
   return(
     <div  className="container" >
-      <h1 className="container">Vendor Registration</h1>
+      <h1 className="container">Update Vendor Details</h1>
       <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
       <div className="form-group">
         <label>Business Name</label>

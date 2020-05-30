@@ -33,9 +33,9 @@ const Venue = (props) => {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : `Token ${auth.getIn([
+        'Authorization' : isLoggedIn ?`Token ${auth.getIn([
           'response', 'token'
-        ])}`
+        ])}` : ""
       }
     })
       .then((response) => {
@@ -64,7 +64,7 @@ const Venue = (props) => {
     fetchPlace();
   },[auth.getIn([
     'response', 'token'
-  ]), guid]);
+  ]), guid, isLoggedIn]);
 
   const callbackFunction = () => {
     const data = getGuid()
