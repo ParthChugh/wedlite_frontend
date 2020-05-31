@@ -54,10 +54,10 @@ export default function Footer() {
             </MDBCol>
           </MDBRow>
           <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-              <FontAwesomeIcon icon={faTwitter} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-              <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-              <FontAwesomeIcon icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-              <FontAwesomeIcon icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+            <FontAwesomeIcon icon={faTwitter} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+            <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+            <FontAwesomeIcon icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+            <FontAwesomeIcon icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} />
           </div>
           
         </MDBContainer>

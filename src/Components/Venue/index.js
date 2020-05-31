@@ -71,7 +71,7 @@ const Venue = () => {
             venues.map((card, index) => {
               return(
                 <Card 
-                  className="app-card"
+                  className="card"
                   style={{ marginBottom: 20 ,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
@@ -110,7 +110,6 @@ const Venue = () => {
             </button>
           </div> : <div />
         }
-        
       </div>
       : 
       <div className="row space-around">

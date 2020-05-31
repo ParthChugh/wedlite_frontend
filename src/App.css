@@ -83,7 +83,7 @@ footer.page-footer .footer-copyright {
 }
 .coming-soon {
   color: rgb(128,0,0);
-  text-align: center;
+  /* text-align: center; */
 }
 
 .nav-link:hover {
@@ -91,6 +91,26 @@ footer.page-footer .footer-copyright {
   background-color: gray;
 }
 
+.card:hover {
+  border-color: darkgray;
+}
 .app-card:hover {
   border-color: darkgray;
 }
+.app-card:hover > img {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.app-card:hover > div {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  
+}
+.app-card:hover > p {
+  color: white;
+}
+.app-card:hover > a, a:link, a:visited  {
+  color: blue;
+}
+
