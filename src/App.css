@@ -85,3 +85,12 @@ footer.page-footer .footer-copyright {
   color: rgb(128,0,0);
   text-align: center;
 }
+
+.nav-link:hover {
+  text-decoration: underline;
+  background-color: gray;
+}
+
+.app-card:hover {
+  border-color: darkgray;
+}

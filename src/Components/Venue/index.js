@@ -71,12 +71,16 @@ const Venue = () => {
             venues.map((card, index) => {
               return(
                 <Card 
+                  className="app-card"
                   style={{ marginBottom: 20 ,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
                   { card.display_photo ?
-                    <Card.Img variant="top" src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}} />
+                    <Card.Img 
+                      variant="top" 
+                      src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                    />
                     : <div />
                   }
                   <Card.Body>

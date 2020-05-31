@@ -33,13 +33,14 @@ const App = (props) => {
     <Layout
       handleSearch={handleSearch}
     >        
-      <div style={{marginBottom: 40}}>
+      <div className="container" style={{marginBottom: 40}}>
         <ToastContainer />
           <div className="row space-around" >
             {cities.map((card, index) => {
               return (
-                <Card style={{ marginTop: 10, marginBottom: 10, width: '20rem', borderRadius: 10}} key={index}>
-                  <Card.Img variant="top" src={`${BASE_URL}/${card.photo}`} />
+                <Card className="app-card" style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2 }} key={index}>
+                  <Card.Img variant="top" style={{borderTopLeftRadius: 10, borderTopRightRadius: 10}} src={`${BASE_URL}/${card.photo}`} />
+
                   <Card.Body>
                     <Card.Title>
                       {card.city}
@@ -57,16 +58,22 @@ const App = (props) => {
             }
             )}
           </div>
-          <h3 style={{padding: 10, marginLeft: 20 }}>Popular things in Udaipur</h3>
+          <h3 style={{padding: 10, marginLeft: 20 }}>Popular Vendors and Venues in Udaipur</h3>
           <div className="row space-around">        
           {
             venues.map((card, index) => {
               return(
-                <Card 
-                  style={{ marginTop: 10, marginBottom: 10 ,width: '28rem', borderRadius: 10, cursor: 'pointer' }}
-                  key={index}
+                <Card className="app-card" style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2 }} key={index}
+
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
+                  { card.display_photo ?
+                      <Card.Img 
+                        variant="top" 
+                        src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 200, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                      />
+                      : <div />
+                    }
                   <Card.Body>
                     <Card.Title>{card.name}</Card.Title>
                     <Card.Text>

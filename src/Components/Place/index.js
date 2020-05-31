@@ -101,7 +101,7 @@ const Venue = (props) => {
               </Carousel> : <div/>
               }
               <div className="container row space-between">
-                <div >
+                <div style={{flex: 0.75}}>
                   <h1>{place.name}</h1>
                   <h3>{place.category.type}</h3>
                   <h5>{place.formatted_address}</h5>
@@ -118,7 +118,7 @@ const Venue = (props) => {
                 </div>
                 {
                   isLoggedIn && place.editable ?
-                  <div>
+                  <div style={{flex: 0.25}}>
                     <Button onClick={() => {history.push(`${url}/edit`)}}>
                       Edit Registered Data
                     </Button>

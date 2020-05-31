@@ -3,7 +3,7 @@ import * as LoginActionCreators from '../../actions/loginActions';
 import { toast, ToastContainer } from 'react-toastify';
 import Loader from 'react-loader-spinner'
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap';
@@ -11,6 +11,7 @@ import Layout from '../Layout';
 import ShowForm from './ShowForm';
 
 const VendorRegistration = (props) => {
+  
   const { auth } = props;
   const data = useParams() 
 

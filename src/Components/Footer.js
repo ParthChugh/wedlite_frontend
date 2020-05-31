@@ -4,6 +4,8 @@ import {  NORMAL} from '../constants';
 import playstore from '../assets/playstore.png'
 import appstore from '../assets/app-store.png'
 import {useHistory} from 'react-router-dom'
+import {faTwitter, faInstagram, faFacebook, faLinkedin} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   const history = useHistory();
@@ -51,6 +53,13 @@ export default function Footer() {
               </ul>
             </MDBCol>
           </MDBRow>
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <FontAwesomeIcon icon={faTwitter} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+              <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+              <FontAwesomeIcon icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+              <FontAwesomeIcon icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+          </div>
+          
         </MDBContainer>
         <div className="footer-copyright text-center">
           <MDBContainer fluid >

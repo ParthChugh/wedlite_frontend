@@ -2,11 +2,14 @@ import React from 'react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
 const VendorRegistration = (props) => {
   const { LoginActions, place, placeId } = props;
+  const history = useHistory()
+  const data = useParams()
   const { updateVenue } = LoginActions;
 
   const { register, handleSubmit, errors } = useForm({
@@ -19,6 +22,9 @@ const VendorRegistration = (props) => {
       website: place.website
     }
   })
+  const callbackFunction = () => {
+    history.push(`/venue/place/${data.placeId}`)
+  }
   const createVendorData = (props) => {
     const data = {
       "business_status": props.business_status,
@@ -28,12 +34,12 @@ const VendorRegistration = (props) => {
       "vicinity": props.vicinity,
       "formatted_phone_number": props.formatted_phone_number
     }
-    updateVenue(placeId, data);
+    updateVenue(placeId, data, callbackFunction);
   }
 
   return(
     <div  className="container" >
-      <h1 className="container">Update Vendor Details</h1>
+      <h1 className="container">Update Business Details</h1>
       <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
       <div className="form-group">
         <label>Business Name</label>
@@ -49,7 +55,7 @@ const VendorRegistration = (props) => {
         {errors.formatted_phone_number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
       </div>
       <div className="form-group">
-        <label>Business Name</label>
+        <label>Business Status</label>
         <input placeholder="Busineess Status" name="business_status" className="form-control" ref={register({required: true})} />
         {errors.business_status && <span style={{color: 'red'}}>This field is required</span>}    
       </div>

@@ -192,10 +192,12 @@ const Header = (props) => {
             }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Register your Business
             </Nav.Link>
-            <Nav.Link onClick={() => {
+            <Nav.Link 
+              className="nav-link"
+            onClick={() => {
               history.push('/about-us')
               setExpanded(false)
-            }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+            }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               About Us
             </Nav.Link>
             <Nav.Link onClick={() => {
@@ -229,12 +231,6 @@ const Header = (props) => {
               Home
             </Nav.Link>
             <Nav.Link className="text" onClick={() => {
-              history.push('/profile')
-              setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Profile
-            </Nav.Link>
-            <Nav.Link className="text" onClick={() => {
               handleClearData()
               setExpanded(false)
               }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
@@ -256,13 +252,13 @@ const Header = (props) => {
     <div style={{ width:"100%" }}>
       {header()}
       {showLogo &&
-        <div className="text-align-center color-white" style={{ marginTop: 60, display: "block" }}>
+        <div className="text-align-center color-white" style={{ marginTop: 20, display: "block" }}>
           <img src={backgroundLogo} alt="logo" className="App-logo" />
         </div>
       }
         
       {showSearchBar &&
-        <div style={{marginTop: 40}}>
+        <div style={{marginTop: 20, marginBottom: 20}}>
           <SearchBar
             handleSearch={handleSearch}
             defaultSelectedCity={defaultSelectedCity}

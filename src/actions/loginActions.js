@@ -225,7 +225,7 @@ export const uploadPicture = (placeId, picture, callbackFunction) => {
   } 
 }
 
-export const updateVenue = (placeId, data) => {
+export const updateVenue = (placeId, data, callbackFunction) => {
   return (dispatch,getState) => {
     const {auth} = getState();
     fetch(`${VENUE_CATEGORY_CITY}${placeId}/`, {
@@ -240,9 +240,10 @@ export const updateVenue = (placeId, data) => {
     })
       .then((response) => {
         if(response.status === 200) {
-          response.json().then((json) => {
-            dispatch(updateLoginResponse(json));
+          response.json().then(() => {
+            // dispatch(updateLoginResponse(json));
             toast('Venue Updated')
+            callbackFunction()
           })
         } else {
           toast("Contact Support")
