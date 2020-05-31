@@ -44,18 +44,20 @@ const App = (props) => {
                     <Card.Title>
                       {card.city}
                     </Card.Title>
-                    {card.is_data_available ? 
+                    {
+                    card.is_data_available ? 
                     <div>
                       <a href="/">Vendors</a> | <a href="/">Venue</a>
                     </div>
-                    : "Coming Soon"}
+                    : <div className="coming-soon">Coming Soon!</div>
+                    }
                   </Card.Body>
                 </Card>
               )
             }
             )}
           </div>
-          <h3 style={{padding: 10, marginLeft: 20 }}>Best venues in Udaipur</h3>
+          <h3 style={{padding: 10, marginLeft: 20 }}>Popular things in Udaipur</h3>
           <div className="row space-around">        
           {
             venues.map((card, index) => {

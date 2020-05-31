@@ -29,6 +29,7 @@ const Layout = (props) => {
       </div>
       <div style={{ paddingBottom: '14rem' }}>
       {children}
+
       </div>
       <Footer />
     </div>

@@ -14,6 +14,7 @@ import VendorRegistration from './Components/VendorRegistration'
 import Contact from './Components/Contact'
 import Profile from './Components/Profile'
 import Layout from './Components/Layout'
+import UpdateData from './Components/UpdateData'
 
 export default function App() {
   const NoMatchPage = () => {
@@ -22,7 +23,9 @@ export default function App() {
       <Layout
         showSearchBar={false}
       >
-        <h1>Page not found, return to <Link to="/">Home</Link> Page</h1>
+        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+          <h1>Page not found, please return to <Link to="/">Home</Link> Page</h1>
+        </div>
       </Layout>
     );
   };
@@ -67,8 +70,8 @@ export default function App() {
         <Route path="/contact-us">
           <Contact />
         </Route>
-        <Route path="/venue/place/:placeId">
-          <Place />
+        <Route path="/venue/place/:placeId/edit">
+          <UpdateData />
         </Route>
         <Route path="/venue/place/:placeId">
           <Place />

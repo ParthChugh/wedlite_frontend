@@ -12,7 +12,6 @@ const TextPage = () => {
   const history = useHistory()
   const { register, handleSubmit, errors } = useForm()
   const postData = (data) => {
-    console.log(data);
     fetch(CONTACT_US, {
       method: 'POST', 
       body: JSON.stringify(data),
