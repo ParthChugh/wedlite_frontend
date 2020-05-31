@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { ToastContainer } from 'react-toastify';
 import {BASE_URL} from './urls';
 import * as LoginActionCreators from './actions/loginActions';
@@ -14,10 +14,10 @@ import './App.css';
 
 const App = (props) => {
   const {auth, LoginActions: {fetchPopularVenues}} = props;
+  const venue = useRef(null);
   useEffect(()=> {
     fetchPopularVenues(1);
   },[]);
-
 
   const cities = auth.get('cities');
   const venues = auth.get('popularVenues');
@@ -28,6 +28,10 @@ const App = (props) => {
 
   const navigateToPlace = (placeId) => {
     history.push(`/venue/place/${placeId}`)
+  }
+
+  const scroll = (ref) => {
+    ref.current.scrollIntoView({behavior: 'smooth'})
   }
 
   return (
@@ -41,12 +45,13 @@ const App = (props) => {
               return (
                 <Card 
                   className="app-card" 
-                  style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2, opacity: card.is_data_available? 1 : 0.5 }} 
+                  style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2 }} 
                   key={index}
                 >
                   <Card.Img 
                     variant="top"
-                    style={{borderTopLeftRadius: 10, borderTopRightRadius: 10}} 
+                    className="card-image"
+                    style={{borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
                     src={`${BASE_URL}/${card.photo}`} 
                   />
                   {
@@ -61,8 +66,19 @@ const App = (props) => {
                     </Card.Title>
                     {
                     card.is_data_available ? 
-                    <div>
-                      <a href="/">Vendors</a> | <a href="/">Venue</a>
+                    <div className = "row">
+                      <div 
+                        style={{paddingLeft: 10,fontWeight: 'bold' , cursor: 'pointer'}}
+                        onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/vendors`)}}>
+                          Vendors
+                        </div>
+                        | 
+                        <div 
+                          style={{fontWeight: 'bold' , cursor: 'pointer'}} 
+                          onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/venue`)}}
+                        >
+                          Venue
+                        </div>
                     </div>
                     : <div className="coming-soon">Coming Soon!</div>
                     }
@@ -79,35 +95,34 @@ const App = (props) => {
               Featured
             </div>
           </div>
-          
-          <div className="row space-around">        
-          
-          {
-            venues.map((card, index) => {
-              return(
-                <Card className="app-card" style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2 }} key={index}
-                  onClick={() => navigateToPlace(card.place_id)}  
-                >
-                  { card.display_photo ?
-                    <Card.Img 
-                      variant="top" 
-                      src={ `${BASE_URL}${card.display_photo.path}`} style={{borderTopLeftRadius: 10, borderTopRightRadius: 10, minHeight: 200}}
-                    />
-                    : <div />
-                  }
-                  <Card.Body>
-                    <Card.Title>{card.name}</Card.Title>
-                    <p>
-                      {card.formatted_address}
-                    </p>
-                  </Card.Body>
-                </Card>
+          <div className="row space-around" ref={venue}>        
+            {
+              venues.map((card, index) => {
+                return(
+                  <Card className="app-card" style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}
+                    onClick={() => navigateToPlace(card.place_id)}  
+                  >
+                    { card.display_photo ?
+                      <Card.Img 
+                        className="card-image"
+                        variant="top" 
+                        src={ `${BASE_URL}${card.display_photo.path}`} style={{borderRadius: 10, minHeight: 300}}
+                      />
+                      : <div />
+                    }
+                    <Card.Body>
+                      <Card.Title>{card.name}</Card.Title>
+                      <p>
+                        {card.formatted_address}
+                      </p>
+                    </Card.Body>
+                  </Card>
+                )
+              }
               )
             }
-            )
-          }
-        </div> 
-      </div>
+          </div>  
+        </div>
     </Layout>
   );
 }

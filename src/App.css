@@ -97,20 +97,32 @@ footer.page-footer .footer-copyright {
 .app-card:hover {
   border-color: darkgray;
 }
-.app-card:hover > img {
+.app-card > img {
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
 }
-.app-card:hover > div {
+.card-image {
+  flex: 1;
+  display: flex;
+  background: '#000000';
+}
+.app-card > div {
   position: absolute;
-  bottom: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
   
 }
 .app-card:hover > p {
   color: white;
+  font-weight: bold;
 }
 .app-card:hover > a, a:link, a:visited  {
-  color: blue;
+  color: white;
+  font-weight: bold;
 }
 

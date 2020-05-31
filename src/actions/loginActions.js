@@ -3,7 +3,8 @@ import {
   UPDATE_LOGGED_IN, 
   UPDATE_CITIES, 
   UPDATE_CATEGORIES,
-  UPDATE_POPULAR_VENUES
+  UPDATE_POPULAR_VENUES,
+  UPDATE_FEATURED_VENUE_LOCATION
 } from './actionTypes';
 import { toast } from 'react-toastify';
 import { 
@@ -54,6 +55,13 @@ export function updateCategories(categories) {
 export function updatePopularVenues(venues) {
   return {
     type: UPDATE_POPULAR_VENUES,
+    payload: venues,
+  };
+}
+
+export function updateFeaturedLocationGroup(venues) {
+  return {
+    type: UPDATE_FEATURED_VENUE_LOCATION,
     payload: venues,
   };
 }
@@ -192,6 +200,30 @@ export const fetchPopularVenues = (locationId) => {
     });
   } 
 }
+
+export const fetchFeaturedLocationGroup = (locationId, groupId) => {
+  return (dispatch) => {
+    fetch(`${VENUE_CATEGORY_CITY}?location=${locationId}&group=${groupId}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            dispatch(updateFeaturedLocationGroup(json));
+          })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
+}
+
 
 export const uploadPicture = (placeId, picture, callbackFunction) => {
   console.log(picture);

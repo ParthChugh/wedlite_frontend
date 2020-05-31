@@ -15,6 +15,7 @@ import Contact from './Components/Contact'
 import Profile from './Components/Profile'
 import Layout from './Components/Layout'
 import UpdateData from './Components/UpdateData'
+import VenueLocation from './Components/VenueLocation'
 
 export default function App() {
   const NoMatchPage = () => {
@@ -75,6 +76,9 @@ export default function App() {
         </Route>
         <Route path="/venue/place/:placeId">
           <Place />
+        </Route>
+        <Route path="/venue-by-group/location/:cityId/group/:groupName">
+          <VenueLocation />
         </Route>
         <Route path="/venue/category/:categoryId/city/:cityId">
           <Venue />

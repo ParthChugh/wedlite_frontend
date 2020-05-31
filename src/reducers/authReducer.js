@@ -1,12 +1,20 @@
 import {fromJS} from 'immutable';
-import { UPDATE_RESPONSE, UPDATE_LOGGED_IN, UPDATE_CITIES, UPDATE_CATEGORIES, UPDATE_POPULAR_VENUES } from "../actions/actionTypes";
+import { 
+  UPDATE_RESPONSE, 
+  UPDATE_LOGGED_IN, 
+  UPDATE_CITIES, 
+  UPDATE_CATEGORIES, 
+  UPDATE_POPULAR_VENUES,
+  UPDATE_FEATURED_VENUE_LOCATION
+} from "../actions/actionTypes";
 
 const INIT_STATE = {
   response: {},
   isLoggedIn: false,
   cities: [],
   categories: [],
-  popularVenues: []
+  popularVenues: [],
+  featuredVenuesLocation: []
 };
 
 const auth = (state = fromJS(INIT_STATE) , action) => {
@@ -34,6 +42,11 @@ const auth = (state = fromJS(INIT_STATE) , action) => {
     case UPDATE_POPULAR_VENUES: {
       return state.merge({
         popularVenues: action.payload,
+      });
+    }
+    case UPDATE_FEATURED_VENUE_LOCATION: {
+      return state.merge({
+        featuredVenuesLocation: action.payload,
       });
     }
     default:
