@@ -1,6 +1,7 @@
 const BASE_URL = "https://api.wedlite.in:5001"; 
 const REGISTER_API = `${BASE_URL}/api/users/`
 const LOGIN_API = `${BASE_URL}/api/users/login/`
+const LOGOUT = `${BASE_URL}/api/users/logout/`
 const CITY_LIST_API = `${BASE_URL}/places/cities/`
 const CATEGORIES = `${BASE_URL}/places/categories/`
 const VENUE_CATEGORY_CITY = `${BASE_URL}/places/venues/`
@@ -9,6 +10,7 @@ const ABOUT_US = `${BASE_URL}/content/misc/aboutUs/`
 const BUSINESS_SIGN_UP = `${BASE_URL}/business/users/`
 const CONTACT_US = `${BASE_URL}/support/`
 const POPULAR_VENUES = `${BASE_URL}/places/venues/locations/`
+
 
 export {
   BASE_URL,
@@ -21,5 +23,6 @@ export {
   TERMS_AND_CONDTION,
   BUSINESS_SIGN_UP,
   CONTACT_US,
-  POPULAR_VENUES
+  POPULAR_VENUES,
+  LOGOUT
 }

@@ -7,7 +7,7 @@ import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import logo from '../logo.png';
 import { CATEGORY, NORMAL} from '../constants';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -22,7 +22,14 @@ const Header = (props) => {
     showLogo,
     showSearchBar
    } = props;
-  const { RegisterUser, loginUser, handleClearData, fetchCities, fetchCategories } = LoginActions;
+  const { 
+    RegisterUser, 
+    loginUser, 
+    handleClearData, 
+    fetchCities, 
+    fetchCategories,
+    logout
+  } = LoginActions;
 
   const isLoggedIn = auth.get('isLoggedIn');
 
@@ -222,7 +229,7 @@ const Header = (props) => {
           </Nav>
         </Navbar.Collapse> 
         :
-        <Navbar.Collapse expanded={expanded} id="basic-navbar-nav">
+        <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{marginRight: 40, alignItems: 'center'}}>
           <Nav className="mr-auto">
             <Nav.Link className="text" onClick={() => {
               history.push('/')
@@ -231,11 +238,31 @@ const Header = (props) => {
               Home
             </Nav.Link>
             <Nav.Link className="text" onClick={() => {
-              handleClearData()
-              setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Logout
+            }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}
+            >
+              
             </Nav.Link>
+            <NavDropdown 
+              style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} 
+              title="Profile" 
+              id="collasible-nav-dropdown"
+            >
+              <NavDropdown.Item 
+               style={{cursor:'pointer',fontSize: NORMAL}}
+                onClick={() => {
+                  history.push('/my-venues')
+                  setExpanded(false)
+              }}>
+                My Venues
+              </NavDropdown.Item>
+              <NavDropdown.Item className="text" onClick={() => {
+                logout()
+                setExpanded(false)
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+            
           </Nav>
         </Navbar.Collapse>
         }

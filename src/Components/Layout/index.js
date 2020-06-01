@@ -27,13 +27,12 @@ const Layout = (props) => {
           {headerComponent}
         </Header>
       </div>
-      <div style={{ paddingBottom: '14rem' }}>
-      {children}
-
-      </div>
+      <body>
+        {children}      
+      </body>
+      
       <Footer />
     </div>
-    
   )
 }
 

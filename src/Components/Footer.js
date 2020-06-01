@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Footer() {
   const history = useHistory();
   return (
-    <MDBFooter color="black" className="font-small pt-4 mt-4 footer" style={{padding: 10}}>
+    <MDBFooter color="black" className="font-small pt-4 mt-4 footer">
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
             <MDBCol md="3">
@@ -59,7 +59,6 @@ export default function Footer() {
             <FontAwesomeIcon icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} />
             <FontAwesomeIcon icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} />
           </div>
-          
         </MDBContainer>
         <div className="footer-copyright text-center">
           <MDBContainer fluid >

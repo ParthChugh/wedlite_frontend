@@ -14,7 +14,8 @@ import {
   CATEGORIES, 
   BUSINESS_SIGN_UP,
   POPULAR_VENUES,
-  VENUE_CATEGORY_CITY
+  VENUE_CATEGORY_CITY,
+  LOGOUT
   } from '../urls';
 
 export function updateLoginResponse(response) {
@@ -277,6 +278,37 @@ export const updateVenue = (placeId, data, callbackFunction) => {
             toast('Venue Updated')
             callbackFunction()
           })
+        } else {
+          toast("Contact Support")
+        }
+      })
+      .catch(() => {
+        toast("Contact Support")
+    });
+  } 
+}
+
+export const logout = () => {
+  console.log('yahan aaya?')
+  return (dispatch, getState) => {
+    const {auth} = getState();
+
+    fetch(LOGOUT, {
+      method: 'POST',
+      body: JSON.stringify({token: auth.getIn([
+        'response', 'token'
+      ]) }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          toast('Loogut Successfull')
+          dispatch(handleClearData());
         } else {
           toast("Contact Support")
         }

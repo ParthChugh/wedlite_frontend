@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import SearchBar from '../common/SearchBar';
-import {useHistory, useParams, useRouteMatch} from 'react-router-dom';
-import {  toast } from 'react-toastify';
+import {useHistory, useParams} from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
@@ -23,7 +22,6 @@ const VenueLocation = () => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
             updateNextUrl(json.next);
             updateVenus(searches => searches.concat(json.results))
           })

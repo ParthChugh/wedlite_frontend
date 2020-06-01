@@ -61,8 +61,6 @@ footer.page-footer .footer-copyright {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 
@@ -122,7 +120,21 @@ footer.page-footer .footer-copyright {
   font-weight: bold;
 }
 .app-card:hover > a, a:link, a:visited  {
-  color: white;
   font-weight: bold;
 }
 
+.collasible-nav-dropdown:hover {
+  border-color: darkgray;
+}
+
+.dot {
+  height: 70px;
+  width: 70px;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

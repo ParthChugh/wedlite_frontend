@@ -7,7 +7,8 @@ import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import ImageUploader from "react-images-upload";
 import {connect} from 'react-redux';
-import {Carousel} from 'react-responsive-carousel';
+import { Carousel } from 'react-bootstrap';
+// import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import Layout from '../Layout';
 import Loader from 'react-loader-spinner'
@@ -28,6 +29,11 @@ const Venue = (props) => {
     setPictures([...pictures, picture]);
   };
 
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
   const fetchPlace = () => {
     fetch(`${VENUE_CATEGORY_CITY}${data.placeId}`, {
       method: 'GET', 
@@ -90,15 +96,19 @@ const Venue = (props) => {
             Object.values(place).length > 0 ?
             <div>
               { place.photos.length > 0 ?
-              <Carousel>
+              <Carousel activeIndex={index} onSelect={handleSelect} style={{height: 400, width: '100%'}}>
                 {
                   place.photos.map((el) => (
-                    <div>
-                      <img src={`${BASE_URL}${el.path}`} />
-                    </div>
+                    <Carousel.Item>
+                      <img 
+                        className="d-block w-100"
+                        src={`${BASE_URL}${el.path}`} 
+                      />
+                    </Carousel.Item>
                   ))
                 }
-              </Carousel> : <div/>
+              </Carousel>
+               : <div/>
               }
               <div className="container row space-between">
                 <div style={{flex: 0.75}}>
