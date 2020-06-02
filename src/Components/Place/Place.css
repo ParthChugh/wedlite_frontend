@@ -24,3 +24,8 @@ body{
   width: 70%;
   background-color: white;
 }
+
+.felx-container {
+  display: flex;
+  justify-content: center;
+}

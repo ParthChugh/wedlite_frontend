@@ -15,8 +15,7 @@ const Layout = (props) => {
     showSearchBar
   } = props;
   return (
-    <div style={{ marginTop: '50px', position: 'relative', minHeight:"100vh" }}>
-      <div>
+    <React.Fragment>
         <Header
           defaultSelectedCity={defaultSelectedCity}
           defaultSelectedCategory={defaultSelectedCategory}
@@ -26,13 +25,12 @@ const Layout = (props) => {
         >
           {headerComponent}
         </Header>
-      </div>
-      <body>
+      <div style={{ marginTop: 70, minHeight: '100vh' }}>
         {children}      
-      </body>
+      </div>
       
       <Footer />
-    </div>
+    </React.Fragment>
   )
 }
 

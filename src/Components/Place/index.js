@@ -7,7 +7,7 @@ import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import ImageUploader from "react-images-upload";
 import {connect} from 'react-redux';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Card } from 'react-bootstrap';
 // import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import Layout from '../Layout';
@@ -85,18 +85,16 @@ const Venue = (props) => {
   }
 
   return (
-    <Layout 
+    <Layout
       showLogo={false}
       showSearchBar={false}
     >
-      <div className="Venue container" style={{ minHeight: '100vh', padding: 0 }}>
+      <div className="container" style={{ height: '100%', padding: 0 }}>
         <ToastContainer />
-<<<<<<< HEAD
-        <div className="row space-around">
           {
             Object.values(place).length > 0 ?
-            <div>
-              { place.photos.length > 0 ?
+          <div>
+              { place.photos.length > 0 &&
               <Carousel activeIndex={index} onSelect={handleSelect} style={{height: 400, width: '100%'}}>
                 {
                   place.photos.map((el) => (
@@ -109,23 +107,26 @@ const Venue = (props) => {
                   ))
                 }
               </Carousel>
-               : <div/>
             }
-            <div className="row space-between">
-              <h1>{place.name}</h1>
-              <h3>{place.category.type}</h3>
-              <h5>{place.formatted_address}</h5>
-              <StarRatings
-                rating={parseInt(place.rating)}
-                starDimension="20px"
-                starSpacing="10px"
-                numberOfStars={5}
-                name='rating'
-              />
-              <p>User Rating Total: {place.user_ratings_total}</p>
-              <p>Phone Number: {place.formatted_phone_number}</p>
-              Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
-              
+            <div style={{ padding: 10 }}>
+              <h1 style={{ padding: 20 }}>{place.name}</h1>
+              <Card className="flex-container" style={{ width: 300, padding: 22, boxShadow: 0, elevation: 0 }}>
+                  <h2 style={{ fontColor:"gray", textAlign: 'center', marginBottom: 15 }}>About</h2>
+                  <h5>Address:</h5>
+                  <p>{place.formatted_address}</p>
+                  <h5 style={{ marginTop: 10 }}>Ratings ({place.user_ratings_total}):</h5>
+                  <p><StarRatings
+                    rating={parseInt(place.rating)}
+                    starDimension="20px"
+                    starSpacing="10px"
+                    numberOfStars={5}
+                    name='rating'
+                  /></p>
+                  <h5 style={{ marginTop: 10 }}>Contact:</h5>
+                  <p>{place.formatted_phone_number}</p>
+                  <h5 style={{ marginTop: 10 }}>Website:</h5>
+                  <a target="blank" href={`${place.website}`}>{place.website ? place.website : "Not available"}</a>
+              </Card>
               {
                 isLoggedIn && place.editable &&
                 <div style={{flex: 0.25}}>
@@ -157,7 +158,7 @@ const Venue = (props) => {
             
           </div>
           : 
-          <div className="row space-around" >
+          <div className="row space-around" style={{ marginTop: 'auto' }}>
             <Loader
               type="Puff"
               color="#00BFFF"
@@ -166,7 +167,7 @@ const Venue = (props) => {
               timeout={3000} //3 secs
             />
           </div>
-        }
+          }
       </div>
     </Layout>
   )

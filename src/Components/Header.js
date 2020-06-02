@@ -178,9 +178,7 @@ const Header = (props) => {
   )
 
   const header = () => (
-    <div>
-      <div style={{ height: 30 }} />
-      <div className="row space-around" style={{width:"-webkit-fill-available", backgroundColor: 'black', padding: 10, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
+      <div style={{ width: '100%', backgroundColor: 'black',padding: 5, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
       <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
         <img src={logo} alt="logo" className="logo-size" />
       </Navbar.Brand>
@@ -269,14 +267,12 @@ const Header = (props) => {
       </Navbar>
       }
     </div>
-    </div>
-    
   ) 
   
   
   
   return (
-    <div style={{ width:"100%" }}>
+    <React.Fragment>
       {header()}
       {showLogo &&
         <div className="text-align-center color-white" style={{ marginTop: 20, display: "block" }}>
@@ -297,7 +293,7 @@ const Header = (props) => {
       {props.children}
       {showLoginModal()}
       {showSignUpModal()}
-    </div>
+    </React.Fragment>
   )
 
 }
