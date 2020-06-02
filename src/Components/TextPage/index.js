@@ -17,7 +17,6 @@ const TextPage = ({slug}) => {
       }
     })
       .then((response) => {
-        console.log(response);
         if(response.status === 200) {
           response.text().then((json) => {
             updateData(json);

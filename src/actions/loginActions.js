@@ -226,8 +226,7 @@ export const fetchFeaturedLocationGroup = (locationId, groupId) => {
 }
 
 
-export const uploadPicture = (placeId, picture, callbackFunction) => {
-  console.log(picture);
+export const uploadPicture = (placeId, picture, callbackFunction) => {  
   return (dispatch,getState) => {
     const {auth} = getState();
     fetch(`${VENUE_CATEGORY_CITY}${placeId}/photos/upload/`, {
@@ -289,10 +288,9 @@ export const updateVenue = (placeId, data, callbackFunction) => {
 }
 
 export const logout = () => {
-  console.log('yahan aaya?')
   return (dispatch, getState) => {
+    dispatch(handleClearData());
     const {auth} = getState();
-
     fetch(LOGOUT, {
       method: 'POST',
       body: JSON.stringify({token: auth.getIn([
@@ -308,7 +306,6 @@ export const logout = () => {
       .then((response) => {
         if(response.status === 200) {
           toast('Loogut Successfull')
-          dispatch(handleClearData());
         } else {
           toast("Contact Support")
         }

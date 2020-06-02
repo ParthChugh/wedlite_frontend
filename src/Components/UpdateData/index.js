@@ -31,7 +31,6 @@ const VendorRegistration = (props) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((place) => {
-            console.log(place);
             updatePlace(place);
           })
         } else {

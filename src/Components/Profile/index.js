@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../Layout';
-import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls';
+import { VENUE_CATEGORY_CITY } from '../../urls';
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {useHistory} from 'react-router-dom';
@@ -34,6 +34,7 @@ const Profile = (props) => {
         if(response.status === 200) {
           response.json().then((json) => {
             updateNextUrl(json.next);
+            console.log(json);
             updateVenus(searches => searches.concat(json.results))
           })
         } else {
@@ -73,7 +74,7 @@ const Profile = (props) => {
                   { card.display_photo ?
                     <Card.Img 
                       variant="top" 
-                      src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                      src={ card.display_photo.path} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
                     />
                     : <div />
                   }

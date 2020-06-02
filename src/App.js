@@ -52,7 +52,7 @@ const App = (props) => {
                     variant="top"
                     className="card-image"
                     style={{borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
-                    src={`${BASE_URL}/${card.photo}`} 
+                    src={card.photo} 
                   />
                   {
                     !card.is_data_available && (
@@ -106,7 +106,7 @@ const App = (props) => {
                       <Card.Img 
                         className="card-image"
                         variant="top" 
-                        src={ `${BASE_URL}${card.display_photo.path}`} style={{borderRadius: 10, minHeight: 300}}
+                        src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
                       />
                       : <div />
                     }

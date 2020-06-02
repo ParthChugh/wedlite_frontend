@@ -102,7 +102,7 @@ const Venue = (props) => {
                     <Carousel.Item>
                       <img 
                         className="d-block w-100"
-                        src={`${BASE_URL}${el.path}`} 
+                        src={el.path} 
                       />
                     </Carousel.Item>
                   ))

@@ -68,7 +68,7 @@ const VenueLocation = () => {
                   { card.display_photo ?
                     <Card.Img 
                       variant="top" 
-                      src={ `${BASE_URL}${card.display_photo.path}`} style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                      src={ card.display_photo.path } style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
                     />
                     : <div />
                   }
