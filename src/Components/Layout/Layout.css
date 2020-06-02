@@ -6,3 +6,15 @@
   align-items: center;
   pointer-events: none;
 }
+
+.childrenDiv {
+  padding-bottom: '14rem';
+}
+
+@media (max-width: 600px) {
+
+  .childrenDiv {
+    padding-bottom: '30rem';
+  }
+
+}

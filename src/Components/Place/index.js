@@ -89,8 +89,9 @@ const Venue = (props) => {
       showLogo={false}
       showSearchBar={false}
     >
-      <div className="Venue container">
+      <div className="Venue container" style={{ minHeight: '100vh', padding: 0 }}>
         <ToastContainer />
+<<<<<<< HEAD
         <div className="row space-around">
           {
             Object.values(place).length > 0 ?
@@ -109,66 +110,63 @@ const Venue = (props) => {
                 }
               </Carousel>
                : <div/>
-              }
-              <div className="container row space-between">
-                <div style={{flex: 0.75}}>
-                  <h1>{place.name}</h1>
-                  <h3>{place.category.type}</h3>
-                  <h5>{place.formatted_address}</h5>
-                  <StarRatings
-                    rating={parseInt(place.rating)}
-                    starDimension="20px"
-                    starSpacing="10px"
-                    numberOfStars={5}
-                    name='rating'
-                  />
-                  <p>User Rating Total: {place.user_ratings_total}</p>
-                  <p>Phone Number: {place.formatted_phone_number}</p>
-                  Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
-                </div>
-                {
-                  isLoggedIn && place.editable ?
-                  <div style={{flex: 0.25}}>
-                    <Button onClick={() => {history.push(`${url}/edit`)}}>
-                      Edit Registered Data
-                    </Button>
-                    <ImageUploader
-                      {...props}
-                      withIcon={true}
-                      // withPreview={true}
-                      onChange={onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                      maxFileSize={5242880}
-                    />
-                    {
-                      pictures.length > 0 ?
-                      <div>
-                        <Button onClick={() => upload()}>
-                          Upload
-                        </Button>
-                      </div> : <div />
-                    }
-                    
-                  </div>
-                  : <div />
-
-                }
-                
-              </div>     
-              
-            </div>
-            : 
-            <div className="row space-around" >
-              <Loader
-                type="Puff"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                timeout={3000} //3 secs
+            }
+            <div className="row space-between">
+              <h1>{place.name}</h1>
+              <h3>{place.category.type}</h3>
+              <h5>{place.formatted_address}</h5>
+              <StarRatings
+                rating={parseInt(place.rating)}
+                starDimension="20px"
+                starSpacing="10px"
+                numberOfStars={5}
+                name='rating'
               />
-            </div>
-          }
-        </div>
+              <p>User Rating Total: {place.user_ratings_total}</p>
+              <p>Phone Number: {place.formatted_phone_number}</p>
+              Website: <a target="blank" href={`${place.website}`}>{place.website}</a>
+              
+              {
+                isLoggedIn && place.editable &&
+                <div style={{flex: 0.25}}>
+                  <Button onClick={() => {history.push(`${url}/edit`)}}>
+                    Edit Registered Data
+                  </Button>
+                  <ImageUploader
+                    {...props}
+                    withIcon={true}
+                    // withPreview={true}
+                    onChange={onDrop}
+                    imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                    maxFileSize={5242880}
+                  />
+                  {
+                    pictures.length > 0 &&
+                    <div>
+                      <Button onClick={() => upload()}>
+                        Upload
+                      </Button>
+                    </div>
+                  }
+                  
+                </div>
+
+              }
+              
+            </div>     
+            
+          </div>
+          : 
+          <div className="row space-around" >
+            <Loader
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={3000} //3 secs
+            />
+          </div>
+        }
       </div>
     </Layout>
   )
