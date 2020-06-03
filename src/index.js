@@ -6,12 +6,16 @@ import { Provider } from 'react-redux'
 import store, { persistor } from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
 import * as serviceWorker from './serviceWorker';
+import ReactGA from 'react-ga';
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 import 'react-upload-gallery/dist/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
+const trackingId = "UA-166180631-1"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
 
 ReactDOM.render(
   <Provider store={store}>

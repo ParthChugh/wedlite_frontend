@@ -94,7 +94,7 @@ const VendorRegistration = (props) => {
             {
               place.photos.map((photo ,index) => (
                 <div key={index} style={{flexDirection: 'column', display: 'flex'}}>
-                  <img src={`${BASE_URL}${photo.path}`} style={{height: 100}}/>
+                  <img src={photo.path} style={{height: 100}}/>
                   <Button onClick={() => {
                     const deleteItem = window.confirm('Are you sure you want to delete this?');
                     if (deleteItem === true) {

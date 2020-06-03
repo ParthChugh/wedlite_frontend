@@ -18,7 +18,7 @@ import { Button } from 'react-bootstrap';
 const Venue = (props) => {
   const url = useRouteMatch().url;
   const history = useHistory()
-  const {auth, LoginActions: {uploadPicture}} = props;
+  const {auth, LoginActions: {uploadPicture, claimBusiness}} = props;
   const isLoggedIn = auth.get('isLoggedIn');
   const data = useParams() 
   const [place, updatePlace] = useState({});
@@ -108,9 +108,27 @@ const Venue = (props) => {
                 }
               </Carousel>
             }
-            <div style={{ padding: 10 }}>
-              <h1 style={{ padding: 20 }}>{place.name}</h1>
-              <Card className="flex-container" style={{ width: 300, padding: 22, boxShadow: 0, elevation: 0 }}>
+            <div>
+              <div className="row space-between" style={{padding: 10}}>
+                <h1 style={{marginLeft: 20}} >{place.name}</h1>
+                {
+                  isLoggedIn && place.editable &&
+                  <div className="row">
+                    <div style={{ marginRight: 20}}>
+                      <Button onClick={() => {history.push(`${url}/edit`)}}>
+                        Edit Registered Data
+                      </Button> 
+                    </div>
+                    <div style={{ marginRight: 20}}>
+                    <Button onClick={() => claimBusiness({placeId: data.placeId})}>
+                      Claim your Business
+                    </Button> 
+                  </div>
+                </div>
+                }
+              </div>
+              <div className="row space-between">
+                <Card className="flex-container" style={{width:'70%', padding: 22, boxShadow: 0, elevation: 0 }}>
                   <h2 style={{ fontColor:"gray", textAlign: 'center', marginBottom: 15 }}>About</h2>
                   <h5>Address:</h5>
                   <p>{place.formatted_address}</p>
@@ -126,36 +144,30 @@ const Venue = (props) => {
                   <p>{place.formatted_phone_number}</p>
                   <h5 style={{ marginTop: 10 }}>Website:</h5>
                   <a target="blank" href={`${place.website}`}>{place.website ? place.website : "Not available"}</a>
-              </Card>
-              {
-                isLoggedIn && place.editable &&
-                <div style={{flex: 0.25}}>
-                  <Button onClick={() => {history.push(`${url}/edit`)}}>
-                    Edit Registered Data
-                  </Button>
-                  <ImageUploader
-                    {...props}
-                    withIcon={true}
-                    // withPreview={true}
-                    onChange={onDrop}
-                    imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                    maxFileSize={5242880}
-                  />
-                  {
-                    pictures.length > 0 &&
-                    <div>
-                      <Button onClick={() => upload()}>
-                        Upload
-                      </Button>
-                    </div>
-                  }
-                  
-                </div>
-
-              }
-              
+                </Card>
+                {
+                  isLoggedIn && place.editable &&
+                  <div>
+                    <ImageUploader
+                      {...props}
+                      withIcon={true}
+                      // withPreview={true}
+                      onChange={onDrop}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      maxFileSize={5242880}
+                    />
+                    {
+                      pictures.length > 0 &&
+                      <div>
+                        <Button onClick={() => upload()}>
+                          Upload
+                        </Button>
+                      </div>
+                    }   
+                  </div>
+                }
+              </div>
             </div>     
-            
           </div>
           : 
           <div className="row space-around" style={{ marginTop: 'auto' }}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Button } from 'semantic-ui-react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -72,7 +72,7 @@ const SearchBar = (props) => {
           onClick={handleGoClick}
           >
           <span>
-            Search
+            Let's Begin
           </span>
           </button>
       </form> : <div />

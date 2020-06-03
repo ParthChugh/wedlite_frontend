@@ -16,6 +16,7 @@ const Layout = (props) => {
   } = props;
   return (
     <React.Fragment>
+      <div>
         <Header
           defaultSelectedCity={defaultSelectedCity}
           defaultSelectedCategory={defaultSelectedCategory}
@@ -25,7 +26,8 @@ const Layout = (props) => {
         >
           {headerComponent}
         </Header>
-      <div style={{ marginTop: 70, minHeight: '100vh' }}>
+      </div>
+      <div>
         {children}      
       </div>
       

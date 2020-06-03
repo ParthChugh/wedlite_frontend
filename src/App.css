@@ -22,13 +22,13 @@ body {
 }
 .App-logo {
   height: 30vmin;
-  background-color:  rgba(255, 255, 255, 0.3);
+  /* background-color:  rgba(255, 255, 255, 0.3); */
   border-radius: 10px;
   pointer-events: none;
 }
 .logo-size {
-  height: 5vmin;
-  background-color:  rgba(255, 255, 255, 0.3);
+  height: 8vmin;
+  
   pointer-events: none;
 }
 .logo {
@@ -91,7 +91,7 @@ footer.page-footer .footer-copyright {
 
 .nav-link:hover {
   text-decoration: underline;
-  background-color: gray;
+  
 }
 
 .card:hover {
@@ -142,4 +142,8 @@ footer.page-footer .footer-copyright {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.navbar-hamburger {
+  color: white;
 }

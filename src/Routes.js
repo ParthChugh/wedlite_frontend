@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
   Link
 } from "react-router-dom";
 import Home from './App';
@@ -11,11 +10,21 @@ import Venue from './Components/Venue';
 import Place from './Components/Place';
 import TextPage from './Components/TextPage'
 import VendorRegistration from './Components/VendorRegistration'
+import { createBrowserHistory } from 'history';
+import ReactGA from 'react-ga';
 import Contact from './Components/Contact'
 import Profile from './Components/Profile'
 import Layout from './Components/Layout'
 import UpdateData from './Components/UpdateData'
 import VenueLocation from './Components/VenueLocation'
+
+const history = createBrowserHistory();
+
+// Initialize google analytics page view tracking
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
 
 export default function App() {
   const NoMatchPage = () => {
@@ -23,7 +32,7 @@ export default function App() {
       <Layout
         showSearchBar={false}
       >
-        <div style={{flex: 1, display: 'flex', justifyContent: 'center', height: 260}}>
+        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
           <h1>Page not found, please return to <Link to="/">Home</Link> Page</h1>
         </div>
       </Layout>

@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
-import logo from '../logo.png';
+import logo from '../Wedlite.png';
 import { CATEGORY, NORMAL} from '../constants';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
@@ -141,8 +141,12 @@ const Header = (props) => {
 
   const showLoginModal = () => (
     <Modal style={{marginTop: 100}} show={show} onHide={handleClose}>
-      <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
-        <div>Login</div>
+      <Modal.Header style={{alignItems: 'center', display: 'flex', flexDirection: 'column-reverse'}} closeButton>
+        <h6>Please Login</h6>
+        <h6>Welcome back!</h6>
+        <img src={backgroundLogo} alt="logo" className="logo-size" />
+        <div>
+        </div>
       </Modal.Header>
       <form className="container margin-top-10" onSubmit={handleSubmit(loginUser)}>  
         <div className="form-group">
@@ -178,16 +182,26 @@ const Header = (props) => {
   )
 
   const header = () => (
-      <div style={{ width: '100%', backgroundColor: 'black',padding: 5, paddingLeft:20, paddingRight: 20,alignItems: 'center', position: 'fixed', top: 0, display: 'block', zIndex:9999}}>
-      <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
-        <img src={logo} alt="logo" className="logo-size" />
-      </Navbar.Brand>
+      <div>
       {  
-      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="dark" style={{padding: 0, display: 'inline-block', float: 'right'}}>
-        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
+      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" style={{
+        width: '100%', 
+        backgroundColor: '#EA555D',
+        padding: 5, 
+        paddingLeft:20, 
+        paddingRight: 20,
+        alignItems: 'center', 
+        top: 0, 
+        display: 'flex', 
+        flex: 1,
+        zIndex:9999,}}>
+        <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
+          <img src={logo} alt="logo" className="logo-size" />
+        </Navbar.Brand>
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" color="white"/>
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" style={{ alignItems: 'right'}}>
+          <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
             <Nav.Link className="text" onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Home
             </Nav.Link>
@@ -197,7 +211,7 @@ const Header = (props) => {
             }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Register your Business
             </Nav.Link>
-            <Nav.Link 
+            {/* <Nav.Link 
               className="nav-link"
             onClick={() => {
               history.push('/about-us')
@@ -210,7 +224,7 @@ const Header = (props) => {
               setExpanded(false)
             }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Contact Us
-            </Nav.Link> 
+            </Nav.Link>  */}
 
             <Nav.Link onClick={() => {
               handleShow()
@@ -273,15 +287,19 @@ const Header = (props) => {
   
   return (
     <React.Fragment>
-      {header()}
+      <div>
+        {header()}
+      </div>
+      <div style={{paddingTop: 50}} />  
+
       {showLogo &&
-        <div className="text-align-center color-white" style={{ marginTop: 20, display: "block" }}>
+        <div className="text-align-center color-white" style={{ display: "block" }}>
           <img src={backgroundLogo} alt="logo" className="App-logo" />
         </div>
       }
         
       {showSearchBar &&
-        <div style={{marginTop: 20, marginBottom: 20}}>
+        <div style={{marginBottom: 20}}>
           <SearchBar
             handleSearch={handleSearch}
             defaultSelectedCity={defaultSelectedCity}

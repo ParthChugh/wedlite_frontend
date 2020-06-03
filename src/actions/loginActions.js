@@ -15,7 +15,8 @@ import {
   BUSINESS_SIGN_UP,
   POPULAR_VENUES,
   VENUE_CATEGORY_CITY,
-  LOGOUT
+  LOGOUT,
+  CLAIM_BUSINESS
   } from '../urls';
 
 export function updateLoginResponse(response) {
@@ -312,6 +313,30 @@ export const logout = () => {
       })
       .catch(() => {
         toast("Contact Support")
+    });
+  } 
+}
+
+export const claimBusiness  = ({placeId}) => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    fetch(CLAIM_BUSINESS, {
+      method: 'POST',
+      body: {venue: placeId},
+      headers: {
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          toast('Business Claimed')
+        } else {
+          toast('Business Not Claimed, Please try later')
+        }
+      })
+      .catch(() => {
     });
   } 
 }
