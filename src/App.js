@@ -123,7 +123,7 @@ const App = (props) => {
               )
             }
           </div>  
-          <div className="container">
+          <div>
             <h1>What is WedLite?</h1>
             <h5>Wedding is soulful affix which everyone dreams of. All dreams wrapped up in the wish box unfolds on the big day. Weddings are fun. Sure a lot of work goes into throwing the perfect shower and then there are all those hours of planning the so - special rustic wedding is just the right barn venue.  Here are some best ways to wind up your happy day more cost effective yet alluring and magnificent.</h5>
 
