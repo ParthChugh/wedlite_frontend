@@ -47,6 +47,39 @@ export default function App() {
         {/* <Route path="/login">
           <Login />
         </Route> */}
+        <Route path="/blog">
+          <Layout 
+            showLogo={false}
+            showSearchBar={false}
+          >
+            <div className="container">
+              <h1>What is WedLite?</h1>
+              <h5>Wedding is soulful affix which everyone dreams of. All dreams wrapped up in the wish box unfolds on the big day. Weddings are fun. Sure a lot of work goes into throwing the perfect shower and then there are all those hours of planning the so - special rustic wedding is just the right barn venue.  Here are some best ways to wind up your happy day more cost effective yet alluring and magnificent.</h5>
+
+              <h5>Don&rsquo;t rush with the mass.</h5>
+
+              <h5> In the peak season from hotels to culinary, everything goes up. Luxury seems to be more affordable when it is just &ldquo;Normal&rdquo;. So to avoid any highs and lows in your budget and jubilation as well, avoid booking your wedding in the peak season.  Go out of box to turn your dream wedding into more cheerful joy bank by saving the date which falls in range of less expected muhurts. This also calls for less of unwanted rush and scramble. Also, hiked expenses in the booming season may bring down your luxurious honeymoon budget down. So go off beat to rock!!</h5>
+
+              <h5>Don&rsquo;t get married on weekends.</h5>
+
+              <h5>Though we love our near and dear ones to be part of our wedding and auspicious ceremonies but it is hard to deny that weekend or holiday weddings always calls for those who barely matters us. Planning an event at in weekends, vacations and holidays is expected to come with the turbulence in the budget. In all, to end up in more captivating affair keep away your wedding dates far away from holidays and weekends.</h5>
+
+              <h5>Take your own time</h5>
+
+              <h5>&ldquo;Well planned is half done&rdquo;. Early bookings always saves tons of money hereby enriching more the event; and so the happiness. Planning an auspicious occasion few months prior always helps overcoming the drastic expenses which any arbitrarily planned wedding would bring. Never the less, marriage is a word to say but soulful journey to begin with so why hurry, Isn&rsquo;t it??</h5>
+
+              <h5>Why you? Let us do it all It&rsquo;s your big day</h5>
+
+              <h5>It&rsquo;s time to sit back and relax. After all you deserve all the pampering and coddle. Wedlite takes all the pleasure to turn your wedding into a grand venture without hiking up your bills. A good choice of wedding planner is all you have to do to make your D-day all wondering and awful. Just put forward the choices and rest back and invest all your time in grooming and glowing. Why to compromise your precious time in deliberations.</h5>
+
+              <h5>Ditch Brokers</h5>
+
+              <h5>Happiness is contagious and why to ruin it because of third party. Wedlite promises complete NO BROKER policy which keeps everything intact between just two people; You and Us. We ensure to keep your budget well planned by keeping away all unnecessary hefty amount. We aim to come up with all the details and information in just a single click which is direct connect between us.</h5>
+
+              <h5>Together is a wonderful place to be.  Happily ever after starts now!!!</h5>
+            </div>
+          </Layout>
+        </Route>
         <Route path="/terms-and-conditions">
           <TextPage 
             slug="terms-and-conditions"
@@ -78,9 +111,9 @@ export default function App() {
             <h5>
               At WedLite, we believe in hiring talented professionals who will help themselves and the company to grow at each level. So, say hello! We'd love to talk to you.
             </h5>
-            <h4>
+            <h5>
               A 3-Step Process to Grow with WedLite
-            </h4>
+            </h5>
             <div style={{flex: 1, display: 'flex'}}>
               <div style={{flex: 1/3, padding: 10}}>
                 
@@ -106,9 +139,9 @@ export default function App() {
                 </h5>
               </div>
             </div>
-            <h3 style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+            <h5 style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
               Please write us at carrer@wedlite.in with your CV to get more information about career at wedlite.in .
-            </h3>
+            </h5>
           </div>
           </center>
          </Layout> 

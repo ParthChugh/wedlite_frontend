@@ -32,6 +32,9 @@ const FooterContainer = (props) => {
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
               <a onClick={() => history.push('/about-us')}>About Us</a>
             </div>                
+            <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
+              <a onClick={() => history.push('/blog')}>What is Wedlite?</a>
+            </div>                
             
           </MDBCol>
           <MDBCol md="3">

@@ -270,6 +270,12 @@ const Header = (props) => {
               }}>
                 My Venues
               </NavDropdown.Item>
+              {/* <NavDropdown.Item className="text" onClick={() => {
+                setExpanded(false)
+                history.push('/blog')
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                What is WedLite?
+              </NavDropdown.Item> */}
               <NavDropdown.Item className="text" onClick={() => {
                 logout()
                 setExpanded(false)
