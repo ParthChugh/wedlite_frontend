@@ -242,7 +242,7 @@ const Header = (props) => {
         </Navbar.Collapse> 
         :
         <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{marginRight: 40, alignItems: 'center'}}>
-          <Nav className="mr-auto">
+          <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
             <Nav.Link className="text" onClick={() => {
               history.push('/')
               setExpanded(false)
@@ -255,9 +255,12 @@ const Header = (props) => {
               
             </Nav.Link>
             <NavDropdown 
-              style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} 
-              title="Profile" 
-              id="collasible-nav-dropdown"
+              style={{cursor:'pointer',fontSize: NORMAL}} 
+              title={
+                <span className="color-white">Profile</span>
+              } 
+              // id="collasible-nav-dropdown"
+              id={`dropdown-variants-primary`}
             >
               <NavDropdown.Item 
                style={{cursor:'pointer',fontSize: NORMAL}}

@@ -324,6 +324,7 @@ export const claimBusiness  = ({placeId}) => {
       method: 'POST',
       body: {venue: placeId},
       headers: {
+        'Content-Type': 'multipart/form-data',
         'Authorization' : `Token ${auth.getIn([
           'response', 'token'
         ])}`,

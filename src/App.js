@@ -1,11 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import { ToastContainer } from 'react-toastify';
-import {BASE_URL} from './urls';
 import * as LoginActionCreators from './actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons'
+import {faCheck, faLock, faHeart} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
@@ -111,7 +110,8 @@ const App = (props) => {
                       : <div />
                     }
                     <Card.Body>
-                      <Card.Title>{card.name}</Card.Title>
+                      <Card.Title>{card.name}</Card.Title>                      
+                      {/* <FontAwesomeIcon icon={faHeart} size="2x" style={{marginLeft: 5, marginRight: 5, color: 'black'}} /> */}
                       <p>
                         {card.formatted_address}
                       </p>

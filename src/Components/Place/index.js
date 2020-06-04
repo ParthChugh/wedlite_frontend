@@ -153,7 +153,7 @@ const Venue = (props) => {
                       withIcon={true}
                       // withPreview={true}
                       onChange={onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif", ".jpeg"]}
                       maxFileSize={5242880}
                     />
                     {

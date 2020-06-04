@@ -147,3 +147,7 @@ footer.page-footer .footer-copyright {
 .navbar-hamburger {
   color: white;
 }
+
+ul {
+  list-style-type: none;
+}

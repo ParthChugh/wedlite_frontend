@@ -50,7 +50,7 @@ const VendorRegistration = (props) => {
         <label>Phone Number</label>
         <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
           <span style={{ paddingRight: 10 }}>+91</span>
-          <input placeholder="Phone Number" name="formatted_phone_number" className="form-control"   ref={register({required: true, minLength: 10})} />
+          <input placeholder="Phone Number" name="formatted_phone_number" className="form-control"   ref={register({minLength: 10})} />
         </div>
         {errors.formatted_phone_number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
       </div>
@@ -76,7 +76,6 @@ const VendorRegistration = (props) => {
           className="form-control" 
           ref={
             register({
-              required: true,
               pattern: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$/  
             }
           )} />
