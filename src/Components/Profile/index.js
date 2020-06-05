@@ -5,6 +5,7 @@ import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
+import { Segment } from 'semantic-ui-react'
 import './Profile.css';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
@@ -108,6 +109,9 @@ const Profile = (props) => {
       </div>
       : 
       <div className="row space-around">
+        <Segment attached>
+          <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+        </Segment>
         <Loader
           type="Puff"
           color="#00BFFF"

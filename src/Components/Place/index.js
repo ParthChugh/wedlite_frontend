@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import ImageUploader from "react-images-upload";
+import { Segment, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import { Carousel, Card } from 'react-bootstrap';
 // import {Carousel} from 'react-responsive-carousel';
@@ -13,12 +14,13 @@ import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import Layout from '../Layout';
 import Loader from 'react-loader-spinner'
 import './Place.css';
-import { Button } from 'react-bootstrap';
+import ButtonRB from 'react-bootstrap/Button';
 
 const Venue = (props) => {
   const url = useRouteMatch().url;
+  const [state, updateState] = useState(false);
   const history = useHistory()
-  const {auth, LoginActions: {uploadPicture, claimBusiness}} = props;
+  const {auth, LoginActions: {uploadPicture, claimBusiness, likeDislikeBusiness}} = props;
   const isLoggedIn = auth.get('isLoggedIn');
   const data = useParams() 
   const [place, updatePlace] = useState({});
@@ -29,6 +31,14 @@ const Venue = (props) => {
     setPictures([...pictures, picture]);
   };
 
+  const calFn = () => {
+    updateState(!state);
+  }
+
+  const likeUpdate = (placeId) => {
+    likeDislikeBusiness({placeId, like: true, callbackFunction: calFn})
+  }
+  
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -70,8 +80,9 @@ const Venue = (props) => {
     fetchPlace();
   },[auth.getIn([
     'response', 'token'
-  ]), guid, isLoggedIn]);
+  ]), guid, isLoggedIn, state]);
 
+  
   const callbackFunction = () => {
     const data = getGuid()
     setGuid(data)
@@ -83,7 +94,6 @@ const Venue = (props) => {
     })
     setPictures([]);
   }
-
   return (
     <Layout
       showLogo={false}
@@ -115,14 +125,14 @@ const Venue = (props) => {
                   isLoggedIn && place.editable &&
                   <div className="row">
                     <div style={{ marginRight: 20}}>
-                      <Button onClick={() => {history.push(`${url}/edit`)}}>
+                      <ButtonRB onClick={() => {history.push(`${url}/edit`)}}>
                         Edit Registered Data
-                      </Button> 
+                      </ButtonRB> 
                     </div>
                     <div style={{ marginRight: 20}}>
-                    <Button onClick={() => claimBusiness({placeId: data.placeId})}>
+                    <ButtonRB onClick={() => claimBusiness({placeId: data.placeId})}>
                       Claim your Business
-                    </Button> 
+                    </ButtonRB> 
                   </div>
                 </div>
                 }
@@ -144,6 +154,18 @@ const Venue = (props) => {
                   <p>{place.formatted_phone_number}</p>
                   <h5 style={{ marginTop: 10 }}>Website:</h5>
                   <a target="blank" href={`${place.website}`}>{place.website ? place.website : "Not available"}</a>
+                  {
+                    isLoggedIn && typeof place.likes !== 'undefined' &&
+                    <div>
+                      <Button
+                        color='red'
+                        onClick={() => likeUpdate(data.placeId)}
+                        content='Like'
+                        icon='heart'
+                        label={{ basic: true, color: 'red', pointing: 'left', content: `${place.likes.total}` }}
+                      />
+                    </div>
+                  }
                 </Card>
                 {
                   isLoggedIn && place.editable &&
@@ -171,6 +193,9 @@ const Venue = (props) => {
           </div>
           : 
           <div className="row space-around" style={{ marginTop: 'auto' }}>
+            <Segment attached>
+              <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            </Segment>
             <Loader
               type="Puff"
               color="#00BFFF"

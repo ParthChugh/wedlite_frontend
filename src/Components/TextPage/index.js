@@ -4,6 +4,7 @@ import {  toast } from 'react-toastify';
 import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls';
 import Loader from 'react-loader-spinner'
 import logo from '../../logo.png'
+import { Segment } from 'semantic-ui-react'
 import './TextPage.css';
 
 const TextPage = ({slug}) => {
@@ -61,6 +62,9 @@ const TextPage = ({slug}) => {
         </div>
         : 
         <div className="row space-around" >
+          <Segment attached>
+            <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Segment>
           <Loader
             type="Puff"
             color="#00BFFF"

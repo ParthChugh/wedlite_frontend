@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from '../common/SearchBar';
 import {useHistory, useParams, useRouteMatch} from 'react-router-dom';
+import * as LoginActionCreators from '../../actions/loginActions';
 import {  toast } from 'react-toastify';
 import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import StarRatings from 'react-star-ratings';
+import { Segment, Button } from 'semantic-ui-react'
 import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
 
-const Venue = () => {
+const Venue = (props) => {
+  const { auth, LoginActions: { likeDislikeBusiness } } = props;
+  const isLoggedIn = auth.get('isLoggedIn')
+
   const data = useParams()
   const url = useRouteMatch().url;
   const history = useHistory();
+  const [state, updateState] = useState(false);
   const [venues, updateVenus] = useState([]);
   const [nextUrl, updateNextUrl] = useState('');
   const fetchVenue = (url) => {
@@ -38,13 +46,21 @@ const Venue = () => {
   
   useEffect(() => {
     fetchVenue(`${VENUE_CATEGORY_CITY}?category=${data.categoryId}&location=${data.cityId}`);
-  },[data.categoryId, data.cityId]);
+  },[data.categoryId, data.cityId, state]);
 
   const handleSearch = (cityObject, categoryObject) => {
     if(data.categoryId !== categoryObject.id || data.categoryId !== cityObject.id) {
       updateVenus([]);
       history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
     }
+  }
+
+  const callbackFunction = () => {
+    updateState(!state);
+  }
+
+  const likeUpdate = (placeId) => {
+    likeDislikeBusiness({placeId, like: true, callbackFunction})
   }
 
   const navigateToPlace = (placeId) => {
@@ -95,6 +111,18 @@ const Venue = () => {
                     <Card.Text>
                       {card.formatted_address}
                     </Card.Text>
+                    {
+                        isLoggedIn && typeof card.likes !== 'undefined' &&
+                        <div>
+                          <Button
+                            color='red'
+                            onClick={() => likeUpdate(card.place_id)}
+                            content='Like'
+                            icon='heart'
+                            label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
+                          />
+                        </div>
+                      }
                   </Card.Body>
                 </Card>
               )
@@ -113,6 +141,9 @@ const Venue = () => {
       </div>
       : 
       <div className="row space-around">
+        <Segment attached>
+          <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+        </Segment>
         <Loader
           type="Puff"
           color="#00BFFF"
@@ -126,5 +157,18 @@ const Venue = () => {
   )
   
 }
+const mapStateToProps = state => {
+  const { auth } = state;
+  return { auth };
+};
 
-export default Venue
+const mapDispatchToProps = dispatch => {
+  return {
+    LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Venue);

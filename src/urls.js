@@ -12,7 +12,6 @@ const CONTACT_US = `${BASE_URL}/support/`
 const POPULAR_VENUES = `${BASE_URL}/places/venues/locations/`
 const CLAIM_BUSINESS = `${BASE_URL}/support/business-claim/`
 
-
 export {
   BASE_URL,
   REGISTER_API,

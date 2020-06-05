@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {useHistory, useParams} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
+import { VENUE_CATEGORY_CITY } from '../../urls'
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
+import { Segment } from 'semantic-ui-react'
 import Layout from '../Layout';
 
 const VenueLocation = () => {
@@ -102,6 +103,9 @@ const VenueLocation = () => {
       </div>
       : 
       <div className="row space-around">
+        <Segment attached>
+          <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+        </Segment>
         <Loader
           type="Puff"
           color="#00BFFF"
