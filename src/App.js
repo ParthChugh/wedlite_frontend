@@ -97,10 +97,6 @@ const App = (props) => {
           </div>
           <div className="row container" style={{alignItems: 'center', flex: 1}}>
             <h3 style={{padding: 10, marginLeft: 20 }}>Popular Vendors and Venues in Udaipur</h3>
-            {/* <div style={{flex: 1, justifyContent: 'flex-end', display: 'flex', alignItems: 'center'}}>
-              <FontAwesomeIcon icon={faCheck} size="xs" style={{marginLeft: 5, marginRight: 5, color: 'green'}} />
-              Featured
-            </div> */}
           </div>
           <div className="row space-around" ref={venue}>        
             {

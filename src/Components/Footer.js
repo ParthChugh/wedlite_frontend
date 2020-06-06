@@ -27,29 +27,46 @@ const FooterContainer = (props) => {
           <MDBCol md="3">
             <h5 style={{fontWeight: 'bold'}} className="title">GENERAL</h5>
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/vendor-registration')}>Vendor Registration</a>
+              <a onClick={() => {
+                history.push('/vendor-registration')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+              }}>Vendor Registration</a>
             </div>
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/about-us')}>About Us</a>
+              <a onClick={() => {
+                history.push('/about-us')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+              }}>About Us</a>
             </div>                
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/blog')}>What is Wedlite?</a>
+              <a onClick={() => {
+                history.push('/blog')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });  
+              }}>What is Wedlite?</a>
             </div>                
-            
           </MDBCol>
           <MDBCol md="3">
             <h5 style={{fontWeight: 'bold'}} className="title" >COMPANY</h5>
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/careers')}>Careers</a>
+              <a onClick={() => {
+                history.push('/careers')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });  
+              }}>Careers</a>
             </div>                
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/contact-us')}>Contact Us</a>
+              <a onClick={() =>{ 
+                history.push('/contact-us')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+              }}>Contact Us</a>
             </div>                
           </MDBCol>
           <MDBCol md="3">
           <h5 style={{fontWeight: 'bold'}} className="title">LEGAL</h5>
             <div className="margin-left-right-10 color-white text" style={{cursor:'pointer',fontSize: NORMAL}}>
-              <a onClick={() => history.push('/terms-and-conditions')}>Terms & Conditions</a>
+              <a onClick={() => { 
+                history.push('/terms-and-conditions')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+              }}>Terms & Conditions</a>
             </div>
           </MDBCol>
         </MDBRow>
@@ -61,7 +78,10 @@ const FooterContainer = (props) => {
               <li className="list-inline-item">
                   <h5 className="mb-1">Register for busniess</h5>
               </li>
-              <li className="list-inline-item"><a  onClick={() => history.push('/vendor-registration')} className="btn btn-danger btn-rounded">Sign up!</a></li>
+              <li className="list-inline-item"><a  onClick={() => {
+                history.push('/vendor-registration')
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+              }} className="btn btn-danger btn-rounded">Sign up!</a></li>
           </ul>
       </div>
       }
