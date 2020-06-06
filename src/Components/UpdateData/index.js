@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
 import { useParams } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
+import { Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap';
 import Layout from '../Layout';
@@ -108,6 +109,9 @@ const VendorRegistration = (props) => {
         </div> 
         :
         <div className="row space-around" >
+          <Segment attached>
+            <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Segment>
           <Loader
             type="Puff"
             color="#00BFFF"

@@ -4,7 +4,7 @@ import * as LoginActionCreators from './actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {faCheck, faLock, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {faLock} from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Card} from 'react-bootstrap';

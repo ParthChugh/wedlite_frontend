@@ -78,10 +78,10 @@ const FooterContainer = (props) => {
       <hr />
       <div className="text-center">
           <ul className="list-unstyled list-inline">  
-            <FontAwesomeIcon className="list-inline-item"  icon={faTwitter} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-            <FontAwesomeIcon className="list-inline-item" icon={faInstagram} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-            <FontAwesomeIcon className="list-inline-item" icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} />
-            <FontAwesomeIcon className="list-inline-item" icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} />
+            <a href="https://twitter.com/InWedlite" target="_blank"><FontAwesomeIcon className="list-inline-item"  icon={faTwitter} size="2x" style={{marginLeft: 5, marginRight: 5}} /></a>
+            <a href="https://www.instagram.com/wedlite.in/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faInstagram} size="2x" style={{marginLeft: 5, marginRight: 5}} /></a>
+            <a href="https://www.facebook.com/Wedlite.in/?modal=admin_todo_tour" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faFacebook} size="2x" style={{marginLeft: 5, marginRight: 5}} /></a>
+            <a href="https://www.linkedin.com/in/wedlite-book-your-wedding-now-686a311ab/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} /></a>
           </ul>
       </div>
       <div className="footer-copyright text-center">
