@@ -183,13 +183,14 @@ export const fetchCategories = () => {
 export const fetchPopularVenues = (locationId) => {
   return (dispatch, getState) => {
     const { auth } = getState();
+    const isLoggedIn = auth.get('isLoggedIn');
     fetch(`${POPULAR_VENUES}${locationId}`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : `Token ${auth.getIn([
+        'Authorization' : isLoggedIn ? `Token ${auth.getIn([
           'response', 'token'
-        ])}`,
+        ])}` : ""
       }
     })
       .then((response) => {
