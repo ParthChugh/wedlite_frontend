@@ -181,16 +181,21 @@ export const fetchCategories = () => {
 }
 
 export const fetchPopularVenues = (locationId) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
     fetch(`${POPULAR_VENUES}${locationId}`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
       }
     })
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
+            console.log(json)
             dispatch(updatePopularVenues(json));
           })
         } else {

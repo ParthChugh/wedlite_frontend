@@ -35,8 +35,8 @@ const Venue = (props) => {
     updateState(!state);
   }
 
-  const likeUpdate = (placeId) => {
-    likeDislikeBusiness({placeId, like: true, callbackFunction: calFn})
+  const likeUpdate = (placeId, like) => {
+    likeDislikeBusiness({placeId, like, callbackFunction: calFn})
   }
   
   const [index, setIndex] = useState(0);
@@ -159,8 +159,8 @@ const Venue = (props) => {
                     <div>
                       <Button
                         color='red'
-                        onClick={() => likeUpdate(data.placeId)}
-                        content='Like'
+                        onClick={() => likeUpdate(place.place_id, !place.likes.current_user_likes)}
+                        content={place.likes.current_user_likes ? 'Unlike' : 'Like'}
                         icon='heart'
                         label={{ basic: true, color: 'red', pointing: 'left', content: `${place.likes.total}` }}
                       />
