@@ -109,7 +109,7 @@ export default function App() {
             </div>
             
             <h5>
-              At WedLite, we believe in hiring talented professionals who will help themselves and the company to grow at each level. So, say hello! We'd love to talk to you.
+            At Wedlite , we're looking for hard working and passionate people to help us gift joy and happiness to many in India. Just follow the steps below and be the part of young and enthusiastic team of Wedlite
             </h5>
             <h5>
               A 3-Step Process to Grow with WedLite
@@ -119,23 +119,23 @@ export default function App() {
                 
                 <span className="dot">1</span>                  
 
-                <h2>Apply</h2>
+                <h2>Send your Resume</h2>
                 <h5>
-                  You can apply online or send the resume to WedLite recruiter. It's noteworthy that candidates must possess the mentioned qualification, characteristics and experience asked by the company.  
+                  Upload your updated resume with desired qualifications. Passion is utmost requirement.
                 </h5>
               </div>
               <div style={{flex: 1/3, padding: 10}}>
                 <span className="dot">2</span>
                 <h2>Interview</h2>
                 <h5>                
-                  If selected further, you will be contacted by our HR representatives who will further evaluate your interest in the role you have applied for. Also, you will be briefed on how it's like to work at WedLite. 
+                  Short listed candidates will be approached by recruiter team through mail or call.
                 </h5>
               </div>
               <div style={{flex: 1/3, padding: 10}}>
                 <span className="dot">3</span>
-                <h2>Finalize</h2>
+                <h2>You are hired</h2>
                 <h5>
-                  Next comes the in-person interview with the manager or potential team leader. There, you will be assessed whether you are suited well in the role we are hiring for or not. If selected further, the recruiter will share the feedback given by the hiring team and discuss the next steps.
+                Finally, In-person interview with the management commitee to assure the compatibility of role as per your interests and necessity of team Wedlite.
                 </h5>
               </div>
             </div>
