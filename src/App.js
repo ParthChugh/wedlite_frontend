@@ -41,6 +41,21 @@ const App = (props) => {
     likeDislikeBusiness({placeId, like, callbackFunction})
   }
 
+  const categories = venues.map(el => {  
+    return el.category
+  })
+  let selectedCategories = [];
+  
+  if(Object.values(categories).length > 0 && categories.length > 0) {
+    selectedCategories = Array.from(new Set(categories.map((s) => s.id)))
+    .map((id) => {
+      return {
+        id,
+        category: categories.find(s => s.id === id)
+      }
+    })
+  }
+  
   return (
     <Layout
       handleSearch={handleSearch}
@@ -95,42 +110,51 @@ const App = (props) => {
             }
             )}
           </div>
-          <div className="row container" style={{alignItems: 'center', flex: 1}}>
-            <h3 style={{padding: 10, marginLeft: 20 }}>Popular Vendors and Venues in Udaipur</h3>
-          </div>
-          <div className="row space-around" ref={venue}>        
+          <div ref={venue}>        
             {
-              venues.map((card, index) => {
-                return(
-                  <Card className="app-card" style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
-                    { card.display_photo ?
-                        <Card.Img 
-                          onClick={()=> navigateToPlace(card.place_id)}
-                          className="card-image"
-                          variant="top" 
-                          src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
-                        />
-                      : <div />
-                    }
-                    <Card.Body>
-                      <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
-                      <Card.Text>
-                        {card.formatted_address}
-                      </Card.Text>
+              selectedCategories.map((data) => {
+                const selectedVenues = venues.filter(el => el.category.id === data.id);
+                return (
+                  <div>
+                    <h3 style={{padding: 10, marginLeft: 20 }}>Popular {data.category.type}</h3>
+                    <div className="row space-around">
                       {
-                        isLoggedIn && typeof card.likes !== 'undefined' &&
-                        <div>
-                          <Button
-                            color='red'
-                            onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
-                            content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
-                            icon='heart'
-                            label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
-                          />
-                        </div>
+                        selectedVenues.map((card, index) => {
+                          return(
+                            <Card className="categories" style={{ margin: 10, width: '30%', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
+                              { card.display_photo ?
+                                  <Card.Img 
+                                    onClick={()=> navigateToPlace(card.place_id)}
+                                    className="card-image"
+                                    variant="top" 
+                                    src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
+                                  />
+                                : <div />
+                              }
+                              <Card.Body>
+                                <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
+                                <Card.Text>
+                                  {card.formatted_address}
+                                </Card.Text>
+                                {
+                                  isLoggedIn && typeof card.likes !== 'undefined' &&
+                                  <div>
+                                    <Button
+                                      color='red'
+                                      onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
+                                      content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
+                                      icon='heart'
+                                      label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
+                                    />
+                                  </div>
+                                }
+                              </Card.Body>
+                            </Card>
+                          )
+                        })
                       }
-                    </Card.Body>
-                  </Card>
+                    </div>
+                  </div>
                 )
               }
               )

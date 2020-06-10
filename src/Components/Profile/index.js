@@ -35,7 +35,6 @@ const Profile = (props) => {
         if(response.status === 200) {
           response.json().then((json) => {
             updateNextUrl(json.next);
-            console.log(json);
             updateVenus(searches => searches.concat(json.results))
           })
         } else {

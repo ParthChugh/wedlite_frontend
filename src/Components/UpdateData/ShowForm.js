@@ -1,14 +1,24 @@
-import React from 'react'
+import React, {useState ,useEffect} from 'react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useHistory, useParams } from 'react-router-dom';
+import { Dropdown } from 'semantic-ui-react'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
 const VendorRegistration = (props) => {
   const { LoginActions, place, placeId } = props;
+  
+  const [image, updateImage] = useState('');
   const history = useHistory()
+  
+  useEffect(()=> {
+    if(props.place.display_photo) {
+      updateImage(props.place.display_photo.id)
+    }
+  },[]);
+
   const data = useParams()
   const { updateVenue } = LoginActions;
 
@@ -22,19 +32,36 @@ const VendorRegistration = (props) => {
       website: place.website
     }
   })
+
   const callbackFunction = () => {
     history.push(`/venue/place/${data.placeId}`)
   }
+
   const createVendorData = (props) => {
-    const data = {
-      "business_status": props.business_status,
-      "formatted_address": props.formatted_address,
-      "name": props.name,
-      "website": props.website,
-      "vicinity": props.vicinity,
-      "formatted_phone_number": props.formatted_phone_number
+    if(image !== '') {
+      const data = {
+        "business_status": props.business_status,
+        "formatted_address": props.formatted_address,
+        "name": props.name,
+        "website": props.website,
+        "vicinity": props.vicinity,
+        "formatted_phone_number": props.formatted_phone_number,
+        "display_photo_id": image
+      }
+      updateVenue(placeId, data, callbackFunction);
     }
-    updateVenue(placeId, data, callbackFunction);
+  }
+
+  const options = Object.values(props.place.photos).map((el, index) => ( {
+    key: el.id,
+    text: `Image ${index}`,
+    value: el.id,
+    image: { avatar: true, src: el.path },
+    }
+  ))
+
+  const exposedCampaignOnChange = (event, data) => {
+    updateImage(data.value)
   }
 
   return(
@@ -81,6 +108,21 @@ const VendorRegistration = (props) => {
           )} />
         {errors.website && <span style={{color: 'red'}}>Website should be valid</span>}    
       </div>
+      {
+        image !== '' &&
+        <div className="form-group">
+          <label>Select Display Picture</label>
+          <Dropdown 
+            className="form-control"
+            placeholder='Select Photo' 
+            fluid
+            defaultValue={parseInt(image)}
+            options={options}
+            onChange={exposedCampaignOnChange}
+          />
+          {image === "" && <span style={{color: 'red'}}>Please select one display Picture</span>}    
+        </div>
+      }
       <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
         Submit
       </Button>       

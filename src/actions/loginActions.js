@@ -196,7 +196,6 @@ export const fetchPopularVenues = (locationId) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json)
             dispatch(updatePopularVenues(json));
           })
         } else {
@@ -349,7 +348,6 @@ export const claimBusiness  = ({placeId}) => {
 }
 
 export const likeDislikeBusiness  = ({placeId, like, callbackFunction}) => {
-  console.log(`${VENUE_CATEGORY_CITY}${placeId}/likes/`);
   return (dispatch, getState) => {
     const {auth} = getState();
     fetch(`${VENUE_CATEGORY_CITY}${placeId}/likes/`, {
