@@ -111,13 +111,13 @@ const Profile = (props) => {
         <Segment attached>
           <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
         </Segment>
-        <Loader
+        {/* <Loader
           type="Puff"
           color="#00BFFF"
           height={100}
           width={100}
           timeout={3000} //3 secs
-        />
+        /> */}
       </div>
     }
     </>
