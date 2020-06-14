@@ -17,6 +17,8 @@ import Profile from './Components/Profile'
 import Layout from './Components/Layout'
 import UpdateData from './Components/UpdateData'
 import VenueLocation from './Components/VenueLocation'
+import Shop from './Components/Shop'
+import ShopSingleDetail from './Components/Shop/ShopSingleDetail'
 
 const history = createBrowserHistory();
 
@@ -44,9 +46,12 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        {/* <Route path="/login">
-          <Login />
-        </Route> */}
+        <Route path="/shop/:id">
+          <ShopSingleDetail />
+        </Route>
+        <Route path="/shop">
+          <Shop />
+        </Route>
         <Route path="/blog">
           <Layout 
             showLogo={false}
@@ -161,6 +166,7 @@ export default function App() {
         <Route path="/venue/category/:categoryId/city/:cityId">
           <Venue />
         </Route>
+
         <Route exact path="/">
           <Home />
         </Route>

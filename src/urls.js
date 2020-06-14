@@ -11,6 +11,8 @@ const BUSINESS_SIGN_UP = `${BASE_URL}/business/users/`
 const CONTACT_US = `${BASE_URL}/support/`
 const POPULAR_VENUES = `${BASE_URL}/places/venues/locations/`
 const CLAIM_BUSINESS = `${BASE_URL}/support/business-claim/`
+const GET_SHOP_DATA = `${BASE_URL}/ecommerce/search/`
+const PRODUCT_DETAIL = `${BASE_URL}/ecommerce/products/`
 
 export {
   BASE_URL,
@@ -25,5 +27,7 @@ export {
   CONTACT_US,
   POPULAR_VENUES,
   LOGOUT,
-  CLAIM_BUSINESS
+  CLAIM_BUSINESS,
+  GET_SHOP_DATA,
+  PRODUCT_DETAIL
 }

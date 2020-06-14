@@ -80,7 +80,7 @@ const Venue = (props) => {
     >
       {
       venues.length > 0 ? 
-      <div>
+      <div className="container">
         <h1 style={{marginLeft: 40}}>Search Results</h1>  
         <div className="row space-around">        
           {
@@ -88,7 +88,7 @@ const Venue = (props) => {
               return(
                 <Card 
                   className="card"
-                  style={{ marginBottom: 20 ,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
+                  style={{ marginBottom: 20 ,width: '22rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
@@ -140,7 +140,7 @@ const Venue = (props) => {
         }
       </div>
       : 
-      <div className="row space-around">
+      <div className="container">
         <Segment attached>
           <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
         </Segment>

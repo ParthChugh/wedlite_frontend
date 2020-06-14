@@ -11,6 +11,17 @@ import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from './Components/Layout';
 import './App.css';
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import {
+//   faStar, faHeart, faPhone, faEnvelope, faSearch, faUtensils,
+//   faThumbsUp, faSortAlphaDown, faUserMinus, faDollarSign, faAngleDoubleRight, faPlus,
+//   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,
+// } from '@fortawesome/free-solid-svg-icons';
+
+// library.add(faStar, faHeart, faPhone, faEnvelope, faSearch, faUtensils,
+//   faThumbsUp, faSortAlphaDown, faUserMinus, faDollarSign, faAngleDoubleRight, faPlus,
+//   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,)
+
 
 const App = (props) => {
   const {auth, LoginActions: {fetchPopularVenues, likeDislikeBusiness}} = props;
@@ -67,7 +78,7 @@ const App = (props) => {
               return (
                 <Card 
                   className="app-card" 
-                  style={{ marginTop: 10, marginBottom: 10, width: '15rem', borderRadius: 10,elevation: 2 }} 
+                  style={{ marginTop: 10, marginBottom: 10, width: '14rem', borderRadius: 10,elevation: 2 }} 
                   key={index}
                 >
                   <Card.Img 
@@ -117,11 +128,11 @@ const App = (props) => {
                 return (
                   <div>
                     <h3 style={{padding: 10, marginLeft: 20 }}>Popular {data.category.type}</h3>
-                    <div className="row space-around">
+                    <div className="row space-around" >
                       {
                         selectedVenues.map((card, index) => {
                           return(
-                            <Card className="categories" style={{ margin: 10, width: '30%', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
+                            <Card className="categories" style={{ margin: 10,width: '20rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
                               { card.display_photo ?
                                   <Card.Img 
                                     onClick={()=> navigateToPlace(card.place_id)}

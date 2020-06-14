@@ -225,7 +225,12 @@ const Header = (props) => {
             }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
               Contact Us
             </Nav.Link>  */}
-
+            <Nav.Link className="text" onClick={() => {
+              history.push('/shop')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Shop on Wedlite
+            </Nav.Link>
             <Nav.Link onClick={() => {
               handleShow()
               setExpanded(false)
@@ -250,9 +255,10 @@ const Header = (props) => {
               Home
             </Nav.Link>
             <Nav.Link className="text" onClick={() => {
-            }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}
-            >
-              
+              history.push('/shop')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Shop on Wedlite
             </Nav.Link>
             <NavDropdown 
               style={{cursor:'pointer',fontSize: NORMAL}} 
