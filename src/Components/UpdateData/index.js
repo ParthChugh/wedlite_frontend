@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import { toast, ToastContainer } from 'react-toastify';
-import Loader from 'react-loader-spinner'
-import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
+import { VENUE_CATEGORY_CITY } from '../../urls'
 import { useParams } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import { Segment } from 'semantic-ui-react'
@@ -10,6 +9,7 @@ import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap';
 import Layout from '../Layout';
 import ShowForm from './ShowForm';
+import paragraph from '../../assets/paragraph.png'
 
 const VendorRegistration = (props) => {
   
@@ -95,7 +95,7 @@ const VendorRegistration = (props) => {
             {
               place.photos.map((photo ,index) => (
                 <div key={index} style={{flexDirection: 'column', display: 'flex'}}>
-                  <img src={photo.path} style={{height: 100}}/>
+                  <img alt="photo" src={photo.path} style={{height: 100}}/>
                   <Button onClick={() => {
                     const deleteItem = window.confirm('Are you sure you want to delete this?');
                     if (deleteItem === true) {
@@ -110,7 +110,7 @@ const VendorRegistration = (props) => {
         :
         <div className="row space-around" >
           <Segment attached>
-            <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            <img alt="loading" src={paragraph} />
           </Segment>
           {/* <Loader
             type="Puff"

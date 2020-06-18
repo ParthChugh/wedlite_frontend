@@ -13,6 +13,7 @@ const POPULAR_VENUES = `${BASE_URL}/places/venues/locations/`
 const CLAIM_BUSINESS = `${BASE_URL}/support/business-claim/`
 const GET_SHOP_DATA = `${BASE_URL}/ecommerce/search/`
 const PRODUCT_DETAIL = `${BASE_URL}/ecommerce/products/`
+const CART_ITEMS = `${BASE_URL}/ecommerce/carts/items/`
 
 export {
   BASE_URL,
@@ -29,5 +30,6 @@ export {
   LOGOUT,
   CLAIM_BUSINESS,
   GET_SHOP_DATA,
-  PRODUCT_DETAIL
+  PRODUCT_DETAIL,
+  CART_ITEMS
 }

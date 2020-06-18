@@ -5,7 +5,7 @@ import {
 } from "../actions/actionTypes";
 
 const INIT_STATE = {
-  cart: {},
+  cart: [],
   items: {
     count: 0,
     results: []

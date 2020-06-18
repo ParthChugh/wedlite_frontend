@@ -9,6 +9,7 @@ import { Button } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-alice-carousel/lib/alice-carousel.css';
 import Layout from './Components/Layout';
 import './App.css';
 // import { library } from '@fortawesome/fontawesome-svg-core'

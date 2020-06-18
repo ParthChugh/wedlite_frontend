@@ -19,6 +19,7 @@ import UpdateData from './Components/UpdateData'
 import VenueLocation from './Components/VenueLocation'
 import Shop from './Components/Shop'
 import ShopSingleDetail from './Components/Shop/ShopSingleDetail'
+import Cart from './Components/Shop/Cart';
 
 const history = createBrowserHistory();
 
@@ -46,6 +47,9 @@ export default function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/cart">
+          <Cart />
+        </Route>
         <Route path="/shop/:id">
           <ShopSingleDetail />
         </Route>

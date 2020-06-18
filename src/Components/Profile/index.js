@@ -10,7 +10,7 @@ import './Profile.css';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
-import Loader from 'react-loader-spinner'
+import paragraph from '../../assets/paragraph.png'
 
 
 const Profile = (props) => {
@@ -109,7 +109,7 @@ const Profile = (props) => {
       : 
       <div className="row space-around">
         <Segment attached>
-          <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          <img alt="loading" src={paragraph} />
         </Segment>
         {/* <Loader
           type="Puff"

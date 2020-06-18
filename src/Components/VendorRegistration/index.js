@@ -15,7 +15,7 @@ const VendorRegistration = (props) => {
   const { auth, LoginActions } = props;
   const history = useHistory();
   const { RegisterUser, fetchCities, fetchCategories } = LoginActions;
-  const { register, handleSubmit, errors, reset } = useForm()
+  const { register, handleSubmit, errors } = useForm()
 
   useEffect(()=> {
     fetchCities();

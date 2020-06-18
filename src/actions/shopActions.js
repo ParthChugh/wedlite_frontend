@@ -4,7 +4,8 @@ import {
 } from './actionTypes';
 import { 
   GET_SHOP_DATA,
-  } from '../urls';
+  CART_ITEMS
+} from '../urls';
 
 export function updateCart(cart) {
   return {
@@ -19,7 +20,6 @@ export function updateItems(items) {
     payload: items,
   };
 }
-
 export function getItems() {
   return (dispatch, getState) => {
     fetch(`${GET_SHOP_DATA}`, {
@@ -33,6 +33,31 @@ export function getItems() {
           console.log(json);
           dispatch(updateItems(json));
         })
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const getCartItems  = () => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    fetch(CART_ITEMS, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      }
+    })
+      .then((response) => {        
+        if(response.status === 200) {
+          response.json().then((json) => {
+            dispatch(updateCart(json));
+          })
+          
+        }
       })
       .catch(() => {
     });

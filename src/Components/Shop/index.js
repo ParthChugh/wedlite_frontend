@@ -1,7 +1,6 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import Navbar from '../components/Navbar';
 import './Shop.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {bindActionCreators} from 'redux';
 import {Card} from 'react-bootstrap';
 import * as ShopActionsCreator from '../../actions/shopActions';
@@ -9,17 +8,15 @@ import { Segment } from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
+import paragraph from '../../assets/paragraph.png'
 
 const Home = (props) =>  {
   const { ShopActions: {getItems}, shop } = props;
   const items = shop.getIn(['items', 'results']);
-  console.log(items);
   const history = useHistory();
   useEffect(() => {
     getItems()
   },[]);
-
-  const { ShopActions, auth } = props;
 
   const goToNextScreen = (id) => {
     history.push(`/shop/${id}`)
@@ -52,8 +49,11 @@ const Home = (props) =>  {
                   {el[1].getIn(['name'])}                
                 </Card.Title>
                 <div>
-                ₹ {el[1].getIn(['price'])}
-                </div>
+                  <div style={{flex: 1, justifyContent: 'center'}}>
+                    ₹ {el[1].getIn(['price'])}
+                  </div>
+                
+              </div>              
               </Card.Body>
             </Card>
           )
@@ -61,7 +61,7 @@ const Home = (props) =>  {
       ):
        <div className="row space-around" style={{ marginTop: 'auto' }}>
           <Segment attached>
-            <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            <img alt="loading" src={paragraph} />
           </Segment>
         </div>
       }

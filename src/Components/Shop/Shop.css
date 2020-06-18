@@ -8,7 +8,10 @@
   padding: 0px;
   text-decoration: none;
 }
-
+.font-icon:hover {
+  background-color: pink;
+  padding: 1px;
+}
 
 
 @media (max-width: 600px){

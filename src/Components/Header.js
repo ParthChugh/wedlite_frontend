@@ -24,8 +24,7 @@ const Header = (props) => {
    } = props;
   const { 
     RegisterUser, 
-    loginUser, 
-    handleClearData, 
+    loginUser,   
     fetchCities, 
     fetchCategories,
     logout
@@ -47,9 +46,9 @@ const Header = (props) => {
     setShow(false);
   },[isLoggedIn]);
 
-  const goToAppLink = () => {
-    console.log("App link is clicked")
-  }
+  // const goToAppLink = () => {
+  //   console.log("App link is clicked")
+  // }
 
   const handleClose = () => {
     setShow(false)
@@ -259,6 +258,12 @@ const Header = (props) => {
               setExpanded(false)
               }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
               Shop on Wedlite
+            </Nav.Link>
+            <Nav.Link className="text" onClick={() => {
+              history.push('/cart')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              Cart
             </Nav.Link>
             <NavDropdown 
               style={{cursor:'pointer',fontSize: NORMAL}} 

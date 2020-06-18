@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import SearchBar from '../common/SearchBar';
-import {useHistory, useParams, useRouteMatch} from 'react-router-dom';
+import {useHistory, useParams } from 'react-router-dom';
 import * as LoginActionCreators from '../../actions/loginActions';
 import {  toast } from 'react-toastify';
-import { VENUE_CATEGORY_CITY, BASE_URL} from '../../urls'
+import { VENUE_CATEGORY_CITY} from '../../urls'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import StarRatings from 'react-star-ratings';
@@ -12,15 +11,17 @@ import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
+import paragraph from '../../assets/paragraph.png'
 
 const Venue = (props) => {
   const { auth, LoginActions: { likeDislikeBusiness } } = props;
   const isLoggedIn = auth.get('isLoggedIn')
 
   const data = useParams()
-  const url = useRouteMatch().url;
+
   const history = useHistory();
   const [state, updateState] = useState(false);
+  const [visible, updateVisible] = useState(false);
   const [venues, updateVenus] = useState([]);
   const [nextUrl, updateNextUrl] = useState('');
   const fetchVenue = (url) => {
@@ -35,6 +36,7 @@ const Venue = (props) => {
           response.json().then((json) => {
             updateNextUrl(json.next);
             updateVenus(searches => searches.concat(json.results))
+            updateVisible(false);
           })
         } else {
           toast("Contact Support")
@@ -68,6 +70,7 @@ const Venue = (props) => {
   }
 
   const getMoreData = () => {
+    updateVisible(true);
     fetchVenue(nextUrl);
   }
 
@@ -129,9 +132,13 @@ const Venue = (props) => {
             }
             )
           }
+        </div>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <Loader visible={visible} type="Oval" color='#EA555D' height={80} width={80} />
         </div> 
+        
         {
-          nextUrl !== null ?
+          nextUrl !== null && !visible ?
           <div style={{display: 'flex', justifyContent: 'center'}}>
             <button className="see-more-button" onClick={getMoreData}>
               See More
@@ -142,7 +149,7 @@ const Venue = (props) => {
       : 
       <div className="container">
         <Segment attached>
-          <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          <img alt="loading" src={paragraph} />
         </Segment>
         {/* <Loader
           type="Puff"

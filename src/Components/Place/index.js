@@ -10,10 +10,10 @@ import { Segment, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import { Carousel, Card } from 'react-bootstrap';
 // import {Carousel} from 'react-responsive-carousel';
-import { VENUE_CATEGORY_CITY, BASE_URL } from '../../urls'
+import { VENUE_CATEGORY_CITY } from '../../urls'
 import Layout from '../Layout';
-import Loader from 'react-loader-spinner'
 import './Place.css';
+import paragraph from '../../assets/paragraph.png'
 import ButtonRB from 'react-bootstrap/Button';
 
 const Venue = (props) => {
@@ -110,6 +110,7 @@ const Venue = (props) => {
                   place.photos.map((el) => (
                     <Carousel.Item>
                       <img 
+                        alt="carousel-image"
                         className="d-block w-100"
                         src={el.path} 
                       />
@@ -194,7 +195,7 @@ const Venue = (props) => {
           : 
           <div className="row space-around" style={{ marginTop: 'auto' }}>
             <Segment attached>
-              <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            <img alt="loading" src={paragraph} />
             </Segment>
             {/* <Loader
               type="Puff"

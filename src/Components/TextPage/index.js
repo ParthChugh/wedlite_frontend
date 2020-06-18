@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../Layout';
 import {  toast } from 'react-toastify';
 import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls';
-import Loader from 'react-loader-spinner'
-import logo from '../../logo.png'
 import { Segment } from 'semantic-ui-react'
 import './TextPage.css';
+import paragraph from '../../assets/paragraph.png'
+
 
 const TextPage = ({slug}) => {
   const [data, updateData] = useState('');
@@ -63,7 +63,7 @@ const TextPage = ({slug}) => {
         : 
         <div className="row space-around" >
           <Segment attached>
-            <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            <img alt="loading" src={paragraph} />
           </Segment>
           {/* <Loader
             type="Puff"

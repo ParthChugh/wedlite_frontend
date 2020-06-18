@@ -16,7 +16,7 @@ import {
   POPULAR_VENUES,
   VENUE_CATEGORY_CITY,
   LOGOUT,
-  CLAIM_BUSINESS
+  CLAIM_BUSINESS,
   } from '../urls';
 
 export function updateLoginResponse(response) {

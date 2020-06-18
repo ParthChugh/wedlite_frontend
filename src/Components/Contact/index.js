@@ -5,7 +5,6 @@ import {  toast, ToastContainer } from 'react-toastify';
 import {useHistory} from 'react-router-dom'
 import { CONTACT_US  } from '../../urls';
 import { Button} from 'react-bootstrap';
-import logo from '../../logo.png'
 import './Contact.css';
 
 const TextPage = () => {
