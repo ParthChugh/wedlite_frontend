@@ -33,7 +33,7 @@ const Home = (props) =>  {
           return (
             <Card 
               className="app-card" 
-              style={{ marginTop: 10, marginBottom: 10, width: '21rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} 
+              style={{ margin: 10, width: '21rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} 
               onClick={() => goToNextScreen(el[1].get('id'))}
               key={index}
             >
