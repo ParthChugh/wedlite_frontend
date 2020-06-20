@@ -76,7 +76,7 @@ const FooterContainer = (props) => {
       <div className="text-center py-3">
           <ul className="list-unstyled list-inline mb-0">
               <li className="list-inline-item">
-                  <h5 className="mb-1">Register for busniess</h5>
+                  <h5 className="mb-1">Register for business</h5>
               </li>
               <li className="list-inline-item"><a  onClick={() => {
                 history.push('/vendor-registration')

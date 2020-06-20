@@ -14,6 +14,7 @@ const CLAIM_BUSINESS = `${BASE_URL}/support/business-claim/`
 const GET_SHOP_DATA = `${BASE_URL}/ecommerce/search/`
 const PRODUCT_DETAIL = `${BASE_URL}/ecommerce/products/`
 const CART_ITEMS = `${BASE_URL}/ecommerce/carts/items/`
+const PAYMENT_GATEWAY = `${BASE_URL}/ecommerce/payments/`
 
 export {
   BASE_URL,
@@ -31,5 +32,6 @@ export {
   CLAIM_BUSINESS,
   GET_SHOP_DATA,
   PRODUCT_DETAIL,
-  CART_ITEMS
+  CART_ITEMS,
+  PAYMENT_GATEWAY
 }

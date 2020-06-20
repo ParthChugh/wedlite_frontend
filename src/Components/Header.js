@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as LoginActionCreators from '../actions/loginActions';
+import * as ShopActionsCreators from '../actions/shopActions';
 import { Modal, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
@@ -15,7 +16,8 @@ const Header = (props) => {
   const history = useHistory();
   const { 
     LoginActions, 
-    auth, 
+    ShopActions,
+    auth, shop,
     handleSearch, 
     defaultSelectedCity, 
     defaultSelectedCategory,
@@ -27,8 +29,12 @@ const Header = (props) => {
     loginUser,   
     fetchCities, 
     fetchCategories,
-    logout
+    logout,
   } = LoginActions;
+
+  const {
+    getCartItems
+  } = ShopActions;
 
   const isLoggedIn = auth.get('isLoggedIn');
 
@@ -43,6 +49,7 @@ const Header = (props) => {
     fetchCities()
     fetchCategories()
     setSignUpShow(false);
+    getCartItems()
     setShow(false);
   },[isLoggedIn]);
 
@@ -263,7 +270,7 @@ const Header = (props) => {
               history.push('/cart')
               setExpanded(false)
               }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Cart
+              Cart({shop.get('cart').size})
             </Nav.Link>
             <NavDropdown 
               style={{cursor:'pointer',fontSize: NORMAL}} 
@@ -342,13 +349,14 @@ Header.defaultProps = {
 }
 
 const mapStateToProps = state => {
-  const { auth } = state;
-  return { auth };
+  const { auth, shop } = state;
+  return { auth, shop };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+    ShopActions: bindActionCreators(ShopActionsCreators, dispatch),
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {bindActionCreators} from 'redux';
 import { useParams } from 'react-router-dom';
 import * as ShopActionsCreator from '../../../actions/shopActions';
@@ -15,11 +15,11 @@ import paragraph from '../../../assets/paragraph.png'
 
 const Home = (props) =>  {
   const handleOnDragStart = (e) => e.preventDefault()
-  const { auth } = props;
+  const Carousel = useRef(null);
+  const { auth, ShopActions: {getCartItems} } = props;
   const data = useParams();
   const [detail, updateDetail] = useState({});
   const getItem = () => {
-    console.log(`${PRODUCT_DETAIL}${data.id}`);
     fetch(`${PRODUCT_DETAIL}${data.id}`, {
       method: 'GET', 
       headers: {
@@ -28,7 +28,6 @@ const Home = (props) =>  {
     })
       .then((response) => {
         response.json().then((json) => {
-          console.log(json);
           updateDetail(json);
         })
       })
@@ -55,7 +54,7 @@ const Home = (props) =>  {
           console.log(response);
           if(response.status === 201) {
             response.json().then((json) => {
-              console.log(json);
+              getCartItems()
               toast('Added')
             })
           } else {
@@ -69,6 +68,11 @@ const Home = (props) =>  {
       toast('Please Login')
     }
   }
+  const thumbItem = (item, i) => (
+    <span key={item} onClick={() => Carousel.slideTo(i)}>
+      *{' '}
+    </span>
+  )
 
   useEffect(() => {
     getItem()
@@ -83,18 +87,17 @@ const Home = (props) =>  {
         {
           Object.values(detail).length > 0 ?
           <div style={{display:'flex', flexDirection: 'row'}}>
-            <div style={{width: '60%'}}>
+            <div style={{width: '40%'}}>
               { detail.photos.length > 0 &&
               <AliceCarousel 
-                mouseTrackingEnabled        
+                items={detail.photos.map((el) => {
+                  return(
+                    <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} className="d-block w-100"/>
+                  )
+                })}
+                // mouseTrackingEnabled 
+                ref={Carousel}       
               >
-                {
-                  detail.photos.map((el) => {
-                    return(
-                      <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} className="d-block w-100"/>
-                    )
-                  })
-                }
               </AliceCarousel>
               }
             </div>
