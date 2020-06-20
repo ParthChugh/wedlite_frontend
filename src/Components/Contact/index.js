@@ -70,6 +70,12 @@ const TextPage = () => {
             <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
               Submit
             </Button>
+
+            <h5 style={{fontWeight: 'bold'}} className="title">OFFICE ADDRESS</h5>
+            <div className="text">
+              Shop no. 3, near pasoond bus stop, service lane pasoond, NH8 , Village pasoond, District Rajsamand, pincode - 313324
+            </div>
+          
           </div>
       </form>
       </>

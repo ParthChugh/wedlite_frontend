@@ -104,6 +104,12 @@ const FooterContainer = (props) => {
             <a href="https://www.linkedin.com/in/wedlite-book-your-wedding-now-686a311ab/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faLinkedin} size="2x" style={{marginLeft: 5, marginRight: 5}} /></a>
           </ul>
       </div>
+      <hr />
+      <div className="text-center">
+          <ul className="list-unstyled list-inline ">  
+            <li className><div style={{fontWeight: 'bold'}}>We Deliver in :</div> Ahmedabad, Bangalore,  Chennai, Faridabad, Ghaziabad,  Gurgaon, Hyderabad, Indore, Jaipur, Jodhpur,  Kolkata, Mumbai,  Navi Mumbai, New Delhi, Noida, Pimpri Chinchwad, Pune,  Surat, Udaipur, Thane, Vadodara, Mysore & Across India</li>
+          </ul>
+      </div>
       <div className="footer-copyright text-center">
         <MDBContainer fluid >
           &copy; {new Date().getFullYear()} Copyright: <a href="https://www.wedlite.in"> WedLite.in</a>
