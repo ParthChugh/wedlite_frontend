@@ -104,8 +104,9 @@ const Home = (props) =>  {
             <div style={{paddingLeft: 30, paddingRight: 30}}>
               <h2>{detail.name}</h2>
               <div>
-                <h5>Price: ₹ {detail.price}</h5>
-                <h4>Inclusive of all taxes</h4>
+                <h5><span style={{fontWeight: 'bold'}}>Price: </span>₹ {detail.price}</h5>
+                <h5 style={{fontWeight: 'bold'}}>Inclusive of all taxes</h5>
+                <h5><span style={{fontWeight: 'bold'}}>Description: </span><br/>{detail.description}</h5>
                 {/* <FontAwesomeIcon icon={faShoppingBasket} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} /> */}
               </div>
             </div>
