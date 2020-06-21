@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import { Button } from 'react-bootstrap';
+import ScrollAnimation from 'react-animate-on-scroll';
 import { useForm } from 'react-hook-form'
 import { Dropdown } from 'semantic-ui-react'
 import Invoice from '../../assets/invoice';
@@ -82,29 +83,35 @@ const VendorRegistration = (props) => {
       showSearchBar={false}
       showLogo={false}
     >
+      
       <div className="container" >
         <h1 className="container">Vendor Registration</h1>
-        <div className="row " style={{ justifyContent: 'space-around', }} >
-          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
-            <Invoice />
-            <h6 style={{marginTop: 10}}>
-              No broker between you and your client
-            </h6>
-          </div>
-          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
-            <Commission />
-            <h6 style={{marginTop: 10}}>Partner With India's top NO commission Venue search Company</h6>
-          </div>
-          
-          <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
-            <div style={{width: 100, height: 100,}}>
-              <Graph />
+        <ScrollAnimation 
+          animateIn='fadeIn'
+        >
+          <div className="row " style={{ justifyContent: 'space-around', }} >
+            <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+              
+              <Invoice />
+              <h6 style={{marginTop: 10}}>
+                No broker between you and your client
+              </h6>
             </div>
-            <h6 style={{marginTop: 10}}>
-              Get your business visibility in Major cities across India
-            </h6>
+            <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+              <Commission />
+              <h6 style={{marginTop: 10}}>Partner With India's top NO commission Venue search Company</h6>
+            </div>
+            
+            <div style={{display: 'flex', flexDirection: 'column', flex: 1/3, alignItems: 'center'}}>
+              <div style={{width: 100, height: 100,}}>
+                <Graph />
+              </div>
+              <h6 style={{marginTop: 10}}>
+                Get your business visibility in Major cities across India
+              </h6>
+            </div>
           </div>
-        </div>
+        </ScrollAnimation>
        <form style={{maxWidth: '50%'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
         <div className="form-group">
           <div className="form-group">
@@ -200,6 +207,7 @@ const VendorRegistration = (props) => {
         </Button>       
       </form>
       </div>
+      
     </Layout>
     
   )

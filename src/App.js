@@ -7,9 +7,11 @@ import {useHistory} from 'react-router-dom';
 import {faLock} from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ScrollAnimation from 'react-animate-on-scroll';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import 'animate.css/animate.min.css';
 import Layout from './Components/Layout';
 import './App.css';
 // import { library } from '@fortawesome/fontawesome-svg-core'
@@ -77,47 +79,51 @@ const App = (props) => {
           <div className="row space-around" >
             {cities.map((card, index) => {
               return (
-                <Card 
-                  className="app-card" 
-                  style={{ marginTop: 10, marginBottom: 10, width: '14rem', borderRadius: 10,elevation: 2 }} 
-                  key={index}
+                <ScrollAnimation 
+                  animateIn='bounceInRight'
                 >
-                  <Card.Img 
-                    variant="top"
-                    className="card-image"
-                    style={{borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
-                    src={card.photo} 
-                  />
-                  {
-                    !card.is_data_available && (
-                      <FontAwesomeIcon icon={faLock} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} />
-                    )
-                  }
-                  
-                  <Card.Body>
-                    <Card.Title>
-                      {card.city}
-                    </Card.Title>
+                  <Card 
+                    className="app-card" 
+                    style={{ marginTop: 10, marginBottom: 10, width: '14rem', borderRadius: 10,elevation: 2 }} 
+                    key={index}
+                  >
+                    <Card.Img 
+                      variant="top"
+                      className="card-image"
+                      style={{borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
+                      src={card.photo} 
+                    />
                     {
-                    card.is_data_available ? 
-                    <div className = "row">
-                      <div 
-                        style={{paddingLeft: 10,fontWeight: 'bold' , cursor: 'pointer'}}
-                        onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/vendors`)}}>
-                          Vendors
-                        </div>
-                        | 
-                        <div 
-                          style={{fontWeight: 'bold' , cursor: 'pointer'}} 
-                          onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/venue`)}}
-                        >
-                          Venue
-                        </div>
-                    </div>
-                    : <div className="coming-soon">Coming Soon!</div>
+                      !card.is_data_available && (
+                        <FontAwesomeIcon icon={faLock} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} />
+                      )
                     }
-                  </Card.Body>
-                </Card>
+                    
+                    <Card.Body>
+                      <Card.Title>
+                        {card.city}
+                      </Card.Title>
+                      {
+                      card.is_data_available ? 
+                      <div className = "row">
+                        <div 
+                          style={{paddingLeft: 10,fontWeight: 'bold' , cursor: 'pointer'}}
+                          onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/vendors`)}}>
+                            Vendors
+                          </div>
+                          | 
+                          <div 
+                            style={{fontWeight: 'bold' , cursor: 'pointer'}} 
+                            onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/venue`)}}
+                          >
+                            Venue
+                          </div>
+                      </div>
+                      : <div className="coming-soon">Coming Soon!</div>
+                      }
+                    </Card.Body>
+                  </Card>
+                </ScrollAnimation>
               )
             }
             )}
@@ -133,35 +139,39 @@ const App = (props) => {
                       {
                         selectedVenues.map((card, index) => {
                           return(
-                            <Card className="categories" style={{ margin: 10,width: '20rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
-                              { card.display_photo ?
-                                  <Card.Img 
-                                    onClick={()=> navigateToPlace(card.place_id)}
-                                    className="card-image"
-                                    variant="top" 
-                                    src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
-                                  />
-                                : <div />
-                              }
-                              <Card.Body>
-                                <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
-                                <Card.Text>
-                                  {card.formatted_address}
-                                </Card.Text>
-                                {
-                                  isLoggedIn && typeof card.likes !== 'undefined' &&
-                                  <div>
-                                    <Button
-                                      color='red'
-                                      onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
-                                      content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
-                                      icon='heart'
-                                      label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
+                            <ScrollAnimation 
+                              animateIn='bounceInRight'
+                            >
+                              <Card className="categories" style={{ margin: 10,width: '20rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
+                                { card.display_photo ?
+                                    <Card.Img 
+                                      onClick={()=> navigateToPlace(card.place_id)}
+                                      className="card-image"
+                                      variant="top" 
+                                      src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
                                     />
-                                  </div>
+                                  : <div />
                                 }
-                              </Card.Body>
-                            </Card>
+                                <Card.Body>
+                                  <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
+                                  <Card.Text>
+                                    {card.formatted_address}
+                                  </Card.Text>
+                                  {
+                                    isLoggedIn && typeof card.likes !== 'undefined' &&
+                                    <div>
+                                      <Button
+                                        color='red'
+                                        onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
+                                        content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
+                                        icon='heart'
+                                        label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
+                                      />
+                                    </div>
+                                  }
+                                </Card.Body>
+                              </Card>
+                            </ScrollAnimation>
                           )
                         })
                       }
