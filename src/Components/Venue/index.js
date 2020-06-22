@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import StarRatings from 'react-star-ratings';
 import { Segment, Button } from 'semantic-ui-react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
@@ -96,9 +97,12 @@ const Venue = (props) => {
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
                   { card.display_photo ?
-                    <Card.Img 
-                      variant="top" 
-                      src={ card.display_photo.path } style={{height: 400, borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                    <LazyLoadImage
+                      src={ card.display_photo.path } 
+                      style={{height: 400,width: '22rem', borderTopLeftRadius: 10, borderTopRightRadius: 10}}
+                      className="card-image"
+                      alt="display photo"
+                      effect="blur"
                     />
                     : <div />
                   }

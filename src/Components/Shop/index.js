@@ -4,6 +4,7 @@ import './Shop.css'
 import {bindActionCreators} from 'redux';
 import {Card} from 'react-bootstrap';
 import * as ShopActionsCreator from '../../actions/shopActions';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Segment } from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -37,11 +38,11 @@ const Home = (props) =>  {
               onClick={() => goToNextScreen(el[1].get('id'))}
               key={index}
             >
-              <Card.Img 
-                variant="top"
+              <LazyLoadImage
+                style={{borderRadius: 10, height: 250,  width: '21rem'}}
                 className="card-image"
-                
-                style={{borderRadius: 10}}
+                alt="display photo"
+                effect="blur"
                 src={el[1].getIn(['photos', 0,'path'])} 
               />
               <Card.Body>

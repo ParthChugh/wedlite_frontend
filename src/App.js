@@ -6,12 +6,13 @@ import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {faLock} from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'semantic-ui-react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ScrollAnimation from 'react-animate-on-scroll';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import 'animate.css/animate.min.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import Layout from './Components/Layout';
 import './App.css';
 // import { library } from '@fortawesome/fontawesome-svg-core'
@@ -78,19 +79,18 @@ const App = (props) => {
         <ToastContainer />
           <div className="row space-around" >
             {cities.map((card, index) => {
-              return (
-                <ScrollAnimation 
-                  animateIn='bounceInRight'
-                >
+              return ( 
                   <Card 
                     className="app-card" 
                     style={{ marginTop: 10, marginBottom: 10, width: '14rem', borderRadius: 10,elevation: 2 }} 
                     key={index}
                   >
-                    <Card.Img 
+                    <LazyLoadImage
                       variant="top"
-                      className="card-image"
-                      style={{borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
+                      // className="card-image"
+                      style={{height: 250, width: '14rem', borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
+                      alt="city"
+                      effect="blur"
                       src={card.photo} 
                     />
                     {
@@ -123,7 +123,6 @@ const App = (props) => {
                       }
                     </Card.Body>
                   </Card>
-                </ScrollAnimation>
               )
             }
             )}
@@ -139,16 +138,15 @@ const App = (props) => {
                       {
                         selectedVenues.map((card, index) => {
                           return(
-                            <ScrollAnimation 
-                              animateIn='bounceInRight'
-                            >
                               <Card className="categories" style={{ margin: 10,width: '20rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
                                 { card.display_photo ?
-                                    <Card.Img 
+                                    <LazyLoadImage
+                                      variant="top"
                                       onClick={()=> navigateToPlace(card.place_id)}
-                                      className="card-image"
-                                      variant="top" 
-                                      src={card.display_photo.path} style={{borderRadius: 10, minHeight: 300}}
+                                      style={{borderRadius: 10, height: 300, width: '20rem', borderRadius: 10}}
+                                      alt="display photo"
+                                      effect="blur"
+                                      src={card.display_photo.path} 
                                     />
                                   : <div />
                                 }
@@ -171,7 +169,6 @@ const App = (props) => {
                                   }
                                 </Card.Body>
                               </Card>
-                            </ScrollAnimation>
                           )
                         })
                       }
