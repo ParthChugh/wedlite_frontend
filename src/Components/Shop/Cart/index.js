@@ -120,11 +120,11 @@ const Home = (props) =>  {
                 </div>
               }
           </div>
-          {/* <div dangerouslySetInnerHTML={{
+          <div dangerouslySetInnerHTML={{
             __html: paymentPopUp
           }}>
 
-          </div> */}
+          </div>
           </div>
         </div>
       </>
