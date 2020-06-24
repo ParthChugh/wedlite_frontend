@@ -19,6 +19,7 @@ const Home = (props) =>  {
   const [paymentPopUp, updatePyamentPopUp] = useState('')
   useEffect(() => {
     getCartItems()
+    goToPaymentPage()
   },[]);
   
   const deleteItem = (id) => {
@@ -94,22 +95,30 @@ const Home = (props) =>  {
                 {
                   items.map((el) => {
                     return(
-                      <div style={{flex: 1,display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                      <div className="container" style={{flex: 1,display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                        <h3>{el.getIn(['product', 'name'])}</h3>
                         <div>
-                          <h3>{el.getIn(['product', 'name'])}</h3>
-                          <p>Quantity:  {el.get('quantity')}</p>
+                          <div style={{flex: 1,display: 'flex', justifyContent: 'space-between',}}>
+                            <p>Quantity:  {el.get('quantity')}</p>
+                            <div>
+                              <p>Price: {el.getIn(['product', 'price'])}</p>
+                            </div>
+                          </div>
+                          
                           <FontAwesomeIcon onClick={() => deleteItem(el.getIn(['product','id']))} className="font-icon" size={18} icon={faTrash} size="1x" />
                         </div>  
-                        <div>
-                          <p>Price: {el.getIn(['product', 'price'])}</p>
-                        </div>
+                        
                         <hr/>
                       </div>
                     )
                   })
                 }
-                <div>
-                  <Button onClick={goToPaymentPage}>Buy Now</Button>
+                <div style={{flex: 1, display: 'flex' ,justifyContent: 'center'}}>
+                  <div dangerouslySetInnerHTML={{
+                    __html: paymentPopUp
+                  }}>
+
+                  </div>
                 </div>
                 </div>
                 : 
@@ -119,11 +128,6 @@ const Home = (props) =>  {
                   </Segment>
                 </div>
               }
-          </div>
-          <div dangerouslySetInnerHTML={{
-            __html: paymentPopUp
-          }}>
-
           </div>
           </div>
         </div>
