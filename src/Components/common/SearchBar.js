@@ -47,36 +47,42 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='searchbar-container'>
+    <div className='image-background' style={{ flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column', alignItems: 'center'}}>
       {(cities.length > 0 && categories.length >0) ?
-      <form onSubmit={e => e.preventDefault()} className="align-items-center">
-        <Dropdown 
-          className="dropdown"
-          placeholder='Select your City' 
-          defaultValue={defaultSelectedCity ? parseInt(defaultSelectedCity) : defaultSelectedCity}
-          search selection
-          onChange={updateSelectedCity} 
-          options={cityOptions} 
-        />
-        <Dropdown 
-          className="dropdown"
-          placeholder='Select your Category' 
-          defaultValue={defaultSelectedCategory ? parseInt(defaultSelectedCategory): defaultSelectedCategory}
-          search selection
-          onChange={updateSelectedCategory} 
-          options={categoriesData} 
-        />
-        <button
-          type='submit'
-          className="button"
-          onClick={handleGoClick}
-          >
-          <span>
-            Let's Begin
-          </span>
+      <form onSubmit={e => e.preventDefault()}>
+        <div className="tagline">Commission free wedding planning</div>
+        <div className="tagline-info">Find, compare and book wedding venues <br/> and services hassle-free and commission-free</div>
+        <div className="row">
+          <Dropdown 
+            className="dropdown"
+            placeholder='Select your City' 
+            defaultValue={defaultSelectedCity ? parseInt(defaultSelectedCity) : defaultSelectedCity}
+            search selection
+            onChange={updateSelectedCity} 
+            options={cityOptions} 
+          />
+          <Dropdown 
+            className="dropdown"
+            placeholder='Select your Category' 
+            defaultValue={defaultSelectedCategory ? parseInt(defaultSelectedCategory): defaultSelectedCategory}
+            search selection
+            onChange={updateSelectedCategory} 
+            options={categoriesData} 
+          />
+          <button
+            type='submit'
+            className="fill-button-let-begin"
+            onClick={handleGoClick}
+            >
+            <span>
+              Let's Begin
+            </span>
           </button>
+
+        </div>
       </form> : <div />
       }
+ 
     </div>
   )
   

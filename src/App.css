@@ -1,14 +1,15 @@
-body {
+body, html {
   height: 100%;
-  width: 100%;
+  margin: 0;
 }
 
 .image-background {
-  height: 450px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; 
-  padding-top: 20px;
+  background-image: url("./assets/Landing.png");
+  /* Full height */
+  height: 680px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .row {
   display: flex;
@@ -27,7 +28,7 @@ body {
   pointer-events: none;
 }
 .logo-size {
-  height: 8vmin;
+  height: 6vmin;
   
   pointer-events: none;
 }
@@ -157,4 +158,87 @@ ul {
 .categories:hover > p {
   color: white;
   font-weight: bold;
+}
+.header-color {
+  color: #5F6060;
+}
+.fill-button {
+  color: white;
+  background-color: #A63A67;
+  border-color: #A63A67;
+  padding-left: 44.5px;
+  padding-right: 44.5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.blank-button {
+  color: #A63A67;
+  background-color: white;
+  border-color: #A63A67;
+  padding-left: 44.5px;
+  padding-right: 44.5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.cart {
+  height: 5vmin;
+  margin-left: 10px;
+  margin-right: 10px;
+  pointer-events: none;
+}
+
+.wrapper {
+  padding: 0 1.5em;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 1.5em;
+  overflow: hidden;
+}
+.wrapper:hover,
+.focus {
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
+}
+.search-bar {
+  display: flex;
+  height: 3em;
+  width: 50%;
+  align-items: center;
+}
+input:focus {
+  outline:none;
+}
+:focus {
+  outline: none;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1.5em;
+  border-top: 1px solid lightgray;
+  max-height: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  animation: enlarge .25s forwards;
+}
+.result {
+  display: flex;
+  align-items: center;
+}
+@keyframes enlarge {
+  to {
+    max-height: 10em;
+  }
 }

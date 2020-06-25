@@ -6,7 +6,9 @@ import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
-import logo from '../Wedlite.png';
+import Cart from '../assets/cart.png';
+import { MDBCol, MDBIcon } from "mdbreact";
+import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
@@ -192,7 +194,6 @@ const Header = (props) => {
       {  
       <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" style={{
         width: '100%', 
-        backgroundColor: '#EA555D',
         padding: 5, 
         paddingLeft:20, 
         paddingRight: 20,
@@ -204,75 +205,86 @@ const Header = (props) => {
         <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
           <img src={logo} alt="logo" className="logo-size" />
         </Navbar.Brand>
-        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" color="white"/>
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
         { !isLoggedIn ?
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
-            <Nav.Link className="text" onClick={() => history.push('/')} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Home
-            </Nav.Link>
+           <div className="wrapper" style={{flex: 1, display: 'flex'}} >
+              <div className="search-bar" >
+                <i class="fas fa-search"></i>
+                <input
+                  style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
+                  type="search"
+                  placeholder="Search for Anything"
+                  autocomplete="off"
+                />
+              </div>
+           </div>
             <Nav.Link onClick={() => {
               history.push('/vendor-registration')
               setExpanded(false)
-            }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
-              Register your Business
+             }}  
+              style={{cursor:'pointer',fontSize: NORMAL}}
+              className="header-color"
+            >
+              WedLite for Business
             </Nav.Link>
-            {/* <Nav.Link 
-              className="nav-link"
-            onClick={() => {
-              history.push('/about-us')
-              setExpanded(false)
-            }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              About Us
-            </Nav.Link>
-            <Nav.Link onClick={() => {
-              history.push('/contact-us')
-              setExpanded(false)
-            }}  style={{cursor:'pointer',fontSize: NORMAL,color: 'white'}}>
-              Contact Us
-            </Nav.Link>  */}
-            <Nav.Link className="text" onClick={() => {
+            <Nav.Link className="text header-color" onClick={() => {
               history.push('/shop')
               setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Shop on Wedlite
             </Nav.Link>
-            <Nav.Link onClick={() => {
+            {/* <Nav.Link
+            className="text header-color"
+            onClick={() => {
               handleShow()
               setExpanded(false)
-              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}} >
+              }} style={{cursor:'pointer',fontSize: NORMAL}} >
               Login
-            </Nav.Link>
-            <Nav.Link onClick={() => {
+            </Nav.Link> */}
+          </Nav>
+          <img src={Cart} alt="logo" className="cart" />
+          <button 
+            className="blank-button"
+            onClick={() => {
+              handleShow()
+              setExpanded(false)
+            }}>
+              Log In
+          </button>
+          <button 
+            className="fill-button" 
+            onClick={() => {
               handleSignUpShow()
               setExpanded(false)
-              }} style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
-              Sign up
-            </Nav.Link> 
-          </Nav>
+            }}>
+              Sign Up
+          </button>
         </Navbar.Collapse> 
         :
         <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{marginRight: 40, alignItems: 'center'}}>
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
-            <Nav.Link className="text" onClick={() => {
+            <Nav.Link className="text header-color" onClick={() => {
               history.push('/')
               setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Home
             </Nav.Link>
-            <Nav.Link className="text" onClick={() => {
+            <Nav.Link className="text header-color" onClick={() => {
               history.push('/shop')
               setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Shop on Wedlite
             </Nav.Link>
-            <Nav.Link className="text" onClick={() => {
+            <Nav.Link className="text header-color" onClick={() => {
               history.push('/cart')
               setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL, color: 'white'}}>
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Cart({shop.get('cart').size})
             </Nav.Link>
-            <NavDropdown 
+            <NavDropdown
+              className="text header-color" 
               style={{cursor:'pointer',fontSize: NORMAL}} 
               title={
                 <span className="color-white">Profile</span>
@@ -280,7 +292,8 @@ const Header = (props) => {
               // id="collasible-nav-dropdown"
               id={`dropdown-variants-primary`}
             >
-              <NavDropdown.Item 
+              <NavDropdown.Item
+               className="text header-color" 
                style={{cursor:'pointer',fontSize: NORMAL}}
                 onClick={() => {
                   history.push('/my-venues')
@@ -294,7 +307,7 @@ const Header = (props) => {
                 }}  style={{cursor:'pointer',fontSize: NORMAL}}>
                 What is WedLite?
               </NavDropdown.Item> */}
-              <NavDropdown.Item className="text" onClick={() => {
+              <NavDropdown.Item className="text header-color" onClick={() => {
                 logout()
                 setExpanded(false)
                 }}  style={{cursor:'pointer',fontSize: NORMAL}}>
@@ -317,16 +330,9 @@ const Header = (props) => {
       <div>
         {header()}
       </div>
-      <div style={{paddingTop: 50}} />  
-
-      {showLogo &&
-        <div className="text-align-center color-white" style={{ display: "block" }}>
-          <img src={backgroundLogo} alt="logo" className="App-logo" />
-        </div>
-      }
         
       {showSearchBar &&
-        <div style={{marginBottom: 20}}>
+        <div>
           <SearchBar
             handleSearch={handleSearch}
             defaultSelectedCity={defaultSelectedCity}
