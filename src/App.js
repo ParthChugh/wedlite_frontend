@@ -1,13 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { ToastContainer } from 'react-toastify';
+import PropTypes from 'prop-types';
 import * as LoginActionCreators from './actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {faLock} from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'semantic-ui-react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -27,15 +33,63 @@ import './App.css';
 //   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,)
 
 
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
+}));
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
 const App = (props) => {
   const {auth, LoginActions: {fetchPopularVenues, likeDislikeBusiness}} = props;
+  const theme = useTheme();
   const venue = useRef(null);
   const isLoggedIn = auth.get('isLoggedIn');
   const [state, updateState] = useState(false);
+  const [value, setValue] = React.useState(0);
 
   useEffect(()=> {
     fetchPopularVenues(1);
   },[isLoggedIn, state]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
 
   const cities = auth.get('cities');
   const venues = auth.get('popularVenues');
@@ -75,9 +129,9 @@ const App = (props) => {
     <Layout
       handleSearch={handleSearch}
     >        
-      <div className="container" style={{marginBottom: 40}}>
+      <div style={{marginLeft: 50, marginRight: 50, marginBottom: 40, flex: 1,display: 'flex', flexDirection:'column'}}>
         <ToastContainer />
-          <div className="row space-around" >
+          {/* <div className="row space-around" >
             {cities.map((card, index) => {
               return ( 
                   <Card 
@@ -126,74 +180,80 @@ const App = (props) => {
               )
             }
             )}
+          </div> */}
+          <div className="popular-selection">
+            Popular Selections
           </div>
-          <div ref={venue}>        
-            {
-              selectedCategories.map((data) => {
-                const selectedVenues = venues.filter(el => el.category.id === data.id);
-                return (
-                  <div>
-                    <h3 style={{padding: 10, marginLeft: 20 }}>Popular {data.category.type}</h3>
-                    <div className="row space-around" >
-                      {
-                        selectedVenues.map((card, index) => {
-                          return(
-                              <Card className="categories" style={{ margin: 10,width: '20rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} key={index}>
-                                { card.display_photo ?
-                                    <LazyLoadImage
-                                      variant="top"
-                                      onClick={()=> navigateToPlace(card.place_id)}
-                                      style={{borderRadius: 10, height: 300, width: '20rem', borderRadius: 10}}
-                                      alt="display photo"
-                                      effect="blur"
-                                      src={card.display_photo.path} 
-                                    />
-                                  : <div />
-                                }
-                                <Card.Body>
-                                  <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
-                                  <Card.Text>
-                                    {card.formatted_address}
-                                  </Card.Text>
-                                  {
-                                    isLoggedIn && typeof card.likes !== 'undefined' &&
-                                    <div>
-                                      <Button
-                                        color='red'
-                                        onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
-                                        content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
-                                        icon='heart'
-                                        label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
-                                      />
-                                    </div>
-                                  }
-                                </Card.Body>
-                              </Card>
-                          )
-                        })
-                      }
-                    </div>
-                  </div>
+          <AppBar elevation={0} position="static" color="white">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+
+              aria-label="full width tabs example"
+            >
+              {selectedCategories.map((data) => {
+              return(
+                <Tab label={data.category.type} />
                 )
+              })
               }
-              )
-            }
-          </div>  
-          <div>
-            <h1>What is WedLite?</h1>
-            <h5>Wedding is soulful affix which everyone dreams of. All dreams wrapped up in the wish box unfolds on the big day. Weddings are fun. Sure a lot of work goes into throwing the perfect shower and then there are all those hours of planning the so - special rustic wedding is just the right barn venue.  Here are some best ways to wind up your happy day more cost effective yet alluring and magnificent.</h5>
-            <h5>Don&rsquo;t rush with the mass.</h5>
-            <h5> In the peak season from hotels to culinary, everything goes up. Luxury seems to be more affordable when it is just &ldquo;Normal&rdquo;. So to avoid any highs and lows in your budget and jubilation as well, avoid booking your wedding in the peak season.  Go out of box to turn your dream wedding into more cheerful joy bank by saving the date which falls in range of less expected muhurts. This also calls for less of unwanted rush and scramble. Also, hiked expenses in the booming season may bring down your luxurious honeymoon budget down. So go off beat to rock!!</h5>
-            <h5>Don&rsquo;t get married on weekends.</h5>
-            <h5>Though we love our near and dear ones to be part of our wedding and auspicious ceremonies but it is hard to deny that weekend or holiday weddings always calls for those who barely matters us. Planning an event at in weekends, vacations and holidays is expected to come with the turbulence in the budget. In all, to end up in more captivating affair keep away your wedding dates far away from holidays and weekends.</h5>
-            <h5>Take your own time</h5>
-            <h5>&ldquo;Well planned is half done&rdquo;. Early bookings always saves tons of money hereby enriching more the event; and so the happiness. Planning an auspicious occasion few months prior always helps overcoming the drastic expenses which any arbitrarily planned wedding would bring. Never the less, marriage is a word to say but soulful journey to begin with so why hurry, Isn&rsquo;t it??</h5>
-            <h5>Why you? Let us do it all It&rsquo;s your big day</h5>
-            <h5>It&rsquo;s time to sit back and relax. After all you deserve all the pampering and coddle. Wedlite takes all the pleasure to turn your wedding into a grand venture without hiking up your bills. A good choice of wedding planner is all you have to do to make your D-day all wondering and awful. Just put forward the choices and rest back and invest all your time in grooming and glowing. Why to compromise your precious time in deliberations.</h5>
-            <h5>Ditch Brokers</h5>
-            <h5>Happiness is contagious and why to ruin it because of third party. Wedlite promises complete NO BROKER policy which keeps everything intact between just two people; You and Us. We ensure to keep your budget well planned by keeping away all unnecessary hefty amount. We aim to come up with all the details and information in just a single click which is direct connect between us.</h5>
-            <h5>Together is a wonderful place to be.  Happily ever after starts now!!!</h5>
-          </div>
+            </Tabs>
+          </AppBar>
+          <SwipeableViews
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={value}
+            onChangeIndex={handleChangeIndex}
+          >
+            {selectedCategories.map((data, index) => {
+              const selectedVenues = venues.filter(el => el.category.id === data.id);
+              return(
+                <TabPanel value={value}  index={index} dir={theme.direction}>
+                  <div className="row space-around" style={{flexWrap: 'wrap'}} >
+                  {
+                    selectedVenues.map((card, index) => {
+                      console.log(card);
+                      return(
+                          <Card className="categories" style={{ margin: 10,width: '25%',elevation: 2, cursor: 'pointer' }} key={index}>
+                            { card.display_photo ?
+                                <LazyLoadImage
+                                  variant="top"
+                                  onClick={()=> navigateToPlace(card.place_id)}
+                                  style={{width: '100%',height: 200, display: 'flex'}}
+                                  alt="display photo"
+                                  effect="blur"
+                                  src={card.display_photo.path} 
+                                />
+                              : <div />
+                            }
+                            <Card.Body>
+                              <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
+                              <Card.Text>
+                                {card.location.city}, {card.location.state} 
+                              </Card.Text>
+                              {
+                                isLoggedIn && typeof card.likes !== 'undefined' &&
+                                <div>
+                                  <Button
+                                    color='red'
+                                    onClick={() => likeUpdate(card.place_id, !card.likes.current_user_likes)}
+                                    content={card.likes.current_user_likes ? 'Unlike' : 'Like'}
+                                    icon='heart'
+                                    label={{ basic: true, color: 'red', pointing: 'left', content: `${card.likes.total}` }}
+                                  />
+                                </div>
+                              }
+                            </Card.Body>
+                          </Card>
+                      )
+                    })
+                  }
+
+                  </div>
+                </TabPanel>
+                )
+              })
+              }
+            </SwipeableViews>
         </div>
     </Layout>
   );

@@ -3,9 +3,11 @@ import { Dropdown } from 'semantic-ui-react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 import './SearchBar.css';
 
 const SearchBar = (props) => {
+  const history = useHistory();
   const {auth} = props;
   const cities = auth.get('cities');
   const categories = auth.get('categories');
@@ -47,12 +49,14 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='image-background' style={{ flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column', alignItems: 'center'}}>
+    <div className='image-background' style={{ flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column', paddingLeft: 40}}>
       {(cities.length > 0 && categories.length >0) ?
-      <form onSubmit={e => e.preventDefault()}>
+      <form style={{width: '40%'}} onSubmit={e => e.preventDefault()}>
         <div className="tagline">Commission free wedding planning</div>
-        <div className="tagline-info">Find, compare and book wedding venues <br/> and services hassle-free and commission-free</div>
-        <div className="row">
+        <div style={{fontSize: 20}}>
+          <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
+        </div>
+        <div className="row" style={{flex: 1, justifyContent: 'center', marginTop: 18}}>
           <Dropdown 
             className="dropdown"
             placeholder='Select your City' 
@@ -78,11 +82,22 @@ const SearchBar = (props) => {
               Let's Begin
             </span>
           </button>
+        </div>
+        <div style={{marginTop: 40, marginBottom: 40}} className="horizontal-line"><span>OR</span></div>
+        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+          <button 
+            className="blank-button"
+            style={{padding: 20, borderRadius: 20}}
+            onClick={() => {
+              history.push('/shop')
+            }}>
+              Shop on Wedlite
+          </button>
 
         </div>
+        
       </form> : <div />
       }
- 
     </div>
   )
   

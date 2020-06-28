@@ -90,12 +90,14 @@ input[type=submit]:hover {
   border-bottom-left-radius: 10;
   border-top-right-radius: 10;
   border-bottom-right-radius: 10;
+  align-items: center;
 }
 
 .dropdown {
-  width: 5%;
+
   min-height: auto !important;
   height: 3.0em;
+
   border-radius: 10px;
   margin-left: 5px;
 }
@@ -104,7 +106,7 @@ input[type=submit]:hover {
   font: Italic var(--unnamed-font-size-40)/var(--unnamed-line-spacing-53) var(--unnamed-font-family-segoe-ui);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-a63a67);
-  text-align: left;
+  text-align: center;
   font: Italic 40px/53px Segoe UI;
   letter-spacing: 0px;
   color: #A63A67;
@@ -113,8 +115,8 @@ input[type=submit]:hover {
 .tagline-info {
   font: Regular var(--unnamed-font-size-25)/var(--unnamed-line-spacing-33) var(--unnamed-font-family-segoe-ui);
   letter-spacing: var(--unnamed-character-spacing-0);
-  color: var(--unnamed-color-000000);
   text-align: center;
+  color: var(--unnamed-color-000000);
   font: Regular 25px/33px Segoe UI;
   letter-spacing: 0px;
   color: #000000;

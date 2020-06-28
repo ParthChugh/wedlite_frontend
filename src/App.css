@@ -6,7 +6,7 @@ body, html {
 .image-background {
   background-image: url("./assets/Landing.png");
   /* Full height */
-  height: 680px;
+  height: 720px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -241,4 +241,35 @@ input:focus {
   to {
     max-height: 10em;
   }
+}
+
+.horizontal-line {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5px solid ;
+  border-color: #707070;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+.horizontal-line span {
+  padding: 0 10px;
+}
+.footer-color {
+  background: var(--unnamed-color-e4e4e4) 0% 0% no-repeat padding-box;
+  background: #E4E4E4 0% 0% no-repeat padding-box;
+  box-shadow: 0px 6px 40px #00000029;
+  opacity: 1;
+}
+.popular-selection {
+  font: Regular var(--unnamed-font-size-35)/var(--unnamed-line-spacing-71) var(--unnamed-font-family-segoe-ui);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: Regular 35px/71px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  font-size: 22px;
+  opacity: 1;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }

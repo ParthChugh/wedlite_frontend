@@ -91,7 +91,7 @@ const Header = (props) => {
       <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
-      <form className="container margin-top-10" onSubmit={handleSubmit((data) => handleData(data))}>  
+      <form className="container margin-top-10" style={{ flex: 1,display: 'flex', flexDirection:'column'}} onSubmit={handleSubmit((data) => handleData(data))}>  
         <div className="form-group">
           <label>First Name</label>
           <input  name="first_name" className="form-control" placeholder="First Name"  ref={register({required: true})} />
@@ -156,7 +156,7 @@ const Header = (props) => {
         <div>
         </div>
       </Modal.Header>
-      <form className="container margin-top-10" onSubmit={handleSubmit(loginUser)}>  
+      <form className="container margin-top-10" style={{ flex: 1,display: 'flex', flexDirection:'column'}} onSubmit={handleSubmit(loginUser)}>  
         <div className="form-group">
           <label>Phone Number</label>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -331,14 +331,12 @@ const Header = (props) => {
         {header()}
       </div>
         
-      {showSearchBar &&
-        <div>
-          <SearchBar
-            handleSearch={handleSearch}
-            defaultSelectedCity={defaultSelectedCity}
-            defaultSelectedCategory={defaultSelectedCategory}
-          />   
-        </div>
+      {showSearchBar &&        
+        <SearchBar
+          handleSearch={handleSearch}
+          defaultSelectedCity={defaultSelectedCity}
+          defaultSelectedCategory={defaultSelectedCategory}
+        />   
       }
 
       {props.children}
