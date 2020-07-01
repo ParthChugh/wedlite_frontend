@@ -4,7 +4,7 @@ body, html {
 }
 
 .image-background {
-  background-image: url("./assets/Landing.png");
+  background-image: url("./assets/Landing.jpg");
   /* Full height */
   height: 720px;
   background-position: center;

@@ -7,7 +7,6 @@ import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import Cart from '../assets/cart.png';
-import { MDBCol, MDBIcon } from "mdbreact";
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
@@ -211,12 +210,12 @@ const Header = (props) => {
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
            <div className="wrapper" style={{flex: 1, display: 'flex'}} >
               <div className="search-bar" >
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
                 <input
                   style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
                   type="search"
                   placeholder="Search for Anything"
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </div>
            </div>
@@ -287,7 +286,7 @@ const Header = (props) => {
               className="text header-color" 
               style={{cursor:'pointer',fontSize: NORMAL}} 
               title={
-                <span className="color-white">Profile</span>
+                <span>Profile</span>
               } 
               // id="collasible-nav-dropdown"
               id={`dropdown-variants-primary`}

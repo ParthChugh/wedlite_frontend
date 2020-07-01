@@ -34,9 +34,12 @@ const TextPage = () => {
       showSearchBar={false}
     >
       <>      
-      <form className="container" style={{maxWidth: '50%'}} onSubmit={handleSubmit(postData)}>  
-        <h3>If urgent please contact us at support@wedlite.in</h3>
-        <div className="horizontal-line"><span>OR</span></div>
+      <form className="container" style={{maxWidth: '50%', flex: 1, flexDirection: 'column'}} onSubmit={handleSubmit(postData)}>  
+        {/* <h3>If urgent please contact us at support@wedlite.in</h3>
+        <div className="horizontal-line"><span>OR</span></div> */}
+        <h3>
+          Contact Us
+        </h3>
         <ToastContainer/>
         <div className="form-group">
           <div>

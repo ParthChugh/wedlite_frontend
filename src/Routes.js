@@ -20,6 +20,7 @@ import VenueLocation from './Components/VenueLocation'
 import Shop from './Components/Shop'
 import ShopSingleDetail from './Components/Shop/ShopSingleDetail'
 import Cart from './Components/Shop/Cart';
+import ConfirmOrder from './Components/Shop/ConfirmOrder';
 
 const history = createBrowserHistory();
 
@@ -35,7 +36,7 @@ export default function App() {
       <Layout
         showSearchBar={false}
       >
-        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+        <div style={{flex: 1,height: window.innerHeight, display: 'flex',alignItems: 'center' , justifyContent: 'center'}}>
           <h1>Page not found, please return to <Link to="/">Home</Link> Page</h1>
         </div>
       </Layout>
@@ -52,6 +53,9 @@ export default function App() {
         </Route>
         <Route path="/shop/:id">
           <ShopSingleDetail />
+        </Route>
+        <Route path="/ecommerce/payments/confirm">
+          <ConfirmOrder />
         </Route>
         <Route path="/shop">
           <Shop />
@@ -112,7 +116,7 @@ export default function App() {
           showSearchBar={false}
         >
           <center>
-          <div className="container" style={{ width: '70%'}}>
+          <div className="container" style={{ width: '70%', flex: 1, flexDirection: 'column', height: window.innerHeight, paddingTop: 100}}>
             <div>
               <h1>Our Hiring <span style={{fontWeight: 'bold'}}>Process</span></h1>
             </div>
