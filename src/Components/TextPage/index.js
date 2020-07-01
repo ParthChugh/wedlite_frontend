@@ -52,7 +52,7 @@ const TextPage = ({slug}) => {
     >
       {
         data !== '' ?
-        <div className="container">
+        <div className="container" style={{flex: 1, flexDirection: 'column'}}>
           <h1>{header}</h1>
           <div dangerouslySetInnerHTML={{
             __html: data
