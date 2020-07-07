@@ -31,32 +31,37 @@ const Home = (props) =>  {
       <div className="row space-around">
       {
         items.size > 0 ? items.entrySeq().map((el, index) => {
-          return (
-            <Card 
-              className="app-card" 
-              style={{ margin: 10, width: '21rem', borderRadius: 10,elevation: 2, cursor: 'pointer' }} 
-              onClick={() => goToNextScreen(el[1].get('id'))}
+          return (  
+            <div 
+              className="card-category"
+              style={{ 
+                margin: 10, 
+                width: '21rem', 
+                borderRadius: 5,
+                cursor: 'pointer', 
+                borderRadius: 20,
+              }}  
               key={index}
+              onClick={() => goToNextScreen(el[1].get('id'))}  
             >
               <LazyLoadImage
-                style={{borderRadius: 10, height: 250,  width: '21rem'}}
-                className="card-image"
+                style={{width: '100%',height: 200, display: 'flex', borderRadius: 20}}
+                className="image-category"
                 alt="display photo"
                 effect="blur"
                 src={el[1].getIn(['photos', 0,'path'])} 
               />
-              <Card.Body>
-                <Card.Title>
+              <div style={{paddingLeft: 10}}>
+                <div>
                   {el[1].getIn(['name'])}                
-                </Card.Title>
+                </div>
                 <div>
                   <div style={{flex: 1, justifyContent: 'center'}}>
                     ₹ {el[1].getIn(['price'])}
                   </div>
-                
               </div>              
-              </Card.Body>
-            </Card>
+              </div>
+            </div>
           )
         }
       ):

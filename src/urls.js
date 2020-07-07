@@ -16,6 +16,7 @@ const PRODUCT_DETAIL = `${BASE_URL}/ecommerce/products/`
 const CART_ITEMS = `${BASE_URL}/ecommerce/carts/items/`
 const PAYMENT_GATEWAY = `${BASE_URL}/ecommerce/payments/`
 const PAYMENT_GATEWAY_SUCCESS = `${BASE_URL}/ecommerce/payments/confirm/`
+const SEARCH_API = `${BASE_URL}/search/`
 
 export {
   BASE_URL,
@@ -35,5 +36,6 @@ export {
   PRODUCT_DETAIL,
   CART_ITEMS,
   PAYMENT_GATEWAY,
-  PAYMENT_GATEWAY_SUCCESS
+  PAYMENT_GATEWAY_SUCCESS,
+  SEARCH_API
 }

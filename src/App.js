@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import * as LoginActionCreators from './actions/loginActions';
+import * as ShopActionsCreators from './actions/shopActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -10,9 +11,13 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import paragraph from './assets/paragraph.png'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { Segment } from 'semantic-ui-react'
 import Box from '@material-ui/core/Box';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,19 +38,19 @@ import './App.css';
 //   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,)
 
 
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
+// function a11yProps(index) {
+//   return {
+//     id: `full-width-tab-${index}`,
+//     'aria-controls': `full-width-tabpanel-${index}`,
+//   };
+// }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     backgroundColor: theme.palette.background.paper,
+//     width: 500,
+//   },
+// }));
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -73,7 +78,12 @@ TabPanel.propTypes = {
 };
 
 const App = (props) => {
-  const {auth, LoginActions: {fetchPopularVenues, likeDislikeBusiness}} = props;
+  const {auth, 
+    LoginActions: {fetchPopularVenues, likeDislikeBusiness}, 
+    ShopActions: {getItems},
+    shop
+  } = props;
+  const items = shop.getIn(['items', 'results']);
   const theme = useTheme();
   const venue = useRef(null);
   const isLoggedIn = auth.get('isLoggedIn');
@@ -82,6 +92,7 @@ const App = (props) => {
 
   useEffect(()=> {
     fetchPopularVenues(1);
+    getItems(4);
   },[isLoggedIn, state]);
 
   const handleChange = (event, newValue) => {
@@ -124,6 +135,10 @@ const App = (props) => {
       }
     })
   }
+
+  const goToNextScreen = (id) => {
+    history.push(`/shop/${id}`)
+  }
   
   return (
     <Layout
@@ -147,11 +162,6 @@ const App = (props) => {
                       effect="blur"
                       src={card.photo} 
                     />
-                    {
-                      !card.is_data_available && (
-                        <FontAwesomeIcon icon={faLock} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} />
-                      )
-                    }
                     
                     <Card.Body>
                       <Card.Title>
@@ -211,7 +221,6 @@ const App = (props) => {
                   <div className="row space-around" style={{flexWrap: 'wrap'}} >
                   {
                     selectedVenues.map((card, index) => {
-                      console.log(card);
                       return(
                           <Card className="categories" style={{ margin: 10,width: '25%',elevation: 2, cursor: 'pointer' }} key={index}>
                             { card.display_photo ?
@@ -247,26 +256,95 @@ const App = (props) => {
                       )
                     })
                   }
-
                   </div>
                 </TabPanel>
                 )
               })
               }
             </SwipeableViews>
+            <div>
+              <div className="popular-selection">
+                From Wedlite Store
+              </div>
+              <div>
+                Articles and gifts as exquisite as you
+              </div>
+              <>
+                <div className="row space-around">
+                {
+                  items.size > 0 ? items.entrySeq().map((el, index) => {
+                    return (
+                      <Card 
+                        className="app-card" 
+                        style={{ margin: 10, width: '21rem', borderRadius: 42,elevation: 2, cursor: 'pointer' }} 
+                        onClick={() => goToNextScreen(el[1].get('id'))}
+                        key={index}
+                      >
+                        <LazyLoadImage
+                          style={{borderRadius: 42, height: 250,  width: '21rem', opacity: 0.4}}
+                          className="card-image"
+                          alt="display photo"
+                          effect="blur"
+                          src={el[1].getIn(['photos', 0,'path'])} 
+                        />
+                        <Card.Body className="title-shop" style={{position: 'absolute', color: 'white', bottom: 0,right: 0, left: 0,  flex: 1, alignItems: 'center'}}>
+                          <div style={{flex: 1,display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center',}}>
+                            <Card.Title style={{fontWeight: 'bold'}}>
+                              {el[1].getIn(['name'])}                
+                            </Card.Title>
+                            <div>
+                              <div style={{flex: 1, justifyContent: 'center', fontWeight: 'bold'}}>
+                                ₹ {el[1].getIn(['price'])}
+                              </div>
+                            </div>
+                            <button 
+                              className="common-fill-button" 
+                              onClick={() => {
+                              }}>
+                                Add to Cart
+                            </button>              
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    )
+                  }
+                ):
+                <div className="row space-around" style={{ marginTop: 'auto' }}>
+                    <Segment attached>
+                      <img alt="loading" src={paragraph} />
+                    </Segment>
+                  </div>
+                }
+                </div>
+                </>
+            </div>
+            <div>
+              Realistic portraits tailor-made for you
+            </div>
+            <div className="align-center">
+              <button 
+                className="fill-button" 
+                  onClick={() => {
+                    history.push('/shop')
+                  }}>
+                    View more on Wedlite store
+              </button>
+            </div>
+            
         </div>
     </Layout>
   );
 }
 
 const mapStateToProps = state => {
-  const { auth } = state;
-  return { auth };
+  const { auth, shop } = state;
+  return { auth, shop };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     LoginActions: bindActionCreators(LoginActionCreators, dispatch),
+    ShopActions: bindActionCreators(ShopActionsCreators, dispatch),
   };
 };
 

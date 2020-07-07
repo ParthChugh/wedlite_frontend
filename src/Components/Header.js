@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import Cart from '../assets/cart.png';
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
+import { SEARCH_API } from '../urls';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -45,6 +46,25 @@ const Header = (props) => {
 
   const [SignUpShow, setSignUpShow] = useState(false);
   const [show, setShow] = useState(false);
+
+  const search = (q) => {
+    fetch(`${SEARCH_API}?q=${q}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => {
+        if(response.status === 200) {
+          response.json().then((json) => {
+            console.log(json);
+          })
+        } 
+      })
+      .catch(() => {
+        console.log('no response');
+    });
+  }
   
   useEffect(() => {
     fetchCities()
@@ -188,6 +208,10 @@ const Header = (props) => {
     </Modal>
   )
 
+  const onChange = (event) => {
+    search(event.target.value)
+  }
+
   const header = () => (
       <div>
       {  
@@ -214,6 +238,7 @@ const Header = (props) => {
                 <input
                   style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
                   type="search"
+                  onChange={onChange}
                   placeholder="Search for Anything"
                   autoComplete="off"
                 />

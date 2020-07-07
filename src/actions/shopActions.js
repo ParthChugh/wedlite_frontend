@@ -20,9 +20,9 @@ export function updateItems(items) {
     payload: items,
   };
 }
-export function getItems() {
+export function getItems(limit) {
   return (dispatch, getState) => {
-    fetch(`${GET_SHOP_DATA}`, {
+    fetch(`${GET_SHOP_DATA}?limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

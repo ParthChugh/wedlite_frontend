@@ -23,3 +23,23 @@
     padding-bottom: 60px !important;
   }
 }
+
+.card-category {
+  display: flex;
+  flex-direction: column;  
+  padding-bottom: 10px;
+}
+
+.image-category {
+  height: 300px;
+}
+
+.image-category:hover > img {
+  border-radius: 0px;
+}
+
+
+
+.card-category:hover  {
+  border: 1px solid gray;  
+}
