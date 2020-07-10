@@ -8,8 +8,8 @@ import {bindActionCreators} from 'redux';
 import ImageUploader from "react-images-upload";
 import { Segment, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux';
-import { Carousel, Card } from 'react-bootstrap';
-// import {Carousel} from 'react-responsive-carousel';
+import { Card } from 'react-bootstrap';
+import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY } from '../../urls'
 import Layout from '../Layout';
 import './Place.css';
@@ -82,7 +82,25 @@ const Venue = (props) => {
     'response', 'token'
   ]), guid, isLoggedIn, state]);
 
-  
+  const getConfigurableProps = () => ({
+    showArrows: true,
+    showStatus: true,
+    showIndicators: true,
+    infiniteLoop: true,
+    showThumbs: true,
+    useKeyboardArrows: true,
+    autoPlay: true,
+    stopOnHover: true,
+    swipeable: true,
+    dynamicHeight: true,
+    emulateTouch: true,
+    thumbWidth: 100,
+    selectedItem:  0,
+    interval: 3000,
+    transitionTime: 150,
+    swipeScrollTolerance: 5,
+  });
+
   const callbackFunction = () => {
     const data = getGuid()
     setGuid(data)
@@ -99,114 +117,110 @@ const Venue = (props) => {
       showLogo={false}
       showSearchBar={false}
     >
-      <div className="container" style={{ height: '100%', padding: 0 }}>
+      <div className="container" style={{ height: '100%', paddingTop: 50 }}>
         <ToastContainer />
-          {
+        {
             Object.values(place).length > 0 ?
-          <div>
-              { place.photos.length > 0 &&
-              <Carousel activeIndex={index} onSelect={handleSelect} style={{height: 400, width: '100%'}}>
-                {
-                  place.photos.map((el) => (
-                    <Carousel.Item>
-                      <img 
-                        alt="carousel-image"
-                        className="d-block w-100"
-                        src={el.path} 
-                      />
-                    </Carousel.Item>
-                  ))
-                }
-              </Carousel>
-            }
-            <div>
-              <div className="row space-between" style={{padding: 10}}>
-                <h1 style={{marginLeft: 20}} >{place.name}</h1>
-                {
-                  isLoggedIn && place.editable &&
-                  <div className="row">
-                    <div style={{ marginRight: 20}}>
-                      <ButtonRB onClick={() => {history.push(`${url}/edit`)}}>
-                        Edit Registered Data
-                      </ButtonRB> 
-                    </div>
-                    <div style={{ marginRight: 20}}>
-                    <ButtonRB onClick={() => claimBusiness({placeId: data.placeId})}>
-                      Claim your Business
-                    </ButtonRB> 
-                  </div>
-                </div>
-                }
-              </div>
-              <div className="row space-between">
-                <Card className="flex-container" style={{width:'70%', padding: 22, boxShadow: 0, elevation: 0 }}>
-                  <h2 style={{ fontColor:"gray", textAlign: 'center', marginBottom: 15 }}>About</h2>
-                  <h5>Address:</h5>
-                  <p>{place.formatted_address}</p>
-                  <h5 style={{ marginTop: 10 }}>Ratings ({place.user_ratings_total}):</h5>
-                  <p><StarRatings
-                    rating={parseInt(place.rating)}
-                    starDimension="20px"
-                    starSpacing="10px"
-                    numberOfStars={5}
-                    name='rating'
-                  /></p>
-                  <h5 style={{ marginTop: 10 }}>Contact:</h5>
-                  <p>{place.formatted_phone_number}</p>
-                  <h5 style={{ marginTop: 10 }}>Website:</h5>
-                  <a target="blank" href={`${place.website}`}>{place.website ? place.website : "Not available"}</a>
-                  {
-                    isLoggedIn && typeof place.likes !== 'undefined' &&
-                    <div>
-                      <Button
-                        color='red'
-                        onClick={() => likeUpdate(place.place_id, !place.likes.current_user_likes)}
-                        content={place.likes.current_user_likes ? 'Unlike' : 'Like'}
-                        icon='heart'
-                        label={{ basic: true, color: 'red', pointing: 'left', content: `${place.likes.total}` }}
-                      />
-                    </div>
-                  }
-                </Card>
-                {
-                  isLoggedIn && place.editable &&
-                  <div>
-                    <ImageUploader
-                      {...props}
-                      withIcon={true}
-                      // withPreview={true}
-                      onChange={onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif", ".jpeg"]}
-                      maxFileSize={5242880}
-                    />
+            <div style={{display:'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+              <div style={{flex: 1/2, display: 'flex'}}>
+                { place.photos.length > 0 &&
+                  <Carousel {...getConfigurableProps()}>
                     {
-                      pictures.length > 0 &&
-                      <div>
-                        <Button onClick={() => upload()}>
-                          Upload
-                        </Button>
-                      </div>
-                    }   
-                  </div>
+                      place.photos.map((el) => (
+                        <div>
+                          <img alt="detail-image" src={el.path} className="d-block w-100"/>
+                        </div>   
+                      )
+                    )
+                    } 
+                  </Carousel>
                 }
               </div>
-            </div>     
-          </div>
-          : 
-          <div className="row space-around" style={{ marginTop: 'auto' }}>
-            <Segment attached>
-            <img alt="loading" src={paragraph} />
-            </Segment>
-            {/* <Loader
-              type="Puff"
-              color="#00BFFF"
-              height={100}
-              width={100}
-              timeout={3000} //3 secs
-            /> */}
-          </div>
+              <div style={{flex: 1, paddingLeft: 30, paddingRight: 30}}>
+              {
+                Object.values(place).length > 0  &&
+                <div>
+                  <div className="row space-between" style={{padding: 10}}>
+                    <h1 style={{marginLeft: 20}} >{place.name}</h1>
+                    {
+                      isLoggedIn && place.editable &&
+                      <div className="row">
+                        <div style={{ marginRight: 20}}>
+                          <ButtonRB onClick={() => {history.push(`${url}/edit`)}}>
+                            Edit Registered Data
+                          </ButtonRB> 
+                        </div>
+                        <div style={{ marginRight: 20}}>
+                        <ButtonRB onClick={() => claimBusiness({placeId: data.placeId})}>
+                          Claim your Business
+                        </ButtonRB> 
+                      </div>
+                    </div>
+                    }
+                  </div>
+                  <div className="row space-between">
+                    <div className="flex-container" style={{width:'70%', padding: 22, boxShadow: 0, elevation: 0 }}>
+                      <h2 style={{ fontColor:"gray", textAlign: 'center', marginBottom: 15 }}>About</h2>
+                      <h5>Address:</h5>
+                      <p>{place.formatted_address}</p>
+                      <h5 style={{ marginTop: 10 }}>Ratings ({place.user_ratings_total}):</h5>
+                      <p><StarRatings
+                        rating={parseInt(place.rating)}
+                        starDimension="20px"
+                        starSpacing="10px"
+                        numberOfStars={5}
+                        name='rating'
+                      /></p>
+                      <h5 style={{ marginTop: 10 }}>Contact:</h5>
+                      <p>{place.formatted_phone_number}</p>
+                      <h5 style={{ marginTop: 10 }}>Website:</h5>
+                      <a target="blank" href={`${place.website}`}>{place.website ? place.website : "Not available"}</a>
+                      {
+                        isLoggedIn && typeof place.likes !== 'undefined' &&
+                        <div>
+                          <Button
+                            color='red'
+                            onClick={() => likeUpdate(place.place_id, !place.likes.current_user_likes)}
+                            content={place.likes.current_user_likes ? 'Unlike' : 'Like'}
+                            icon='heart'
+                            label={{ basic: true, color: 'red', pointing: 'left', content: `${place.likes.total}` }}
+                          />
+                        </div>
+                      }
+                    </div>
+                    {
+                      isLoggedIn && place.editable &&
+                      <div>
+                        <ImageUploader
+                          {...props}
+                          withIcon={true}
+                          // withPreview={true}
+                          onChange={onDrop}
+                          imgExtension={[".jpg", ".gif", ".png", ".gif", ".jpeg"]}
+                          maxFileSize={5242880}
+                        />
+                        {
+                          pictures.length > 0 &&
+                          <div>
+                            <Button onClick={() => upload()}>
+                              Upload
+                            </Button>
+                          </div>
+                        }   
+                      </div>
+                    }
+                  </div>
+              </div>
+              }
+              </div>
+            </div>  : 
+            <div className="row space-around" style={{ marginTop: 'auto' }}>
+              <Segment attached>
+                <img alt="loading" src={paragraph} />
+              </Segment>
+            </div>
           }
-      </div>
+          </div>
     </Layout>
   )
 }

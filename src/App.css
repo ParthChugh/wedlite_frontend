@@ -164,7 +164,7 @@ ul {
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 .blank-button {
   color: #A63A67;

@@ -25,3 +25,33 @@
   display: flex;
   justify-content: center;
 }
+.carousel .slide{ background-color: none; }
+
+.price {
+  text-align: left;
+  font: Semibold 40px/64px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.common-size-text {
+  text-align: left;
+  font: Regular 25px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1.3em;
+}
+
+.error {
+  border: red 2.7px solid;
+}
+.pincodeContainer {
+  width: 100px;
+}
+.districtContainer {
+  width: 100px;
+}
+.stateContainer {
+  width: 100px;
+}

@@ -60,9 +60,8 @@ const FooterContainer = (props) => {
           <MDBCol md="3">
             <div>
             {!isLoggedIn && 
-              <div className="row">
-
-                <h5 style={{fontWeight: 'bold',color: 'black'}} className="title">Register for business</h5>
+              <div className="row" style={{alignItems: 'center'}}>
+                <h5 style={{fontWeight: 'bold',color: 'black',marginRight: 10}} className="title">Register for business</h5>
                 <button  onClick={() => {
                   history.push('/vendor-registration')
                   window.scrollTo({top: 0, left: 0, behavior: 'smooth' });

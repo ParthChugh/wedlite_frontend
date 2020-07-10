@@ -21,6 +21,7 @@ import { Segment } from 'semantic-ui-react'
 import Box from '@material-ui/core/Box';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import 'react-alice-carousel/lib/alice-carousel.css';
 import 'animate.css/animate.min.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -222,7 +223,7 @@ const App = (props) => {
                   {
                     selectedVenues.map((card, index) => {
                       return(
-                          <Card className="categories" style={{ margin: 10,width: '25%',elevation: 2, cursor: 'pointer' }} key={index}>
+                          <Card className="categories" style={{ margin: 10,width: '23%',elevation: 2, cursor: 'pointer' }} key={index}>
                             { card.display_photo ?
                                 <LazyLoadImage
                                   variant="top"

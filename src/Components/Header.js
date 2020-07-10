@@ -279,6 +279,7 @@ const Header = (props) => {
           </button>
           <button 
             className="fill-button" 
+            style={{marginLeft: 10}}
             onClick={() => {
               handleSignUpShow()
               setExpanded(false)
