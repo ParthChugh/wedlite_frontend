@@ -70,7 +70,7 @@ const Header = (props) => {
     fetchCities()
     fetchCategories()
     setSignUpShow(false);
-    getCartItems()
+    getCartItems({callbackFunction:  () => {}})
     setShow(false);
   },[isLoggedIn]);
 

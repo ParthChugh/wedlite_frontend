@@ -39,7 +39,7 @@ export function getItems(limit) {
   } 
 }
 
-export const getCartItems  = () => {
+export const getCartItems  = ({callbackFunction}) => {
   return (dispatch, getState) => {
     const {auth} = getState();
     fetch(CART_ITEMS, {
@@ -54,9 +54,10 @@ export const getCartItems  = () => {
       .then((response) => {        
         if(response.status === 200) {
           response.json().then((json) => {
+            console.log(json);
             dispatch(updateCart(json));
+            callbackFunction(json);
           })
-          
         }
       })
       .catch(() => {
