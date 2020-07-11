@@ -1,16 +1,25 @@
 import {
   UPDATE_CART,
-  UPDATE_ITEMS
+  UPDATE_ITEMS,
+  UPDATE_DELIVERY_ADDRESS
 } from './actionTypes';
 import { 
   GET_SHOP_DATA,
-  CART_ITEMS
+  CART_ITEMS,
+  ADDRESS_CREATE,
 } from '../urls';
 
 export function updateCart(cart) {
   return {
     type: UPDATE_CART,
     payload: cart,
+  };
+}
+
+export function concatDeliveryAddress(address) {
+  return {
+    type: UPDATE_DELIVERY_ADDRESS,
+    payload: address,
   };
 }
 
@@ -30,7 +39,6 @@ export function getItems(limit) {
     })
       .then((response) => {
         response.json().then((json) => { 
-          console.log(json);
           dispatch(updateItems(json));
         })
       })
@@ -54,11 +62,38 @@ export const getCartItems  = ({callbackFunction}) => {
       .then((response) => {        
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
             dispatch(updateCart(json));
             callbackFunction(json);
           })
         }
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const createAddress  = ({data, callbackFunction}) => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    fetch(ADDRESS_CREATE, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+        body: JSON.stringify(data),
+      }
+    })
+      .then((response) => {
+        response.json().then((json) => {
+          if(response.status === 200) {
+            response.json().then((json) => {
+              dispatch(concatDeliveryAddress(json))
+              callbackFunction();
+            })
+          }
+        })
       })
       .catch(() => {
     });

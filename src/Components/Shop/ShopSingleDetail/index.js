@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 // import {faShoppingBasket} from '@fortawesome/free-solid-svg-icons'
 import Pincode from "react-pincode";
 import { ToastContainer, toast } from 'react-toastify';
-import AliceCarousel from 'react-alice-carousel'
 import { Segment } from 'semantic-ui-react'
 import { Carousel } from 'react-responsive-carousel';
 import Layout from '../../Layout';
@@ -23,7 +22,6 @@ const Home = (props) =>  {
   const { auth, ShopActions: {getCartItems} } = props;
   const data = useParams();
   const [detail, updateDetail] = useState({});
-  const [pincode, updatePincode] = useState('');
   const [pincodeError, updatePincodeError] = useState('');
 
   const getItem = () => {
@@ -75,20 +73,10 @@ const Home = (props) =>  {
       toast('Please Login')
     }
   }
-  const thumbItem = (item, i) => (
-    <span key={item} onClick={() => Carousel.slideTo(i)}>
-      *{' '}
-    </span>
-  )
-
+  
   useEffect(() => {
     getItem()
   },[]);
-
-
-  const tooglesGroupId = 'Toggles';
-  const valuesGroupId = 'Values';
-  const mainGroupId = 'Main';
 
   const getConfigurableProps = () => ({
     showArrows: true,
@@ -135,8 +123,6 @@ const Home = (props) =>  {
     }
   }
   
-
-
   return (
     <Layout
       showSearchBar={false}

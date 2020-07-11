@@ -170,8 +170,6 @@ ul {
   color: #A63A67;
   background-color: white;
   border-color: #A63A67;
-  padding-left: 44.5px;
-  padding-right: 44.5px;
   padding-top: 3px;
   padding-bottom: 3px;
   font-size: 20px;
@@ -299,9 +297,6 @@ input:focus {
   padding-top: 3px;
   padding-bottom: 3px;
   font-size: 12px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
   border-radius: 10px;
   margin-left: 10px;
 }

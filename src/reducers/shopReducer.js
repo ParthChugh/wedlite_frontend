@@ -1,7 +1,8 @@
 import {fromJS} from 'immutable';
 import { 
   UPDATE_CART, 
-  UPDATE_ITEMS
+  UPDATE_ITEMS,
+  UPDATE_DELIVERY_ADDRESS
 } from "../actions/actionTypes";
 
 const INIT_STATE = {
@@ -9,7 +10,8 @@ const INIT_STATE = {
   items: {
     count: 0,
     results: []
-  }
+  },
+  address: [],
 };
 
 const auth = (state = fromJS(INIT_STATE) , action) => {
@@ -23,6 +25,9 @@ const auth = (state = fromJS(INIT_STATE) , action) => {
       return state.merge({
         items: fromJS(action.payload),
       });
+    }
+    case UPDATE_DELIVERY_ADDRESS: {
+      return state.get('address').concat(fromJS(action.payload))
     }
     default:
       return state;

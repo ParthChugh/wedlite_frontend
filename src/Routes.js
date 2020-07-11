@@ -12,15 +12,16 @@ import TextPage from './Components/TextPage'
 import VendorRegistration from './Components/VendorRegistration'
 import { createBrowserHistory } from 'history';
 import ReactGA from 'react-ga';
-import Contact from './Components/Contact'
-import Profile from './Components/Profile'
-import Layout from './Components/Layout'
-import UpdateData from './Components/UpdateData'
-import VenueLocation from './Components/VenueLocation'
-import Shop from './Components/Shop'
-import ShopSingleDetail from './Components/Shop/ShopSingleDetail'
+import Contact from './Components/Contact';
+import Profile from './Components/Profile';
+import Layout from './Components/Layout';
+import UpdateData from './Components/UpdateData';
+import VenueLocation from './Components/VenueLocation';
+import Shop from './Components/Shop';
+import ShopSingleDetail from './Components/Shop/ShopSingleDetail';
 import Cart from './Components/Shop/Cart';
 import ConfirmOrder from './Components/Shop/ConfirmOrder';
+import PlaceOrder from './Components/PlaceOrder'
 
 const history = createBrowserHistory();
 
@@ -111,6 +112,9 @@ export default function App() {
             slug="about-us"
           />
         </Route>
+        <Route path="/place-order">
+          <PlaceOrder />
+        </Route>
         <Route path="/careers">
         <Layout
           showSearchBar={false}
@@ -129,9 +133,7 @@ export default function App() {
             </h5>
             <div style={{flex: 1, display: 'flex'}}>
               <div style={{flex: 1/3, padding: 10}}>
-                
                 <span className="dot">1</span>                  
-
                 <h2>Send your Resume</h2>
                 <h5>
                   Upload your updated resume with desired qualifications. Passion is utmost requirement.

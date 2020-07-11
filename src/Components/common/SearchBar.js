@@ -51,7 +51,7 @@ const SearchBar = (props) => {
   return (
     <div className='image-background' style={{ flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column', paddingLeft: 40}}>
       {(cities.length > 0 && categories.length >0) ?
-      <form style={{width: '40%'}} onSubmit={e => e.preventDefault()}>
+      <form style={{width: window.innerWidth < 550 ? '100%' : '40%'}} onSubmit={e => e.preventDefault()}>
         <div className="tagline">Commission free wedding planning</div>
         <div style={{fontSize: 20}}>
           <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
@@ -93,7 +93,6 @@ const SearchBar = (props) => {
             }}>
               Shop on Wedlite
           </button>
-
         </div>
         
       </form> : <div />

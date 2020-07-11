@@ -84,7 +84,7 @@ const Venue = (props) => {
     >
       {
       venues.length > 0 ? 
-      <div className="container">
+      <div className="container" style={{flex: 1, flexDirection: 'column'}}>
         <h1 style={{marginLeft: 40}}>Search Results</h1>  
         <div className="row space-around">        
           {

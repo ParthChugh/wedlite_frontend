@@ -199,14 +199,13 @@ const App = (props) => {
             <Tabs
               value={value}
               onChange={handleChange}
-
               aria-label="full width tabs example"
             >
               {selectedCategories.map((data) => {
-              return(
-                <Tab label={data.category.type} />
-                )
-              })
+                return(
+                  <Tab label={data.category.type} />
+                  )
+                })
               }
             </Tabs>
           </AppBar>
@@ -223,7 +222,7 @@ const App = (props) => {
                   {
                     selectedVenues.map((card, index) => {
                       return(
-                          <Card className="categories" style={{ margin: 10,width: '23%',elevation: 2, cursor: 'pointer' }} key={index}>
+                          <Card className="categories" style={{ margin: 10,width: '21em',elevation: 2, cursor: 'pointer' }} key={index}>
                             { card.display_photo ?
                                 <LazyLoadImage
                                   variant="top"

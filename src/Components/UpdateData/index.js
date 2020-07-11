@@ -83,7 +83,7 @@ const VendorRegistration = (props) => {
       showSearchBar={false}
       showLogo={false}
     >
-      <div className="container" >
+      <div className="container"  >
         <ToastContainer />
         {Object.values(place).length > 0 ?
         <div>

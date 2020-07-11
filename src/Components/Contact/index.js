@@ -34,7 +34,7 @@ const TextPage = () => {
       showSearchBar={false}
     >
       <>      
-      <form className="container" style={{maxWidth: '50%', flex: 1, flexDirection: 'column'}} onSubmit={handleSubmit(postData)}>  
+      <form className="container" style={{paddingTop: 20,maxWidth: '40em', flex: 1, flexDirection: 'column'}} onSubmit={handleSubmit(postData)}>  
         {/* <h3>If urgent please contact us at support@wedlite.in</h3>
         <div className="horizontal-line"><span>OR</span></div> */}
         <h3>
