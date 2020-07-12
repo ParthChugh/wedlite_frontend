@@ -18,6 +18,7 @@ import Layout from './Components/Layout';
 import UpdateData from './Components/UpdateData';
 import VenueLocation from './Components/VenueLocation';
 import Shop from './Components/Shop';
+import Products from './Components/Shop/Products';
 import ShopSingleDetail from './Components/Shop/ShopSingleDetail';
 import Cart from './Components/Shop/Cart';
 import ConfirmOrder from './Components/Shop/ConfirmOrder';
@@ -60,6 +61,9 @@ export default function App() {
         </Route>
         <Route path="/shop">
           <Shop />
+        </Route>
+        <Route path="/shop/products">
+          <Products />
         </Route>
         <Route path="/blog">
           <Layout 

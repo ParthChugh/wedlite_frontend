@@ -10,13 +10,15 @@ import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
 import paragraph from '../../assets/paragraph.png'
+import diya from './assets/diya.png'
+import sketch from './assets/sketch.png'
 
 const Home = (props) =>  {
   const { ShopActions: {getItems}, shop } = props;
   const items = shop.getIn(['items', 'results']);
   const history = useHistory();
   useEffect(() => {
-    getItems()
+
   },[]);
 
   const goToNextScreen = (id) => {
@@ -28,52 +30,26 @@ const Home = (props) =>  {
       showSearchBar={false}
     >
       <>
-      <div className="row space-around">
-      {
-        items.size > 0 ? items.entrySeq().map((el, index) => {
-          return (  
-            <div 
-              className="card-category"
-              style={{ 
-                margin: 10, 
-                width: '21rem', 
-                borderRadius: 5,
-                cursor: 'pointer', 
-                borderRadius: 20,
-              }}  
-              key={index}
-              onClick={() => goToNextScreen(el[1].get('id'))}  
-            >
-              <LazyLoadImage
-                style={{width: '100%',height: 200, display: 'flex', borderRadius: 20}}
-                className="image-category"
-                alt="display photo"
-                effect="blur"
-                src={el[1].getIn(['photos', 0,'path'])} 
-              />
-              <div style={{paddingLeft: 10}}>
-                <div>
-                  {el[1].getIn(['name'])}                
-                </div>
-                <div>
-                  <div style={{flex: 1, justifyContent: 'center'}}>
-                    ₹ {el[1].getIn(['price'])}
-                  </div>
-              </div>              
-              </div>
-            </div>
-          )
-        }
-      ):
-       <div className="row space-around" style={{ marginTop: 'auto' }}>
-          <Segment attached>
-            <img alt="loading" src={paragraph} />
-          </Segment>
+      <div className="grid-container">
+        <div className="grid-item-1">
+          <p className="title">Welcome to WedLite store</p>
         </div>
-      }
+        <div className="grid-item grid-item-2">
+          <p className="item-title">Get Sketched</p>
+          <p className="item-desc">Tailor made sketches to revive your walls</p>
+          <a className="order-button">Order Now</a>
+          <img src={sketch} height="364" width="282"/>
+        </div>
+        <div className="grid-item grid-item-3">
+          <p className="item-title">Exquisite marble articles</p>
+          <p className="item-desc">Starting from &#8377; 500</p>
+          <a className="order-button" onClick={() => history.push('/shop/products')} >Shop Now</a>
+          <img src={diya} height="310" width="352"></img>
+        </div>
+
       </div>
       </>
-    </Layout>
+     </Layout>
   )    
 }
 
