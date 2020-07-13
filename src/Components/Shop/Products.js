@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 // import Navbar from '../components/Navbar';
 import './Shop.css'
 import {bindActionCreators} from 'redux';
-import {Card} from 'react-bootstrap';
 import * as ShopActionsCreator from '../../actions/shopActions';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Segment } from 'semantic-ui-react'

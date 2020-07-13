@@ -53,6 +53,9 @@ export default function App() {
         <Route path="/cart">
           <Cart />
         </Route>
+        <Route path="/shop/products">
+          <Products />
+        </Route>
         <Route path="/shop/:id">
           <ShopSingleDetail />
         </Route>
@@ -61,9 +64,6 @@ export default function App() {
         </Route>
         <Route path="/shop">
           <Shop />
-        </Route>
-        <Route path="/shop/products">
-          <Products />
         </Route>
         <Route path="/blog">
           <Layout 

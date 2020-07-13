@@ -14,17 +14,8 @@ import diya from './assets/diya.png'
 import sketch from './assets/sketch.png'
 
 const Home = (props) =>  {
-  const { ShopActions: {getItems}, shop } = props;
-  const items = shop.getIn(['items', 'results']);
   const history = useHistory();
-  useEffect(() => {
-
-  },[]);
-
-  const goToNextScreen = (id) => {
-    history.push(`/shop/${id}`)
-  }
-  
+    
   return (
     <Layout
       showSearchBar={false}
@@ -46,7 +37,6 @@ const Home = (props) =>  {
           <a className="order-button" onClick={() => history.push('/shop/products')} >Shop Now</a>
           <img src={diya} height="310" width="352"></img>
         </div>
-
       </div>
       </>
      </Layout>
