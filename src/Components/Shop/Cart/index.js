@@ -22,7 +22,7 @@ const Home = (props) =>  {
   let getTotalAmount = 0;
   const callbackFunction = (json) => {
     json.map((el) => {
-      getTotalAmount+= parseInt(el.product.price)
+      getTotalAmount+= parseInt(el.quantity) * parseInt(el.product.price)
     })
     updateTotalAmount(getTotalAmount)
   }
@@ -101,8 +101,10 @@ const Home = (props) =>  {
                         <div style={{flex: 1,display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
                           <div style={{flex: 1,display: 'flex', justifyContent: 'space-between',alignItems: 'center'}}>
                             <div style={{fontSize: 25, fontWeight: 'bold'}}>{el.getIn(['product', 'name'])}</div>
-                            <div>
-                              <p>₹ {el.getIn(['product', 'price'])}</p>
+
+                            <div style={{flexDirection: 'row', display: 'flex' }}>
+                              <p>{ el.get('quantity')} x {  el.getIn(['product', 'price'])} = </p>
+                              <p>&nbsp; ₹ { el.get('quantity') * el.getIn(['product', 'price'])}</p>
                             </div>
                           </div>
                           <div>
