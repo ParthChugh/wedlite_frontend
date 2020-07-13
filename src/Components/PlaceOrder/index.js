@@ -23,7 +23,7 @@ const PlaceOrder = (props) => {
   let getTotalAmount = 0;
   const callbackFunction = (json) => {
     json.map((el) => {
-      getTotalAmount+= el.product.price
+      getTotalAmount+= parseInt(el.product.price)
     })
     updateTotalAmount(getTotalAmount)
   }

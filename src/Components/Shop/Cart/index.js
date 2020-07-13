@@ -22,7 +22,7 @@ const Home = (props) =>  {
   let getTotalAmount = 0;
   const callbackFunction = (json) => {
     json.map((el) => {
-      getTotalAmount+= el.product.price
+      getTotalAmount+= parseInt(el.product.price)
     })
     updateTotalAmount(getTotalAmount)
   }
@@ -45,17 +45,7 @@ const Home = (props) =>  {
       })
     })
       .then((response) => {
-        // console.log(response);
         getCartItems({callbackFunction})
-        // if(response.status === 204) {
-        //   response.json().then((json) => {
-        //     console.log(json);
-        //     toast('Item removed')
-        //   })
-        // } else {
-        //   toast('Some Issue')
-        // }
-        
       })
       .catch(() => {
     });

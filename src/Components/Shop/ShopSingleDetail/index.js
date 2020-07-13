@@ -56,10 +56,10 @@ const Home = (props) =>  {
         })
       })
         .then((response) => {
-          console.log(response);
           if(response.status === 201) {
             response.json().then((json) => {
-              getCartItems()
+              console.log(json);
+              getCartItems({callbackFunction: () => {}})
               toast('Added')
             })
           } else {
