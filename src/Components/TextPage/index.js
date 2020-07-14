@@ -23,7 +23,6 @@ const TextPage = ({slug}) => {
             updateData(json);
           })
         } else {
-          toast("Contact Support")
         }
       })
       .catch(() => {

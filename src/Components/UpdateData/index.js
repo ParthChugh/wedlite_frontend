@@ -35,7 +35,6 @@ const VendorRegistration = (props) => {
             updatePlace(place);
           })
         } else {
-          toast("Contact Support")
         }
       })
       .catch(() => {
@@ -70,7 +69,6 @@ const VendorRegistration = (props) => {
         callbackFunction();
       })
       .catch(() => {
-        toast("Contact Support");
     });
   }
 

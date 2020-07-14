@@ -60,7 +60,6 @@ const Venue = (props) => {
             updatePlace(json);
           })
         } else {
-          toast("Contact Support")
         }
       })
       .catch(() => {

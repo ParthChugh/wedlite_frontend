@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import * as LoginActionCreators from '../actions/loginActions';
 import * as ShopActionsCreators from '../actions/shopActions';
 import { Modal, Button} from 'react-bootstrap';
@@ -14,7 +14,16 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+const scrollToRef = (ref) => window.scrollTo(
+  {
+    top: ref.current.offsetTop,
+    left: 0,
+    behavior: 'smooth'
+  }  
+)   
+
 const Header = (props) => {  
+  const children = useRef(null)
   const history = useHistory();
   const { 
     LoginActions, 
@@ -45,6 +54,8 @@ const Header = (props) => {
   const { register, handleSubmit, errors } = useForm()
 
   const [SignUpShow, setSignUpShow] = useState(false);
+  const [onfocusSearchBar, setOnfocusSearchBar] = useState(false);
+  const [searchedData, updateSearchedData] = useState({});
   const [show, setShow] = useState(false);
 
   const search = (q) => {
@@ -57,7 +68,7 @@ const Header = (props) => {
       .then((response) => {
         if(response.status === 200) {
           response.json().then((json) => {
-            console.log(json);
+            updateSearchedData(json);
           })
         } 
       })
@@ -238,10 +249,38 @@ const Header = (props) => {
                 <input
                   style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
                   type="search"
+                  onFocus={() => setOnfocusSearchBar(true)}
+                  // onBlur={() => setOnfocusSearchBar(false)}
                   onChange={onChange}
                   placeholder="Search for Anything"
                   autoComplete="off"
                 />
+                <div style={{ position: 'absolute', top: 70, backgroundColor: 'white', flex: 1 , border: onfocusSearchBar ? '1px solid #000000' : '0px solid #000000'  }}>
+                  {
+                    onfocusSearchBar && Object.keys(searchedData).map((el) => {
+                      return(
+                        <div>
+                          { searchedData[el].length > 0 && <h3 style={{paddingLeft: 10}}>{el.split('')[0].toUpperCase() + el.slice(1)}</h3>} 
+                          {
+                            searchedData[el].map((venueOrPlace, index) => (
+                              <div className="search-anything" key={index} style={{padding: 20 }} onClick={() => {
+                                  if(venueOrPlace.place_id) {
+                                    history.push(`/venue/place/${venueOrPlace.place_id}`)
+                                  } else {
+                                    history.push(`/shop/${venueOrPlace.id}`)
+                                  } 
+                                }
+                              }>
+                                <div style={{fontSize: 14}}>{venueOrPlace.name} - {venueOrPlace.category.type ? venueOrPlace.category.type : venueOrPlace.category }  {venueOrPlace.location && `- ${venueOrPlace.location.city}`} { venueOrPlace.location &&  `, ${venueOrPlace.location.state}`} </div>
+                              </div>
+                            ))
+                          }
+                        </div>
+                      )
+                    } ) 
+                  } 
+
+                </div>
               </div>
            </div>
             <Nav.Link onClick={() => {
@@ -288,8 +327,20 @@ const Header = (props) => {
           </button>
         </Navbar.Collapse> 
         :
-        <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{marginRight: 40, alignItems: 'center'}}>
+        <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
+            <div className="wrapper" style={{flex: 1, display: 'flex'}} >
+              <div className="search-bar" >
+                <i className="fas fa-search"></i>
+                <input
+                  style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
+                  type="search"
+                  onChange={onChange}
+                  placeholder="Search for Anything"
+                  autoComplete="off"
+                />
+              </div>
+            </div>
             <Nav.Link className="text header-color" onClick={() => {
               history.push('/')
               setExpanded(false)
@@ -348,7 +399,7 @@ const Header = (props) => {
     </div>
   ) 
   
-  
+  const executeScroll = () => scrollToRef(children)
   
   return (
     <React.Fragment>
@@ -358,13 +409,17 @@ const Header = (props) => {
         
       {showSearchBar &&        
         <SearchBar
+          executeScroll={executeScroll}
           handleSearch={handleSearch}
           defaultSelectedCity={defaultSelectedCity}
           defaultSelectedCategory={defaultSelectedCategory}
         />   
       }
 
-      {props.children}
+      <div ref={children}>
+        {props.children}
+      </div>
+      
       {showLoginModal()}
       {showSignUpModal()}
     </React.Fragment>

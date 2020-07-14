@@ -38,7 +38,6 @@ const Profile = (props) => {
             updateVenus(searches => searches.concat(json.results))
           })
         } else {
-          toast("Contact Support")
         }
       })
       .catch(() => {

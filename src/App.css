@@ -300,3 +300,9 @@ input:focus {
   border-radius: 10px;
   margin-left: 10px;
 }
+
+.search-anything:hover {
+  background-color: #A63A67;
+  color: white;
+
+}

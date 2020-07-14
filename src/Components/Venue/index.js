@@ -40,7 +40,7 @@ const Venue = (props) => {
             updateVisible(false);
           })
         } else {
-          toast("Contact Support")
+
         }
       })
       .catch(() => {

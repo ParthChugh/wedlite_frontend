@@ -8,7 +8,7 @@ import './SearchBar.css';
 
 const SearchBar = (props) => {
   const history = useHistory();
-  const {auth} = props;
+  const {auth, executeScroll} = props;
   const cities = auth.get('cities');
   const categories = auth.get('categories');
   const [selectedCategory, updateCategory] = useState('');
@@ -33,8 +33,10 @@ const SearchBar = (props) => {
   const handleGoClick = () => {
     if((selectedCity !== '' && selectedCategory !== '')) {
       props.handleSearch(selectedCity, selectedCategory);
+      executeScroll()
     } else if((typeof defaultSelectedCity !== 'undefined' && typeof defaultSelectedCategory !== 'undefined')) {
       props.handleSearch(selectedCity ? selectedCity : {id: defaultSelectedCity},selectedCategory ? selectedCategory : {id: defaultSelectedCategory});
+      executeScroll()
     }
   }
   
