@@ -22,9 +22,9 @@ const Home = (props) =>  {
   let getTotalAmount = 0;
   const callbackFunction = (json) => {
     json.map((el) => {
-      getTotalAmount+= parseInt(el.quantity) * parseInt(el.product.price)
+      getTotalAmount+= parseFloat((el.quantity * 1.18 * el.product.price).toFixed(2))
     })
-    updateTotalAmount(getTotalAmount)
+    updateTotalAmount(getTotalAmount.toFixed(2))
   }
   useEffect(() => {
     getCartItems({callbackFunction})
@@ -101,10 +101,9 @@ const Home = (props) =>  {
                         <div style={{flex: 1,display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
                           <div style={{flex: 1,display: 'flex', justifyContent: 'space-between',alignItems: 'center'}}>
                             <div style={{fontSize: 25, fontWeight: 'bold'}}>{el.getIn(['product', 'name'])}</div>
-
                             <div style={{flexDirection: 'row', display: 'flex' }}>
-                              <p>{ el.get('quantity')} x {  el.getIn(['product', 'price'])} = </p>
-                              <p>&nbsp; ₹ { el.get('quantity') * el.getIn(['product', 'price'])}</p>
+                              <p>{ el.get('quantity')} x ( {  el.getIn(['product', 'price'])} + 18% GST )  = </p>
+                              <p>&nbsp; ₹ { (el.get('quantity') * 1.18 *el.getIn(['product', 'price'])).toFixed(2) }</p>
                             </div>
                           </div>
                           <div>

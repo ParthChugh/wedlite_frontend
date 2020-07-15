@@ -223,6 +223,48 @@ const Header = (props) => {
     search(event.target.value)
   }
 
+  const searchAnything = () => {
+    return (
+      <div className="wrapper search-bar" style={{flex: 1, display: 'flex'}} >
+
+        <i className="fas fa-search" />
+        <input
+          style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
+          type="search"
+          onFocus={() => setOnfocusSearchBar(true)}
+          // onBlur={() => setOnfocusSearchBar(false)}
+          onChange={onChange}
+          placeholder="Search for Anything"
+          autoComplete="off"
+        />
+        <div style={{ position: 'absolute', top: 70, backgroundColor: 'white', flex: 1 , border: onfocusSearchBar ? '1px solid #000000' : '0px solid #000000'  }}>
+          {
+            onfocusSearchBar && Object.keys(searchedData).map((el) => {
+              return(
+                <div>
+                  { searchedData[el].length > 0 && <h3 style={{paddingLeft: 10}}>{el.split('')[0].toUpperCase() + el.slice(1)}</h3>} 
+                  {
+                    searchedData[el].map((venueOrPlace, index) => (
+                      <div className="search-anything" key={index} style={{padding: 20 }} onClick={() => {
+                          if(venueOrPlace.place_id) {
+                            history.push(`/venue/place/${venueOrPlace.place_id}`)
+                          } else {
+                            history.push(`/shop/${venueOrPlace.id}`)
+                          } 
+                        }
+                      }>
+                        <div style={{fontSize: 14}}>{venueOrPlace.name} - {venueOrPlace.category.type ? venueOrPlace.category.type : venueOrPlace.category }  {venueOrPlace.location && `- ${venueOrPlace.location.city}`} { venueOrPlace.location &&  `, ${venueOrPlace.location.state}`} </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              )
+            } ) 
+          }
+        </div>
+      </div>
+    )
+  }
   const header = () => (
       <div>
       {  
@@ -239,50 +281,18 @@ const Header = (props) => {
         <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
           <img src={logo} alt="logo" className="logo-size" />
         </Navbar.Brand>
+        {/* <Nav.Link className="text header-color" onClick={() => {
+          history.push('/shop')
+          setExpanded(false)
+          }}  style={{cursor:'pointer',fontSize: NORMAL}}
+        >
+          Categories
+        </Nav.Link> */}
+        {searchAnything()}
         <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
-           <div className="wrapper" style={{flex: 1, display: 'flex'}} >
-              <div className="search-bar" >
-                <i className="fas fa-search"></i>
-                <input
-                  style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
-                  type="search"
-                  onFocus={() => setOnfocusSearchBar(true)}
-                  // onBlur={() => setOnfocusSearchBar(false)}
-                  onChange={onChange}
-                  placeholder="Search for Anything"
-                  autoComplete="off"
-                />
-                <div style={{ position: 'absolute', top: 70, backgroundColor: 'white', flex: 1 , border: onfocusSearchBar ? '1px solid #000000' : '0px solid #000000'  }}>
-                  {
-                    onfocusSearchBar && Object.keys(searchedData).map((el) => {
-                      return(
-                        <div>
-                          { searchedData[el].length > 0 && <h3 style={{paddingLeft: 10}}>{el.split('')[0].toUpperCase() + el.slice(1)}</h3>} 
-                          {
-                            searchedData[el].map((venueOrPlace, index) => (
-                              <div className="search-anything" key={index} style={{padding: 20 }} onClick={() => {
-                                  if(venueOrPlace.place_id) {
-                                    history.push(`/venue/place/${venueOrPlace.place_id}`)
-                                  } else {
-                                    history.push(`/shop/${venueOrPlace.id}`)
-                                  } 
-                                }
-                              }>
-                                <div style={{fontSize: 14}}>{venueOrPlace.name} - {venueOrPlace.category.type ? venueOrPlace.category.type : venueOrPlace.category }  {venueOrPlace.location && `- ${venueOrPlace.location.city}`} { venueOrPlace.location &&  `, ${venueOrPlace.location.state}`} </div>
-                              </div>
-                            ))
-                          }
-                        </div>
-                      )
-                    } ) 
-                  } 
-
-                </div>
-              </div>
-           </div>
             <Nav.Link onClick={() => {
               history.push('/vendor-registration')
               setExpanded(false)
@@ -310,6 +320,7 @@ const Header = (props) => {
           <img src={Cart} alt="logo" className="cart" />
           <button 
             className="blank-button"
+            style={{paddingLeft: 44.5, paddingRight: 44.5}}
             onClick={() => {
               handleShow()
               setExpanded(false)
@@ -329,18 +340,6 @@ const Header = (props) => {
         :
         <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
           <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
-            <div className="wrapper" style={{flex: 1, display: 'flex'}} >
-              <div className="search-bar" >
-                <i className="fas fa-search"></i>
-                <input
-                  style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
-                  type="search"
-                  onChange={onChange}
-                  placeholder="Search for Anything"
-                  autoComplete="off"
-                />
-              </div>
-            </div>
             <Nav.Link className="text header-color" onClick={() => {
               history.push('/')
               setExpanded(false)

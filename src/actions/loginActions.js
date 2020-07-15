@@ -147,11 +147,11 @@ export const fetchCities = () => {
             dispatch(updateCities(json));
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   }
   
@@ -171,11 +171,11 @@ export const fetchCategories = () => {
             dispatch(updateCategories(json));
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }
@@ -199,11 +199,11 @@ export const fetchPopularVenues = (locationId) => {
             dispatch(updatePopularVenues(json));
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }
@@ -222,11 +222,11 @@ export const fetchFeaturedLocationGroup = (locationId, groupId) => {
             dispatch(updateFeaturedLocationGroup(json));
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }
@@ -254,11 +254,11 @@ export const uploadPicture = (placeId, picture, callbackFunction) => {
             callbackFunction();
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }
@@ -284,11 +284,11 @@ export const updateVenue = (placeId, data, callbackFunction) => {
             callbackFunction()
           })
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }
@@ -313,11 +313,11 @@ export const logout = () => {
         if(response.status === 200) {
           toast('Loogut Successfull')
         } else {
-          toast("Contact Support")
+          
         }
       })
       .catch(() => {
-        toast("Contact Support")
+        
     });
   } 
 }

@@ -12,20 +12,20 @@ import './PlaceOrder.css';
 // import paragraph from '../../assets/paragraph.png'
 
 const PlaceOrder = (props) => {
-  const {shop, ShopActions: {getCartItems, createAddress}} = props;
-  // const address = shop.get('address').toJS();
+  const {ShopActions: {getCartItems, createAddress}} = props;
   const [addAddressState, updateAddAddressState] = useState(true);
   const [paymentPopUp, updatePyamentPopUp] = useState('')
   const [totalAmount, updateTotalAmount] = useState(0)
   const [paymentMethod, updatePaymentMethod] = useState(null)
   const [pincodeError, updatePincodeError] = useState('');
+  const [addresses, setAddresses] = useState([]);
   
   let getTotalAmount = 0;
   const callbackFunction = (json) => {
     json.map((el) => {
-      getTotalAmount+= parseInt(el.quantity) * parseInt(el.product.price)
+      getTotalAmount+= parseFloat((el.quantity * 1.18 * el.product.price).toFixed(2))
     })
-    updateTotalAmount(getTotalAmount)
+    updateTotalAmount(getTotalAmount.toFixed(2))
   }
 
   const { handleSubmit, register, errors } = useForm();
@@ -43,7 +43,9 @@ const PlaceOrder = (props) => {
       updateAddAddressState(false) 
       createAddress({
         data: {...values, city: pincodeError.split(',')[0], state: pincodeError.split(',')[1], country: "India" },
-        callbackFunction: () => deliveryAddressCallbackFunction()
+        callbackFunction: deliveryAddressCallbackFunction,
+        isUpdate: false,
+        isGet: false
       })
     }
   };
@@ -88,11 +90,17 @@ const PlaceOrder = (props) => {
       .catch(() => {
     });
   }
+
+  const updateAddress = (json) => {
+    setAddresses(json);
+    console.log(json);
+  }
   
   useEffect(()=> {
+    createAddress({ isGet: true, callbackFunction: updateAddress })
     goToPaymentPage()
     getCartItems({callbackFunction})
-  })
+  }, [])
   
   return (
     <Layout
@@ -103,10 +111,10 @@ const PlaceOrder = (props) => {
         <ToastContainer />
         <div className="row space-around">
           <div>
-          <div style={{fontSize: '20px'}}>
-            Delivery address
-          </div>
-          {
+            <div style={{fontSize: '20px'}}>
+              Delivery address
+            </div>
+            {
             addAddressState ?
               <button 
                 className="blank-button" 
@@ -114,7 +122,7 @@ const PlaceOrder = (props) => {
                 onClick={() => {
                   updateAddAddressState(false)
                 }}>
-                  Add Address
+                  Add New Address
               </button> :
               <Card 
                 style={{ marginTop: 20,marginBottom: 20, padding: 20,width: '28rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
@@ -196,6 +204,20 @@ const PlaceOrder = (props) => {
               </Card>
           }
             
+          {
+              addresses.map(el => (
+                <div style={{paddingTop: 10}}>
+                  <div style={{fontSize: 18}}>{el.profile.first_name} {el.profile.last_name}</div>
+                  <div>{el.address_line_1}</div>
+                  <div>{el.address_line_2}</div>
+                  <div>{el.city}, {el.state} - {el.pincode}</div>
+                  <div>Phone: {el.profile.phone}</div>
+
+                  <hr/>
+                </div>
+                ) 
+              )
+            }
           </div>
           <div style={{flex: 1/3,}}>
             <span>Payment Method</span>
@@ -206,36 +228,38 @@ const PlaceOrder = (props) => {
               </span>
             </div>
           </div>
-          {paymentMethod &&
-          <div style={{ flex: 1/3, display: 'flex', flexDirection: 'column'}}>
-            <div style={{ display: 'flex', flexDirection: 'column', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
-              <div style={{fontSize: '20px', fontWeight: 'bold', paddingBottom: 20}}>
-                Order details
+          <div style={{ flex: 1/3, display: 'flex', flexDirection: 'column' }}>
+            {paymentMethod &&
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'column', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
+                <div style={{fontSize: '20px', fontWeight: 'bold', paddingBottom: 20}}>
+                  Order details
+                </div>
+                <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
+                  <span>Cart Total</span>
+                  <span>₹ {totalAmount}</span>
+                </div>
+                <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
+                  <span>Discount</span>
+                  <span>- 0 %</span>
+                </div>
+                <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
+                  <span>Order Total</span>
+                  <span>₹ {totalAmount}</span>
+                </div>
+                <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
+                  <span>Delivery charges</span>
+                  <span style={{color: '#A63A67'}}>FREE</span>
+                </div>
               </div>
-              <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
-                <span>Cart Total</span>
-                <span>₹ {totalAmount}</span>
-              </div>
-              <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
-                <span>Discount</span>
-                <span>- 0 %</span>
-              </div>
-              <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
-                <span>Order Total</span>
-                <span>₹ {totalAmount}</span>
-              </div>
-              <div style={{display:'flex', justifyContent: 'space-between', paddingBottom: 10}}>
-                <span>Delivery charges</span>
-                <span style={{color: '#A63A67'}}>FREE</span>
+              <div style={{flex: 1, display: 'flex' ,justifyContent: 'center'}}>
+                  <div dangerouslySetInnerHTML={{
+                    __html: paymentPopUp
+                  }}/>
               </div>
             </div>
-            <div style={{flex: 1, display: 'flex' ,justifyContent: 'center'}}>
-                <div dangerouslySetInnerHTML={{
-                  __html: paymentPopUp
-                }}/>
-              </div>
-            </div>
-          }
+          }  
+          </div>
           </div>
       </div>
     </Layout>

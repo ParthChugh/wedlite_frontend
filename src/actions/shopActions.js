@@ -72,26 +72,42 @@ export const getCartItems  = ({callbackFunction}) => {
   } 
 }
 
-export const createAddress  = ({data, callbackFunction}) => {
+const getMethod = ({isUpdate, isGet}) => {
+  if(isGet) {
+    return 'GET'
+  } else {
+    if(isUpdate) {
+      return 'PATCH'
+    }
+    return 'POST'
+  }
+}
+export const createAddress  = ({data, callbackFunction, isUpdate, isGet }) => {
   return (dispatch, getState) => {
     const { auth } = getState();
+    const method = getMethod({isUpdate, isGet})
+    const body = JSON.stringify(data)
     fetch(ADDRESS_CREATE, {
-      method: 'POST', 
+      method: method, 
       headers: {
         'Content-Type': 'application/json',
         'Authorization' : `Token ${auth.getIn([
           'response', 'token'
         ])}`,
-        body: JSON.stringify(data),
-      }
+      },
+      body
     })
       .then((response) => {
         response.json().then((json) => {
+          console.log(response.status);
+          console.log(json);
+          if(response.status === 201) {
+            // dispatch(concatDeliveryAddress(json))
+            callbackFunction(json);
+          }
           if(response.status === 200) {
-            response.json().then((json) => {
-              dispatch(concatDeliveryAddress(json))
-              callbackFunction();
-            })
+            // dispatch(concatDeliveryAddress(json))
+            callbackFunction(json);
           }
         })
       })
