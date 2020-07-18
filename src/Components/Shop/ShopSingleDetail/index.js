@@ -150,7 +150,7 @@ const Home = (props) =>  {
               <h3 style={{fontWeight: 'bold', marginBottom: 20}}>{detail.name}</h3>
               <div>
                 <h3 style={{fontWeight: 'bold', marginBottom: 20}} className="price">₹ {detail.price}</h3>
-                <h5 style={{color: '#B6484D', marginBottom: 20}}>Inclusive of all taxes</h5>
+                <h5 style={{color: '#B6484D', marginBottom: 20}}>+ 18% GST+ </h5>
                 <button 
                   style={{ marginBottom: 20}}
                   className="fill-button" 
@@ -172,8 +172,8 @@ const Home = (props) =>  {
                 <div style={{ marginBottom: 20, color: '#727272'}}>
                   Enter your pincode to check time of delivery & cash on delivery availability
                 </div>
-                <h5><span style={{fontWeight: 'bold'}}>Material: </span>{capitalize(detail.material)}</h5>
-                <h5 style={{marginBottom: 30}}><span style={{fontWeight: 'bold'}}>Description: </span>{capitalize(detail.description)}</h5>
+                <h5><span style={{fontWeight: 'bold'}}>Material: </span>{detail.material}</h5>
+                <h5 style={{marginBottom: 30}}><span style={{fontWeight: 'bold'}}>Description: </span>{detail.description}</h5>
                 {/* <FontAwesomeIcon icon={faShoppingBasket} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} /> */}
                 <div style={{flexDirection: 'row', flex: 1, display: 'flex'}}>
                   <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: 20}}>
