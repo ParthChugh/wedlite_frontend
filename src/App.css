@@ -4,13 +4,15 @@ body, html {
 }
 
 .image-background {
-  background-image: url("./assets/Landing.jpg");
+  /* background-image: url("./assets/Landing.jpg"); */
   /* Full height */
-  height: 720px;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
 .row {
   display: flex;
   flex-direction: row;
@@ -305,4 +307,8 @@ input:focus {
   background-color: #A63A67;
   color: white;
 
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }

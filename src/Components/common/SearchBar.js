@@ -3,6 +3,7 @@ import { Dropdown } from 'semantic-ui-react'
 import * as LoginActionCreators from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import Landing from '../../assets/Landing.jpg'
 import {useHistory} from 'react-router-dom'
 import './SearchBar.css';
 
@@ -51,9 +52,10 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='image-background' style={{ flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column', paddingLeft: 40}}>
+    <div className='image-background' style={{  flex: 1, display:'flex', height: window.innerHeight , justifyContent: 'center' ,flexDirection: 'column'}}>
+      <img src={Landing} style={{backgroundColor: 'blue', height: window.innerHeight ,position: 'absolute', width: '100%', top: 0, opacity: window.innerWidth < 550 ? 0.5 : 1 }}  />
       {(cities.length > 0 && categories.length >0) ?
-      <form style={{width: window.innerWidth < 550 ? '100%' : '40%'}} onSubmit={e => e.preventDefault()}>
+      <form style={{zIndex: 999, width: window.innerWidth < 550 ? '100%' : '40%', paddingLeft: 40}} onSubmit={e => e.preventDefault()}>
         <div className="tagline">Commission free wedding planning</div>
         <div style={{fontSize: 20}}>
           <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>

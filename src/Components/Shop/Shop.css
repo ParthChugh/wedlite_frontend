@@ -62,8 +62,10 @@
 
 .grid-item {
   padding-left: 30px;
-  padding-top: 15px;
   position: relative;
+  background: transparent linear-gradient(180deg, #FFCECE 0%, #ECEAEA 100%) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  grid-row: 2;
 }
 
 .grid-item-1{
@@ -71,18 +73,10 @@
   grid-row: 1;
 }
 
-.grid-item-2 > img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  align-self: stretch;
-  height: 100%;
-}
+.grid-item > img {
 
-.grid-item-2 {
-  background: transparent linear-gradient(180deg, #FFCECE 0%, #ECEAEA 100%) 0% 0% no-repeat padding-box;
-  opacity: 1;
-  grid-row: 2;
+  flex: 1;
+  
 }
 
 .grid-item-3{
@@ -90,6 +84,8 @@
   opacity: 1;
   grid-row: 2;
 }
+
+
 
 .grid-item-3 > img {
   position: absolute;
