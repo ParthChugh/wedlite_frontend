@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
+import Landing from '../assets/Landing.jpg'
 import Cart from '../assets/cart.png';
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
@@ -405,7 +406,7 @@ const Header = (props) => {
       <div>
         {header()}
       </div>
-        
+      {showSearchBar && <img src={Landing} style={{ height: window.innerHeight, width: '100%', opacity: window.innerWidth < 550 ? 0 : 1, position: 'absolute', }}  />}
       {showSearchBar &&        
         <SearchBar
           executeScroll={executeScroll}

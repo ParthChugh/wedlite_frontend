@@ -2,14 +2,10 @@ import React, { useEffect, useState } from 'react';
 // import Navbar from '../components/Navbar';
 import './Shop.css'
 import {bindActionCreators} from 'redux';
-import {Card} from 'react-bootstrap';
 import * as ShopActionsCreator from '../../actions/shopActions';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Segment } from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
-import paragraph from '../../assets/paragraph.png'
 import diya from './assets/diya.png'
 import sketch from './assets/sketch.png'
 

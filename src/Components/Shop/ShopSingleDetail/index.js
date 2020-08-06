@@ -12,7 +12,7 @@ import { Segment } from 'semantic-ui-react'
 import { Carousel } from 'react-responsive-carousel';
 import Layout from '../../Layout';
 import './ShopSingleDetail.css';
-import paragraph from '../../../assets/paragraph.png'
+import paragraph from '../../../assets/Spinner.gif'
 import purchase from '../../../assets/purchase.png'
 import warrenty from '../../../assets/warrenty.png'
 

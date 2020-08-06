@@ -11,7 +11,7 @@ import * as ShopActionsCreator from '../../../actions/shopActions';
 import { Segment, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import Layout from '../../Layout';
-import paragraph from '../../../assets/paragraph.png'
+import paragraph from '../../../assets/Spinner.gif'
 
 const Home = (props) =>  {
   const { ShopActions: {getCartItems}, shop, auth } = props;

@@ -11,14 +11,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import paragraph from './assets/paragraph.png'
+import paragraph from './assets/Spinner.gif'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { Segment } from 'semantic-ui-react'
-import Box from '@material-ui/core/Box';
 import {Card} from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -27,31 +23,7 @@ import 'animate.css/animate.min.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Layout from './Components/Layout';
 import './App.css';
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import {
-//   faStar, faHeart, faPhone, faEnvelope, faSearch, faUtensils,
-//   faThumbsUp, faSortAlphaDown, faUserMinus, faDollarSign, faAngleDoubleRight, faPlus,
-//   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,
-// } from '@fortawesome/free-solid-svg-icons';
 
-// library.add(faStar, faHeart, faPhone, faEnvelope, faSearch, faUtensils,
-//   faThumbsUp, faSortAlphaDown, faUserMinus, faDollarSign, faAngleDoubleRight, faPlus,
-//   faConciergeBell, faCommentAlt, faInfoCircle, faShoppingBasket, faTimes, faSpinner, faTruck, faTasks,)
-
-
-// function a11yProps(index) {
-//   return {
-//     id: `full-width-tab-${index}`,
-//     'aria-controls': `full-width-tabpanel-${index}`,
-//   };
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     backgroundColor: theme.palette.background.paper,
-//     width: 500,
-//   },
-// }));
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -271,7 +243,7 @@ const App = (props) => {
                         key={index}
                       >
                         <LazyLoadImage
-                          style={{borderRadius: 42, height: 250,  width: '21rem', opacity: 0.4}}
+                          style={{borderRadius: 42, height: 250,  width: '21rem',}}
                           className="card-image"
                           alt="display photo"
                           effect="blur"

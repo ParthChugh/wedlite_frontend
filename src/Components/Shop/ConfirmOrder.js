@@ -6,7 +6,7 @@ import { Segment } from 'semantic-ui-react'
 import {useHistory, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 import {PAYMENT_GATEWAY_SUCCESS} from '../../urls';
 import { toast, ToastContainer } from 'react-toastify';
 

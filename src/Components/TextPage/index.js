@@ -4,7 +4,7 @@ import {  toast } from 'react-toastify';
 import { TERMS_AND_CONDTION, ABOUT_US } from '../../urls';
 import { Segment } from 'semantic-ui-react'
 import './TextPage.css';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 
 
 const TextPage = ({slug}) => {

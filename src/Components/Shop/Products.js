@@ -10,7 +10,7 @@ import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
 import { GET_SHOP_DATA } from '../../urls';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 
 const Home = (props) =>  {
   const { ShopActions: {getItems}, shop } = props;

@@ -12,7 +12,7 @@ import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 
 const Venue = (props) => {
   const { auth, LoginActions: { likeDislikeBusiness } } = props;

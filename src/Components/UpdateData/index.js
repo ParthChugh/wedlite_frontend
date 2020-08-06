@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap';
 import Layout from '../Layout';
 import ShowForm from './ShowForm';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 
 const VendorRegistration = (props) => {
   

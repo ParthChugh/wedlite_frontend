@@ -10,7 +10,7 @@ import './Profile.css';
 import {  toast } from 'react-toastify';
 import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 
 
 const Profile = (props) => {

@@ -6,7 +6,7 @@ import StarRatings from 'react-star-ratings';
 import { Card } from 'react-bootstrap';
 import { Segment } from 'semantic-ui-react'
 import Layout from '../Layout';
-import paragraph from '../../assets/paragraph.png';
+import paragraph from '../../assets/Spinner.gif';
 
 const VenueLocation = () => {
   const data = useParams()

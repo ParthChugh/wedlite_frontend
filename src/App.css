@@ -279,11 +279,14 @@ input:focus {
   opacity: 1; 
 }
 .card-image:hover  {
-  color: rgba(166, 58, 103, 0.5); 
-  opacity: 0.4;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.app-card:hover .lazy-load-image-background.blur.lazy-load-image-loaded {
+  opacity: 0.4;
+  color: rgba(166, 58, 103, 0.5); 
 }
 
 .app-card > .title-shop {

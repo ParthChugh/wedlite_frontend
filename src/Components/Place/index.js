@@ -13,7 +13,7 @@ import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY } from '../../urls'
 import Layout from '../Layout';
 import './Place.css';
-import paragraph from '../../assets/paragraph.png'
+import paragraph from '../../assets/Spinner.gif'
 import ButtonRB from 'react-bootstrap/Button';
 
 const Venue = (props) => {
