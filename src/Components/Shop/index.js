@@ -37,10 +37,32 @@ const Home = (props) =>  {
               <p className="item-title">Exquisite marble articles</p>
               <p className="item-desc">Starting from &#8377; 500</p>
 
-              <a className="order-button" onClick={() => history.push('/shop/products')} >Shop Now</a>
+              <a className="order-button" onClick={() => history.push('/shop/products?material=marble')} >Shop Now</a>
             </div>
             <div style={{flex: 1/4}}>
               <img src={diya} height="310" width="352" />  
+            </div>
+          </div>
+          <div style={{flex: 1/2, marginRight: 20, marginLeft: 10}} className="grid-item grid-item-3 row">
+            <div style={{flex: 3/4, marginTop: 10}}>
+              <p className="item-title">Wooden articles</p>
+              <p className="item-desc">Starting from &#8377; 500</p>
+
+              <a className="order-button" onClick={() => history.push('/shop/products?material=wooden')} >Shop Now</a>
+            </div>
+            <div style={{flex: 1/4}}>
+              {/* <img src={diya} height="310" width="352" />   */}
+            </div>
+          </div>
+          <div style={{flex: 1/2, marginRight: 20, marginLeft: 10}} className="grid-item grid-item-3 row">
+            <div style={{flex: 3/4, marginTop: 10}}>
+              <p className="item-title">Epoxy articles</p>
+              <p className="item-desc">Starting from &#8377; 500</p>
+
+              <a className="order-button" onClick={() => history.push('/shop/products?material=Epoxy')} >Shop Now</a>
+            </div>
+            <div style={{flex: 1/4}}>
+              {/* <img src={diya} height="310" width="352" />   */}
             </div>
           </div>
         </div>

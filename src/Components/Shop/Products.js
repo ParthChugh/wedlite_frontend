@@ -12,6 +12,7 @@ import Layout from '../Layout';
 import { GET_SHOP_DATA } from '../../urls';
 import paragraph from '../../assets/Spinner.gif'
 
+const urlParams = new URLSearchParams(window.location.search);
 const Home = (props) =>  {
   const { ShopActions: {getItems}, shop } = props;
   // const items = shop.getIn(['items', 'results']);
@@ -39,7 +40,12 @@ const Home = (props) =>  {
 
   useEffect(() => {
     // getItems()
-    getShopItems(GET_SHOP_DATA);
+    if (urlParams.get('material')){
+      getShopItems(GET_SHOP_DATA + '?material=' + urlParams.get('material'));
+    } else {
+      getShopItems(GET_SHOP_DATA);
+    }
+    
   },[]);
 
   const goToNextScreen = (id) => {
