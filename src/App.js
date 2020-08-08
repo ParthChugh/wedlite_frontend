@@ -180,13 +180,14 @@ const App = (props) => {
               const selectedVenues = venues.filter(el => el.category.id === data.id);
               return(
                 <TabPanel value={value}  index={index} dir={theme.direction}>
-                  <div className="row space-around" style={{flexWrap: 'wrap'}} >
+                  <div className="d-flex shop-home space-around">
                   {
                     selectedVenues.map((card, index) => {
                       return(
-                          <Card className="categories" style={{ margin: 10,width: '21em',elevation: 2, cursor: 'pointer' }} key={index}>
+                          <Card className="category" key={index}>
                             { card.display_photo ?
                                 <LazyLoadImage
+                                  className="category-card-image"
                                   variant="top"
                                   onClick={()=> navigateToPlace(card.place_id)}
                                   style={{width: '100%',height: 200, display: 'flex'}}
@@ -232,18 +233,16 @@ const App = (props) => {
                 Articles and gifts as exquisite as you
               </div>
               <>
-                <div className="row space-around">
+                <div className="d-flex shop-home space-around">
                 {
                   items.size > 0 ? items.entrySeq().map((el, index) => {
                     return (
                       <Card 
                         className="app-card" 
-                        style={{ margin: 10, width: '21rem', borderRadius: 42,elevation: 2, cursor: 'pointer' }} 
                         onClick={() => goToNextScreen(el[1].get('id'))}
                         key={index}
                       >
                         <LazyLoadImage
-                          style={{borderRadius: 42, height: 250,  width: '21rem',}}
                           className="card-image"
                           alt="display photo"
                           effect="blur"

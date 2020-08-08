@@ -122,3 +122,41 @@
 .card-category:hover  {
   border: 1px solid gray;  
 }
+
+
+.card-category {
+  flex-direction: row;
+  align-items: center; 
+  flex: 1;
+}
+.products-category .card-category h2 {
+  color: #A63A67; 
+  cursor: pointer;
+}
+
+.products-category .card-category span {
+  font-weight: bold;
+}
+
+.products-category .card-category .image-category{
+  width: 12rem; 
+  height: 150px;
+  border-radius: 10px;
+}
+
+@media (min-width: 600px) {  
+  .products-category {
+    flex-direction: row;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+  .card-category {
+    flex-direction: column;
+    /* width: 20em; */
+  }
+  .products-category .card-category .image-category {
+    width: 20em;
+    height: 250px;
+    border-radius: 10px;
+  }
+}

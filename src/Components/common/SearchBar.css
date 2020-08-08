@@ -106,18 +106,19 @@ input[type=submit]:hover {
   font: Italic var(--unnamed-font-size-40)/var(--unnamed-line-spacing-53) var(--unnamed-font-family-segoe-ui);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-a63a67);
-  text-align: center;
-  font: Italic 40px/53px Segoe UI;
+  /* text-align: center; */
+  font: Italic 26px/53px Segoe UI;
   letter-spacing: 0px;
   color: #A63A67;
   opacity: 1;
 }
 .tagline-info {
-  font: Regular var(--unnamed-font-size-25)/var(--unnamed-line-spacing-33) var(--unnamed-font-family-segoe-ui);
+  /* font: Regular var(--unnamed-font-size-25)/var(--unnamed-line-spacing-33) var(--unnamed-font-family-segoe-ui); */
   letter-spacing: var(--unnamed-character-spacing-0);
-  text-align: center;
+  /* text-align: center; */
   color: var(--unnamed-color-000000);
-  font: Regular 25px/33px Segoe UI;
+  /* font: Regular 20px/40px Segoe UI; */
+  font-size: 20px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
@@ -128,10 +129,10 @@ input[type=submit]:hover {
   background-color: #A63A67;
   border-color: #A63A67;
   padding-top: 3px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 3px;
-  font-size: 20px;
+  font-size: 14px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -154,4 +155,33 @@ input[type=submit]:hover {
   background-color: #b6701e;
   flex: 1;
   padding: 1rem;
+}
+
+.ui.dropdown.search{
+  /* min-width: 100px; */
+  
+  border-radius: 10px;
+  align-items: center;
+}
+
+@media (max-width: 600px) {  
+  .ui.dropdown.search{
+    /* min-width: 100px; */
+    min-width: 100px;
+    font-size: 10px;
+    border-radius: 10px;
+    align-items: center;
+    
+  }
+}
+
+@media (min-width: 600px) {  
+  .form-search {
+    align-items: center;
+    padding-top: 200px;
+    /* position: absolute; */
+    width: 40%;
+    /* height: 800px; */
+
+  }
 }

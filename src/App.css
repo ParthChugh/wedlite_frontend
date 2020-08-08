@@ -315,3 +315,81 @@ input:focus {
 .overflow-scroll {
   overflow: scroll;
 }
+
+
+@media (min-width: 600px) {  
+  .img-landing {
+    position: absolute;
+  }
+}
+
+
+
+.app-card {
+  flex: 0 0 auto;
+  width: 12rem; 
+  height: 150px;
+  border-radius: 10px;
+  margin-right: 1rem;
+  /* margin-right: 1rem; */
+}
+
+.app-card .card-image {
+  flex: 0 0 auto;
+  width: 12rem; 
+  height: 150px;
+  border-radius: 10px;
+  /* height: 100vh; */
+}
+
+@media (min-width: 600px) {  
+  .app-card {
+    flex: 0 0 auto;
+    width: 20rem; 
+    height: 240px;
+    border-radius: 10px;
+    margin-right: 1rem;
+  }
+  .app-card .card-image {
+    flex: 0 0 auto;
+    flex: 1;
+    border-radius: 10px;
+    width: 20rem; 
+    height: 240px;
+  }
+}
+.shop-home {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 0 0 auto;
+}
+
+.shop-home::-webkit-scrollbar {    display: none;}
+
+
+.category {
+  flex: 0 0 auto;
+  width: 22rem; 
+  /* height: 150px; */
+  margin-right: 1rem;
+  /* margin-right: 1rem; */
+}
+.category .category-card-image {
+  flex: 0 0 auto;
+  width: 20rem; 
+}
+
+@media (min-width: 600px) {  
+  .category {
+    flex: 0 0 auto;
+    width: 20rem; 
+    margin-right: 1rem;
+  }
+  .category .category-card-image {
+    flex: 0 0 auto;
+    flex: 1;
+    width: 20rem; 
+  }
+}

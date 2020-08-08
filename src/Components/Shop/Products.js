@@ -63,7 +63,7 @@ const Home = (props) =>  {
     >
       <>
       <div>
-        <div className="row space-around">
+        <div className="products-category d-flex flex-row flex-wrap">
           {
             items.length > 0  ? items.map((el, index) => {
               return (  
@@ -71,7 +71,6 @@ const Home = (props) =>  {
                   className="card-category"
                   style={{ 
                     margin: 10, 
-                    width: '21rem', 
                     borderRadius: 5,
                     cursor: 'pointer', 
                     borderRadius: 20,
@@ -80,7 +79,6 @@ const Home = (props) =>  {
                   onClick={() => goToNextScreen(el.id)}  
                 >
                   <LazyLoadImage
-                    style={{width: '100%',height: 200, display: 'flex', borderRadius: 20}}
                     className="image-category"
                     alt="display photo"
                     effect="blur"
@@ -88,12 +86,14 @@ const Home = (props) =>  {
                   />
                   <div style={{paddingLeft: 10}}>
                     <div>
-                      {el['name']}                
+                      <span>
+                        {el['name']}                
+                      </span>
                     </div>
                     <div>
-                      <div style={{flex: 1, justifyContent: 'center'}}>
+                      <h2>
                         ₹ {el['price']}
-                      </div>
+                      </h2>
                   </div>              
                   </div>
                 </div>

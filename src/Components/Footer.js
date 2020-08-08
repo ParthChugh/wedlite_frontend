@@ -60,12 +60,14 @@ const FooterContainer = (props) => {
           <MDBCol md="3">
             <div>
             {!isLoggedIn && 
-              <div className="row" style={{alignItems: 'center'}}>
+              <div className="d-flex flex-column justify-content-center"  style={{alignItems: 'center'}}>
                 <h5 style={{fontWeight: 'bold',color: 'black',marginRight: 10}} className="title">Register for business</h5>
-                <button  onClick={() => {
-                  history.push('/vendor-registration')
-                  window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
-                }} className="fill-button" style={{paddingLeft: 20, paddingRight: 20}}>Sign up!</button>
+                <div>
+                  <button  onClick={() => {
+                    history.push('/vendor-registration')
+                    window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+                  }} className="fill-button" style={{paddingLeft: 20, paddingRight: 20}}>Sign up!</button>
+                </div>
                 </div>  
             }
               <div>

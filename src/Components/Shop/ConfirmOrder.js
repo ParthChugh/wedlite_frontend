@@ -31,8 +31,6 @@ const ConfirmOrder = (props) =>  {
     })
       .then((response) => {
         response.json().then((json) => {          
-          console.log(json);
-          // history.push('/')
           updateData(json);
           toast(json.result);
 

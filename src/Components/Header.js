@@ -7,6 +7,7 @@ import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import Landing from '../assets/Landing.jpg'
+import LandingMobile from '../assets/LandingMobile.png'
 import Cart from '../assets/cart.png';
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
@@ -406,7 +407,7 @@ const Header = (props) => {
       <div>
         {header()}
       </div>
-      {showSearchBar && <img src={Landing} style={{ height: window.innerHeight, width: '100%', opacity: window.innerWidth < 550 ? 0 : 1, position: 'absolute', }}  />}
+      {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%'  }}  />}
       {showSearchBar &&        
         <SearchBar
           executeScroll={executeScroll}

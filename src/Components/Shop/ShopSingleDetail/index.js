@@ -131,7 +131,7 @@ const Home = (props) =>  {
         <ToastContainer />
         {
           Object.values(detail).length > 0 ?
-          <div style={{display:'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          <div className="d-flex single-item-shop">
             <div style={{flex: 1/2}}>
               { detail.photos.length > 0 &&
               <Carousel {...getConfigurableProps()}>

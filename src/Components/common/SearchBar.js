@@ -51,17 +51,17 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='image-background' style={{  flex: 1, display:'flex', height: window.innerHeight , justifyContent: 'center' ,flexDirection: 'column',}}>
+    <div className='image-background' style={{  flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column'}}>
       {(cities.length > 0 && categories.length >0) ?
-      <form style={{zIndex: 999, width: window.innerWidth < 550 ? '100%' : '40%', paddingLeft: 40}} onSubmit={e => e.preventDefault()}>
+      <form className="d-flex justify-content-lg-center flex-column form-search" style={{zIndex: 999, paddingLeft: 40}} onSubmit={e => e.preventDefault()}>
         <div className="tagline">Commission free wedding planning</div>
         <div style={{fontSize: 20}}>
           <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
         </div>
-        <div className="row" style={{flex: 1, justifyContent: 'center', marginTop: 18}}>
+        <div className="row" style={{flex: 1,  marginTop: 18}}>
           <Dropdown 
             className="dropdown"
-            placeholder='Select your City' 
+            placeholder='Select City' 
             defaultValue={defaultSelectedCity ? parseInt(defaultSelectedCity) : defaultSelectedCity}
             search selection
             onChange={updateSelectedCity} 
@@ -69,7 +69,7 @@ const SearchBar = (props) => {
           />
           <Dropdown 
             className="dropdown"
-            placeholder='Select your Category' 
+            placeholder='Select Category' 
             defaultValue={defaultSelectedCategory ? parseInt(defaultSelectedCategory): defaultSelectedCategory}
             search selection
             onChange={updateSelectedCategory} 
@@ -85,18 +85,21 @@ const SearchBar = (props) => {
             </span>
           </button>
         </div>
-        <div style={{marginTop: 40, marginBottom: 40}} className="horizontal-line"><span>OR</span></div>
-        <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
-          <button 
-            className="blank-button"
-            style={{padding: 20, borderRadius: 20}}
-            onClick={() => {
-              history.push('/shop')
-            }}>
-              Shop on Wedlite
-          </button>
-        </div>
-        
+        { window.innerWidth > 550 &&
+          <div>  
+            <div style={{marginTop: 40, marginBottom: 40}} className="horizontal-line"><span>OR</span></div>
+            <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+              <button 
+                className="blank-button"
+                style={{padding: 20, borderRadius: 20}}
+                onClick={() => {
+                  history.push('/shop')
+                }}>
+                  Shop on Wedlite
+              </button>
+            </div>
+          </div>
+        }
       </form> : <div />
       }
     </div>
