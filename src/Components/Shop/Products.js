@@ -12,8 +12,8 @@ import Layout from '../Layout';
 import { GET_SHOP_DATA } from '../../urls';
 import paragraph from '../../assets/Spinner.gif'
 
-const urlParams = new URLSearchParams(window.location.search);
 const Home = (props) =>  {
+  const urlParams = new URLSearchParams(window.location.search);
   const { ShopActions: {getItems}, shop } = props;
   // const items = shop.getIn(['items', 'results']);
   const [visible, updateVisible] = useState(false);
@@ -39,13 +39,15 @@ const Home = (props) =>  {
   }
 
   useEffect(() => {
-    // getItems()
     if (urlParams.get('material')){
       getShopItems(GET_SHOP_DATA + '?material=' + urlParams.get('material'));
     } else {
       getShopItems(GET_SHOP_DATA);
     }
-    
+    return() => {
+      console.log('mai yahan par gya')
+      updateItems([]);
+    }
   },[]);
 
   const goToNextScreen = (id) => {
