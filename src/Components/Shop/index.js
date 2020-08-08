@@ -52,7 +52,7 @@ const Home = (props) =>  {
             <div style={{flex: 3/4, marginTop: 10}}>
             <p className="item-title">Wooden articles</p>
               <p className="item-desc">Starting from &#8377; 500</p>
-              <a className="order-button">Order Now</a>
+              <a className="order-button" onClick={() => history.push('/shop/products?material=wooden')} >Shop Now</a>
             </div>
             {/* <div style={{flex: 1/4}}>
               <img src={sketch} style={{height: 400, width: 300}} />
@@ -63,7 +63,7 @@ const Home = (props) =>  {
               <p className="item-title">Epoxy articles</p>
               <p className="item-desc">Starting from &#8377; 500</p>
 
-              <a className="order-button" onClick={() => history.push('/shop/products')} >Shop Now</a>
+              <a className="order-button" onClick={() => history.push('/shop/products?material=epoxy')} >Shop Now</a>
             </div>
             {/* <div style={{flex: 1/4}}>
               <img src={diya} height="310" width="352" />  
