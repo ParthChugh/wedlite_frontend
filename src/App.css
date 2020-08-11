@@ -371,14 +371,16 @@ input:focus {
 
 .category {
   flex: 0 0 auto;
-  width: 22rem; 
+  width: 14rem; 
+  
   /* height: 150px; */
   margin-right: 1rem;
   /* margin-right: 1rem; */
 }
 .category .category-card-image {
-  flex: 0 0 auto;
-  width: 20rem; 
+  /* flex: 0 0 auto; */
+  width: 8rem; 
+  height: 4rem;
 }
 
 @media (min-width: 600px) {  

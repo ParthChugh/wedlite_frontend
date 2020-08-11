@@ -28,3 +28,18 @@
 .stateContainer {
   width: 100px;
 }
+
+.carousel .slide img {
+  max-height: 500px;  /* change this to whatever you want */
+  width: auto;
+}
+
+.single-item-shop {
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {  
+  .single-item-shop {
+    flex-direction: row;
+  }
+}

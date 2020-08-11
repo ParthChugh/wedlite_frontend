@@ -134,12 +134,10 @@ const Home = (props) =>  {
           <div className="d-flex single-item-shop">
             <div style={{flex: 1/2}}>
               { detail.photos.length > 0 &&
-              <Carousel {...getConfigurableProps()}>
+              <Carousel {...getConfigurableProps()} style={{borderRadius: 20,}}>
                  {
                    detail.photos.map((el) => (
-                      <div >
-                        <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} style={{borderRadius: 20}} className="d-block w-100"/>
-                      </div>   
+                      <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} style={{borderRadius: 20, backgroundColor: 'white'}} className="d-block w-100"/>
                     )
                   )
                  } 
