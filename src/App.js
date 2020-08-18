@@ -180,7 +180,7 @@ const App = (props) => {
               const selectedVenues = venues.filter(el => el.category.id === data.id);
               return(
                 <TabPanel value={value}  index={index} dir={theme.direction}>
-                  <div className="d-flex shop-home space-around">
+                  <div className="d-flex shop-home">
                   {
                     selectedVenues.map((card, index) => {
                       return(
@@ -233,7 +233,7 @@ const App = (props) => {
                 Articles and gifts as exquisite as you
               </div>
               <>
-                <div className="d-flex shop-home space-around">
+                <div className="d-flex shop-home">
                 {
                   items.size > 0 ? items.entrySeq().map((el, index) => {
                     return (
