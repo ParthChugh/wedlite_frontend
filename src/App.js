@@ -107,7 +107,7 @@ const App = (props) => {
     <Layout
       handleSearch={handleSearch}
     >        
-      <div style={{marginLeft: 50, marginRight: 50, marginBottom: 40, flex: 1,display: 'flex', flexDirection:'column'}}>
+      <div className="home-container d-flex flex-column" style={{ marginBottom: 40,}}>
         <ToastContainer />
           {/* <div className="row space-around" >
             {cities.map((card, index) => {

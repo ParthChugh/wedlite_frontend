@@ -357,6 +357,10 @@ input:focus {
     width: 20rem; 
     height: 240px;
   }
+  .shop-home {
+    justify-content: space-around;
+  }
+  
 }
 .shop-home {
   display: flex;
@@ -383,7 +387,11 @@ input:focus {
   height: 4rem;
 }
 
+
 @media (min-width: 600px) {  
+  .home-container {
+    margin: 0px 40px 0px 40px;
+  }
   .category {
     flex: 0 0 auto;
     width: 20rem; 
