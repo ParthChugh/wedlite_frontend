@@ -119,8 +119,8 @@ const Header = (props) => {
   }
 
   const showSignUpModal = () => (
-    <Modal style={{marginTop: 100}} show={SignUpShow}  onHide={handleClose}>
-      <Modal.Header className="font-bold" style={{fontSize: CATEGORY}} closeButton>
+    <Modal style={{marginTop: 100,}} show={SignUpShow}  onHide={handleClose}>
+      <Modal.Header className="font-bold sign-up-modal" style={{fontSize: CATEGORY}} closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <form className="container margin-top-10" style={{ flex: 1,display: 'flex', flexDirection:'column'}} onSubmit={handleSubmit((data) => handleData(data))}>  
@@ -228,10 +228,9 @@ const Header = (props) => {
   const searchAnything = () => {
     return (
       <div className="wrapper search-bar" style={{flex: 1, display: 'flex'}} >
-
         <i className="fas fa-search" />
         <input
-          style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex',}}
+          style={{paddingLeft: 10, borderWidth: 0, flex: 1, display: 'flex'}}
           type="search"
           onFocus={() => setOnfocusSearchBar(true)}
           // onBlur={() => setOnfocusSearchBar(false)}
@@ -270,7 +269,7 @@ const Header = (props) => {
   const header = () => (
       <div>
       {  
-      <Navbar expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" style={{
+      <Navbar fluid expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" style={{
         width: '100%', 
         padding: 5, 
         paddingLeft:20, 
@@ -280,6 +279,8 @@ const Header = (props) => {
         display: 'flex', 
         flex: 1,
         zIndex:9999,}}>
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
+        
         <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
           <img src={logo} alt="logo" className="logo-size" />
         </Navbar.Brand>
@@ -291,10 +292,10 @@ const Header = (props) => {
           Categories
         </Nav.Link> */}
         {searchAnything()}
-        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
+        
         { !isLoggedIn ?
-        <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
-          <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
+        <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20, paddingBottom: 20}}>
+          <Nav inverse className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
             <Nav.Link onClick={() => {
               history.push('/vendor-registration')
               setExpanded(false)
@@ -319,7 +320,7 @@ const Header = (props) => {
               Login
             </Nav.Link> */}
           </Nav>
-          <img src={Cart} alt="logo" className="cart" />
+          
           <button 
             className="blank-button"
             style={{paddingLeft: 44.5, paddingRight: 44.5}}
@@ -338,10 +339,11 @@ const Header = (props) => {
             }}>
               Sign Up
           </button>
+          
         </Navbar.Collapse> 
         :
         <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
-          <Nav className="mr-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
+          <Nav className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
             <Nav.Link className="text header-color" onClick={() => {
               history.push('/')
               setExpanded(false)
@@ -390,13 +392,16 @@ const Header = (props) => {
                 }}  style={{cursor:'pointer',fontSize: NORMAL}}>
                 Logout
               </NavDropdown.Item>
+              
             </NavDropdown>
             
           </Nav>
         </Navbar.Collapse>
         }
+        <img src={Cart} alt="logo" className="cart" />
       </Navbar>
       }
+      
     </div>
   ) 
   
@@ -404,10 +409,8 @@ const Header = (props) => {
   
   return (
     <React.Fragment>
-      <div>
-        {header()}
-      </div>
-      {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%'  }}  />}
+      {header()}
+      {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%', height: "90%", }}  />}
       {showSearchBar &&        
         <SearchBar
           executeScroll={executeScroll}

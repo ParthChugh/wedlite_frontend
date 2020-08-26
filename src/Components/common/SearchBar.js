@@ -58,7 +58,7 @@ const SearchBar = (props) => {
         <div style={{fontSize: 20}}>
           <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
         </div>
-        <div className="row" style={{flex: 1,  marginTop: 18}}>
+        <div className="d-flex flex-row" style={{flex: 1,  marginTop: 18}}>
           <Dropdown 
             className="dropdown"
             placeholder='Select City' 
@@ -80,9 +80,9 @@ const SearchBar = (props) => {
             className="fill-button-let-begin"
             onClick={handleGoClick}
             >
-            <span>
-              Let's Begin
-            </span>
+            
+            Let's Begin
+            
           </button>
         </div>
         { window.innerWidth > 550 &&

@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import Layout from '../Layout';
 import diya from './assets/diya.png'
 import sketch from './assets/sketch.png'
+import epoxy from './assets/epoxy.png'
+import wooden from './assets/wooden.png'
 
 const Home = (props) =>  {
   const history = useHistory();
@@ -54,9 +56,9 @@ const Home = (props) =>  {
               <p className="item-desc">Starting from &#8377; 500</p>
               <a className="order-button" onClick={() => history.push('/shop/products?material=wooden')} >Shop Now</a>
             </div>
-            {/* <div style={{flex: 1/4}}>
-              <img src={sketch} style={{height: 400, width: 300}} />
-            </div> */}
+            <div style={{flex: 1/4}}>
+              <img src={wooden} style={{height: 500, width: 352}} />
+            </div>
           </div>
           <div style={{flex: 1/2, marginRight: 20, marginLeft: 10, paddingBottom: 10}} className="grid-item grid-item-3 row">
             <div style={{flex: 3/4, marginTop: 10}}>
@@ -65,9 +67,9 @@ const Home = (props) =>  {
 
               <a className="order-button" onClick={() => history.push('/shop/products?material=epoxy')} >Shop Now</a>
             </div>
-            {/* <div style={{flex: 1/4}}>
-              <img src={diya} height="310" width="352" />  
-            </div> */}
+            <div style={{flex: 1/4}}>
+              <img src={epoxy} style={{height: 500, width: 400}}  />  
+            </div>
           </div>
         </div>
       </div>

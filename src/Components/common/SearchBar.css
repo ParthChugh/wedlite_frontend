@@ -184,4 +184,7 @@ input[type=submit]:hover {
     /* height: 800px; */
 
   }
+  .tagline {
+    padding-left: 40px
+  }
 }

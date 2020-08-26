@@ -16,20 +16,20 @@ const Layout = (props) => {
   } = props;
   return (
     <React.Fragment>
-      <div>
-        <Header
-          defaultSelectedCity={defaultSelectedCity}
-          defaultSelectedCategory={defaultSelectedCategory}
-          handleSearch={handleSearch}
-          showLogo={showLogo}
-          showSearchBar={showSearchBar}
-        >
-          {headerComponent}
-        </Header>
-      </div>
-      <div>
-        {children}      
-      </div>
+      
+      <Header
+        defaultSelectedCity={defaultSelectedCity}
+        defaultSelectedCategory={defaultSelectedCategory}
+        handleSearch={handleSearch}
+        showLogo={showLogo}
+        showSearchBar={showSearchBar}
+      >
+        {headerComponent}
+      </Header>
+    
+      
+      {children}      
+      
       
       <Footer />
     </React.Fragment>

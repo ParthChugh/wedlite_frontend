@@ -107,7 +107,7 @@ const App = (props) => {
     <Layout
       handleSearch={handleSearch}
     >        
-      <div className="home-container d-flex flex-column" style={{ marginBottom: 40,}}>
+      <div className="d-flex flex-column" style={{ marginBottom: 40,}}>
         <ToastContainer />
           {/* <div className="row space-around" >
             {cities.map((card, index) => {
@@ -154,10 +154,11 @@ const App = (props) => {
             }
             )}
           </div> */}
-          <div className="popular-selection">
-            Popular Selections
-          </div>
-          <AppBar elevation={0} position="static" color="white">
+          <div style={{marginTop: 50}}>
+            <div className="popular-selection" >
+              Popular Selections
+            </div>
+            
             <Tabs
               value={value}
               onChange={handleChange}
@@ -170,7 +171,8 @@ const App = (props) => {
                 })
               }
             </Tabs>
-          </AppBar>
+            
+          </div>
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={value}
@@ -229,7 +231,7 @@ const App = (props) => {
               <div className="popular-selection">
                 From Wedlite Store
               </div>
-              <div>
+              <div className="subheading">
                 Articles and gifts as exquisite as you
               </div>
               <>
@@ -279,7 +281,7 @@ const App = (props) => {
                 </div>
                 </>
             </div>
-            <div>
+            <div className="subheading">
               Realistic portraits tailor-made for you
             </div>
             <div className="align-center">
