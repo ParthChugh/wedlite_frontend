@@ -122,12 +122,12 @@ const Home = (props) =>  {
       updatePincodeError('Length of Pincode should be 6 digits')
     }
   }
-  
+
   return (
     <Layout
       showSearchBar={false}
     >
-      <div className="container" style={{ height: '100%', paddingTop: 50 }}>
+      <div className="container visible-xs" style={{ height: '100%', paddingTop: 50 }}>
         <ToastContainer />
         {
           Object.values(detail).length > 0 ?
@@ -145,19 +145,31 @@ const Home = (props) =>  {
               }
             </div>
             <div style={{flex: 1/2, paddingLeft: 30, paddingRight: 30}}>
-              <h3 style={{fontWeight: 'bold', marginBottom: 20}}>{detail.name}</h3>
+              <h4 style={{fontWeight: 'bold', marginBottom: 20}}>{detail.name}</h4>
               <div>
-                <h3 style={{fontWeight: 'bold', marginBottom: 20}} className="price">₹ {detail.price}</h3>
-                <h5 style={{color: '#B6484D', marginBottom: 20}}>+ 18% GST+ </h5>
-                <button 
-                  style={{ marginBottom: 20}}
-                  className="fill-button" 
-                  onClick={addToCart}>
-                    Add to Cart
-                </button>
-                <div className="common-size-text">Delivery Options</div>
+                <h5 style={{fontWeight: 'bold', marginBottom: 20}} className="price">₹ {detail.price}</h5>
+                <h7 style={{color: '#B6484D', marginBottom: 20}}>+ 18% GST</h7>
+                <div className="d-flex flex-row">
+                  <button 
+                    style={{ marginBottom: 20, paddingLeft: 20, paddingRight: 20}}
+                    className="fill-button" 
+                    onClick={addToCart}>
+                      <span>Add to Cart</span>
+                  </button>
+                  <div style={{flexDirection: 'row', flex: 1, display: 'flex', marginLeft: 10}}>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: 20}}>
+                      <img style={{height: 30, width: 30}} alt="purchase" src={purchase} />
+                      <span>10 days returnable</span>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                      <img style={{height: 30, width: 30}} alt="warrenty" src={warrenty} />
+                      <span>1 year warranty</span>
+                    </div>
+                  </div>
+                </div>  
+                <span className="common-size-text">Delivery Options</span>
                 <div style={{flexDirection: 'column', flex: 1, display: 'flex'}}>
-                  <input style={{height: 50, borderRadius: 10, borderColor: 'gray', paddingLeft: 10}} placeholder="Enter PIN" onChange={(item) => onChangePinCode(item)} />
+                  <input style={{height: 40, borderRadius: 10, borderColor: 'gray', paddingLeft: 10}} placeholder="Enter PIN" onChange={(item) => onChangePinCode(item)} />
                   <span style={{color: 'red'}}>{pincodeError}</span>
                 </div>
                 {/* <Pincode 
@@ -170,10 +182,10 @@ const Home = (props) =>  {
                 <div style={{ marginBottom: 20, color: '#727272'}}>
                   Enter your pincode to check time of delivery & cash on delivery availability
                 </div>
-                <h5><span style={{fontWeight: 'bold'}}>Material: </span>{detail.material}</h5>
-                <h5 style={{marginBottom: 30}}><span style={{fontWeight: 'bold'}}>Description: </span>{detail.description}</h5>
+                <h5><span style={{fontWeight: 'bold'}}>Material: </span>{capitalize(detail.material)}</h5>
+                <h5 style={{marginBottom: 30}}><span style={{fontWeight: 'bold'}}>Description: </span>{capitalize(detail.description)}</h5>
                 {/* <FontAwesomeIcon icon={faShoppingBasket} size="1x" style={{position: 'absolute', right: 0,margin: 10, opacity: 2}} /> */}
-                <div style={{flexDirection: 'row', flex: 1, display: 'flex'}}>
+                {/* <div style={{flexDirection: 'row', flex: 1, display: 'flex'}}>
                   <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: 20}}>
                     <img style={{height: 50, width: 50}} alt="purchase" src={purchase} />
                     <span>10 days returnable</span>
@@ -182,7 +194,7 @@ const Home = (props) =>  {
                     <img style={{height: 50, width: 50}} alt="warrenty" src={warrenty} />
                     <span>1 year warranty</span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div>

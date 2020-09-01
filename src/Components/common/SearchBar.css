@@ -91,13 +91,12 @@ input[type=submit]:hover {
   border-top-right-radius: 10;
   border-bottom-right-radius: 10;
   align-items: center;
+  color: black;
 }
 
 .dropdown {
-
   min-height: auto !important;
   height: 3.0em;
-
   border-radius: 10px;
   margin-left: 5px;
 }
@@ -107,7 +106,7 @@ input[type=submit]:hover {
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-a63a67);
   /* text-align: center; */
-  font: Italic 26px/53px Segoe UI;
+  font: Italic 20px/53px Segoe UI;
   letter-spacing: 0px;
   color: #A63A67;
   opacity: 1;
@@ -118,7 +117,7 @@ input[type=submit]:hover {
   /* text-align: center; */
   color: var(--unnamed-color-000000);
   /* font: Regular 20px/40px Segoe UI; */
-  font-size: 20px;
+  font-size: 14px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
@@ -167,7 +166,7 @@ input[type=submit]:hover {
 @media (max-width: 600px) {  
   .ui.dropdown.search{
     /* min-width: 100px; */
-    min-width: 100px;
+    min-width: 80px;
     font-size: 10px;
     border-radius: 10px;
     align-items: center;
@@ -175,16 +174,28 @@ input[type=submit]:hover {
   }
 }
 
+
+
 @media (min-width: 600px) {  
+  .image-background  {
+    height: 100vh;
+    flex: 1;
+    justify-content: center;
+  }
   .form-search {
     align-items: center;
-    padding-top: 200px;
     /* position: absolute; */
-    width: 40%;
+    width: 43%;
     /* height: 800px; */
 
   }
   .tagline {
-    padding-left: 40px
+    padding-left: 30px;
+    font: Italic 30px/53px Segoe UI;
   }
+  .tagline-info {
+    font-size: 20px;
+    text-align: center;
+  }
+  
 }

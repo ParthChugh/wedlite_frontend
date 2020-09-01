@@ -25,12 +25,10 @@ const Layout = (props) => {
         showSearchBar={showSearchBar}
       >
         {headerComponent}
+        
       </Header>
-    
-      
-      {children}      
-      
-      
+        {children}      
+     
       <Footer />
     </React.Fragment>
   )

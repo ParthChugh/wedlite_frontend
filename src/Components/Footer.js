@@ -22,7 +22,7 @@ const FooterContainer = (props) => {
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="3" style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <img src={logo} alt="logo" style={{height: 70}} />
+            <img className="logo-show" src={logo} alt="logo" style={{height: 70}} />
           </MDBCol>
           <MDBCol md="2">
             <h5 style={{fontWeight: 'bold',color: 'black'}} className="title">GENERAL</h5>
@@ -56,6 +56,14 @@ const FooterContainer = (props) => {
                 window.scrollTo({top: 0, left: 0, behavior: 'smooth',color: 'black' });
               }}>Terms & Conditions</a>
             </div>
+            <div>
+              <ul className="list-unstyled list-inline">  
+                <a href="https://twitter.com/InWedlite" target="_blank"><FontAwesomeIcon className="list-inline-item"  icon={faTwitter} size="2x" style={{marginRight: 10,marginBottom: 10, marginTop:10,marginLeft: 0, color: '#A63A67'}} /></a>
+                <a href="https://www.instagram.com/wedlite.in/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faInstagram} size="2x" style={{margin: 10, color: '#A63A67'}} /></a>
+                <a href="https://www.facebook.com/Wedlite.in/?modal=admin_todo_tour" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faFacebook} size="2x" style={{margin: 10, color: '#A63A67'}} /></a>
+                <a href="https://www.linkedin.com/in/wedlite-book-your-wedding-now-686a311ab/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faLinkedin} size="2x" style={{margin: 10, color: '#A63A67'}} /></a>
+              </ul>
+            </div>
           </MDBCol>
           <MDBCol md="3">
             <div>
@@ -66,18 +74,13 @@ const FooterContainer = (props) => {
                   <button  onClick={() => {
                     history.push('/vendor-registration')
                     window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
-                  }} className="fill-button" style={{paddingLeft: 20, paddingRight: 20}}>Sign up!</button>
+                  }} className="fill-button" style={{paddingLeft: 20, paddingRight: 20}}>
+                    <span>Sign up!</span>
+                    </button>
                 </div>
                 </div>  
             }
-              <div>
-                <ul className="list-unstyled list-inline">  
-                  <a href="https://twitter.com/InWedlite" target="_blank"><FontAwesomeIcon className="list-inline-item"  icon={faTwitter} size="3x" style={{marginRight: 10,marginBottom: 10, marginTop:10,marginLeft: 0, color: '#A63A67'}} /></a>
-                  <a href="https://www.instagram.com/wedlite.in/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faInstagram} size="3x" style={{margin: 10, color: '#A63A67'}} /></a>
-                  <a href="https://www.facebook.com/Wedlite.in/?modal=admin_todo_tour" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faFacebook} size="3x" style={{margin: 10, color: '#A63A67'}} /></a>
-                  <a href="https://www.linkedin.com/in/wedlite-book-your-wedding-now-686a311ab/" target="_blank"><FontAwesomeIcon className="list-inline-item" icon={faLinkedin} size="3x" style={{margin: 10, color: '#A63A67'}} /></a>
-                </ul>
-            </div>
+            
             </div>
           
           </MDBCol>

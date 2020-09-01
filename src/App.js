@@ -107,7 +107,7 @@ const App = (props) => {
     <Layout
       handleSearch={handleSearch}
     >        
-      <div className="d-flex flex-column" style={{ marginBottom: 40,}}>
+      <div className="d-flex flex-column" >
         <ToastContainer />
           {/* <div className="row space-around" >
             {cities.map((card, index) => {
@@ -154,13 +154,14 @@ const App = (props) => {
             }
             )}
           </div> */}
-          <div style={{marginTop: 50}}>
+          <div >
             <div className="popular-selection" >
               Popular Selections
             </div>
             
             <Tabs
               value={value}
+              style={{marginLeft: 20}}
               onChange={handleChange}
               aria-label="full width tabs example"
             >
@@ -192,7 +193,7 @@ const App = (props) => {
                                   className="category-card-image"
                                   variant="top"
                                   onClick={()=> navigateToPlace(card.place_id)}
-                                  style={{width: '100%',height: 200, display: 'flex'}}
+                                  
                                   alt="display photo"
                                   effect="blur"
                                   src={card.display_photo.path} 
@@ -200,8 +201,8 @@ const App = (props) => {
                               : <div />
                             }
                             <Card.Body>
-                              <Card.Title onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
-                              <Card.Text>
+                              <Card.Title style={{fontSize: 16}} onClick={() => navigateToPlace(card.place_id)}>{card.name}</Card.Title>
+                              <Card.Text className="category-card-body">
                                 {card.location.city}, {card.location.state} 
                               </Card.Text>
                               {
@@ -286,11 +287,15 @@ const App = (props) => {
             </div>
             <div className="align-center">
               <button 
-                className="fill-button" 
+                className="fill-button"
+                style={{paddingLeft: 30, paddingRight: 30}} 
                   onClick={() => {
                     history.push('/shop')
                   }}>
-                    View more on Wedlite store
+                    <span>
+                      View more on Wedlite store
+                    </span>
+                    
               </button>
             </div>
             

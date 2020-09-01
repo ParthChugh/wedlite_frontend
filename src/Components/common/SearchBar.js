@@ -51,14 +51,14 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='image-background' style={{  flex: 1, display:'flex', justifyContent: 'center' ,flexDirection: 'column'}}>
+    <div className='image-background d-flex flex-column' >
       {(cities.length > 0 && categories.length >0) ?
-      <form className="d-flex justify-content-lg-center flex-column form-search" style={{zIndex: 999, paddingLeft: 40}} onSubmit={e => e.preventDefault()}>
+      <form className="d-flex justify-content-lg-center flex-column form-search" style={{zIndex: 999, paddingLeft: 20}} onSubmit={e => e.preventDefault()}>
         <div className="tagline">Commission free wedding planning</div>
         <div style={{fontSize: 20}}>
           <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
         </div>
-        <div className="d-flex flex-row" style={{flex: 1,  marginTop: 18}}>
+        <div className="d-flex flex-row" style={{ marginTop: 18}}>
           <Dropdown 
             className="dropdown"
             placeholder='Select City' 
@@ -88,7 +88,7 @@ const SearchBar = (props) => {
         { window.innerWidth > 550 &&
           <div>  
             <div style={{marginTop: 40, marginBottom: 40}} className="horizontal-line"><span>OR</span></div>
-            <div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+            <div style={{flex: 1, display: 'flex', justifyContent: 'center'}} className="class-hidden">
               <button 
                 className="blank-button"
                 style={{padding: 20, borderRadius: 20}}

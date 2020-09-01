@@ -28,11 +28,13 @@
 
 .title {
   text-align: center;
-  font-size: 23px;
+  font-size: 18px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
+  display: none;
 }
+
 
 .item-title {
   text-align: left;
@@ -123,6 +125,9 @@
   border: 1px solid gray;  
 }
 
+.logo-show {
+  display: none;
+}
 
 .card-category {
   flex-direction: row;
@@ -149,6 +154,12 @@
     flex-direction: row;
     justify-content: space-around;
     cursor: pointer;
+  }
+  .title {
+    display: flex;
+  }
+  .logo-show {
+    display: flex;
   }
   .card-category {
     flex-direction: column;

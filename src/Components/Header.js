@@ -120,7 +120,7 @@ const Header = (props) => {
 
   const showSignUpModal = () => (
     <Modal style={{marginTop: 100,}} show={SignUpShow}  onHide={handleClose}>
-      <Modal.Header className="font-bold sign-up-modal" style={{fontSize: CATEGORY}} closeButton>
+      <Modal.Header className="font-bold " style={{fontSize: CATEGORY}} closeButton>
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <form className="container margin-top-10" style={{ flex: 1,display: 'flex', flexDirection:'column'}} onSubmit={handleSubmit((data) => handleData(data))}>  
@@ -323,21 +323,28 @@ const Header = (props) => {
           
           <button 
             className="blank-button"
-            style={{paddingLeft: 44.5, paddingRight: 44.5}}
+            style={{paddingLeft: 40, paddingRight: 40}}
             onClick={() => {
               handleShow()
               setExpanded(false)
             }}>
-              Log In
+              <span>
+                Log In
+              </span>
+              
           </button>
           <button 
             className="fill-button" 
-            style={{marginLeft: 10}}
+
+            style={{marginLeft: 10, paddingLeft: 40, paddingRight: 30}}
             onClick={() => {
               handleSignUpShow()
               setExpanded(false)
             }}>
-              Sign Up
+              <span>
+                Sign Up
+              </span>
+              
           </button>
           
         </Navbar.Collapse> 
@@ -410,15 +417,17 @@ const Header = (props) => {
   return (
     <React.Fragment>
       {header()}
-      {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%', height: "90%", }}  />}
-      {showSearchBar &&        
-        <SearchBar
-          executeScroll={executeScroll}
-          handleSearch={handleSearch}
-          defaultSelectedCity={defaultSelectedCity}
-          defaultSelectedCategory={defaultSelectedCategory}
-        />   
-      }
+      <div>
+        {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%', height: "100%" }}  />}
+        {showSearchBar &&        
+          <SearchBar
+            executeScroll={executeScroll}
+            handleSearch={handleSearch}
+            defaultSelectedCity={defaultSelectedCity}
+            defaultSelectedCategory={defaultSelectedCategory}
+          />   
+        }
+      </div>
 
       <div ref={children}>
         {props.children}
