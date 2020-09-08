@@ -42,6 +42,11 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2"
   },
+  "reactSnap": {
+    "inlineCss": true,
+    "puppeteerExecutablePath": "/usr/bin/chromium-browser",
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
