@@ -325,8 +325,9 @@ const Header = (props) => {
             className="blank-button"
             style={{paddingLeft: 40, paddingRight: 40}}
             onClick={() => {
-              handleShow()
-              setExpanded(false)
+              // handleShow()
+              // setExpanded(false)
+              history.push('/login')
             }}>
               <span>
                 Log In
@@ -338,8 +339,7 @@ const Header = (props) => {
 
             style={{marginLeft: 10, paddingLeft: 40, paddingRight: 30}}
             onClick={() => {
-              handleSignUpShow()
-              setExpanded(false)
+              history.push('/sign-up')
             }}>
               <span>
                 Sign Up

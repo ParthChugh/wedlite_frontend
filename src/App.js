@@ -109,51 +109,6 @@ const App = (props) => {
     >        
       <div className="d-flex flex-column" >
         <ToastContainer />
-          {/* <div className="row space-around" >
-            {cities.map((card, index) => {
-              return ( 
-                  <Card 
-                    className="app-card" 
-                    style={{ marginTop: 10, marginBottom: 10, width: '14rem', borderRadius: 10,elevation: 2 }} 
-                    key={index}
-                  >
-                    <LazyLoadImage
-                      variant="top"
-                      // className="card-image"
-                      style={{height: 250, width: '14rem', borderRadius: 10, opacity: card.is_data_available? 1 : 0.5}}
-                      alt="city"
-                      effect="blur"
-                      src={card.photo} 
-                    />
-                    
-                    <Card.Body>
-                      <Card.Title>
-                        {card.city}
-                      </Card.Title>
-                      {
-                      card.is_data_available ? 
-                      <div className = "row">
-                        <div 
-                          style={{paddingLeft: 10,fontWeight: 'bold' , cursor: 'pointer'}}
-                          onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/vendors`)}}>
-                            Vendors
-                          </div>
-                          | 
-                          <div 
-                            style={{fontWeight: 'bold' , cursor: 'pointer'}} 
-                            onClick={()=> {history.push(`/venue-by-group/location/${card.id}/group/venue`)}}
-                          >
-                            Venue
-                          </div>
-                      </div>
-                      : <div className="coming-soon">Coming Soon!</div>
-                      }
-                    </Card.Body>
-                  </Card>
-              )
-            }
-            )}
-          </div> */}
           <div >
             <div className="popular-selection" >
               Popular Selections

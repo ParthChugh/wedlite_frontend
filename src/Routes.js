@@ -22,7 +22,9 @@ import Products from './Components/Shop/Products';
 import ShopSingleDetail from './Components/Shop/ShopSingleDetail';
 import Cart from './Components/Shop/Cart';
 import ConfirmOrder from './Components/Shop/ConfirmOrder';
-import PlaceOrder from './Components/PlaceOrder'
+import PlaceOrder from './Components/PlaceOrder';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
 
 const history = createBrowserHistory();
 
@@ -118,6 +120,12 @@ export default function App() {
         </Route>
         <Route path="/place-order">
           <PlaceOrder />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/sign-up">
+          <SignUp />
         </Route>
         <Route path="/careers">
         <Layout
