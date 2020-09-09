@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/register": "^7.11.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
@@ -13,6 +16,8 @@
     "@testing-library/user-event": "^7.1.2",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "ignore-styles": "^5.0.1",
     "immutable": "^4.0.0-rc.12",
     "mdbreact": "^4.26.1",
     "react": "^16.13.1",
@@ -44,8 +49,11 @@
   },
   "reactSnap": {
     "inlineCss": true,
-    "puppeteerExecutablePath": "/usr/bin/chromium-browser",
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"]
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-gpu"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",

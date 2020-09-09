@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { PRODUCT_DETAIL,CART_ITEMS } from '../../../urls';
 import {connect} from 'react-redux';
 // import {faShoppingBasket} from '@fortawesome/free-solid-svg-icons'
-import Pincode from "react-pincode";
+// import Pincode from "react-pincode";
 import { ToastContainer, toast } from 'react-toastify';
 import { Segment } from 'semantic-ui-react'
 import { Carousel } from 'react-responsive-carousel';
