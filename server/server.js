@@ -3,6 +3,9 @@ const fs=require('fs');
 const express=require('express');
 const React=require('react');
 const ReactDOMServer=require('react-dom/server');
+const compression = require('compression');
+const helmet = require('helmet');
+
 import App from '../src/App'
 import Login from '../src/Components/Login'
 import Cart from '../src/Components/Shop/Cart';
@@ -187,6 +190,10 @@ router.use(
 
 
 app.use(router)
+
+app.use(compression()); //Compress all routes
+app.use(helmet());
+
 
 app.use((req, res, next)  => serverRenderer(req, res, next, () => <NoMatchPage />))
 
