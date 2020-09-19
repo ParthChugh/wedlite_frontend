@@ -94,7 +94,7 @@ const Home = (props) =>  {
       
           {
             items.size > 0 ? 
-            <div className="d-flex flex-wrap container">
+            <div className="d-flex flex-wrap">
               <div className="bd-highlight width-container">
                 <div className="cart-items-container">
                   {
