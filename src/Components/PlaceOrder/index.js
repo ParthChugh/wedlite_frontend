@@ -32,7 +32,8 @@ const PlaceOrder = (props) => {
   
   const {auth, LoginActions: {uploadPicture, claimBusiness, likeDislikeBusiness}} = props;
 
-  const deliveryAddressCallbackFunction = () => {
+  const deliveryAddressCallbackFunction = (json) => {
+    setAddresses([json]);
     updateAddAddressState(false)
   }
 
@@ -93,7 +94,6 @@ const PlaceOrder = (props) => {
 
   const updateAddress = (json) => {
     setAddresses(json);
-    console.log(json);
   }
   
   useEffect(()=> {
@@ -205,7 +205,7 @@ const PlaceOrder = (props) => {
           }
             
           {
-              addresses.map(el => (
+              addresses.map((el ,index) => ( index === 0 &&
                 <div style={{paddingTop: 10}}>
                   <div style={{fontSize: 18}}>{el.profile.first_name} {el.profile.last_name}</div>
                   <div>{el.address_line_1}</div>
@@ -219,6 +219,7 @@ const PlaceOrder = (props) => {
               )
             }
           </div>
+          {addresses.length >0 &&
           <div style={{flex: 1/3,}}>
             <span>Payment Method</span>
             <div>
@@ -228,10 +229,12 @@ const PlaceOrder = (props) => {
               </span>
             </div>
           </div>
-          <div style={{ flex: 1/3, display: 'flex', flexDirection: 'column' }}>
+          }
+          
+          <div style={{ flex: 1/3, display: 'flex', flexDirection: 'column' }} >
             {paymentMethod &&
             <div>
-              <div style={{ display: 'flex', flexDirection: 'column', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
+              <div className="cart-items-container" style={{ display: 'flex', flexDirection: 'column',  borderRadius: 10, padding: 10 }}>
                 <div style={{fontSize: '20px', fontWeight: 'bold', paddingBottom: 20}}>
                   Order details
                 </div>

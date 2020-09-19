@@ -451,6 +451,29 @@ input:focus {
   width: 16rem;
   height: 140px;
 }
+.image-cart {
+  height: 200px;
+  width: 100%; 
+  border-radius: 20px; 
+  margin-right: 20px;
+}
+
+.cart-container {
+  flex-direction: column;
+}
+
+.width-container {
+  width: 100%;
+}
+.cart-items-container {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.width-container-place-order {
+  width: 100%;
+
+}
 
 @media (min-width: 600px) {  
   .home-container {
@@ -473,4 +496,18 @@ input:focus {
     display: flex;
     flex-direction: column;
   }
+  .image-cart {
+    height: 100px;
+    width: 100px; 
+  }
+  .cart-container {
+    flex-direction: row;
+  }
+  .width-container {
+    width: 80%;
+  }
+  .width-container-place-order {
+    width: 20%;
+  }
+  
 }

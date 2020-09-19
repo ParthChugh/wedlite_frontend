@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 // import {faShoppingBasket} from '@fortawesome/free-solid-svg-icons'
 // import Pincode from "react-pincode";
 import { ToastContainer, toast } from 'react-toastify';
+import {useHistory} from 'react-router-dom'
 import { Segment } from 'semantic-ui-react'
 import { Carousel } from 'react-responsive-carousel';
 import Layout from '../../Layout';
@@ -21,6 +22,7 @@ const Home = (props) =>  {
   // const Carousel = useRef(null);
   const { auth, ShopActions: {getCartItems} } = props;
   const data = useParams();
+  const history = useHistory();
   const [detail, updateDetail] = useState({});
   const [pincodeError, updatePincodeError] = useState('');
 
@@ -70,7 +72,8 @@ const Home = (props) =>  {
         .catch(() => {
       });
     } else {
-      toast('Please Login')
+      // toast('Please Login')
+      history.push('/login')
     }
   }
   

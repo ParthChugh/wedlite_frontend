@@ -18,10 +18,11 @@ const ConfirmOrder = (props) =>  {
   const urlParams = new URLSearchParams(queryString);
   const [data, updateData] = useState({});
   const history = useHistory();
+  console.log(PAYMENT_GATEWAY_SUCCESS);
   const getOrderDetail = () => {
-    fetch(PAYMENT_GATEWAY_SUCCESS, {
+    
+    fetch(`${PAYMENT_GATEWAY_SUCCESS}?order_id=${urlParams.get('order_id')}`, {
       method: 'POST', 
-      body: JSON.stringify(urlParams.get('order_id')),
       headers: {
         'Content-Type': 'application/json',
         'Authorization' : `Token ${auth.getIn([
@@ -54,9 +55,13 @@ const ConfirmOrder = (props) =>  {
         
           {
             Object.values(data).length > 0 ? 
-            <div style={{flex: 1,height: window.innerHeight, display: 'flex',alignItems: 'center' , justifyContent: 'center'}}>
-              <h1>Page under construction, please return to <Link to="/">Home</Link> Page</h1>
+            <div style={{flex: 1,height: window.innerHeight, display: 'flex',alignItems: 'center' , justifyContent: 'center', flexDirection: 'column'}}>
+              <h1>Your order has been placed you will get a notification for the same</h1>
+              <div style={{ justifyContent: 'center'}}>
+                <h1>Shop more <Link to="/shop">Shop</Link></h1>
+              </div>
             </div>
+            
             : <Segment attached>
               <img alt="loading" src={paragraph} />
             </Segment>

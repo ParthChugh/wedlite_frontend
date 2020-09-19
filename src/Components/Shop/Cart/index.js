@@ -85,52 +85,55 @@ const Home = (props) =>  {
     <Layout
       showSearchBar={false}
     >
-      <div>
         <ToastContainer />
-        <div className="d-flex flex-column">
-          <div style={{fontSize: 30, marginTop: 30, marginBottom: 20}}>
+        <div className="d-flex flex-column container">
+          <div style={{ fontSize: 30, marginTop: 30, marginBottom: 20 }}>
             Your Shopping Cart ( {items.size} item ) :
           </div>
+        <div>
+      
           {
             items.size > 0 ? 
-            <div className="d-flex flex-wrap">
-              <div className="bd-highlight">
-                {
-                  items.map((el) => {
-                    return(
-                      <div style={{border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
-                        <div className="d-flex flex-row">
-                          <img src={el.getIn(['product', 'photos', '0', 'path'])} style={{height: 100, width: 100, borderRadius: 20}} />  
-                          <div classNmae="d-flex flex-row">
-                            <div>
-                              <div style={{fontSize: 25, fontWeight: 'bold'}}>{el.getIn(['product', 'name'])}</div>
-                              <div style={{flex: 1,display: 'flex', justifyContent: 'space-between',}}>
-                                <p>Qty:  {el.get('quantity')}</p>
-                              </div>
-                              <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
-                                <div  style={{color: '#A63A67', paddingRight: 5}}>
-                                  <a onClick={() => deleteItem(el.getIn(['product','id']))}>Delete</a>
+            <div className="d-flex flex-wrap container">
+              <div className="bd-highlight width-container">
+                <div className="cart-items-container">
+                  {
+                    items.map((el) => {
+                      return(
+                        <div style={{borderRadius: 10, padding: 10 }}>
+                          <div className="d-flex cart-container" style={{borderRadius: 10,}}>
+                            <img src={el.getIn(['product', 'photos', '0', 'path'])} className="image-cart" />  
+                            <div classNmae="d-flex flex-row">
+                              <div>
+                                <div style={{fontSize: 25, fontWeight: 'bold'}}>{el.getIn(['product', 'name'])}</div>
+                                <div style={{flex: 1,display: 'flex', justifyContent: 'space-between',}}>
+                                  <p>Qty:  {el.get('quantity')}</p>
                                 </div>
-                                <FontAwesomeIcon onClick={() => deleteItem(el.getIn(['product','id']))} className="font-icon" size={18} icon={faTrash} size="1x" />
+                                <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center'}}>
+                                  <div  style={{color: '#A63A67', paddingRight: 5}}>
+                                    <a onClick={() => deleteItem(el.getIn(['product','id']))}>Delete</a>
+                                  </div>
+                                  <FontAwesomeIcon onClick={() => deleteItem(el.getIn(['product','id']))} className="font-icon" size={18} icon={faTrash} size="1x" />
+                                </div>
+                              </div>  
+                              <div style={{flexDirection: 'row', display: 'flex' }}>
+                                <p>{ el.get('quantity')} x ( {  el.getIn(['product', 'price'])} + 18% GST )  = </p>
+                                <p>&nbsp; ₹ { (el.get('quantity') * 1.18 *el.getIn(['product', 'price'])).toFixed(2) }</p>
                               </div>
-                            </div>  
-                            <div style={{flexDirection: 'row', display: 'flex' }}>
-                              <p>{ el.get('quantity')} x ( {  el.getIn(['product', 'price'])} + 18% GST )  = </p>
-                              <p>&nbsp; ₹ { (el.get('quantity') * 1.18 *el.getIn(['product', 'price'])).toFixed(2) }</p>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )
-                  })
-                }
+                      )
+                    })
+                  }
+                </div>
                 <div style={{display:'flex', justifyContent: 'flex-end', fontSize: 30}}>
                   Total: ₹ {totalAmount}
                 </div>
               </div>
           
-              <div>
-                <div style={{flex: 1, display: 'flex', flexDirection: 'column', border: '0.5px solid #707070', borderRadius: 10, padding: 10 }}>
+              <div className="width-container-place-order align-items-center flex-column">
+                <div className="d-flex flex-column cart-items-container" style={{ borderRadius: 10, padding: 10, marginLeft: 20 }}> 
                   <div style={{fontSize: 25, fontWeight: 'bold', paddingBottom: 20}}>
                     Order details
                   </div>
@@ -153,7 +156,7 @@ const Home = (props) =>  {
                 </div>                  
                 <button 
                   className="blank-button"
-                  style={{marginTop: 20}}
+                  style={{marginTop: 20, paddingLeft: 20, paddingRight: 20,}}
                   onClick={() => {
                     history.push('/place-order')
                   }}>
@@ -163,9 +166,9 @@ const Home = (props) =>  {
             </div>
             : 
             <div className="row space-around" style={{ marginTop: 'auto' }}>
-              <Segment attached>
-                <img alt="loading" src={paragraph} />
-              </Segment>
+              <div style={{ fontSize: 30, marginTop: 30, marginBottom: 20 }}>
+                No Items in the cart
+              </div>
             </div>
           }
         </div>
