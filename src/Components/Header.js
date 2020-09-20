@@ -7,7 +7,6 @@ import backgroundLogo from '../logo.png';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import Landing from '../assets/Landing.jpg'
-import LandingMobile from '../assets/LandingMobile.png'
 import Cart from '../assets/cart.png';
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
