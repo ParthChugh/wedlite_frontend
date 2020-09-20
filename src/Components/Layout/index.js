@@ -4,7 +4,6 @@ import Footer from '../Footer';
 import './Layout.css'
 
 const Layout = (props) => {  
-
   const {
     headerComponent, 
     children, 
