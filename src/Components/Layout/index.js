@@ -16,7 +16,6 @@ const Layout = (props) => {
   } = props;
   return (
     <React.Fragment>
-      
       <Header
         defaultSelectedCity={defaultSelectedCity}
         defaultSelectedCategory={defaultSelectedCategory}

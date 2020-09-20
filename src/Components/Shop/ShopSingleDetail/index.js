@@ -5,8 +5,7 @@ import * as ShopActionsCreator from '../../../actions/shopActions';
 import { Button } from 'react-bootstrap';
 import { PRODUCT_DETAIL,CART_ITEMS } from '../../../urls';
 import {connect} from 'react-redux';
-// import {faShoppingBasket} from '@fortawesome/free-solid-svg-icons'
-// import Pincode from "react-pincode";
+import {Helmet} from "react-helmet";
 import { ToastContainer, toast } from 'react-toastify';
 import {useHistory} from 'react-router-dom'
 import { Segment } from 'semantic-ui-react'
@@ -147,6 +146,12 @@ const Home = (props) =>  {
               </Carousel>
               }
             </div>
+            <Helmet>
+              <title>{detail.name}</title>
+              <meta name="title" content={detail.name} />
+              <meta name="description" content={capitalize(detail.description)} />
+              <link rel="canonical" href={window.location.href} />
+            </Helmet>
             <div style={{flex: 1/2, paddingLeft: 30, paddingRight: 30}}>
               <h4 style={{fontWeight: 'bold', marginBottom: 20}}>{detail.name}</h4>
               <div>

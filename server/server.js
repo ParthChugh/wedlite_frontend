@@ -5,6 +5,7 @@ const React=require('react');
 const ReactDOMServer=require('react-dom/server');
 const compression = require('compression');
 const helmet = require('helmet');
+import {Helmet} from "react-helmet";
 
 import App from '../src/App'
 import Login from '../src/Components/Login'
@@ -95,14 +96,48 @@ const serverRenderer = (req, res, next, Component) => {
       console.error(err)
       return res.status(500).send('An error occurred')
     }
+    const renderedData = ReactDOMServer.renderToString(
+      <CommonLayout>
+        <Component />
+      </CommonLayout>
+    )
+    const helmetStatic = Helmet.renderStatic();
+    // <!doctype html>
+    //   <html ${helmet.htmlAttributes.toString()}>
+    //       <head>
+    //           ${helmet.title.toString()}
+    //           ${helmet.meta.toString()}
+    //           ${helmet.link.toString()}
+    //       </head>
+    //       <body ${helmet.bodyAttributes.toString()}>
+    //         <div id="root">${ReactDOMServer.renderToString(
+    //           <CommonLayout>
+    //             <Component />
+    //           </CommonLayout>
+    //         )}</div>
+    //       </body>
+    //   </html>
+    
     return res.send(
       data.replace(
-        '<div id="root"></div>',
-        `<div id="root">${ReactDOMServer.renderToString(
-          <CommonLayout>
-            <Component />
-          </CommonLayout>
-        )}</div>`
+        `<!doctype html>
+          <html>
+          <head></head>
+          <body>
+            <div id="root"></div>
+          </body>
+        </html>`,
+        `<!doctype html>
+          <html ${helmetStatic.htmlAttributes.toString()}>
+          <head>
+            ${helmetStatic.title.toString()}
+            ${helmetStatic.meta.toString()}
+            ${helmetStatic.link.toString()}
+          </head>
+          <body>
+            <div id="root">${renderedData}</div>
+          </body>
+        </html>`
       )
     )
   })

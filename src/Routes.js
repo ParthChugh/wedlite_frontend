@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Home from './App';
+import {Helmet} from "react-helmet";
 import Venue from './Components/Venue';
 import Place from './Components/Place';
 import TextPage from './Components/TextPage'
@@ -53,9 +54,20 @@ export default function App() {
     <Router>
       <Switch>
         <Route path="/cart">
+          <Helmet>
+            <title>Wedlite Shop</title>
+            <meta name="description" content="Only one click away to get our exciting gift hamper with your products" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Cart />
         </Route>
         <Route path="/shop/products">
+          <Helmet>
+            <title>Products you might like</title>
+            <meta name="title" content="Products you might like" />
+            <meta name="description" content="Easily get your weddding things at one place" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Products />
         </Route>
         <Route path="/shop/:id">
@@ -65,9 +77,21 @@ export default function App() {
           <ConfirmOrder />
         </Route>
         <Route path="/shop">
+          <Helmet>
+            <title>Categories</title>
+            <meta name="title" content="Choose from our categories" />
+            <meta name="description" content="Easily get your weddding things at one place" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Shop />
         </Route>
         <Route path="/blog">
+          <Helmet>
+            <title>What is WedLite?</title>
+            <meta name="title" content="What is WedLite?" />
+            <meta name="description" content="Wedding is soulful affix which everyone dreams of. All dreams wrapped up in the wish box unfolds on the big day. Weddings are fun. Sure a lot of work goes into throwing the perfect shower and then there are all those hours of planning the so - special rustic wedding is just the right barn venue." />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Layout 
             showLogo={false}
             showSearchBar={false}
@@ -106,6 +130,12 @@ export default function App() {
           />
         </Route>
         <Route path="/my-venues">
+          <Helmet>
+            <title>Venue Booking</title>
+            <meta name="title" content="Venue Booking" />
+            <meta name="description" content="Book your wedding place now, and get huge discount" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Profile />
         </Route>
         <Route path="/about-us">
@@ -114,6 +144,12 @@ export default function App() {
           />
         </Route>
         <Route path="/vendor-registration">
+          <Helmet>
+            <title>Register with us</title>
+            <meta name="title" content="Register with us" />
+            <meta name="description" content="Let others know about your company" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <VendorRegistration
             slug="about-us"
           />
@@ -122,12 +158,30 @@ export default function App() {
           <PlaceOrder />
         </Route>
         <Route path="/login">
+          <Helmet>
+            <title>Login</title>
+            <meta name="title" content="Login" />
+            <meta name="description" content="Login with us to get great deals and discounts" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Login />
         </Route>
         <Route path="/sign-up">
+          <Helmet>
+            <title>Sign Up</title>
+            <meta name="title" content="Sign Up" />
+            <meta name="description" content="Sign Up with us to get great deals and discounts" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <SignUp />
         </Route>
         <Route path="/careers">
+          <Helmet>
+            <title>Careers at Wedlite</title>
+            <meta name="title" content="Careers at Wedlite" />
+            <meta name="description" content="Want to be part of wedlite, follow the steps to get more information" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
         <Layout
           showSearchBar={false}
         >
@@ -190,6 +244,12 @@ export default function App() {
         </Route>
 
         <Route exact path="/">
+          <Helmet>
+            <title>Wedlite</title>
+            <meta name="title" content="Wedlite" />
+            <meta name="description" content="Wedding planning platform" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
           <Home />
         </Route>
         <Route component={NoMatchPage} />

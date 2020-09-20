@@ -9,6 +9,7 @@ import ImageUploader from "react-images-upload";
 import { Segment, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import { Card } from 'react-bootstrap';
+import {Helmet} from "react-helmet";
 import {Carousel} from 'react-responsive-carousel';
 import { VENUE_CATEGORY_CITY } from '../../urls'
 import Layout from '../Layout';
@@ -117,6 +118,7 @@ const Venue = (props) => {
       showSearchBar={false}
     >
       <div className="container" style={{ height: '100%', paddingTop: 50 }}>
+        
         <ToastContainer />
         {
             Object.values(place).length > 0 ?
@@ -139,6 +141,12 @@ const Venue = (props) => {
               {
                 Object.values(place).length > 0  &&
                 <div>
+                  <Helmet>
+                    <title>{place.name}</title>
+                    <meta name="title" content={place.name} />
+                    <meta name="description" content={place.website} />
+                    <link rel="canonical" href={window.location.href} />
+                  </Helmet>
                   <div className="row space-between" style={{padding: 10}}>
                     <h1 style={{marginLeft: 20}} >{place.name}</h1>
                     {

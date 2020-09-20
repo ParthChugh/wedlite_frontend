@@ -10,7 +10,8 @@ import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from '../Layout';
 import { GET_SHOP_DATA } from '../../urls';
-import paragraph from '../../assets/Spinner.gif'
+import paragraph from '../../assets/Spinner.gif';
+import {Helmet} from "react-helmet";
 
 const Home = (props) =>  {
   const urlParams = new URLSearchParams(window.location.search);

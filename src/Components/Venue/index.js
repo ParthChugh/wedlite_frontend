@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import StarRatings from 'react-star-ratings';
 import { Segment, Button } from 'semantic-ui-react'
+import {Helmet} from "react-helmet";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Card } from 'react-bootstrap';
 import Loader from 'react-loader-spinner'
@@ -87,6 +88,15 @@ const Venue = (props) => {
       <div className="container" style={{flex: 1, flexDirection: 'column'}}>
         <h1 style={{marginLeft: 40}}>Search Results</h1>  
         <div className="row space-around">        
+        {auth.get('cities') && auth.get('categories') &&
+          <Helmet>
+            <title>{`Best Venues in town`}</title>
+            <meta name="title" content={`Best ${data.categoryId} in ${data.cityId}`} />
+            <meta name="description" content="Want to be part of wedlite, follow the steps to get more information" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+        }
+        
           {
             venues.map((card, index) => {
               return(
