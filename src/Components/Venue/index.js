@@ -10,6 +10,7 @@ import { Segment, Button } from 'semantic-ui-react'
 import {Helmet} from "react-helmet";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Card } from 'react-bootstrap';
+import vacant from './vacant.png'
 import Loader from 'react-loader-spinner'
 import Layout from '../Layout';
 import './Venue.css';
@@ -87,7 +88,7 @@ const Venue = (props) => {
       venues.length > 0 ? 
       <div className="container" style={{flex: 1, flexDirection: 'column'}}>
         <h1 style={{marginLeft: 40}}>Search Results</h1>  
-        <div className="row space-around">        
+        <div className="products-category d-flex flex-row flex-wrap">        
         {auth.get('cities') && auth.get('categories') &&
           <Helmet>
             <title>{`Best Venues in town`}</title>
@@ -100,34 +101,37 @@ const Venue = (props) => {
           {
             venues.map((card, index) => {
               return(
-                <Card 
-                  className="card"
-                  style={{ marginBottom: 20 ,width: '22rem', borderRadius: 10,elevation: 5, cursor: 'pointer' }}
+                <div 
+                  className="card-category"
+                  style={{ 
+                    margin: 10, 
+                    borderWidth: 0,
+                    cursor: 'pointer', 
+                    borderRadius: 0,
+                  }}  
                   key={index}
                   onClick={() => navigateToPlace(card.place_id)}  
                 >
                   { card.display_photo ?
                     <LazyLoadImage
                       src={ card.display_photo.path } 
-                      style={{height: 400,width: '22rem', borderTopLeftRadius: 10, borderTopRightRadius: 10}}
-                      className="card-image"
+                      className="image-category"
                       alt="display photo"
                       effect="blur"
                     />
                     : <div />
                   }
-                  <Card.Body>
-                    <StarRatings
-                      rating={parseInt(card.rating)}
-                      starDimension="20px"
-                      starSpacing="10px"
-                      numberOfStars={5}
-                      name='rating'
-                    />
-                    <Card.Title>{card.name}</Card.Title>
-                    <Card.Text>
-                      {card.formatted_address}
-                    </Card.Text>
+                  <div style={{paddingLeft: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
+                    <div style={{fontSize: 15, fontWeight: 'bold', textAlign: 'flex-start'}}>{card.name}</div>
+                    
+                    <div className="d-flex flex-row justify-content-between">
+                      
+                        {card.location.city}, {card.location.state} 
+                      
+                        {/* <img alt="detail-image" src={vacant} style={{height: 30, width: 30}} /> */}
+                    </div>
+                    
+                    
                     {
                         isLoggedIn && typeof card.likes !== 'undefined' &&
                         <div>
@@ -140,8 +144,8 @@ const Venue = (props) => {
                           />
                         </div>
                       }
-                  </Card.Body>
-                </Card>
+                  </div>
+                </div>
               )
             }
             )
@@ -162,9 +166,7 @@ const Venue = (props) => {
       </div>
       : 
       <div className="container">
-        <Segment attached>
-          <img alt="loading" src={paragraph} />
-        </Segment>
+        <img alt="loading" src={paragraph} />
         {/* <Loader
           type="Puff"
           color="#00BFFF"

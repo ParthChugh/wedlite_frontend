@@ -4,6 +4,9 @@ import * as ShopActionsCreators from '../actions/shopActions';
 import { Modal, Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
 import backgroundLogo from '../logo.png';
+import Drawer from '@material-ui/core/SwipeableDrawer';
+import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@material-ui/core/styles';
 import SearchBar from './common/SearchBar';
 import { useForm } from 'react-hook-form';
 import Landing from '../assets/Landing.jpg'
@@ -24,8 +27,30 @@ const scrollToRef = (ref) => window.scrollTo(
 )   
 
 const Header = (props) => {  
+
+  const useStyles = makeStyles({
+    list: {
+      width: 250,
+    },
+    fullList: {
+      width: 'auto',
+    },
+  });
+  
+  const classes = useStyles();
   const children = useRef(null)
   const history = useHistory();
+  
+  const [state, setState] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState(open);
+  };
+
   const { 
     LoginActions, 
     ShopActions,
@@ -278,9 +303,9 @@ const Header = (props) => {
         display: 'flex', 
         flex: 1,
         zIndex:9999,}}>
-        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}  aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle onClick={toggleDrawer(true)}  aria-controls="basic-navbar-nav" />
         
-        <Navbar.Brand onClick={()=> history.push('/')} style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
+        <Navbar.Brand onClick={()=> history.push('/') } style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
           <img src={logo} alt="logo" className="logo-size" />
         </Navbar.Brand>
         {/* <Nav.Link className="text header-color" onClick={() => {
@@ -290,8 +315,8 @@ const Header = (props) => {
         >
           Categories
         </Nav.Link> */}
-        {searchAnything()}
         
+        {searchAnything()}
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20, paddingBottom: 20}}>
           <Nav inverse className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
@@ -403,6 +428,187 @@ const Header = (props) => {
             
           </Nav>
         </Navbar.Collapse>
+        }
+        
+        { !isLoggedIn ?
+        <Drawer open={state} onClose={toggleDrawer(false)}>
+          <div>
+            <button 
+              className="blank-button top-option"
+              style={{paddingLeft: 40, paddingRight: 40, marginRight: 10}}
+              onClick={() => {
+                // handleShow()
+                // setExpanded(false)
+                history.push('/login')
+              }}>
+                <span>
+                  Log In
+                </span>                
+            </button>
+
+          </div>
+          <div>
+            <button 
+              className="fill-button" 
+
+              style={{marginLeft: 10, paddingLeft: 40, paddingRight: 40, marginRight: 10}}
+              onClick={() => {
+                history.push('/sign-up')
+              }}>
+                <span>
+                  Sign Up
+                </span>
+                
+            </button>
+          </div>
+          <Divider />
+          
+          <div style={{color: '#707070', marginLeft: 10, fontSize: 12, fontWeight: 'bold', marginTop: 10}} className="header-color margin-left-right ">
+            Categories
+          </div>
+          <Nav.Link onClick={() => {
+            history.push('/shop/products?material=marble')
+            setExpanded(false)
+            }}  
+            style={{cursor:'pointer',fontSize: NORMAL}}
+            className="header-color margin-left-right "
+          >
+            Exquisite marble articles
+          </Nav.Link>
+          <Nav.Link onClick={() => {
+            history.push('/shop/products?material=wooden')
+            setExpanded(false)
+            }}  
+            style={{cursor:'pointer',fontSize: NORMAL}}
+            className="header-color margin-left-right "
+          >
+            Wooden articles
+          </Nav.Link>
+          <Nav.Link onClick={() => {
+            history.push('/shop/products?material=epoxy')
+            setExpanded(false)
+            }}  
+            style={{cursor:'pointer',fontSize: NORMAL}}
+            className="header-color margin-left-right "
+          >
+            Epoxy articles
+          </Nav.Link>          
+          <Divider />
+          <div style={{color: '#707070', marginLeft: 10, fontSize: 12, fontWeight: 'bold', marginTop: 10}} className="header-color margin-left-right ">
+            More from Wedlite
+          </div>
+          <Nav.Link onClick={() => {
+            history.push('/vendor-registration')
+            setExpanded(false)
+            }}  
+            style={{cursor:'pointer',fontSize: NORMAL}}
+            className="header-color margin-left-right "
+          >
+            WedLite for Business
+          </Nav.Link>
+          <Nav.Link className="text header-color margin-left-right" onClick={() => {
+            history.push('/shop')
+            setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+            Shop on Wedlite
+          </Nav.Link>
+
+          <Divider />
+          <Nav.Link className="text header-color margin-left-right" onClick={() => {
+            history.push('/about-us')
+            setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+            About Us
+          </Nav.Link>
+
+          <Nav.Link className="text header-color margin-left-right" onClick={() => {
+            history.push('/careers')
+            setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+            Careers
+          </Nav.Link>
+         
+          <Nav.Link className="text header-color margin-left-right" onClick={() => {
+            history.push('/contact-us')
+            setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+            Contact Us
+          </Nav.Link>
+          
+          <Nav.Link className="text header-color margin-left-right" onClick={() => {
+            history.push('/terms-and-conditions')
+            setExpanded(false)
+            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+            Terms & Conditions
+          </Nav.Link>
+
+            {/* <Nav.Link
+            className="text header-color"
+            onClick={() => {
+              handleShow()
+              setExpanded(false)
+              }} style={{cursor:'pointer',fontSize: NORMAL}} >
+              Login
+            </Nav.Link> */}
+          
+          
+        </Drawer> 
+        :
+        <Drawer open={state} onClose={toggleDrawer(false)} >
+          <Nav className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
+            <Nav.Link className="text header-color margin-left-right top-option" style={{ marginLeft: 70, marginRight: 70}} onClick={() => {
+              history.push('/')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+              Home
+            </Nav.Link>
+            <Nav.Link className="text header-color margin-left-right" onClick={() => {
+              history.push('/shop')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+              Shop on Wedlite
+            </Nav.Link>
+            <Nav.Link className="text header-color margin-left-right" onClick={() => {
+              history.push('/cart')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+              Cart({shop.get('cart').size})
+            </Nav.Link>
+            <NavDropdown
+              className="text header-color margin-left-right" 
+              style={{cursor:'pointer',fontSize: NORMAL}} 
+              title={
+                <span>Profile</span>
+              } 
+              // id="collasible-nav-dropdown"
+              id={`dropdown-variants-primary`}
+            >
+              <NavDropdown.Item
+               className="text header-color margin-left-right" 
+               style={{cursor:'pointer',fontSize: NORMAL}}
+                onClick={() => {
+                  history.push('/my-venues')
+                  setExpanded(false)
+              }}>
+                My Venues
+              </NavDropdown.Item>
+              {/* <NavDropdown.Item className="text" onClick={() => {
+                setExpanded(false)
+                history.push('/blog')
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                What is WedLite?
+              </NavDropdown.Item> */}
+              <NavDropdown.Item className="text header-color margin-left-right" onClick={() => {
+                logout()
+                setExpanded(false)
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                Logout
+              </NavDropdown.Item>
+              
+            </NavDropdown>
+            
+          </Nav>
+        </Drawer>
         }
         <img src={Cart} alt="logo" className="cart" />
       </Navbar>

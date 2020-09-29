@@ -237,9 +237,7 @@ const App = (props) => {
                 </div>
                 </>
             </div>
-            <div className="subheading">
-              Realistic portraits tailor-made for you
-            </div>
+            
             <div className="align-center">
               <button 
                 className="fill-button"

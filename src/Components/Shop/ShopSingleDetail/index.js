@@ -92,7 +92,7 @@ const Home = (props) =>  {
     swipeable: true,
     dynamicHeight: true,
     emulateTouch: true,
-    thumbWidth: 100,
+    thumbWidth: 50,
     selectedItem:  0,
     interval: 3000,
     transitionTime: 150,
@@ -129,7 +129,7 @@ const Home = (props) =>  {
     <Layout
       showSearchBar={false}
     >
-      <div className="container visible-xs" style={{ height: '100%', paddingTop: 50 }}>
+      <div className="single-shop-container" style={{ height: '100%', paddingTop: 50 }}>
         <ToastContainer />
         {
           Object.values(detail).length > 0 ?
@@ -139,7 +139,7 @@ const Home = (props) =>  {
               <Carousel {...getConfigurableProps()} style={{borderRadius: 20,}}>
                  {
                    detail.photos.map((el) => (
-                      <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} style={{borderRadius: 20, backgroundColor: 'white'}} className="d-block w-100"/>
+                      <img alt="detail-image" src={el.path} onDragStart={handleOnDragStart} style={{borderRadius: 20, backgroundColor: 'white'}} className="w-100"/>
                     )
                   )
                  } 
@@ -210,9 +210,7 @@ const Home = (props) =>  {
           </div>
           : 
           <div className="row space-around" style={{ marginTop: 'auto' }}>
-            <Segment attached>
-              <img alt="loading" src={paragraph} />
-            </Segment>
+            <img alt="loading" src={paragraph} />
           </div>
           }
       </div>

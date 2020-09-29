@@ -249,6 +249,13 @@ ul {
 .search-bar input[type=text] {
   width: 100%;
 }
+.margin-left-right {
+  
+  margin-right: 50px;
+}
+.top-option {
+  margin-top: 70px;
+}
 @media (min-width: 600px) {
   .wrapper {
     display: flex;
@@ -256,6 +263,9 @@ ul {
   /* .search-bar {
     padding-right: 400px;
   } */
+  .top-option {
+    margin-top: 120px;
+  }
 
 }
 input:focus {
@@ -395,7 +405,7 @@ input:focus {
   flex: 0 0 auto;
   width: 12rem; 
   height: 150px;
-  border-radius: 10px;
+  
   /* height: 100vh; */
 }
 
@@ -404,13 +414,11 @@ input:focus {
     flex: 0 0 auto;
     width: 20rem; 
     height: 240px;
-    border-radius: 10px;
     margin-right: 1rem;
   }
   .app-card .card-image {
     flex: 0 0 auto;
     flex: 1;
-    border-radius: 10px;
     width: 20rem; 
     height: 240px;
   }
@@ -486,7 +494,7 @@ input:focus {
   }
   .category-card-image {
     width: 20rem;
-    height: 200px;
+    height: 160px;
   }
   .category-card-body {
     font-size: 16px;

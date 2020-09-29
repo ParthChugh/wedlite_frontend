@@ -104,10 +104,10 @@ const Home = (props) =>  {
             }
           ) :
           <div className="row space-around" style={{ marginTop: 'auto' }}>
-              <Segment attached>
-                <img alt="loading" src={paragraph} />
-              </Segment>
-            </div>
+              
+            <img alt="loading" src={paragraph} />
+              
+          </div>
           }
         </div>
         <div style={{display: 'flex', justifyContent: 'center'}}>
