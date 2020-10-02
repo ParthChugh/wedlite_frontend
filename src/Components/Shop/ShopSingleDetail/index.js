@@ -40,6 +40,40 @@ const Home = (props) =>  {
       .catch(() => {
     });
   }
+
+  const goToCart = () => {
+    if(auth.get('isLoggedIn')) {
+      fetch(CART_ITEMS, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization' : `Token ${auth.getIn([
+            'response', 'token'
+          ])}`,
+        },
+        body: JSON.stringify({
+          "quantity": 1,
+          "product_id": data.id
+        })
+      })
+        .then((response) => {
+          if(response.status === 201) {
+            response.json().then((json) => {
+              console.log(json);
+              getCartItems({callbackFunction: () => {}})
+              history.push('/cart')
+            })
+          } else {
+            toast('Some Issue')
+          }
+          
+        })
+      
+    } else {
+      // toast('Please Login')
+      history.push('/login')
+    }
+  }
   
   const addToCart = () => {
     if(auth.get('isLoggedIn')) {
@@ -164,7 +198,15 @@ const Home = (props) =>  {
                     onClick={addToCart}>
                       <span>Add to Cart</span>
                   </button>
-                  <div style={{flexDirection: 'row', flex: 1, display: 'flex', marginLeft: 10}}>
+                  <button 
+                    style={{ marginBottom: 20, paddingLeft: 20, paddingRight: 20}}
+                    className="fill-button" 
+                    onClick={goToCart}>
+                      <span>Checkout</span>
+                  </button>
+                  
+                </div>  
+                <div style={{flexDirection: 'row', flex: 1, display: 'flex', marginLeft: 10}}>
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: 20}}>
                       <img style={{height: 30, width: 30}} alt="purchase" src={purchase} />
                       <span>10 days returnable</span>
@@ -174,7 +216,6 @@ const Home = (props) =>  {
                       <span>1 year warranty</span>
                     </div>
                   </div>
-                </div>  
                 <span className="common-size-text">Delivery Options</span>
                 <div style={{flexDirection: 'column', flex: 1, display: 'flex'}}>
                   <input style={{height: 40, borderRadius: 10, borderColor: 'gray', paddingLeft: 10}} placeholder="Enter PIN" onChange={(item) => onChangePinCode(item)} />
