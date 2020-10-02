@@ -35,6 +35,7 @@ const Login = (props) =>  {
       showSearchBar={false}
     >
       <div className="d-flex flex-column container-md justify-content-center" style={{ height: '100%', paddingTop: 50, alignItems: 'center'}}>
+      <ToastContainer />  
       <img src={logo} alt="logo" className="login-logo" style={{marginBottom: 30, }}/>
         <div className="font-size-label text-align-center" style={{fontSize: 30}}>Welcome back!</div>
         <form className="border border-container  margin-top-10 d-flex flex-column" onSubmit={handleSubmit(loginUser)}>  

@@ -121,6 +121,10 @@
 }
 
 
+.img-category {
+  height: 120px;
+  width: 120px
+}
 
 .card-category:hover  {
   border: 1px solid gray;  
@@ -171,4 +175,9 @@
     height: 250px;
     border-radius: 10px;
   }
+  .img-category {
+    height: 500px;
+    width: 400px
+  }
+  
 }

@@ -112,100 +112,102 @@ const VendorRegistration = (props) => {
             </div>
           </div>
         </ScrollAnimation>
-       <form style={{maxWidth: '50%', flex: 1,display:'flex', flexDirection: 'column'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)}>  
-        <div className="form-group">
+        <div style={{flex: 1}}>
+        <form style={{ flex: 1,display:'flex', flexDirection: 'column'}} className="container margin-top-10" onSubmit={handleSubmit(createVendorData)} className="border-container" >  
           <div className="form-group">
-            <label>First Name</label>
-            <input  name="first_name" className="form-control" placeholder="First Name"  ref={register({required: true})} />
-            {errors.first_name && <span style={{color: 'red'}}>This field is required</span>}    
-          </div>
-          <div className="form-group">
-            <label>Last Name</label>
-            <input  name="last_name" className="form-control"  placeholder="Last Name" ref={register({required: true})} />
-            {errors.last_name && <span style={{color: 'red'}}>This field is required</span>}    
-          </div>
-          <label>Email address</label>
-          <input name="email"  className="form-control" placeholder="Enter your email" ref={
-            register({
-              required: true,
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address"
-              }
-            })} />
-            {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true, minLength: 8})} />
-          {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
-        </div>
-        <div className="form-group">
-          <label>Phone Number</label>
-          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-            <span style={{ paddingRight: 10 }}>+91</span>
-            <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, minLength: 10, maxLength: 10})} />
-          </div>
-          {errors.number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
-        </div>
-        <div className="form-group">
-          <label>Business Name</label>
-          <input placeholder="Busineess Name" name="business_name" className="form-control" ref={register({required: true})} />
-          {errors.business_name && <span style={{color: 'red'}}>This field is required</span>}    
-        </div>
-        <div className="form-group">
-          <label>Address</label>
-          <input placeholder="Address" name="address" className="form-control" ref={register({required: true})} />
-          {errors.address && <span style={{color: 'red'}}>This field is required</span>}    
-        </div>
-        <div className="form-group">
-          <label>Website</label>
-          <input 
-            name="website" 
-            placeholder="https://www.example.com" 
-            className="form-control" 
-            ref={
+            <div className="form-group">
+              <label>First Name</label>
+              <input  name="first_name" className="form-control" placeholder="First Name"  ref={register({required: true})} />
+              {errors.first_name && <span style={{color: 'red'}}>This field is required</span>}    
+            </div>
+            <div className="form-group">
+              <label>Last Name</label>
+              <input  name="last_name" className="form-control"  placeholder="Last Name" ref={register({required: true})} />
+              {errors.last_name && <span style={{color: 'red'}}>This field is required</span>}    
+            </div>
+            <label>Email address</label>
+            <input name="email"  className="form-control" placeholder="Enter your email" ref={
               register({
                 required: true,
-                pattern: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/  
-              }
-            )} />
-          {errors.website && <span style={{color: 'red'}}>Website should be valid</span>}    
-        </div>
-        {
-        cities.length > 0 &&
-         <div className="form-group">
-          <label>City</label>
-          <Dropdown 
-            className="form-control"
-            placeholder='cities' 
-            search selection
-            onChange={updateSelectedCity} 
-            options={cityOptions} 
-          />
-          {selectedCity === "" && <span style={{color: 'red'}}>Please select one city</span>}    
-        </div>
-        }
-        {
-          categories.length > 0 &&
-          <div className="form-group">
-            <label>Business Type</label>
-            <Dropdown 
-              placeholder="Busineess Type" 
-              name="bysiness_type" 
-              className="form-control"
-              placeholder='Categories' 
-              search selection
-              onChange={updateSelectedCategory} 
-              options={categoriesData} 
-            />
-            {selectedCategory === "" && <span style={{color: 'red'}}>Please select one business type</span>}    
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Invalid email address"
+                }
+              })} />
+              {errors.email && <span style={{color: 'red'}}>Please enter a valid email</span>}    
           </div>
-        }
-        <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
-          Submit
-        </Button>       
-      </form>
+          <div className="form-group">
+            <label>Password</label>
+            <input  type="password" className="form-control" name="password" placeholder="Password" autoComplete="current-password" ref={register({required: true, minLength: 8})} />
+            {errors.password && <span style={{color: 'red'}}>Please should be of 8 characters</span>}    
+          </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+              <span style={{ paddingRight: 10 }}>+91</span>
+              <input placeholder="Phone Number" name="number" className="form-control"   ref={register({required: true, minLength: 10, maxLength: 10})} />
+            </div>
+            {errors.number && <span style={{color: 'red'}}>Please type a valid phone number</span>}    
+          </div>
+          <div className="form-group">
+            <label>Business Name</label>
+            <input placeholder="Busineess Name" name="business_name" className="form-control" ref={register({required: true})} />
+            {errors.business_name && <span style={{color: 'red'}}>This field is required</span>}    
+          </div>
+          <div className="form-group">
+            <label>Address</label>
+            <input placeholder="Address" name="address" className="form-control" ref={register({required: true})} />
+            {errors.address && <span style={{color: 'red'}}>This field is required</span>}    
+          </div>
+          <div className="form-group">
+            <label>Website</label>
+            <input 
+              name="website" 
+              placeholder="https://www.example.com" 
+              className="form-control" 
+              ref={
+                register({
+                  required: true,
+                  pattern: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/  
+                }
+              )} />
+            {errors.website && <span style={{color: 'red'}}>Website should be valid</span>}    
+          </div>
+          {
+          cities.length > 0 &&
+          <div className="form-group">
+            <label>City</label>
+            <Dropdown 
+              className="form-control"
+              placeholder='cities' 
+              search selection
+              onChange={updateSelectedCity} 
+              options={cityOptions} 
+            />
+            {selectedCity === "" && <span style={{color: 'red'}}>Please select one city</span>}    
+          </div>
+          }
+          {
+            categories.length > 0 &&
+            <div className="form-group">
+              <label>Business Type</label>
+              <Dropdown 
+                placeholder="Busineess Type" 
+                name="bysiness_type" 
+                className="form-control"
+                placeholder='Categories' 
+                search selection
+                onChange={updateSelectedCategory} 
+                options={categoriesData} 
+              />
+              {selectedCategory === "" && <span style={{color: 'red'}}>Please select one business type</span>}    
+            </div>
+          }
+          <Button className="btn btn-primary btn-block" type="submit" variant="outline-dark">
+            Submit
+          </Button>       
+        </form>
+        </div>
       </div>
       
     </Layout>

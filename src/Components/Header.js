@@ -395,9 +395,9 @@ const Header = (props) => {
             </Nav.Link>
             <NavDropdown
               className="text header-color" 
-              style={{cursor:'pointer',fontSize: NORMAL}} 
+              style={{cursor:'pointer',fontSize: NORMAL, }} 
               title={
-                <span>Profile</span>
+                <span style={{color: 'gray'}}>Profile</span>
               } 
               // id="collasible-nav-dropdown"
               id={`dropdown-variants-primary`}
@@ -555,7 +555,7 @@ const Header = (props) => {
         </Drawer> 
         :
         <Drawer open={state} onClose={toggleDrawer(false)} >
-          <Nav className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
+          
             <Nav.Link className="text header-color margin-left-right top-option" style={{ marginLeft: 70, marginRight: 70}} onClick={() => {
               history.push('/')
               setExpanded(false)
@@ -607,7 +607,6 @@ const Header = (props) => {
               
             </NavDropdown>
             
-          </Nav>
         </Drawer>
         }
         <img src={Cart} alt="logo" className="cart" />

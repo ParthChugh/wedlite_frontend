@@ -86,8 +86,8 @@ const Venue = (props) => {
     >
       {
       venues.length > 0 ? 
-      <div className="container" style={{flex: 1, flexDirection: 'column'}}>
-        <h1 style={{marginLeft: 40}}>Search Results</h1>  
+      <div style={{flex: 1, flexDirection: 'column', marginLeft: 10}}>
+        <h1>Search Results</h1>  
         <div className="products-category d-flex flex-row flex-wrap">        
         {auth.get('cities') && auth.get('categories') &&
           <Helmet>

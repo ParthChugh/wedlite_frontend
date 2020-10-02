@@ -19,7 +19,7 @@ const Home = (props) =>  {
       showSearchBar={false}
     >
       <>
-      <div className="d-flex flex-column" style={{marginBottom: 20}}>
+      {/* <div className="d-flex flex-column" style={{marginBottom: 20}}>
         <div className="grid-item-1">
           <p className="title">Welcome to WedLite store</p>
         </div>
@@ -34,18 +34,19 @@ const Home = (props) =>  {
               <img src={sketch} style={{height: 400, width: 300}} />
             </div>
           </div>
-          <div style={{flex: 1, marginRight: 10,marginTop: 10, marginLeft: 10}} className="grid-item grid-item-3 row">
-            <div style={{flex: 3/4, marginTop: 10}}>
-              <p className="item-title">Exquisite marble articles</p>
-              <p className="item-desc">Starting from &#8377; 500</p>
-
-              <a className="order-button" onClick={() => history.push('/shop/products?material=marble')} >Shop Now</a>
-            </div>
-            <div style={{flex: 1/4}}>
-              <img src={diya} height="310" width="352" />  
-            </div>
-          </div>
+         
           
+        </div>
+      </div> */}
+      <div style={{flex: 1, margin: 20, paddingBottom: 20}} className="grid-item grid-item-3 row">
+        <div style={{flex: 3/4, marginTop: 10}}>
+          <p className="item-title">Exquisite marble articles</p>
+          <p className="item-desc">Starting from &#8377; 500</p>
+
+          <a className="order-button" onClick={() => history.push('/shop/products?material=marble')} >Shop Now</a>
+        </div>
+        <div style={{flex: 1/4}}>
+          <img src={diya} className="img-category" />  
         </div>
       </div>
       <div className="d-flex flex-column">
@@ -56,8 +57,8 @@ const Home = (props) =>  {
               <p className="item-desc">Starting from &#8377; 500</p>
               <a className="order-button" onClick={() => history.push('/shop/products?material=wooden')} >Shop Now</a>
             </div>
-            <div style={{flex: 1/4}}>
-              <img src={wooden} style={{height: 500, width: 352}} />
+            <div style={{flex: 1/4}} className="hidden-mobile">
+              <img src={wooden} className="img-category" />
             </div>
           </div>
           <div style={{flex: 1/2, marginRight: 20, marginLeft: 10, paddingBottom: 10}} className="grid-item grid-item-3 row">
@@ -67,8 +68,8 @@ const Home = (props) =>  {
 
               <a className="order-button" onClick={() => history.push('/shop/products?material=epoxy')} >Shop Now</a>
             </div>
-            <div style={{flex: 1/4}}>
-              <img src={epoxy} style={{height: 500, width: 400}}  />  
+            <div style={{flex: 1/4}} >
+              <img src={epoxy} className="img-category" />  
             </div>
           </div>
         </div>
