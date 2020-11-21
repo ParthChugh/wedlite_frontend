@@ -38,36 +38,47 @@ const FitnessForm = (props) => {
           <label className="font-size-label" style={{fontWeight: 'bold', marginTop: 20, marginBottom: 20}}>Kindly kill in the form to obtain a personalized diet from the certified dietician.</label>
           <div className="d-flex margin-10">
             <label className="font-size-label" style={{width: "30%"}}>Name</label>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
+            <div style={{display: 'flex', flexDirection: 'column'}} >
               <input name="name" type="tel"  tabIndex="1"  className="form-control" style={{borderRadius: 10}} placeholder="Jay Gautam" ref={
                 register({
                   required: true,
                 })} />
+                {errors.name && <span style={{color: 'red',}}>Enter valid Name</span>}
             </div>
-            {errors.name && <span style={{color: 'red'}}>Enter valid Name</span>}
           </div>
+          
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Height</label>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
-              <input name="height" type="tel"  tabIndex="1"  className="form-control" placeholder="5.5" ref={
-                register({
-                  required: true,
-                })} />
-                <label className="font-size-label">feet</label>
+            <div style={{display: 'flex', flexDirection: 'column'}} >
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
+                <input name="height" type="tel" style={{borderRadius: 10, width: 55}} tabIndex="1"  className="form-control" placeholder="5.5" ref={
+                  register({
+                    required: true,
+                  })} />
+                  <label className="font-size-label"style={{paddingLeft: 10}}> feet</label>
+              </div>
+              {errors.height && <span style={{color: 'red'}}>Enter valid height</span>}  
             </div>
-            {errors.height && <span style={{color: 'red'}}>Enter valid height</span>}
+            
+            
           </div>
+          
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Weight</label>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
-              <input name="weight" type="tel"  tabIndex="1"  className="form-control"  placeholder="5.5" ref={
-                register({
-                  required: true,
-                })} />
-                <label className="font-size-label">KG</label>
+            <div style={{display: 'flex', flexDirection: 'column'}} >
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
+                <input name="weight" type="tel" style={{borderRadius: 10, width: 55}} tabIndex="1"  className="form-control"  placeholder="74" ref={
+                  register({
+                    required: true,
+                  })} />
+                  <label className="font-size-label"style={{paddingLeft: 10}}>KG</label>
+              </div>
+              {errors.height && <span style={{color: 'red'}}>Enter valid weight</span>}
             </div>
-            {errors.height && <span style={{color: 'red'}}>Enter valid weight</span>}
+            
+            
           </div>
+          
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Blood group</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
@@ -76,13 +87,14 @@ const FitnessForm = (props) => {
                 <select name="gender" placeholder="Yes" ref={register({
                   required: true,
                 })}>
+                  <option value="undefined">Please choose...</option>
                   {bloodGroups.map(el => (
                     <option value={el}>{el}</option>
                   ))}
                 </select>
             </div>
-            {errors.blood && <span style={{color: 'red'}}>Enter valid blood grouo</span>}
           </div>
+          {errors.blood && <span style={{color: 'red'}}>Enter valid blood grouo</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Daily Sechedule</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
@@ -91,86 +103,94 @@ const FitnessForm = (props) => {
                   required: true,
                 })} />
             </div>
-            {errors.sechedule && <span style={{color: 'red'}}>Enter valid Daily Sechedule</span>}
           </div>
+          {errors.sechedule && <span style={{color: 'red'}}>Enter valid Daily Sechedule</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Smoking</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select name="smoking" ref={register({
+              <select style={{borderRadius: 10}} name="smoking" ref={register({
                 required: true,
               })}>
-              {['-', 'Yes', 'No'].map(el => (
+                <option value="undefined">Please choose...</option>
+                {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.smoking && <span style={{color: 'red'}}>Choose Yes/No</span>}
           </div>
+          {errors.smoking && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Drinking</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select name="sechedule" ref={register({
+              <select style={{borderRadius: 10}} name="sechedule" ref={register({
                 required: true,
               })}>
-              {['-', 'Yes', 'No'].map(el => (
+                <option value="undefined">Please choose...</option>
+              {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.sechedule && <span style={{color: 'red'}}>Choose Yes/No</span>}
+            
           </div>
+          {errors.sechedule && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Marriage Status</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select name="marriage" ref={register({
+              <select style={{borderRadius: 10}} name="marriage" ref={register({
                 required: true,
               })}>
-              {['-', 'Single', 'Married'].map(el => (
+                <option value="undefined">Please choose...</option>
+              {[ 'Single', 'Married'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.marriage && <span style={{color: 'red'}}>Choose Yes/No</span>}
+            
           </div>
+          {errors.marriage && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Asthama</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select name="asthama" ref={register({
+              <select style={{borderRadius: 10}} name="asthama" ref={register({
                 required: true,
               })}>
-              {['-', 'Yes', 'No'].map(el => (
+                <option value="undefined">Please choose...</option>
+              {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.asthama && <span style={{color: 'red'}}>Choose Yes/No</span>}
           </div>
+          {errors.asthama && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Diabetes</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-             <select name="diabetes" ref={register({
+             <select style={{borderRadius: 10}} name="diabetes" ref={register({
                 required: true,
               })}>
-              {['-', 'Yes', 'No'].map(el => (
+                <option value="undefined">Please choose...</option>
+              {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.diabetes && <span style={{color: 'red'}}>Choose Yes/No</span>}
           </div>
+          {errors.diabetes && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Blood Pressure</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select name="diabetes" ref={register({
+              <select style={{borderRadius: 10}} name="diabetes" ref={register({
                 required: true,
               })}>
-              {['-', 'Yes', 'No'].map(el => (
+                <option value="undefined">Please choose...</option>
+                {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
-            {errors.bp && <span style={{color: 'red'}}>Choose Yes/No</span>}
           </div>
+          {errors.bp && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <button 
             className="fill-button " 
             type="submit"
