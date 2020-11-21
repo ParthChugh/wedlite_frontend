@@ -14,9 +14,14 @@ import Cart from '../assets/cart.png';
 import logo from '../assets/LogoHeader.png';
 import { CATEGORY, NORMAL} from '../constants';
 import { SEARCH_API } from '../urls';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Carousel } from 'react-bootstrap';
+import Exercise from '../assets/exercise.png'
+import Gifts from '../assets/gifts.png'
+import Wedding from '../assets/wedding.png'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import ExerciseComponent from './common/ExerciseComponent'
+import GiftsComponent from './common/Gifts'
 
 const scrollToRef = (ref) => window.scrollTo(
   {
@@ -358,7 +363,7 @@ const Header = (props) => {
               </span>
               
           </button>
-          <button 
+          {/* <button 
             className="fill-button" 
 
             style={{marginLeft: 10, paddingLeft: 40, paddingRight: 30}}
@@ -370,7 +375,7 @@ const Header = (props) => {
               </span>
               
           </button>
-          
+           */}
         </Navbar.Collapse> 
         :
         <Navbar.Collapse expanded={expanded} id="basic-navbar-nav" style={{paddingTop: 20,paddingBottom: 20}}>
@@ -622,15 +627,97 @@ const Header = (props) => {
     <React.Fragment>
       {header()}
       <div>
-        {showSearchBar && <img className="img-landing" src={Landing} style={{ width: '100%', height: "100%" }}  />}
-        {showSearchBar &&        
-          <SearchBar
-            executeScroll={executeScroll}
-            handleSearch={handleSearch}
-            defaultSelectedCity={defaultSelectedCity}
-            defaultSelectedCategory={defaultSelectedCategory}
-          />   
-        }
+        {showSearchBar && 
+        <Carousel>
+          
+          <Carousel.Item>
+            <div className="carousel-absolute">
+              <ExerciseComponent />
+            </div>
+            <img
+              className="d-block w-100"
+              src={Exercise}
+              alt="First slide"
+            />
+            {/* <Carousel.Caption className="d-flex justify-content-end"> */}
+            
+                          {/* </Carousel.Caption> */}
+            
+            <div className="carousel-search-bar">
+              <ExerciseComponent />
+            </div>
+
+        </Carousel.Item>
+        <Carousel.Item >
+          <div className="carousel-absolute">
+            <SearchBar
+              executeScroll={executeScroll}
+              handleSearch={handleSearch}
+              defaultSelectedCity={defaultSelectedCity}
+              defaultSelectedCategory={defaultSelectedCategory}
+            />   
+          </div>
+          <img
+            className="d-block w-100"
+            src={Wedding}
+            alt="First slide"
+          />
+          {/* { window.innerWidth > 550 ? */}
+          
+          
+          <div className="carousel-search-bar">
+            <SearchBar
+              executeScroll={executeScroll}
+              handleSearch={handleSearch}
+              defaultSelectedCity={defaultSelectedCity}
+              defaultSelectedCategory={defaultSelectedCategory}
+            />   
+          </div>
+          
+          
+        </Carousel.Item>
+
+        
+        <Carousel.Item>
+          <div className="carousel-absolute">
+            <GiftsComponent />
+          </div>
+          <img
+            className="d-block w-100"
+            src={Gifts}
+            alt="First slide"
+          />
+          {/* { window.innerWidth > 550 ? */}        
+          <div className="carousel-search-bar">
+            <GiftsComponent />   
+          </div>
+          
+          
+        </Carousel.Item>
+        {/* <Carousel.Item interval={500}>
+          <img
+            className="d-block w-100"
+            src={Landing}
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={Landing}
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item> */}
+      </Carousel>}
+      
       </div>
 
       <div ref={children}>

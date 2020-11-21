@@ -388,9 +388,48 @@ input:focus {
   .img-landing {
     position: absolute;
   }
+  .carousel-caption {
+    width: 100%; 
+  }
+  .carousel-search-bar {
+    display: none;
+  }
+  
+  .carousel-absolute {
+    /* display: none; */
+    position: absolute;
+    right: 0;
+    margin-top: 100px;
+    margin-right: 100px;
+
+  }
 }
 
+.border-solid {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #707070;
+  border-width: thin;
+  padding-right: 10px;  
+}
 
+@media (max-width: 600px) { 
+  .carousel-absolute {
+    display: none;
+  }
+  .carousel-search-bar {
+    width: 100%; 
+    left: 0
+  } 
+  
+  /* .carousel-search-bar {
+    width: 100%;  */
+    /* position: absolute;
+    left: 0; 
+    top: 20; */
+  /* } */
+
+}
 
 .app-card {
   flex: 0 0 auto;
@@ -517,5 +556,15 @@ input:focus {
   .width-container-place-order {
     width: 20%;
   }
+  
+}
+
+
+.font-size-label {
+  text-align: left;
+  font: normal normal normal 36px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
   
 }

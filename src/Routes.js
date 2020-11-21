@@ -26,6 +26,7 @@ import ConfirmOrder from './Components/Shop/ConfirmOrder';
 import PlaceOrder from './Components/PlaceOrder';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
+import FitnessForm from './Components/FitnessForm';
 
 const history = createBrowserHistory();
 
@@ -174,6 +175,15 @@ export default function App() {
             <link rel="canonical" href={window.location.href} />
           </Helmet>
           <SignUp />
+        </Route>
+        <Route path="/fitness">
+          <Helmet>
+            <title>Fitness</title>
+            <meta name="title" content="Fitness" />
+            <meta name="description" content="Body fitness makes life better" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+          <FitnessForm />
         </Route>
         <Route path="/careers">
           <Helmet>

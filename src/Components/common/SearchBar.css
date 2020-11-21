@@ -97,8 +97,11 @@ input[type=submit]:hover {
 .dropdown {
   min-height: auto !important;
   height: 3.0em;
+  height: 2.5em;
+  width: 1em;
   border-radius: 10px;
   margin-left: 5px;
+  max-width: 100px;
 }
 
 .tagline {
@@ -106,7 +109,7 @@ input[type=submit]:hover {
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-a63a67);
   /* text-align: center; */
-  font: Italic 20px/53px Segoe UI;
+  font: Italic 15px/33px Segoe UI;
   letter-spacing: 0px;
   color: #A63A67;
   opacity: 1;
@@ -117,6 +120,7 @@ input[type=submit]:hover {
   /* text-align: center; */
   color: var(--unnamed-color-000000);
   /* font: Regular 20px/40px Segoe UI; */
+  font: normal normal normal 21px/28px Segoe UI;
   font-size: 14px;
   letter-spacing: 0px;
   color: #000000;
@@ -161,6 +165,7 @@ input[type=submit]:hover {
   
   border-radius: 10px;
   align-items: center;
+  min-width: 150px;
 }
 
 @media (max-width: 600px) {  
@@ -172,11 +177,15 @@ input[type=submit]:hover {
     align-items: center;
     
   }
+  
 }
 
 
 
 @media (min-width: 600px) {  
+  .bar-tab {
+    align-items: center;
+  }
   .image-background  {
     height: 100vh;
     flex: 1;
@@ -198,4 +207,15 @@ input[type=submit]:hover {
     text-align: center;
   }
   
+}
+.tagline {
+  font: italic normal 600 20px/35px Segoe UI;
+}
+.top-tagline {
+  
+  
+  font: normal normal normal 33px/44px Segoe UI;
+  letter-spacing: 0px;
+  color: #A63A67;
+  opacity: 1;
 }

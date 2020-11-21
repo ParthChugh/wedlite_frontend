@@ -51,12 +51,13 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='image-background d-flex flex-column' >
+    <div className='d-flex flex-column' >
       {(cities.length > 0 && categories.length >0) ?
-      <form className="d-flex justify-content-lg-center flex-column form-search" style={{zIndex: 999, paddingLeft: 20}} onSubmit={e => e.preventDefault()}>
-        <div className="tagline">Commission free wedding planning</div>
+      <form className="d-flex justify-content-lg-center flex-column bar-tab" style={{zIndex: 999, paddingLeft: 20}} onSubmit={e => e.preventDefault()}>
+        <div className="top-tagline">Wedding</div>
+        <div className="tagline"><span>Commission free wedding planning</span></div>
         <div style={{fontSize: 20}}>
-          <div className="tagline-info">Find, compare and book wedding venues and services hassle-free and commission-free</div>
+          <div className="tagline-info" style={{fontSize: 15}}>Find, compare and book wedding venues<br/> and services hassle-free and commission-free</div>
         </div>
         <div className="d-flex flex-row" style={{ marginTop: 18}}>
           <Dropdown 
@@ -85,7 +86,7 @@ const SearchBar = (props) => {
             
           </button>
         </div>
-        { window.innerWidth > 550 &&
+        {/* { window.innerWidth > 550 &&
           <div>  
             <div style={{marginTop: 40, marginBottom: 40}} className="horizontal-line"><span>OR</span></div>
             <div style={{flex: 1, display: 'flex', justifyContent: 'center'}} className="class-hidden">
@@ -99,7 +100,7 @@ const SearchBar = (props) => {
               </button>
             </div>
           </div>
-        }
+        } */}
       </form> : <div />
       }
     </div>
