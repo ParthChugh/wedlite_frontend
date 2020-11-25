@@ -33,7 +33,7 @@ const FitnessForm = (props) => {
     <Layout
       showSearchBar={false}
     >
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center" style={{marginLeft: 10, marginRight: 10}}>
         <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit(loginUser)}>  
           <label className="font-size-label" style={{fontWeight: 'bold', marginTop: 20, marginBottom: 20}}>Kindly kill in the form to obtain a personalized diet from the certified dietician.</label>
           <div className="d-flex margin-10">
@@ -122,18 +122,33 @@ const FitnessForm = (props) => {
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Drinking</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
-              <select style={{borderRadius: 10}} name="sechedule" ref={register({
+              <select style={{borderRadius: 10}} name="drinking" ref={register({
                 required: true,
               })}>
                 <option value="undefined">Please choose...</option>
-              {[ 'Yes', 'No'].map(el => (
+                {['Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
               </select>
             </div>
             
           </div>
-          {errors.sechedule && <span style={{color: 'red'}}>Choose Yes/No</span>}
+          {errors.drinking && <span style={{color: 'red'}}>Choose Yes/No</span>}
+          <div className="d-flex margin-top-10">
+            <label className="font-size-label" style={{width: "30%"}}>Veg/Non-Veg</label>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
+              <select style={{borderRadius: 10}} name="veg" ref={register({
+                required: true,
+              })}>
+                <option value="undefined">Please choose...</option>
+                {['Veg', 'Non-Veg'].map(el => (
+                  <option value={el}>{el}</option>
+                ))}
+              </select>
+            </div>
+            
+          </div>
+          {errors.veg && <span style={{color: 'red'}}>Choose Yes/No</span>}
           <div className="d-flex margin-top-10">
             <label className="font-size-label" style={{width: "30%"}}>Marriage Status</label>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >

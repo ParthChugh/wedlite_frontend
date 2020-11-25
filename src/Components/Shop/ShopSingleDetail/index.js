@@ -134,7 +134,13 @@ const Home = (props) =>  {
   });
 
   const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    let data = ''
+    try {
+      data = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    } catch(error) {
+      console.log(error)
+    }
+    return data
   }
 
   const onChangePinCode = (item) => {

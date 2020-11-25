@@ -51,7 +51,7 @@ const SearchBar = (props) => {
   } 
 
   return (
-    <div className='d-flex flex-column' >
+    <div className='d-flex flex-column ' style={{zIndex: 999, marginBottom: 100}}>
       {(cities.length > 0 && categories.length >0) ?
       <form className="d-flex justify-content-lg-center flex-column bar-tab" style={{zIndex: 999, paddingLeft: 20}} onSubmit={e => e.preventDefault()}>
         <div className="top-tagline">Wedding</div>
