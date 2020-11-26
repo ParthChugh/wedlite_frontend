@@ -27,6 +27,7 @@ import PlaceOrder from './Components/PlaceOrder';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import FitnessForm from './Components/FitnessForm';
+import HoroscopeForm from './Components/HoroscopeForm';
 
 const history = createBrowserHistory();
 
@@ -184,6 +185,15 @@ export default function App() {
             <link rel="canonical" href={window.location.href} />
           </Helmet>
           <FitnessForm />
+        </Route>
+        <Route path="/horoscope">
+          <Helmet>
+            <title>Fitness</title>
+            <meta name="title" content="Fitness" />
+            <meta name="description" content="Body fitness makes life better" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+          <HoroscopeForm />
         </Route>
         <Route path="/careers">
           <Helmet>

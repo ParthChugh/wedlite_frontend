@@ -55,7 +55,7 @@
 .order-button {
   text-align: center;
   padding: 4px;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   border-radius: 5px;
   opacity: 1;
   width: 81px;

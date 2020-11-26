@@ -18,9 +18,11 @@ import { Navbar, Nav, NavDropdown, Carousel } from 'react-bootstrap';
 import Exercise from '../assets/exercise.png'
 import Gifts from '../assets/gifts.png'
 import Wedding from '../assets/wedding.png'
+import Horoscope from '../assets/horoscope.png'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ExerciseComponent from './common/ExerciseComponent'
+import HoroscopeComponent from './common/HoroscopeComponent'
 import GiftsComponent from './common/Gifts'
 
 const scrollToRef = (ref) => window.scrollTo(
@@ -647,6 +649,23 @@ const Header = (props) => {
               <ExerciseComponent />
             </div>
 
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="carousel-absolute">
+            <HoroscopeComponent />
+          </div>
+          <img
+            className="d-block w-100"
+            src={Horoscope}
+            alt="First slide"
+          />
+          {/* <Carousel.Caption className="d-flex justify-content-end"> */}
+          
+                        {/* </Carousel.Caption> */}
+          
+          <div className="carousel-search-bar">
+            <HoroscopeComponent />
+          </div>
         </Carousel.Item>
         <Carousel.Item >
           <div className="carousel-absolute">

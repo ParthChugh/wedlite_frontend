@@ -421,6 +421,13 @@ input:focus {
     width: 100%; 
     left: 0
   } 
+   .middle {
+    transition: .5s ease;
+    position: relative;
+    
+    text-align: center;
+    z-index: 999;
+  }
   
   /* .carousel-search-bar {
     width: 100%;  */
@@ -556,7 +563,18 @@ input:focus {
   .width-container-place-order {
     width: 20%;
   }
-  
+ 
+  .middle {
+    transition: .5s ease;
+    
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 999;
+  }
 }
 
 
@@ -567,4 +585,23 @@ input:focus {
   color: #000000;
   opacity: 1;
   
+}
+
+.box {
+  width: 50%;
+  height: auto;
+  max-height: 50em;
+  align-items: center;
+  display:block;
+  margin:auto;
+}
+
+
+.submitted-text {
+  text-align: center;
+
+  font: normal normal 600 20px/30px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
 }
