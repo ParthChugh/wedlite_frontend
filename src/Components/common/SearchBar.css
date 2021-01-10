@@ -219,3 +219,37 @@ input[type=submit]:hover {
   color: #A63A67;
   opacity: 1;
 }
+
+.wedding-invitation {
+  
+  letter-spacing: 0px;
+  color: #A63A67;
+  opacity: 1;
+}
+.scan-qr-code {
+  margin-top: 30px;
+  text-align: center;
+  font: normal normal normal 17px/24px Segoe UI;
+  letter-spacing: 0.26px;
+  color: #A63A67;
+  opacity: 1;
+}
+.icon-outer {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 12px #00000021;
+  opacity: 1;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 0px 0px 10px 0px;
+  /* margin-right: 10px; */
+}
+.icon-container {
+  margin: 10px 20px 20px 0px;
+}
+.text-wedding {
+  text-align: center;
+  font: normal normal normal 10px/10px Segoe UI;
+  letter-spacing: 0.21px;
+  color: #A63A67;
+  opacity: 1;
+}

@@ -655,13 +655,19 @@ const Header = (props) => {
               <InvitationComponent />
             </div>
             <img
+              // style={{width: "60%"}}
               className="invitation-dashboard"
               src={Invitation}
               alt="First slide"
             />
+            {/* <Carousel.Caption className="d-flex justify-content-end"> */}
+            
+                          {/* </Carousel.Caption> */}
+            
             <div className="carousel-search-bar">
               <InvitationComponent />
             </div>
+
         </Carousel.Item>
         {/* <Carousel.Item>
           <div className="carousel-absolute">

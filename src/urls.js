@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000"; 
+const BASE_URL = "https://api.wedlite.in:5001"; 
 const REGISTER_API = `${BASE_URL}/api/users/`
 const LOGIN_API = `${BASE_URL}/api/users/login/`
 const LOGOUT = `${BASE_URL}/api/users/logout/`

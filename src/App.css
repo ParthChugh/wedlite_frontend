@@ -421,6 +421,7 @@ input:focus {
     width: 100%; 
     left: 0
   } 
+  
    .middle {
     transition: .5s ease;
     position: relative;
@@ -533,6 +534,7 @@ input:focus {
   .home-container {
     margin: 0px 40px 0px 40px;
   }
+  
   .category {
     flex: 0 0 auto;
     width: 20rem; 
@@ -575,6 +577,7 @@ input:focus {
     text-align: center;
     z-index: 999;
   }
+  
 }
 
 
@@ -604,4 +607,7 @@ input:focus {
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
+}
+.invitation-dashboard {
+  max-width: 70%; 
 }
