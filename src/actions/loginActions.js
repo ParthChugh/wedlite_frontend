@@ -382,7 +382,7 @@ export const updateFitnessForm  = ({fields, callbackFunction}) => {
           'response', 'token'
         ])}`,
       },
-      body: fields,
+      body: {extra_fields: fields},
     })
       .then((response) => {
         console.log("response", response)

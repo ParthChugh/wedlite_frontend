@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom'
+import './styles.css';
 import {Select} from '../common/Select';
 import Layout from '../Layout';
 
