@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.2e1df7b6.chunk.css",
-    "main.js": "/static/js/main.55cb3b02.chunk.js",
-    "main.js.map": "/static/js/main.55cb3b02.chunk.js.map",
+    "main.css": "/static/css/main.700ff272.chunk.css",
+    "main.js": "/static/js/main.d86b1966.chunk.js",
+    "main.js.map": "/static/js/main.d86b1966.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.af07c6b2.js",
     "runtime-main.js.map": "/static/js/runtime-main.af07c6b2.js.map",
     "static/css/2.6ffba638.chunk.css": "/static/css/2.6ffba638.chunk.css",
-    "static/js/2.9cbf2f87.chunk.js": "/static/js/2.9cbf2f87.chunk.js",
-    "static/js/2.9cbf2f87.chunk.js.map": "/static/js/2.9cbf2f87.chunk.js.map",
+    "static/js/2.c6a6e1ff.chunk.js": "/static/js/2.c6a6e1ff.chunk.js",
+    "static/js/2.c6a6e1ff.chunk.js.map": "/static/js/2.c6a6e1ff.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.cf74d5c3d6b52d5f61d09c5fdfc97ae9.js": "/precache-manifest.cf74d5c3d6b52d5f61d09c5fdfc97ae9.js",
+    "precache-manifest.8999c68c6e4d11821e49e7d9e99e96bf.js": "/precache-manifest.8999c68c6e4d11821e49e7d9e99e96bf.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.6ffba638.chunk.css.map": "/static/css/2.6ffba638.chunk.css.map",
-    "static/css/main.2e1df7b6.chunk.css.map": "/static/css/main.2e1df7b6.chunk.css.map",
-    "static/js/2.9cbf2f87.chunk.js.LICENSE.txt": "/static/js/2.9cbf2f87.chunk.js.LICENSE.txt",
+    "static/css/main.700ff272.chunk.css.map": "/static/css/main.700ff272.chunk.css.map",
+    "static/js/2.c6a6e1ff.chunk.js.LICENSE.txt": "/static/js/2.c6a6e1ff.chunk.js.LICENSE.txt",
     "static/media/Landing.jpg": "/static/media/Landing.30b61ed2.jpg",
     "static/media/Spinner.gif": "/static/media/Spinner.36a6e094.gif",
     "static/media/UploadIcon.svg": "/static/media/UploadIcon.1cedb6e9.svg",
@@ -26,7 +26,9 @@
     "static/media/all.min.css": "/static/media/fa-solid-900.8e1ed89b.woff2",
     "static/media/gifts.png": "/static/media/gifts.ec19dadd.png",
     "static/media/horoscope.png": "/static/media/horoscope.84fbab9d.png",
+    "static/media/invitation.png": "/static/media/invitation.b4670df3.png",
     "static/media/logo.png": "/static/media/logo.22ebaf92.png",
+    "static/media/maps.png": "/static/media/maps.9195e6e9.png",
     "static/media/playstore.png": "/static/media/playstore.41c8571e.png",
     "static/media/sketch.png": "/static/media/sketch.008c5177.png",
     "static/media/website.jpg": "/static/media/website.6931b35a.jpg",
@@ -36,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.af07c6b2.js",
     "static/css/2.6ffba638.chunk.css",
-    "static/js/2.9cbf2f87.chunk.js",
-    "static/css/main.2e1df7b6.chunk.css",
-    "static/js/main.55cb3b02.chunk.js"
+    "static/js/2.c6a6e1ff.chunk.js",
+    "static/css/main.700ff272.chunk.css",
+    "static/js/main.d86b1966.chunk.js"
   ]
 }
