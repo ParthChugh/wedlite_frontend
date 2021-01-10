@@ -17,6 +17,7 @@ import {
   VENUE_CATEGORY_CITY,
   LOGOUT,
   CLAIM_BUSINESS,
+  FITNESS_API
   } from '../urls';
 
 export function updateLoginResponse(response) {
@@ -361,6 +362,31 @@ export const likeDislikeBusiness  = ({placeId, like, callbackFunction}) => {
     })
       .then((response) => {
         callbackFunction()
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const updateFitnessForm  = ({fields, callbackFunction}) => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    if(auth.get('response')) {
+      callbackFunction(false);
+    }
+    fetch(`${FITNESS_API}submit-form/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+      body: fields,
+    })
+      .then((response) => {
+        console.log("response", response)
+        callbackFunction(response)
       })
       .catch(() => {
     });

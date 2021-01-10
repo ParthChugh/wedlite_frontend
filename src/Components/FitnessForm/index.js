@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import * as LoginActionCreators from '../../actions/loginActions';
+import { toast, ToastContainer} from 'react-toastify';
 import {bindActionCreators} from 'redux';
 import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom'
+import {Select} from '../common/Select';
 import Layout from '../Layout';
+
 
 const FitnessForm = (props) => {
   const history = useHistory();
@@ -13,12 +16,22 @@ const FitnessForm = (props) => {
   const handleGoClick = () => {
 
   }
-  const { auth, LoginActions } = props;
+  const { auth, LoginActions: {updateFitnessForm} } = props;
 
   const { register, handleSubmit, errors } = useForm()
-  const loginUser = () => {
+  const callbackFunction = (data) => {
+    if(data) {
+      history.push('/login')
+    } else {
+      toast("Your request has been submitted, we will reach out to you as soon as possible");
+      history.push('/')
+    }
 
   }
+  const loginUser = (data) => {
+    updateFitnessForm({fields: data, callbackFunction})
+  }
+
   const bloodGroups = [
     "A RhD positive (A+)",
     "A RhD negative (A-)",
@@ -84,10 +97,11 @@ const FitnessForm = (props) => {
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} >
               {/* <input name="blood" type="tel"  tabIndex="1"  className="form-control" style={{borderRadius: 10}} placeholder="5.5" ref={
                 /> */}
-                <select name="gender" placeholder="Yes" ref={register({
+                
+                <select name="blood" placeholder="Yes" ref={register({
                   required: true,
                 })}>
-                  <option value="undefined">Please choose...</option>
+                  
                   {bloodGroups.map(el => (
                     <option value={el}>{el}</option>
                   ))}
@@ -111,7 +125,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="smoking" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
                 {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -125,7 +139,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="drinking" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
                 {['Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -140,7 +154,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="veg" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
                 {['Veg', 'Non-Veg'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -155,7 +169,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="marriage" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
               {[ 'Single', 'Married'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -170,7 +184,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="asthama" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
               {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -184,7 +198,7 @@ const FitnessForm = (props) => {
              <select style={{borderRadius: 10}} name="diabetes" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
               {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}
@@ -198,7 +212,7 @@ const FitnessForm = (props) => {
               <select style={{borderRadius: 10}} name="diabetes" ref={register({
                 required: true,
               })}>
-                <option value="undefined">Please choose...</option>
+                
                 {[ 'Yes', 'No'].map(el => (
                   <option value={el}>{el}</option>
                 ))}

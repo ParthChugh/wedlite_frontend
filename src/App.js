@@ -52,6 +52,13 @@ const App = (props) => {
   const isLoggedIn = auth.get('isLoggedIn');
   const [state, updateState] = useState(false);
   const [value, setValue] = React.useState(0);
+  const [categoryHover, setCategoryHover] = React.useState({show: false, category: -1});
+
+  const categoriesList = [
+    {id: "marble", name: "Exquisite marble articles", subList: [{name: ""}, {}, {}]},
+    {id: "wooden", name: "Wooden articles", subList: [{}, {}, {}]},
+    {id: "epoxy", name: "Epoxy articles", subList: [{}, {}, {}]}
+  ]
 
   useEffect(()=> {
     fetchPopularVenues(1);
@@ -108,7 +115,7 @@ const App = (props) => {
       handleSearch={handleSearch}
     >        
       <div className="d-flex flex-column" >
-        <ToastContainer />
+        <ToastContainer />    
           <div >
             <div className="popular-selection" >
               Popular Selections
@@ -129,6 +136,7 @@ const App = (props) => {
             </Tabs>
             
           </div>
+          
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={value}

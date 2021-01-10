@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.wedlite.in:5001"; 
+const BASE_URL = "http://localhost:8000"; 
 const REGISTER_API = `${BASE_URL}/api/users/`
 const LOGIN_API = `${BASE_URL}/api/users/login/`
 const LOGOUT = `${BASE_URL}/api/users/logout/`
@@ -18,6 +18,7 @@ const PAYMENT_GATEWAY = `${BASE_URL}/ecommerce/payments/`
 const PAYMENT_GATEWAY_SUCCESS = `${BASE_URL}/ecommerce/payments/confirm/`
 const ADDRESS_CREATE = `${BASE_URL}/ecommerce/delivery-address/`
 const SEARCH_API = `${BASE_URL}/search/`
+const FITNESS_API = `${BASE_URL}/fitness/`
 
 export {
   BASE_URL,
@@ -39,5 +40,6 @@ export {
   PAYMENT_GATEWAY,
   PAYMENT_GATEWAY_SUCCESS,
   SEARCH_API,
-  ADDRESS_CREATE
+  ADDRESS_CREATE,
+  FITNESS_API
 }
