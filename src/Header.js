@@ -634,41 +634,7 @@ const Header = (props) => {
         {showSearchBar && 
         <Carousel>
           
-          {/* <Carousel.Item>
-            <div className="carousel-absolute">
-              <ExerciseComponent />
-            </div>
-            <img
-              className="d-block w-100"
-              src={Exercise}
-              alt="First slide"
-            />
-            
-            
-            <div className="carousel-search-bar">
-              <ExerciseComponent />
-            </div>
-
-        </Carousel.Item> */}
-          <Carousel.Item style={{backgroundColor: 'rgb(248,248,250)'}}>
-            <div className="carousel-absolute">
-              <InvitationComponent />
-            </div>
-            <img
-              // style={{width: "60%"}}
-              className="invitation-dashboard"
-              src={Invitation}
-              alt="First slide"
-            />
-            {/* <Carousel.Caption className="d-flex justify-content-end"> */}
-            
-                          {/* </Carousel.Caption> */}
-            
-            <div className="carousel-search-bar">
-              <InvitationComponent />
-            </div>
-
-        </Carousel.Item>
+          
         {/* <Carousel.Item>
           <div className="carousel-absolute">
             <HoroscopeComponent />
