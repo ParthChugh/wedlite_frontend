@@ -15,7 +15,7 @@ const InvitationComponent = (props) => {
   const history = useHistory();
   
   const handleGoClick = () => {
-    history.push('/fitness')
+    history.push('/invitation-card')
   }
   const images = [
     {image: EmailImage, text: "E-Invitation"},

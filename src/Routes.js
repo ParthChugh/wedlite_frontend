@@ -28,6 +28,7 @@ import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import FitnessForm from './Components/FitnessForm';
 import HoroscopeForm from './Components/HoroscopeForm';
+import Invitation from './Components/Invitation';
 
 const history = createBrowserHistory();
 
@@ -71,6 +72,17 @@ export default function App() {
             <link rel="canonical" href={window.location.href} />
           </Helmet>
           <Products />
+        </Route>
+        <Route path="/invitation-card">
+          <Helmet>
+            <title>Create Invitation Card</title>
+            <meta name="title" content="Create Invitation Card" />
+            <meta name="description" content="Find all neww exclusive wedding invitation cards and
+              send them via WhatsApp , Email , SMS which is
+              faster, safer and secure" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+          <Invitation />
         </Route>
         <Route path="/shop/:id">
           <ShopSingleDetail />
