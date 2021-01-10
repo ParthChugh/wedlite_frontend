@@ -635,7 +635,7 @@ const Header = (props) => {
         <Carousel>
           
           
-        {/* <Carousel.Item>
+        <Carousel.Item>
           <div className="carousel-absolute">
             <HoroscopeComponent />
           </div>
@@ -649,8 +649,8 @@ const Header = (props) => {
           <div className="carousel-search-bar">
             <HoroscopeComponent />
           </div>
-        </Carousel.Item> */}
-        {/* <Carousel.Item >
+        </Carousel.Item>
+        <Carousel.Item >
           <div className="carousel-absolute">
             <SearchBar
               executeScroll={executeScroll}
@@ -677,10 +677,10 @@ const Header = (props) => {
           </div>
           
           
-        </Carousel.Item> */}
+        </Carousel.Item>
 
         
-        {/* <Carousel.Item>
+        <Carousel.Item>
           <div className="carousel-absolute">
             <GiftsComponent />
           </div>
@@ -695,8 +695,8 @@ const Header = (props) => {
           </div>
           
           
-        </Carousel.Item> */}
-        {/* <Carousel.Item interval={500}>
+        </Carousel.Item>
+        <Carousel.Item interval={500}>
           <img
             className="d-block w-100"
             src={Landing}
@@ -717,7 +717,7 @@ const Header = (props) => {
             <h3>Third slide label</h3>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
           </Carousel.Caption>
-        </Carousel.Item> */}
+        </Carousel.Item>
       </Carousel>}
       
       </div>
