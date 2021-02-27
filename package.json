@@ -2,7 +2,7 @@
   "name": "wedlite",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://parthchugh.github.io/wedlite_frontend",
+  "homepage": "https://www.wedlite.in",
   "dependencies": {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
