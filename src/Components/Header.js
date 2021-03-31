@@ -25,6 +25,7 @@ import {connect} from 'react-redux';
 import ExerciseComponent from './common/ExerciseComponent'
 import InvitationComponent from './common/InvitationComponent'
 import HoroscopeComponent from './common/HoroscopeComponent'
+import FashionComponent from './common/FashionComponent'
 import GiftsComponent from './common/Gifts'
 
 const scrollToRef = (ref) => window.scrollTo(
@@ -634,7 +635,7 @@ const Header = (props) => {
         {showSearchBar && 
         <Carousel>
           
-          {/* <Carousel.Item>
+          <Carousel.Item>
             <div className="carousel-absolute">
               <ExerciseComponent />
             </div>
@@ -649,7 +650,7 @@ const Header = (props) => {
               <ExerciseComponent />
             </div>
 
-        </Carousel.Item> */}
+        </Carousel.Item>
           <Carousel.Item style={{backgroundColor: 'rgb(248,248,250)'}}>
             <div className="carousel-absolute">
               <InvitationComponent />
@@ -663,7 +664,7 @@ const Header = (props) => {
               <InvitationComponent />
             </div>
         </Carousel.Item>
-        {/* <Carousel.Item>
+        <Carousel.Item>
           <div className="carousel-absolute">
             <HoroscopeComponent />
           </div>
@@ -677,8 +678,8 @@ const Header = (props) => {
           <div className="carousel-search-bar">
             <HoroscopeComponent />
           </div>
-        </Carousel.Item> */}
-        {/* <Carousel.Item >
+        </Carousel.Item>
+        <Carousel.Item >
           <div className="carousel-absolute">
             <SearchBar
               executeScroll={executeScroll}
@@ -705,10 +706,10 @@ const Header = (props) => {
           </div>
           
           
-        </Carousel.Item> */}
+        </Carousel.Item>
 
         
-        {/* <Carousel.Item>
+        <Carousel.Item>
           <div className="carousel-absolute">
             <GiftsComponent />
           </div>
@@ -723,29 +724,23 @@ const Header = (props) => {
           </div>
           
           
-        </Carousel.Item> */}
-        {/* <Carousel.Item interval={500}>
-          <img
-            className="d-block w-100"
-            src={Landing}
-            alt="Third slide"
-          />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
+          <div className="carousel-absolute">
+            <FashionComponent />
+          </div>
           <img
             className="d-block w-100"
-            src={Landing}
-            alt="Third slide"
+            src={Gifts}
+            alt="First slide"
           />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item> */}
+          
+          <div className="carousel-search-bar">
+            <FashionComponent />   
+          </div>
+          
+          
+        </Carousel.Item>
       </Carousel>}
       
       </div>

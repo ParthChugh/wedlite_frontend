@@ -29,6 +29,7 @@ import SignUp from './Components/SignUp';
 import FitnessForm from './Components/FitnessForm';
 import HoroscopeForm from './Components/HoroscopeForm';
 import Invitation from './Components/Invitation';
+import Fashion from './Components/Fashion';
 
 const history = createBrowserHistory();
 
@@ -77,12 +78,21 @@ export default function App() {
           <Helmet>
             <title>Create Invitation Card</title>
             <meta name="title" content="Create Invitation Card" />
-            <meta name="description" content="Find all neww exclusive wedding invitation cards and
+            <meta name="description" content="Find all new exclusive wedding invitation cards and
               send them via WhatsApp , Email , SMS which is
               faster, safer and secure" />
             <link rel="canonical" href={window.location.href} />
           </Helmet>
           <Invitation />
+        </Route>
+        <Route path="/fashion">
+          <Helmet>
+            <title>Fashion</title>
+            <meta name="title" content="Fashion" />
+            <meta name="description" content="Have a wedding outfit in mind? Let us help you find it" />
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+          <Fashion />
         </Route>
         <Route path="/shop/:id">
           <ShopSingleDetail />
