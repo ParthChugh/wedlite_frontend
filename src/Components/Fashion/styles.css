@@ -1,0 +1,762 @@
+.main-container {
+    display: flex;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    height: 100%;
+}
+
+.sider {
+    width: 30%;
+    height: 700px;
+    padding: 70px;
+    background: #A63A67 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    opacity: 1;
+}
+
+.sider-contents {
+    width: 300px;
+    height: 37px;
+    margin-top: 35px;
+    text-align: left;
+    font: normal normal 600 20px/37px Segoe UI;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.contents {
+    position: relative;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.head-content {
+    position: relative;
+    width: 834px;
+    height: 10px;
+    text-align: center;
+    font: normal normal bold 30px/150px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.img-content {
+    position: relative;
+    margin-top: 130px;
+    margin-left: 180px;
+    background: transparent 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.footer-content {
+    position: relative;
+    width: 366px;
+    height: 37px;
+    margin-top: 20px;
+    margin-left: 270px;
+    text-align: left;
+    font: normal normal 600 45px/76px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.footer-texts {
+    width: 400px;
+    height: 74px;
+    margin-top: 50px;
+    margin-left: 220px;
+    text-align: center;
+    font: normal normal normal 20px/37px Segoe UI;
+    letter-spacing: 0px;
+    color: #474747;
+}
+
+.get-started-btn {
+    height: 40px;
+    width: 100px;
+    padding: 5px;
+    border-radius: 30px;
+    margin-top: 60px;
+    margin-left: 350px;
+    text-align: center;
+    font: normal normal normal 15px/10px Sego;
+    color: #FFFFFF;
+    background: #A63A67 0% 0% no-repeat padding-box;
+    border-radius: 50px;
+    opacity: 1;
+}
+.personal-info-contents {
+    display: grid;
+}
+
+.personal-info-head-content {
+    position: relative;
+    width: 834px;
+    height: 10px;
+    text-align: center;
+    font: normal normal bold 30px/150px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.personal-info-input {
+    width: 300px;
+    height: 40px;
+    margin-top: 15px;
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 38px;
+}
+
+.personal-info-btn {
+    justify-self: center;
+    margin-top: -80px;
+}
+
+.personal-info-back-btn {
+    width: 130px;
+    height: 45px;
+    border: 0.4000000059604645px solid #A53A66;
+    border-radius: 38px;
+}
+
+.personal-info-next-btn {
+    width: 130px;
+    height: 45px;
+    color: #FFF;
+    background: #A63A67 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 38px;
+}
+
+.choose-occasion-contents {
+    display: grid;
+}
+
+.occasion-head-content {
+    width: 834px;
+    text-align: center;
+    margin-top: 50px;
+    font: normal normal bold 23px/30px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.occasion-select-row-1 {
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+
+.occasion-select-row-2 {
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+
+.occasion-img {
+    display: flex;
+    width: 160px;
+    height: 155px;
+    margin: 20px;
+    padding: 20px;
+    justify-items: center;
+    box-shadow: 0px 3px 6px #00000021;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 21px;    
+}
+
+/* .occasion-img {
+    padding: 10px;
+    height: auto;
+    width: auto;
+    margin-left: 25px;
+    align-self: center;
+    justify-self: center;
+    /* width: 200px; */
+/* } */
+
+.occasion-choose-btn {
+    margin-top: 50px;
+    margin-left: 280px;
+}
+
+.occasion-choose-back-btn {
+    width: 130px;
+    height: 45px;
+    border: 0.4000000059604645px solid #A53A66;
+    border-radius: 38px;
+}
+
+.occasion-choose-next-btn {
+    width: 130px;
+    height: 45px;
+    color: #FFF;
+    background: #A63A67 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 38px;
+}
+
+.requirements-head-content {
+    width: 750px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 100px;
+    font: normal normal bold 23px/30px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.requirements-form {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 100px;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.requirements {
+    width: 500px;
+    height: 200px;
+    padding: 10px;
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 21px;
+}
+
+.img-input-requirements {
+    width: 180px;
+    height: 200px;
+    padding: 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 15px #0000000D;
+    border-radius: 21px;
+}
+
+.requirements-btn {
+    margin-top: 70px;
+    margin-left: 300px;
+}
+
+.requirements-back-btn {
+    width: 130px;
+    height: 45px;
+    border: 0.4000000059604645px solid #A53A66;
+    border-radius: 38px;
+}
+
+.requirements-next-btn {
+    width: 130px;
+    height: 45px;
+    color: #FFF;
+    background: #A63A67 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid #707070;
+    border-radius: 38px;       
+}
+
+.payments {
+    display: grid;
+    width: 1000px;
+    justify-items: center;
+}
+
+.payment-head-content {
+    width: 800px;
+    height: 47px;
+    text-align: center;
+    margin-top: 50px;
+    font: normal normal bold 35px/47px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.payment-head2-content {
+    width: 800px;
+    height: 30px;
+    text-align: center;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    font: normal normal normal 22px/30px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.payment-total {
+    display: flex;
+    width: 750px;
+    height: 70px;
+    margin-top: -50px; 
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 17px;
+}
+
+.payment-title {
+    width: 210px;
+    height: 33px;
+    padding: 20px;
+    text-align: left;
+    font: normal normal 600 17px/33px Segoe UI;
+    letter-spacing: 0px;
+    color: #262626;
+}
+
+.payment-amount {
+    width: 159px;
+    height: 79px;
+    text-align: right;
+    margin-left: 48%;
+    font: normal normal normal 35px/65px Segoe UI;
+    letter-spacing: 0px;
+    color: #A63A67;
+}
+
+.payment-type-container {
+    display: flex;  
+    margin-top: -30px;
+} 
+
+.payment-type {
+    width: 401px;
+    height: 250px;
+    margin-right: 22px;
+    padding: 15px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 21px;
+}
+
+.payment-type-title {
+    width: 251px;
+    height: 33px;
+    text-align: left;
+    font: normal normal 600 17px/33px Segoe UI;
+    letter-spacing: 0px;
+    color: #262626;
+}
+
+.payment-type-options {
+    margin: 30px;
+    margin-top: 50px;
+    display: flex;
+}
+
+.card {
+    display: flex;
+    width: 90px;
+    height: 58px;
+    margin-left: 10px;
+    padding: 8px;
+    justify-content: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px;
+}
+
+.card-img {
+    height: 10px;
+    width: 3px;
+}
+
+.payment-cards {
+    width: 296px;
+    height: 250px;
+    margin-left: 22px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 21px;
+}
+
+.payment-cards-title {
+    width: 251px;
+    height: 33px;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 30px;
+    font: normal normal 600 17px/33px Segoe UI;
+    letter-spacing: 0px;
+    color: #262626;
+}
+
+@media only screen and (max-width: 600px) {
+    .main-container {
+        display: grid;
+        background: #F8F8F8 0% 0% no-repeat padding-box;
+        justify-items: center;
+        height: 100%;
+    }
+    
+    .sider {
+        display: inline-flexbox;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        background: #A63A67 0% 0% no-repeat padding-box;
+        border: 1px solid #707070;
+        opacity: 1;
+    }
+    
+    .sider-contents {
+        width: auto;
+        height: 17px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: left;
+        font: normal normal 10px/10px Segoe UI;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+    }
+    
+    .contents {
+        position: relative;
+    }
+    
+    .head-content {
+        position: relative;
+        width: 834px;
+        height: 10px;
+        margin-left: 0px;
+        margin-top: 10px;
+        text-align: left;
+        font: normal normal bold 14px/50px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .img-content {
+        position: relative;
+        margin-top: 50px;
+        margin-left: 0px;
+        background: transparent 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+    
+    .footer-content {
+        position: relative;
+        width: 300px;
+        height: 15px;
+        margin-top: 5px;
+        margin-left: -20px;
+        text-align: center;
+        font: normal normal 600 20px/76px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .footer-texts {
+        width: 400px;
+        height: 74px;
+        margin-top: 50px;
+        margin-left: -70px;
+        text-align: center;
+        font: normal normal normal 10px/10px Segoe UI;
+        letter-spacing: 0px;
+        color: #474747;
+    }
+
+    .get-started-btn {
+        height: 30px;
+        width: 60px;
+        padding: 5px;
+        border-radius: 30px;
+        margin-left: 100px;
+        margin-top: 0px;
+        margin-bottom: 30px;
+        text-align: center;
+        font: normal normal normal 10px/7px Sego;
+        color: #FFFFFF;
+        background: #A63A67 0% 0% no-repeat padding-box;
+        border-radius: 50px;
+        opacity: 1;
+    }
+    
+    .personal-info-contents {
+        display: grid;
+        justify-items:self-start;
+    }
+
+    .personal-info-head-content {
+        position: relative;
+        width: 360px;
+        height: 10px;
+        text-align: center;
+        font: normal normal bold 13px/50px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+
+    form.personal-info-contents {
+        display: grid;
+    }
+
+    #p-i-input-1 {
+        margin-left: 77px;
+    }
+
+    .personal-info-input {
+        width: 190px;
+        height: 40px;
+        margin-top: 8px;
+        margin-left: 80px;
+        padding: 10px;
+        background: #F1F1F1 0% 0% no-repeat padding-box;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 38px;
+    }
+    
+    .personal-info-btn {
+        justify-self: flex-start;
+        margin-top: 30px;
+        margin-left: 25px;
+    }
+
+    .personal-info-back-btn {
+        /* position: relative; */
+        width: 70px;
+        height: 25px;
+        margin-left: 60px;
+        border: 0.4000000059604645px solid #A53A66;
+        border-radius: 38px;
+    }
+    
+    .personal-info-next-btn {
+        width: 70px;
+        height: 25px;
+        color: #FFF;
+        background: #A63A67 0% 0% no-repeat padding-box;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 38px;
+    }
+    
+    .choose-occasion-contents {
+        display: grid;
+        margin-left: -245px;
+        justify-self: center;
+    }
+    
+    .occasion-head-content {
+        width: 834px;
+        text-align: center;
+        font: normal normal bold 10px/9px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .occasion-select-row-1 {
+        display: flex;
+        margin: 20px;
+        justify-content: center;
+    }
+    
+    .occasion-select-row-2 {
+        display: flex;
+        margin: 20px;
+        justify-content: center;
+    }
+    
+    .occasion-img {
+        width: 90px;
+        height: 85px;
+        margin: 10px;
+        align-items: flex-end;
+        box-shadow: 0px 3px 6px #00000021;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 21px;    
+    }
+    
+    .occasion-choose-btn {
+        margin-bottom: 20px;
+    }
+
+    .occasion-choose-back-btn {
+        width: 70px;
+        height: 25px;
+        margin-left: 60px;
+        border: 0.4000000059604645px solid #A53A66;
+        border-radius: 38px;
+    }
+    
+    .occasion-choose-next-btn {
+        width: 70px;
+        height: 25px;
+        color: #FFF;
+        background: #A63A67 0% 0% no-repeat padding-box;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 38px;
+    }
+
+    .requirements-head-content {
+        width: 340px;
+        text-align: center;
+        margin-top: 50px;
+        margin-left: 10px;
+        font: normal normal bold 14px/20px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+
+    .requirements-form {
+        display: flex;
+        margin-top: 50px;
+        margin-left: 10px;
+        justify-content: center;
+        column-gap: 10px;
+    }
+    
+    .requirements {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        background: #F1F1F1 0% 0% no-repeat padding-box;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 21px;
+    }
+    
+    .img-input-requirements {
+        width: 100px;
+        height: 200px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 15px #0000000D;
+        border-radius: 21px;
+    }
+        
+    .requirements-btn {
+        margin: 30px;
+    }
+
+    .requirements-back-btn {
+        width: 70px;
+        height: 25px;
+        margin-left: 60px;
+        border: 0.4000000059604645px solid #A53A66;
+        border-radius: 38px;
+    }
+
+    .requirements-next-btn {
+        width: 70px;
+        height: 25px;
+        color: #FFF;
+        background: #A63A67 0% 0% no-repeat padding-box;
+        border: 0.4000000059604645px solid #707070;
+        border-radius: 38px;       
+    }
+
+    .payments {
+        display: grid;
+        width: 360px;
+        justify-items: center;
+    }
+    
+    .payment-head-content {
+        width: 300px;
+        height: 25px;
+        text-align: center;
+        margin-top: 0px;
+        font: normal normal bold 12px/47px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .payment-head2-content {
+        width: 300px;
+        height: 25px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font: normal normal normal 10px/9px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .payment-total {
+        display: flex;
+        width: 300px;
+        height: 50px;
+        margin-top: 0px; 
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 17px;
+    }
+    
+    .payment-title {
+        width: 70px;
+        height: 20px;
+        padding: 20px;
+        text-align: left;
+        font: normal normal 600 10px/9px Segoe UI;
+        letter-spacing: 0px;
+        color: #262626;
+    }
+    
+    .payment-amount {
+        width: 159px;
+        height: 79px;
+        text-align: right;
+        margin-left: 50px;
+        font: normal normal normal 17px/50px Segoe UI;
+        letter-spacing: 0px;
+        color: #A63A67;
+    }
+    
+    .payment-type-container {
+        display: grid;  
+        margin-top: -30px;
+    } 
+    
+    .payment-type {
+        width: 300px;
+        height: 250px;
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 21px;
+    }
+    
+    .payment-type-title {
+        width: 251px;
+        height: 10px;
+        text-align: left;
+        font: normal normal 600 10px/9px Segoe UI;
+        letter-spacing: 0px;
+        color: #262626;
+    }
+    
+    .payment-type-options {
+        margin: 30px;
+        margin-top: 0px;
+        justify-items: center;
+        display: grid;
+    }
+    
+    .card {
+        width: 90px;
+        height: 50px;
+        margin-top: 10px;
+        padding: 5px;
+        justify-content: center;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 4px;
+    }
+    
+    .payment-cards {
+        width: 300px;
+        height: 250px;
+        margin-left: 22px;
+        margin-bottom: 22px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 21px;
+    }
+    
+    .payment-cards-title {
+        width: 251px;
+        height: 10px;
+        text-align: left;
+        padding: 15px;
+        font: normal normal 600 10px/9px Segoe UI;
+        letter-spacing: 0px;
+        color: #262626;
+    }
+
+    .payment-btn {
+        margin-right: 55px;        
+    }
+    
+}
