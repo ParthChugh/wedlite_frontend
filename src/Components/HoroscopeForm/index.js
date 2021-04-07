@@ -24,7 +24,6 @@ const FitnessForm = (props) => {
     console.log('inside')
     setShowIcon(true);
   }
-  console.log("window.innerWidth",window.innerWidth)
 
   return (
     <Layout

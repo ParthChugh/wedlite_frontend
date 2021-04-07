@@ -19,6 +19,7 @@ const PAYMENT_GATEWAY_SUCCESS = `${BASE_URL}/ecommerce/payments/confirm/`
 const ADDRESS_CREATE = `${BASE_URL}/ecommerce/delivery-address/`
 const SEARCH_API = `${BASE_URL}/search/`
 const FITNESS_API = `${BASE_URL}/fitness/`
+const WEDDING_INVITATION = `${BASE_URL}/wedding-invitation/`
 
 export {
   BASE_URL,
@@ -41,5 +42,6 @@ export {
   PAYMENT_GATEWAY_SUCCESS,
   SEARCH_API,
   ADDRESS_CREATE,
-  FITNESS_API
+  FITNESS_API,
+  WEDDING_INVITATION
 }

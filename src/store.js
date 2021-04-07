@@ -68,8 +68,7 @@ const persistConfig = {
   storage,
   transforms: [immutableTransform()],
   whitelist: ['auth'],
-  timeout: 10000,
-  stateReconciler: customAutoMergeLevel2,
+  timeout: 10000
 };
  
 const persistedReducer = persistReducer(persistConfig, rootReducer)
