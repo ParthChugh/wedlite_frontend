@@ -1,11 +1,17 @@
 import {fromJS} from 'immutable';
 import { 
-  UPDATE_WEDDING_CARDS, UPDATE_EVENTS, REMOVE_EVENTS
+  UPDATE_WEDDING_CARDS, 
+  UPDATE_EVENTS, 
+  REMOVE_EVENTS,
+  UPDATE_SELECTED_CARD,
+  UPDATE_PEROSONAL_DETAILS
 } from "../actions/actionTypes";
 
 const INIT_STATE = {
   invitationCards: {},
-  events: {}
+  events: {},
+  selectedCard: {},
+  personalInvitation: {}
 };
 
 const wedding = (state = fromJS(INIT_STATE) , action) => {
@@ -18,6 +24,16 @@ const wedding = (state = fromJS(INIT_STATE) , action) => {
     case UPDATE_EVENTS: {
       return state.merge({
         events: {...state.toJS().events, [action.payload.id]: action.payload},
+      });
+    }
+    case UPDATE_PEROSONAL_DETAILS: {
+      return state.merge({
+        personalInvitation: action.payload
+      });
+    }
+    case UPDATE_SELECTED_CARD: {
+      return state.merge({
+        selectedCard: action.payload,
       });
     }
     case REMOVE_EVENTS: {

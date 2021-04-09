@@ -33,9 +33,9 @@ const Payments = (props) => {
           <div className='payment-type'>
             <div className='payment-type-title'>Select payment type :</div><hr/>
             <div className='payment-type-options'>
-              <div className='card'><div>Credit Card</div></div>{/*<img className='card-img' src={card}/>*/}
-              <div className='card'><div>Debit Card</div></div>{/*<img className='card-img' src={card}/>*/}
-              <div className='card'><div>UPI</div></div>{/*<img className='card-img' src={mobile}/>*/}
+              <div className='card-fashion'><div>Credit Card</div></div>{/*<img className='card-img' src={card}/>*/}
+              <div className='card-fashion'><div>Debit Card</div></div>{/*<img className='card-img' src={card}/>*/}
+              <div className='card-fashion'><div>UPI</div></div>{/*<img className='card-img' src={mobile}/>*/}
             </div>
           </div>
           <div className='payment-cards'>

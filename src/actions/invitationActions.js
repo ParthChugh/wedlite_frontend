@@ -1,5 +1,11 @@
 import {WEDDING_INVITATION} from '../urls';
-import {UPDATE_WEDDING_CARDS, UPDATE_EVENTS, REMOVE_EVENTS} from './actionTypes';
+import {
+  UPDATE_WEDDING_CARDS, 
+  UPDATE_EVENTS, 
+  REMOVE_EVENTS,
+  UPDATE_SELECTED_CARD,
+  UPDATE_PEROSONAL_DETAILS
+} from './actionTypes';
 
 export function updateWeddingCards(response) {
   return {
@@ -11,6 +17,20 @@ export function updateWeddingCards(response) {
 export function updateEvents(response) {
   return {
     type: UPDATE_EVENTS,
+    payload: response,
+  };
+}
+
+export function handlePersonalDetils(response) {
+  return {
+    type: UPDATE_PEROSONAL_DETAILS,
+    payload: response,
+  };
+}
+
+export function updateSelectedCard(response) {
+  return {
+    type: UPDATE_SELECTED_CARD,
     payload: response,
   };
 }
@@ -36,9 +56,12 @@ export const updateInvitationInfo  = (fields, callbackFunction) => {
   } 
 }
 
-export const createGuest  = (fields, callbackFunction) => {
+export const createGuest = (fields, callbackFunction) => {
   return (dispatch, getState) => {
     const {auth} = getState();
+    console.log(fields, "fields")
+    const selectedCard = selectedCard = auth.toJS().selectedCard
+    console.log("selectedCard133113", selectedCard)
     fetch(`${WEDDING_INVITATION}guest-info-list/`, {
       method: 'POST',
       headers: {
@@ -50,7 +73,9 @@ export const createGuest  = (fields, callbackFunction) => {
       body: JSON.stringify(fields),
     })
       .then((response) => {
-        callbackFunction(response)
+        // callbackFunction(response)
+        console.log('response31143', response)
+
       })
       .catch(() => {
     });
@@ -167,12 +192,37 @@ export const selectCard = (cardId, history) => {
           'response', 'token'
         ])}`,
       },
-      body: JSON.stringify({card: cardId}),
+      body: JSON.stringify({theme_card: cardId}),
     })
       .then((response) => {
+        console.log('setSelectedCard', response)
         if(response.status === 201)  {
+          response.json().then(el => dispatch(updateSelectedCard(el)))
         } else {
           history.push('/login')
+        }
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const getSelectCard = () => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    fetch(`${WEDDING_INVITATION}select-card/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+    })
+      .then((response) => {
+        if(response.status === 200)  {
+          console.log('resposne1331', response);
+          response.json().then(el => dispatch(updateSelectedCard(el)))
         }
       })
       .catch(() => {
@@ -222,8 +272,7 @@ export const getCustomEvents = (initial) => {
           
           response.json().then((el => {
             console.log('el1331',el)
-            
-            
+
             dispatch({type: REMOVE_EVENTS, payload: {}})
             
           
@@ -261,6 +310,31 @@ export const deleteCustomEvent = (id) => {
         //     })
         //   }))  
         // }
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const submitPersonalDetails = (fields) => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    fetch(`${WEDDING_INVITATION}invitee/`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+      body: JSON.stringify(fields)
+    })
+      .then((response) => {
+        if(response.status === 201) {
+          response.json().then((el => {
+            dispatch(handlePersonalDetils(el))
+          }))  
+        }
       })
       .catch(() => {
     });
