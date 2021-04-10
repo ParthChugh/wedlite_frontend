@@ -11,7 +11,7 @@ const AddGuest = (props) => {
 
   const { register, handleSubmit, errors } = useForm()
   const { weddingEvents, InvitationActions: {createGuest}} = props;
-  
+
   return (
     <div className='add-guest'>
       <h5>Add Guest</h5>
@@ -32,10 +32,10 @@ const AddGuest = (props) => {
           <div className="flex-column d-flex margin-10" style={{ marginBottom: 10, marginRight: 10 }}>
             <label className="sub-heading-invitation" style={{ marginVertical: 20 }}>Members Invited</label>
             <div style={{ display: 'flex', flexDirection: 'column' }} >
-              <select  ref={register} name="member_invited">
-                <option value="0">Single</option>
-                <option value="1">Couple</option>
-                <option value="1">Family</option>
+              <select  ref={register} name="members_invited">
+                <option value="Single">Single</option>
+                <option value="Couple">Couple</option>
+                <option value="Family">Family</option>
               </select>
               {errors.member_invited && <span style={{ color: 'red', }}>Enter valid Members Invited</span>}
             </div>
@@ -44,7 +44,7 @@ const AddGuest = (props) => {
           <div className="flex-column d-flex margin-10" style={{ marginRight: 10 }}>
             <label className="sub-heading-invitation" >Ph-Number</label>
             <div style={{ display: 'flex', flexDirection: 'column' }} >
-              <input name="phone" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
+              <input name="phone_number" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                 register({
                   required: true,
                 })} />
@@ -80,7 +80,6 @@ const AddGuest = (props) => {
         >
           Submit
         </button>
-
       </form>
     </div>
   )

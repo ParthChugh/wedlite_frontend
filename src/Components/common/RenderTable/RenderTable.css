@@ -1,0 +1,39 @@
+/* #customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+} */
+
+
+/* tr:nth-child(even){background-color: #f2f2f2;} */
+
+tr:hover { background-color: #ddd; }
+
+.inputField {
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 15px;
+  cursor: default;
+  outline: none;
+  width: 300px;
+  -webkit-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.inputField input[type='search'],
+textarea {
+  background-color: #fff;
+  border: 0;
+  width: 300px;
+}
+
+.search {
+  width: 200;
+  border-radius: 10;
+}

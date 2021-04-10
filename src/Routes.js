@@ -65,6 +65,7 @@ export default function App() {
           </Helmet>
           <Cart />
         </Route>
+        {process.env.REACT_APP_STORE_ENABLE !== "false" && 
         <Route path="/shop/products">
           <Helmet>
             <title>Products you might like</title>
@@ -74,6 +75,7 @@ export default function App() {
           </Helmet>
           <Products />
         </Route>
+        }
         <Route path="/invitation-card">
           <Helmet>
             <title>Create Invitation Card</title>
@@ -94,12 +96,17 @@ export default function App() {
           </Helmet>
           <Fashion />
         </Route>
+        {process.env.REACT_APP_STORE_ENABLE !== "false" && 
         <Route path="/shop/:id">
           <ShopSingleDetail />
         </Route>
-        <Route path="/ecommerce/payments/confirm">
-          <ConfirmOrder />
-        </Route>
+        }
+        {process.env.REACT_APP_STORE_ENABLE !== "false" && 
+          <Route path="/ecommerce/payments/confirm">
+            <ConfirmOrder />
+          </Route>
+        }
+        {process.env.REACT_APP_STORE_ENABLE !== "false" && 
         <Route path="/shop">
           <Helmet>
             <title>Categories</title>
@@ -109,6 +116,7 @@ export default function App() {
           </Helmet>
           <Shop />
         </Route>
+        }
         <Route path="/blog">
           <Helmet>
             <title>What is WedLite?</title>
@@ -178,9 +186,13 @@ export default function App() {
             slug="about-us"
           />
         </Route>
+        {
+        process.env.REACT_APP_STORE_ENABLE !== "false" && 
         <Route path="/place-order">
           <PlaceOrder />
         </Route>
+        }
+        
         <Route path="/login">
           <Helmet>
             <title>Login</title>

@@ -303,16 +303,7 @@ const Header = (props) => {
   const header = () => (
       <div>
       {  
-      <Navbar fluid expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" style={{
-        width: '100%', 
-        padding: 5, 
-        paddingLeft:20, 
-        paddingRight: 20,
-        alignItems: 'center', 
-        top: 0, 
-        display: 'flex', 
-        flex: 1,
-        zIndex:9999,}}>
+      <Navbar fluid expanded={expanded}  className="ml-auto" collapseOnSelect expand="lg"  variant="light" >
         <Navbar.Toggle onClick={toggleDrawer(true)}  aria-controls="basic-navbar-nav" />
         
         <Navbar.Brand onClick={()=> history.push('/') } style={{cursor: 'pointer', marginLeft: 20, display: "inline-block"}}>
@@ -326,9 +317,10 @@ const Header = (props) => {
           Categories
         </Nav.Link> */}
         
-        {searchAnything()}
+        {process.env.REACT_APP_STORE_ENABLE !== "false" && searchAnything()}
         { !isLoggedIn ?
         <Navbar.Collapse id="basic-navbar-nav" style={{paddingTop: 20, paddingBottom: 20}}>
+          <Navbar.Toggle onClick={toggleDrawer(true)}  aria-controls="basic-navbar-nav" />
           <Nav inverse className="ml-auto" style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>
             <Nav.Link onClick={() => {
               history.push('/vendor-registration')
@@ -339,12 +331,15 @@ const Header = (props) => {
             >
               WedLite for Business
             </Nav.Link>
-            <Nav.Link className="text header-color" onClick={() => {
-              history.push('/shop')
-              setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
-              Shop on Wedlite
-            </Nav.Link>
+            {process.env.REACT_APP_STORE_ENABLE !== "false" && 
+              <Nav.Link className="text header-color" onClick={() => {
+                history.push('/shop')
+                setExpanded(false)
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                Shop on Wedlite
+              </Nav.Link>
+              }
+            
             {/* <Nav.Link
             className="text header-color"
             onClick={() => {
@@ -391,12 +386,15 @@ const Header = (props) => {
               }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Home
             </Nav.Link>
-            <Nav.Link className="text header-color" onClick={() => {
-              history.push('/shop')
-              setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
-              Shop on Wedlite
-            </Nav.Link>
+            {process.env.REACT_APP_STORE_ENABLE !== "false" &&
+              <Nav.Link className="text header-color" onClick={() => {
+                history.push('/shop')
+                setExpanded(false)
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                Shop on Wedlite
+              </Nav.Link>
+            }
+            
             <Nav.Link className="text header-color" onClick={() => {
               history.push('/cart')
               setExpanded(false)
@@ -441,7 +439,8 @@ const Header = (props) => {
         }
         
         { !isLoggedIn ?
-        <Drawer open={state} onClose={toggleDrawer(false)}>
+          <Drawer open={state} onClose={toggleDrawer(false)}>
+            <Navbar.Toggle onClick={toggleDrawer(true)}  aria-controls="basic-navbar-nav" />
           <div>
             <button 
               className="blank-button top-option"
@@ -473,7 +472,7 @@ const Header = (props) => {
           </div>
           <Divider />
           
-          <div style={{color: '#707070', marginLeft: 10, fontSize: 12, fontWeight: 'bold', marginTop: 10}} className="header-color margin-left-right ">
+          {/* <div style={{color: '#707070', marginLeft: 10, fontSize: 12, fontWeight: 'bold', marginTop: 10}} className="header-color margin-left-right ">
             Categories
           </div>
           <Nav.Link onClick={() => {
@@ -502,7 +501,7 @@ const Header = (props) => {
             className="header-color margin-left-right "
           >
             Epoxy articles
-          </Nav.Link>          
+          </Nav.Link>           */}
           <Divider />
           <div style={{color: '#707070', marginLeft: 10, fontSize: 12, fontWeight: 'bold', marginTop: 10}} className="header-color margin-left-right ">
             More from Wedlite
@@ -516,12 +515,15 @@ const Header = (props) => {
           >
             WedLite for Business
           </Nav.Link>
-          <Nav.Link className="text header-color margin-left-right" onClick={() => {
-            history.push('/shop')
-            setExpanded(false)
-            }}  style={{cursor:'pointer',fontSize: NORMAL}}>
-            Shop on Wedlite
-          </Nav.Link>
+          {
+          process.env.REACT_APP_STORE_ENABLE !== "false" &&
+            <Nav.Link className="text header-color margin-left-right" onClick={() => {
+              history.push('/shop')
+              setExpanded(false)
+              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+              Shop on Wedlite
+            </Nav.Link>
+          }
 
           <Divider />
           <Nav.Link className="text header-color margin-left-right" onClick={() => {
@@ -572,12 +574,15 @@ const Header = (props) => {
               }}  style={{cursor:'pointer',fontSize: NORMAL}}>
               Home
             </Nav.Link>
-            <Nav.Link className="text header-color margin-left-right" onClick={() => {
-              history.push('/shop')
-              setExpanded(false)
-              }}  style={{cursor:'pointer',fontSize: NORMAL}}>
-              Shop on Wedlite
-            </Nav.Link>
+            {process.env.REACT_APP_STORE_ENABLE !== "false" && 
+              <Nav.Link className="text header-color margin-left-right" onClick={() => {
+                history.push('/shop')
+                setExpanded(false)
+                }}  style={{cursor:'pointer',fontSize: NORMAL}}>
+                Shop on Wedlite
+              </Nav.Link>
+            }
+            
             <Nav.Link className="text header-color margin-left-right" onClick={() => {
               history.push('/cart')
               setExpanded(false)
