@@ -8,14 +8,18 @@ import { connect } from 'react-redux';
 
 
 const EnterDetails = (props) => {
-  const { weddingEvents ,invitation: { selectedCard, personalInvitation }, InvitationActions: {handlePersonalDetils, addEvent, deleteCustomEvent, submitPersonalDetails}, children} = props;
-  console.log('personalInvitation1331', personalInvitation)
+  const { card, weddingEvents ,invitation: { selectedCard, personalInvitation }, InvitationActions: {handlePersonalDetils, addEvent, deleteCustomEvent, submitPersonalDetails, getPeronalDetails, getCustomEvents, getWeddingEvents}, children} = props;
   const { register, handleSubmit, errors } = useForm()
   const [state, setState] = useState({})
   const [errorsInvitation, setErrors] = useState({})
-   const personalDetailsUpdate = (props) => {
+  const personalDetailsUpdate = (props) => {
     submitPersonalDetails({ ...props, grand_event: selectedCard.id })
   }
+  useEffect(() => {
+    getCustomEvents(selectedCard.id)
+    // getPeronalDetails(card)
+    getWeddingEvents(selectedCard.id)
+  },[])
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -24,6 +28,7 @@ const EnterDetails = (props) => {
 
   const handleSubmitInvitation = (event) => {
     event.preventDefault();
+    event.target.reset()
     const keys = ['name', 'date', 'time', 'venue', 'venue_address']
     let errorsInvitation = {}
     keys.forEach(el => {
@@ -35,8 +40,7 @@ const EnterDetails = (props) => {
     
     setErrors(errorsInvitation);
     if (Object.values(errorsInvitation).length === 0) {
-      console.log('e133131', state)
-      addEvent(state)
+      addEvent({...state, grand_event: selectedCard.id}, selectedCard.id)
     } else {
       return;
     }
@@ -80,7 +84,7 @@ const EnterDetails = (props) => {
             </p>
           <div className="invitation-details">
             {Object.values(personalInvitation).length === 0 ?
-              <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit(personalDetailsUpdate)}>
+              <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit((data, e) => {personalDetailsUpdate(data);  e.target.reset()})}>
                 <label className="font-size-label" style={{ fontWeight: 'bold', marginVertical: 20 }}>Personal Details.</label>
 
                 <div>
@@ -153,7 +157,7 @@ const EnterDetails = (props) => {
               <div>
                 {Object.keys(el).map(newel => (`${capitalize(newel)}: ${el[newel]}\n`)).join()}
               </div>
-              <button onClick={() => { deleteCustomEvent(el.id) }} className='remove-event-btn'>Remove Event</button>
+              <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
             </div>
           )}
           <div className='invitation-details'>

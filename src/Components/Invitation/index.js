@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AddGuest from './AddGuest'
 import EnterDetails from './EnterDetails'
 import SelectCardView from './SelectCard'
-import GustList from './GustList'
+import GuestList from './GuestList'
 import Layout from '../Layout';
 import './styles.css';
 
@@ -19,7 +19,7 @@ const Invitation = (props) => {
   )   
   
   const children = useRef(null)
-  const { InvitationActions: { getSelectCard, getWeddingCards, selectCard, getCustomEvents, }, invitation: { invitationCards, events, selectedCard, personalInvitation } } = props;
+  const { InvitationActions: { getSelectCard, getCustomEvents, getWeddingCards, selectCard, }, invitation: { invitationCards, events, selectedCard, personalInvitation } } = props;
   const executeScroll = (ref) => scrollToRef(ref)
 
   
@@ -29,6 +29,10 @@ const Invitation = (props) => {
   useEffect(() => {
     setWeddingEvents(events)
   }, [events])
+
+  useEffect(() => {
+    setSelectedCard(selectedCard.theme_card)
+  }, [selectedCard])
 
   // const personalInvitation = {
   //   bride_name: "bride",
@@ -41,8 +45,6 @@ const Invitation = (props) => {
 
   useEffect(() => {
     getWeddingCards()
-    getCustomEvents()
-    // getPeronalDetails()
     getSelectCard()
   }, [])
 
@@ -62,7 +64,7 @@ const Invitation = (props) => {
         />
         <div ref={children}>
           {card && 
-          <EnterDetails weddingEvents={weddingEvents} /> }
+          <EnterDetails card={card} weddingEvents={weddingEvents} /> }
         </div>
         <div className="invitation-container flex-column" style={{ padding: 20, marginLeft: 40, marginRight: 40, marginTop: 20 }}>
           <div>
@@ -73,12 +75,18 @@ const Invitation = (props) => {
               It holds the basic information of the guest who are invited<br />for the wedding
             </p>
           </div>
-          {(card && Object.values(personalInvitation).length > 0) && 
+          {card && 
             <AddGuest weddingEvents={weddingEvents}/>
           }
-          <GustList weddingEvents={weddingEvents} />
+          { 
+            card && Object.values(weddingEvents).length > 0 && 
+            <GuestList 
+              card={card} 
+              weddingEvents={weddingEvents}
+            />
+          }
+          
         </div>
-        
       </div>
     </Layout>
   )

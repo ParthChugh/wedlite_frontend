@@ -49,13 +49,13 @@ const TableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <Link to={`${useRouteMatch().url}/new`}>
+      {/* <Link to={`${useRouteMatch().url}/new`}>
         <Tooltip title="Add">
           <IconButton aria-label="add" onClick={addUserHandler}>
             <AddIcon />
           </IconButton>
         </Tooltip>
-      </Link>
+      </Link> */}
       
       {numSelected > 0 ? (
         <Typography
@@ -67,7 +67,6 @@ const TableToolbar = props => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle">
-          {header}
         </Typography>
       )}
 

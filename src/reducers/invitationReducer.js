@@ -40,7 +40,7 @@ const wedding = (state = fromJS(INIT_STATE) , action) => {
     }
     case UPDATE_GUEST_LIST: {
       return state.merge({
-        guestList: {...state.guestList.toJS(),[action.payload.type]: action.payload.list},
+        guestList: {...state.toJS().guestList,[action.payload.type]: action.payload.list},
       });
     }
     case REMOVE_EVENTS: {

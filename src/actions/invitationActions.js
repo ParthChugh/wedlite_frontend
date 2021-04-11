@@ -69,7 +69,7 @@ export const createGuest = (fields, callbackFunction) => {
     const {invitation, auth} = getState();
     const selectedCard = invitation.toJS().selectedCard
     const updateFields = {...fields, grand_event: selectedCard.id }
-    console.log('updateFields3131', updateFields)
+    console.log("updateFields133131", updateFields)
     fetch(`${WEDDING_INVITATION}create-guest-list/`, {
       method: 'POST',
       headers: {
@@ -84,8 +84,38 @@ export const createGuest = (fields, callbackFunction) => {
         // callbackFunction(response)
         
         response.json().then(el => {
-          console.log('response311431331', el)
+          // console.log('response311431331', el)
+          dispatch(getGuestList(selectedCard.id))
         })
+
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const getWeddingEvents = (card) => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    console.log('`${WEDDING_INVITATION}grand-event/${card}/events/`', `${WEDDING_INVITATION}grand-event/${card}/events/`)
+    fetch(`${WEDDING_INVITATION}grand-event/${card}/events/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      }
+    })
+      .then((response) => {
+        if(response.status === 200)  {
+          response.json().then((el => {
+            el.results.forEach(newData => {
+              dispatch(updateEvents(newData))
+            })
+          }
+          ))  
+        }
 
       })
       .catch(() => {
@@ -153,13 +183,12 @@ export const getWeddingCards = () => {
   } 
 }
 
-export const getGuestList = (event) => {
+export const getGuestList = (card) => {
   return (dispatch, getState) => {
-    const {auth} = getState();
+    const { auth } = getState();
+    
     let url = `${WEDDING_INVITATION}create-guest-list`
-    if(event) {
-      url = `${url}?grand_event=${event}`
-    }
+    url = `${url}?grand_event=${card}`
     fetch(url, {
       method: 'GET',
       headers: {
@@ -171,13 +200,34 @@ export const getGuestList = (event) => {
     })
       .then((response) => {
         response.json().then(el => {
-          if(event) {
-            dispatch(updateGuestList({list: el, tpye: event}))
-          } else {
-            dispatch(updateGuestList({list: el, type: 'all'}))
-          }
-          
+          console.log('el133113',el)
+          dispatch(updateGuestList({list: el, type: card}))
+        })
+      })
+      .catch(() => {
+    });
+  } 
+}
 
+export const updateGuest = (fields, deleteItem) => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    console.log(`${WEDDING_INVITATION}guest-event-add-delete/?guest_id=${fields.guest_id}&event_id=${fields.event_id}`)
+    let url = `${WEDDING_INVITATION}guest-event-add-delete/?guest_id=${fields.guest_id}&event_id=${fields.event_id}`
+    // url = `${url}?grand_event=${id}`
+    fetch(url, {
+      method: deleteItem ? 'DELETE' : 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+    })
+      .then((response) => {
+        response.json().then(el => {
+          console.log('11el133113',el)
+          // dispatch(updateGuestList({list: el, type: card}))
         })
       })
       .catch(() => {
@@ -234,7 +284,7 @@ export const selectCard = (cardId, history) => {
 export const getSelectCard = () => {
   return (dispatch, getState) => {
     const {auth} = getState();
-    fetch(`${WEDDING_INVITATION}select-card/`, {
+    fetch(`${WEDDING_INVITATION}my-card/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -245,8 +295,11 @@ export const getSelectCard = () => {
     })
       .then((response) => {
         if(response.status === 200)  {
-          console.log('resposne1331', response);
-          response.json().then(el => dispatch(updateSelectedCard(el)))
+          
+          response.json().then(el => {
+            console.log('resposne1331', el);
+            dispatch(updateSelectedCard(el))
+          })
         }
       })
       .catch(() => {
@@ -254,10 +307,10 @@ export const getSelectCard = () => {
   } 
 }
 
-export const addEvent = (fields) => {
+export const addEvent = (fields, card) => {
   return (dispatch, getState) => {
     const {auth} = getState();
-    fetch(`${WEDDING_INVITATION}events/`, {
+    fetch(`${WEDDING_INVITATION}grand-event/${card}/events/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -278,10 +331,14 @@ export const addEvent = (fields) => {
   } 
 }
 
-export const getCustomEvents = (initial) => {
+export const getCustomEvents = (event) => {
   return (dispatch, getState) => {
-    const {auth} = getState();
-    fetch(`${WEDDING_INVITATION}events/`, {
+    const {invitation, auth} = getState();
+    let selectedCard = event
+    if(!event) {
+      selectedCard = invitation.toJS().selectedCard.id
+    } 
+    fetch(`${WEDDING_INVITATION}grand-event/${selectedCard}/events/`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -295,12 +352,8 @@ export const getCustomEvents = (initial) => {
         if(response.status === 200)  {
           
           response.json().then((el => {
-            console.log('el1331',el)
-
             dispatch({type: REMOVE_EVENTS, payload: {}})
-            
-          
-            el.forEach(newData => {
+            el.results.forEach(newData => {
               dispatch(updateEvents(newData))
             })
             
@@ -312,10 +365,10 @@ export const getCustomEvents = (initial) => {
   } 
 }
 
-export const deleteCustomEvent = (id) => {
+export const deleteCustomEvent = (grand_event, id) => {
   return (dispatch, getState) => {
     const {auth} = getState();
-    fetch(`${WEDDING_INVITATION}events/${id}`, {
+    fetch(`${WEDDING_INVITATION}grand-event/${grand_event}/events/${id}`, {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json',
@@ -326,7 +379,7 @@ export const deleteCustomEvent = (id) => {
     })
       .then((response) => {
         console.log('response1313', response)
-        dispatch(getCustomEvents(true))
+        dispatch(getCustomEvents())
         // if(response.status === 204)  {
         //   response.json().then((el => {
         //     el.forEach(newData => {
@@ -344,7 +397,7 @@ export const submitPersonalDetails = (fields, edit=false) => {
   console.log('fields1331', fields)
   return (dispatch, getState) => {
     const {auth} = getState();
-    fetch(`${WEDDING_INVITATION}invitee/`, {
+    fetch(`${WEDDING_INVITATION}grand-event/${fields.grand_event}/invitee/`, {
       method: edit ? 'patch' : 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -360,6 +413,31 @@ export const submitPersonalDetails = (fields, edit=false) => {
             dispatch(handlePersonalDetils(el))
           } else {
             dispatch(submitPersonalDetails(fields, true))
+          } 
+        }))  
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const getPeronalDetails = (grand_event) => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    fetch(`${WEDDING_INVITATION}grand-event/${grand_event}/invitee/`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+    })
+      .then((response) => {
+        response.json().then((el => {
+          if(response.status === 200) {
+            console.log("1331el1313", el)
+            dispatch(handlePersonalDetils(el))
           } 
         }))  
       })

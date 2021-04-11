@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 const SelectCardView = (props) => {
   const history = useHistory();
   const {setSelectedCard, executeScroll, selectCard, invitationCards,  childrenRef, card} = props;
+  console.log('card133113',card)
+  console.log('11card133113',invitationCards?.results?.map(el => el.id))
   return (
     <div>
       <div className="d-flex flex-row " style={{ alignItems: 'center', marginLeft: 20, paddingTop: 20 }}>
@@ -59,6 +61,7 @@ const SelectCardView = (props) => {
                   className="fill-button"
                   style={{ marginLeft: 10, }}
                   onClick={() => {
+                    console.log('el313131', el)
                     selectCard(el.id, history)
                     executeScroll(childrenRef)
                     setSelectedCard(el.id)

@@ -713,23 +713,27 @@ const Header = (props) => {
           
         </Carousel.Item>
 
+        {
+          process.env.REACT_APP_STORE_ENABLE !=='false' && 
+          <Carousel.Item>
         
-        <Carousel.Item>
-          <div className="carousel-absolute">
-            <GiftsComponent />
-          </div>
-          <img
-            className="d-block w-100"
-            src={Gifts}
-            alt="First slide"
-          />
-          
-          <div className="carousel-search-bar">
-            <GiftsComponent />   
-          </div>
-          
-          
-        </Carousel.Item>
+            <div className="carousel-absolute">
+              <GiftsComponent />
+            </div>
+            <img
+              className="d-block w-100"
+              src={Gifts}
+              alt="First slide"
+            />
+            
+            <div className="carousel-search-bar">
+              <GiftsComponent />   
+            </div>
+            
+            
+          </Carousel.Item>
+        }
+        
         <Carousel.Item>
           <div className="carousel-absolute">
             <FashionComponent />

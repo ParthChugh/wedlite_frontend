@@ -20,7 +20,7 @@ import TablePaginationActions from "./TablePaginationActions";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
-import matchSorter from "match-sorter";
+import {matchSorter} from "match-sorter";
 import PropTypes from "prop-types";
 import "./RenderTable.css";
 import TableToolbar from "./TableToolbar";
@@ -97,20 +97,7 @@ const RenderTable = (props) => {
   } = props;
 
   const hiddenColumns = [
-    "id",
-    "Is Active",
-    "Higher Office",
-    "Duty id",
-    "Job Nature id",
-    "Designation id",
-    "Duty Area id",
-    "Organization Id",
-    "Job Nature id",
-    "Approver Id",
-    "Leave Name Id",
-    "Employee Id",
-    "Password",
-    "Manager Id",
+    "Grand event"
   ];
 
   const filterTypes = React.useMemo(
@@ -262,11 +249,11 @@ const RenderTable = (props) => {
                         justifyContent: "space-between",
                       }}
                     >
-                      {showFilter && (
+                      {/* {showFilter && (
                         <div>
                           {column.canFilter ? column.render("Filter") : null}
                         </div>
-                      )}
+                      )} */}
                       <div
                         {...column.getHeaderProps(
                           column.getSortByToggleProps()
