@@ -6,7 +6,8 @@ import {
   UPDATE_SELECTED_CARD,
   UPDATE_PEROSONAL_DETAILS,
   UPDATE_GUEST_LIST,
-  UPDATE_GUEST_EVENT_LIST
+  UPDATE_GUEST_EVENT_LIST,
+  UPDATE_PREVIEW
 } from './actionTypes';
 
 export function updateWeddingCards(response) {
@@ -26,6 +27,13 @@ export function updateEvents(response) {
 export function updateGuestList(response) {
   return {
     type: UPDATE_GUEST_LIST,
+    payload: response,
+  };
+}
+
+export function updatePreview(response) {
+  return {
+    type: UPDATE_PREVIEW,
     payload: response,
   };
 }
@@ -260,6 +268,30 @@ export const updateGuest = (fields, deleteItem) => {
       .then((response) => {
         dispatch(getGuestEventList({event: fields.event_id, grand_event: invitation.toJS().selectedCard.id }))
         dispatch(getGuestList(invitation.toJS().selectedCard.id))
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const getPreview = (fields) => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    let url = `${WEDDING_INVITATION}preview/?event_id=${fields.event_id}&invitee_id=${fields.invitee_id}&grand_event=${fields.grand_event}`
+    fetch(url, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+    })
+      .then((response) => {
+        response.json().then(el => {
+          console.log('el313131', el)
+          dispatch(updatePreview(el))
+        })
       })
       .catch(() => {
     });

@@ -34,15 +34,6 @@ const Invitation = (props) => {
     setSelectedCard(selectedCard.theme_card)
   }, [selectedCard])
 
-  // const personalInvitation = {
-  //   bride_name: "bride",
-  //   grand_event: 44,
-  //   groom_name: "Groom name",
-  //   guest_invitee_name: "guest",
-  //   id: 6
-  // }
-
-
   useEffect(() => {
     getWeddingCards()
     getSelectCard()

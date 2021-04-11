@@ -8,7 +8,20 @@ import { connect } from 'react-redux';
 
 
 const EnterDetails = (props) => {
-  const { card, weddingEvents ,invitation: { selectedCard, personalInvitation }, InvitationActions: {handlePersonalDetils, addEvent, deleteCustomEvent, submitPersonalDetails, getPeronalDetails, getCustomEvents, getWeddingEvents}, children} = props;
+  const { weddingEvents,
+    invitation: { 
+      selectedCard, 
+      personalInvitation 
+    }, 
+    InvitationActions: {
+      handlePersonalDetils, 
+      addEvent, 
+      deleteCustomEvent, 
+      submitPersonalDetails, 
+      getCustomEvents, 
+      getWeddingEvents, 
+      getPreview
+    }, children} = props;
   const { register, handleSubmit, errors } = useForm()
   const [state, setState] = useState({})
   const [errorsInvitation, setErrors] = useState({})
@@ -17,9 +30,14 @@ const EnterDetails = (props) => {
   }
   useEffect(() => {
     getCustomEvents(selectedCard.id)
-    // getPeronalDetails(card)
     getWeddingEvents(selectedCard.id)
-  },[])
+  },[selectedCard.id])
+  useEffect(() => {
+    if(personalInvitation.id && selectedCard.id && Object.values(weddingEvents).length > 0) {
+      // fields.event_id}&invitee_id=${fields.invitee_id.id}&grand_event=${fields.grand_event.id}
+      getPreview({invitee_id: personalInvitation.id, grand_event: selectedCard.id, event_id: Object.values(weddingEvents)[0]?.id})
+    }
+  },[personalInvitation.id, selectedCard.id, Object.values(weddingEvents).length > 0 ])
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -128,11 +146,7 @@ const EnterDetails = (props) => {
                       Submit details
                       </button>
                   </div>
-
-
                 </div>
-
-
               </form>
               :
               <div className="d-flex flex-column ">
