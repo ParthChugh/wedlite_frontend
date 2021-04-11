@@ -5,7 +5,8 @@ import {
   REMOVE_EVENTS,
   UPDATE_SELECTED_CARD,
   UPDATE_PEROSONAL_DETAILS,
-  UPDATE_GUEST_LIST
+  UPDATE_GUEST_LIST,
+  UPDATE_GUEST_EVENT_LIST,
 } from "../actions/actionTypes";
 
 const INIT_STATE = {
@@ -13,7 +14,8 @@ const INIT_STATE = {
   events: {},
   selectedCard: {},
   personalInvitation: {},
-  guestList: {}
+  guestList: {},
+  guestEventList: {}
 };
 
 const wedding = (state = fromJS(INIT_STATE) , action) => {
@@ -21,6 +23,11 @@ const wedding = (state = fromJS(INIT_STATE) , action) => {
     case UPDATE_WEDDING_CARDS: {
       return state.merge({
         invitationCards: action.payload,
+      });
+    }
+    case UPDATE_GUEST_EVENT_LIST: {
+      return state.merge({
+        guestEventList: {...state.toJS().guestEventList,[action.payload.type]: action.payload.list},
       });
     }
     case UPDATE_EVENTS: {

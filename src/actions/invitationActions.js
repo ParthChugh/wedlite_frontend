@@ -5,7 +5,8 @@ import {
   REMOVE_EVENTS,
   UPDATE_SELECTED_CARD,
   UPDATE_PEROSONAL_DETAILS,
-  UPDATE_GUEST_LIST
+  UPDATE_GUEST_LIST,
+  UPDATE_GUEST_EVENT_LIST
 } from './actionTypes';
 
 export function updateWeddingCards(response) {
@@ -25,6 +26,13 @@ export function updateEvents(response) {
 export function updateGuestList(response) {
   return {
     type: UPDATE_GUEST_LIST,
+    payload: response,
+  };
+}
+
+export function updateGuestEventList(response) {
+  return {
+    type: UPDATE_GUEST_EVENT_LIST,
     payload: response,
   };
 }
@@ -209,9 +217,34 @@ export const getGuestList = (card) => {
   } 
 }
 
-export const updateGuest = (fields, deleteItem) => {
+export const getGuestEventList = (fields) => {
+  console.log('fields3131', fields)
   return (dispatch, getState) => {
     const { auth } = getState();
+    let url = `${WEDDING_INVITATION}guest-in-event-list/?event-invited=${fields.event}&grand-event=${fields.grand_event}`
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Token ${auth.getIn([
+          'response', 'token'
+        ])}`,
+      },
+    })
+      .then((response) => {
+        response.json().then(el => {
+          console.log('el133113',el)
+          dispatch(updateGuestEventList({list: el.results, type: fields.event}))
+        })
+      })
+      .catch(() => {
+    });
+  } 
+}
+
+export const updateGuest = (fields, deleteItem) => {
+  return (dispatch, getState) => {
+    const { auth, invitation } = getState();
     console.log(`${WEDDING_INVITATION}guest-event-add-delete/?guest_id=${fields.guest_id}&event_id=${fields.event_id}`)
     let url = `${WEDDING_INVITATION}guest-event-add-delete/?guest_id=${fields.guest_id}&event_id=${fields.event_id}`
     // url = `${url}?grand_event=${id}`
@@ -225,10 +258,8 @@ export const updateGuest = (fields, deleteItem) => {
       },
     })
       .then((response) => {
-        response.json().then(el => {
-          console.log('11el133113',el)
-          // dispatch(updateGuestList({list: el, type: card}))
-        })
+        dispatch(getGuestEventList({event: fields.event_id, grand_event: invitation.toJS().selectedCard.id }))
+        dispatch(getGuestList(invitation.toJS().selectedCard.id))
       })
       .catch(() => {
     });

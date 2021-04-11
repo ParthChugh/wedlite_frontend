@@ -26,7 +26,7 @@ const AddGuest = (props) => {
                 register({
                   required: true,
                 })} />
-              {errors.groom_name && <span style={{ color: 'red', }}>Enter valid Guest Name</span>}
+              {errors.guest_name && <span style={{ color: 'red', }}>Enter valid Guest Name</span>}
             </div>
           </div>
           <div className="flex-column d-flex margin-10" style={{ marginBottom: 10, marginRight: 10 }}>
@@ -37,7 +37,7 @@ const AddGuest = (props) => {
                 <option value="Couple">Couple</option>
                 <option value="Family">Family</option>
               </select>
-              {errors.member_invited && <span style={{ color: 'red', }}>Enter valid Members Invited</span>}
+              {errors.members_invited && <span style={{ color: 'red', }}>Enter valid Members Invited</span>}
             </div>
           </div>
 
@@ -47,8 +47,12 @@ const AddGuest = (props) => {
               <input name="phone_number" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                 register({
                   required: true,
+                  pattern: {
+                    value: /^[6-9]\d{9}$/,
+                    message: "invalid Phone Number"
+                  }
                 })} />
-              {errors.guest_invitee_name && <span style={{ color: 'red', }}>Enter valid PH-Number</span>}
+              {errors.phone_number && <span style={{ color: 'red', }}>Enter valid phone Number</span>}
             </div>
           </div>
           <div className="flex-column d-flex margin-10" style={{ marginRight: 10 }}>
@@ -57,8 +61,12 @@ const AddGuest = (props) => {
               <input name="email" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                 register({
                   required: true,
+                  pattern: {
+                    value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: "invalid email address"
+                  }
                 })} />
-              {errors.guest_invitee_name && <span style={{ color: 'red', }}>Enter valid Email</span>}
+              {errors.email && <span style={{ color: 'red', }}>Enter valid Email</span>}
             </div>
           </div>
         </div>

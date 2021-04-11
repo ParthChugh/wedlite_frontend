@@ -4,41 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import RenderTable from "../common/RenderTable";
 
 const GuestList = (props) => {
-  const { weddingEvents, InvitationActions: { getGuestList, updateGuest }, invitation: {  guestList, selectedCard } } = props;
-  console.log("weddingEvents1331", weddingEvents)
+  const { weddingEvents, InvitationActions: { getGuestList, updateGuest, getGuestEventList  }, invitation: {  guestList, selectedCard, guestEventList } } = props;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedId, setSelectedId] = React.useState('false');
   useEffect(() => {
     getGuestList(selectedCard.id)
+    if(Object.values(weddingEvents).length > 0) {
+      onIndexChange(0)
+    }
   }, [])
-
-  // const guestList = {
-  //   "3": [],
-  //   "109": [
-  //     {
-  //       "id": 4,
-  //       "guest_name": "gurst name",
-  //       "members_invited": "Single",
-  //       "phone_number": "8149404001",
-  //       "email": "asd@asd.com",
-  //       "grand_event": 109,
-  //       "event_invited": []
-  //     }
-  //   ]
-  // }
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
   }
 
+  const onIndexChange = (index) => {
+    getGuestEventList({grand_event: selectedCard.id, event: Object.values(weddingEvents)[index]?.id} )
+  }
+
   const renderEditable = (props, el, data) => {
-    console.log('el133131', props)
     return (
     ['event_invited'].includes(el) ?
       <div>
@@ -172,39 +164,36 @@ const GuestList = (props) => {
           />  
         : 
         <span>No Guest Invited</span>
-      }
-        
-        {/* <table className='guest-list-table'>
-          <thead>
-            <th>S. no.</th>
-            <th>Name </th>
-            <th>Ph-number</th>
-            <th>Email-id</th>
-            <th>Action</th>
-            <th>Add to</th>
-          </thead>
-          <tr>
-            <td>1.</td>
-            <td>Maddy</td>
-            <td>+91 993344723</td>
-            <td>maddy@gmail.com</td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>2.</td>
-            <td>Dave</td>
-            <td>+91 994433821</td>dd
-                <td>dave@gmail.com</td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table> */}
+      }       
       </div>
       <div className='event-groups'>
         <h5>Event Groups</h5>
         <p className='sub-heading-invitation'>Drag & Drop the guest or click Add to option to<br />add the guest for invitation card.</p>
-        <table className='guest-list-table' style={{ marginLeft: 5 }}>
+        <Tabs onSelect={onIndexChange}>
+          <TabList>
+            {Object.values(weddingEvents).map((element, index) =>
+              <Tab>{element.name}</Tab>
+            )}
+          </TabList>
+          {Object.values(weddingEvents).map((element, index) => (
+            <TabPanel>
+              {guestEventList[element.id]?.length > 0 ? 
+                <RenderTable
+                  columns={updatedColumn(guestEventList[element.id][0])}
+                  data={guestEventList[element.id]}
+                  showPagination={false}
+                  showFilter
+                  header={"Guest"}
+                  showTableToolbar
+                /> 
+                :    
+                <span>No Guest in this list</span>
+              }
+           </TabPanel>
+          ))} 
+        </Tabs>
+
+        {/* <table className='guest-list-table' style={{ marginLeft: 5 }}>
           <thead>
             <th>S. no.</th>
             <th>Name </th>
@@ -219,7 +208,7 @@ const GuestList = (props) => {
             <td>maddy@gmail.com</td>
             <td></td>
           </tr>
-        </table>
+        </table> */}
       </div>
     </div>
   )
