@@ -20,6 +20,7 @@ import TablePaginationActions from "./TablePaginationActions";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
+import Paper from "@material-ui/core/Paper";
 import {matchSorter} from "match-sorter";
 import PropTypes from "prop-types";
 import "./RenderTable.css";
@@ -222,7 +223,7 @@ const RenderTable = (props) => {
   };
 
   return (
-    <>
+    <Paper className="table-container">
       <TableContainer style={{ overflowX: "auto" }}>
         {showTableToolbar && (
           <TableToolbar
@@ -320,7 +321,7 @@ const RenderTable = (props) => {
           </TableFooter>
         }
       </TableContainer>
-    </>
+    </Paper>
   );
 };
 
