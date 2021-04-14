@@ -278,6 +278,7 @@ export const getPreview = (fields) => {
   return (dispatch, getState) => {
     const { auth } = getState();
     let url = `${WEDDING_INVITATION}preview/?event_id=${fields.event_id}&invitee_id=${fields.invitee_id}&grand_event=${fields.grand_event}`
+    console.log("url13131", url)
     fetch(url, {
       method: "GET",
       headers: {
@@ -287,10 +288,9 @@ export const getPreview = (fields) => {
         ])}`,
       },
     })
-      .then((response) => {
-        response.json().then(el => {
-          console.log('el313131', el)
-          dispatch(updatePreview(el))
+      .then((response) => {  
+        response.text().then((json) => {
+          dispatch(updatePreview(json))
         })
       })
       .catch(() => {

@@ -591,9 +591,9 @@ const Header = (props) => {
             </Nav.Link>
             <NavDropdown
               className="text header-color margin-left-right" 
-              style={{cursor:'pointer',fontSize: NORMAL}} 
+              style={{cursor:'pointer',fontSize: NORMAL, color: 'gray'}} 
               title={
-                <span>Profile</span>
+                <span style={{color: 'gray', marginLeft: -5}}>Profile</span>
               } 
               // id="collasible-nav-dropdown"
               id={`dropdown-variants-primary`}
@@ -624,7 +624,8 @@ const Header = (props) => {
             
         </Drawer>
         }
-        <img src={Cart} alt="logo" className="cart" />
+        {!isLoggedIn ? <img src={Cart} alt="logo" className="cart" /> : <div className="cart" style={{marginRight: 40}} />}
+        
       </Navbar>
       }
       
@@ -640,7 +641,7 @@ const Header = (props) => {
         {showSearchBar && 
         <Carousel>
           
-          <Carousel.Item>
+          {/* <Carousel.Item>
             <div className="carousel-absolute">
               <ExerciseComponent />
             </div>
@@ -655,7 +656,7 @@ const Header = (props) => {
               <ExerciseComponent />
             </div>
 
-        </Carousel.Item>
+        </Carousel.Item> */}
           <Carousel.Item style={{backgroundColor: 'rgb(248,248,250)'}}>
             <div className="carousel-absolute">
               <InvitationComponent />
@@ -669,7 +670,7 @@ const Header = (props) => {
               <InvitationComponent />
             </div>
         </Carousel.Item>
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <div className="carousel-absolute">
             <HoroscopeComponent />
           </div>
@@ -683,7 +684,7 @@ const Header = (props) => {
           <div className="carousel-search-bar">
             <HoroscopeComponent />
           </div>
-        </Carousel.Item>
+        </Carousel.Item> */}
         <Carousel.Item >
           <div className="carousel-absolute">
             <SearchBar

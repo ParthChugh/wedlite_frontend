@@ -11,12 +11,12 @@ import Modal from 'react-modal';
 import RenderTable from "../common/RenderTable";
 
 const GuestList = (props) => {
-  const { weddingEvents, InvitationActions: { getGuestList, updateGuest, getGuestEventList  }, invitation: {  guestList, selectedCard, guestEventList } } = props;
+  const { weddingEvents, InvitationActions: { getGuestList, updateGuest, getGuestEventList }, invitation: { guestList, selectedCard, guestEventList } } = props;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedId, setSelectedId] = React.useState('false');
   useEffect(() => {
     getGuestList(selectedCard.id)
-    if(Object.values(weddingEvents).length > 0) {
+    if (Object.values(weddingEvents).length > 0) {
       onIndexChange(0)
     }
   }, [])
@@ -27,25 +27,25 @@ const GuestList = (props) => {
   }
 
   const onIndexChange = (index) => {
-    getGuestEventList({grand_event: selectedCard.id, event: Object.values(weddingEvents)[index]?.id} )
+    getGuestEventList({ grand_event: selectedCard.id, event: Object.values(weddingEvents)[index]?.id })
   }
 
   const renderEditable = (props, el, data) => {
     return (
-    ['event_invited'].includes(el) ?
-      <div>
-        {Object.values(weddingEvents).map((element, index) =>
-          <div key={index} className='d-flex flex-row'>
-            <input type="checkbox" defaultChecked={props.includes(element.id)} onChange={(value) => {
-              updateGuest({guest_id: data.id, event_id: element.id}, !value.target.checked)
-            }} />
-            <span style={{marginLeft: 10}}>{element.name}</span>
-          </div>
-        )}
-      </div>
+      ['event_invited'].includes(el) ?
+        <div>
+          {Object.values(weddingEvents).map((element, index) =>
+            <div key={index} className='d-flex flex-row'>
+              <input type="checkbox" defaultChecked={props.includes(element.id)} onChange={(value) => {
+                updateGuest({ guest_id: data.id, event_id: element.id }, !value.target.checked)
+              }} />
+              <span style={{ marginLeft: 10 }}>{element.name}</span>
+            </div>
+          )}
+        </div>
 
-    :
-      <span>{props}</span>
+        :
+        <span>{props}</span>
     )
   }
   const deleteItem = (value) => {
@@ -142,73 +142,65 @@ const GuestList = (props) => {
           <div><h5>Guest List</h5>
             <p className='sub-heading-invitation'>List of guest for the wedding</p>
           </div>
-          {
+          {/* {
           guestList[selectedCard.id]?.length > 0 && 
             <div>
               <button className='delete-btn'>
                 Delete All
               </button>
             </div>
-          }
+          } */}
 
         </div>
-        {
-        guestList[selectedCard.id]?.length > 0 ?
-          <RenderTable
-            columns={updatedColumn(guestList[selectedCard.id][0])}
-            data={guestList[selectedCard.id]}
-            showPagination={false}
-            showFilter
-            header={"Guest"}
-            showTableToolbar
-          />  
-        : 
-        <span>No Guest Invited</span>
-      }       
-      </div>
-      <div className='event-groups'>
-        <h5>Event Groups</h5>
-        <p className='sub-heading-invitation'>Drag & Drop the guest or click Add to option to<br />add the guest for invitation card.</p>
-        <Tabs onSelect={onIndexChange}>
-          <TabList>
-            {Object.values(weddingEvents).map((element, index) =>
-              <Tab>{element.name}</Tab>
-            )}
-          </TabList>
-          {Object.values(weddingEvents).map((element, index) => (
-            <TabPanel>
-              {guestEventList[element.id]?.length > 0 ? 
+        <div className="d-flex flex-row flex-wrap">
+          {
+            guestList[selectedCard.id]?.length > 0 ?
+              <div className="table-responsive-wedlite">
                 <RenderTable
-                  columns={updatedColumn(guestEventList[element.id][0])}
-                  data={guestEventList[element.id]}
+                  columns={updatedColumn(guestList[selectedCard.id][0])}
+                  data={guestList[selectedCard.id]}
                   showPagination={false}
                   showFilter
                   header={"Guest"}
                   showTableToolbar
-                /> 
-                :    
-                <span>No Guest in this list</span>
-              }
-           </TabPanel>
-          ))} 
-        </Tabs>
+                />
+              </div>
+              :
+              <span>No Guest Invited</span>
+          }
 
-        {/* <table className='guest-list-table' style={{ marginLeft: 5 }}>
-          <thead>
-            <th>S. no.</th>
-            <th>Name </th>
-            <th>Ph-number</th>
-            <th>Email-id</th>
-            <th>Action</th>
-          </thead>
-          <tr>
-            <td>1.</td>
-            <td>Maddy</td>
-            <td>+91 993344723</td>
-            <td>maddy@gmail.com</td>
-            <td></td>
-          </tr>
-        </table> */}
+          <div className='event-groups'>
+              <Tabs onSelect={onIndexChange}>
+              <TabList>
+                {Object.values(weddingEvents).map((element, index) =>
+                  <Tab>{element.name}</Tab>
+                )}
+              </TabList>
+              {Object.values(weddingEvents).map((element, index) => (
+                <TabPanel>
+                  {guestEventList[element.id]?.length > 0 ?
+                    
+                    <RenderTable
+                      columns={updatedColumn(guestEventList[element.id][0])}
+                      data={guestEventList[element.id]}
+                      showPagination={false}
+                      showFilter
+                      header={"Guest"}
+                      showTableToolbar
+                    />
+                    
+
+                    :
+                    <span>No Guest in this list</span>
+                  }
+                </TabPanel>
+              ))}
+            </Tabs>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
   )

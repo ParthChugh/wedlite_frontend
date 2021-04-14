@@ -38,7 +38,7 @@ const SelectCardView = (props) => {
               </p>
           </div>
 
-          <div>
+          {/* <div>
             <div className="border-dropdown-container d-flex flex-row" style={{ alignItems: 'center' }}>
               <div className="border-dropdown">
                 Types of card
@@ -47,7 +47,7 @@ const SelectCardView = (props) => {
                 <FontAwesomeIcon onClick={() => { }} size={24} icon={faChevronCircleDown} size="1x" color="#000000" style={{ margin: 20 }} />
               </div>
             </div>
-          </div>
+          </div> */}
 
         </div>
         <div className="d-flex flex-row flex-wrap " style={{ marginTop: 20 }}>
@@ -55,7 +55,7 @@ const SelectCardView = (props) => {
             <div className="d-flex flex-column" key={el.id} style={{ marginLeft: 20, marginRight: 20, marginTop: 20, }}>
               <img style={{ width: 170, height: 170 }} alt={el.name} src={el.card_thumbnail_image} />
               <span className="name-invitation">{el.card_name}</span>
-              <span style={{ color: "#A63A67", fontSize: 14 }}>₹ {el.price} per card</span>
+              <span style={{ color: "#A63A67", fontSize: 14 }}>₹ {el.product.price} per card</span>
               {card !== el.id ?
                 <button
                   className="fill-button"

@@ -17,7 +17,7 @@ const INIT_STATE = {
   personalInvitation: {},
   guestList: {},
   guestEventList: {},
-  preview: {}
+  preview: `<html></html>`
 };
 
 const wedding = (state = fromJS(INIT_STATE) , action) => {

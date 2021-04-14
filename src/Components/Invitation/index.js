@@ -31,7 +31,13 @@ const Invitation = (props) => {
   }, [events])
 
   useEffect(() => {
-    setSelectedCard(selectedCard.theme_card)
+    if(typeof selectedCard?.theme_card === 'number' ) {
+      setSelectedCard(selectedCard?.theme_card)
+      
+    } else {
+      setSelectedCard(selectedCard?.theme_card?.id)
+    }
+    
   }, [selectedCard])
 
   useEffect(() => {
@@ -71,10 +77,13 @@ const Invitation = (props) => {
           }
           { 
             card && Object.values(weddingEvents).length > 0 && 
+            
             <GuestList 
               card={card} 
               weddingEvents={weddingEvents}
             />
+            
+            
           }
           
         </div>

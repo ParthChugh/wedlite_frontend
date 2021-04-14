@@ -211,7 +211,7 @@ export default function App() {
           </Helmet>
           <SignUp />
         </Route>
-        <Route path="/fitness">
+        {/* <Route path="/fitness">
           <Helmet>
             <title>Fitness</title>
             <meta name="title" content="Fitness" />
@@ -228,7 +228,7 @@ export default function App() {
             <link rel="canonical" href={window.location.href} />
           </Helmet>
           <HoroscopeForm />
-        </Route>
+        </Route> */}
         <Route path="/careers">
           <Helmet>
             <title>Careers at Wedlite</title>

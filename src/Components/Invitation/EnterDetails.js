@@ -3,6 +3,8 @@ import * as InvitationActionsCreators from '../../actions/invitationActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilRuler } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from 'react-hook-form';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -11,8 +13,10 @@ const EnterDetails = (props) => {
   const { weddingEvents,
     invitation: { 
       selectedCard, 
-      personalInvitation 
+      personalInvitation,
+      preview 
     }, 
+    auth,
     InvitationActions: {
       handlePersonalDetils, 
       addEvent, 
@@ -22,12 +26,25 @@ const EnterDetails = (props) => {
       getWeddingEvents, 
       getPreview
     }, children} = props;
+  console.log("preview13313", preview)
   const { register, handleSubmit, errors } = useForm()
   const [state, setState] = useState({})
+  const [selectedWeddingType, setSelectedWeddingType] = useState(null)
   const [errorsInvitation, setErrors] = useState({})
   const personalDetailsUpdate = (props) => {
     submitPersonalDetails({ ...props, grand_event: selectedCard.id })
   }
+  const onIndexChange = (index) => {
+    console.log('Object.values(weddingEvents)[index].name', Object.values(weddingEvents)[index].name)
+    setSelectedWeddingType(Object.values(weddingEvents)[index].name)
+  }
+  
+  useEffect(() => {
+    if(Object.values(weddingEvents).length > 0) {
+      setSelectedWeddingType(Object.values(weddingEvents)[0].name)
+    }
+  },[Object.values(weddingEvents).length > 0])
+
   useEffect(() => {
     getCustomEvents(selectedCard.id)
     getWeddingEvents(selectedCard.id)
@@ -166,14 +183,34 @@ const EnterDetails = (props) => {
             }
           </div>
 
-          {Object.values(weddingEvents).map((el, index) =>
+          <Tabs onSelect={onIndexChange}>
+            <TabList>
+              {Object.values(weddingEvents).map((element, index) =>
+                <Tab>{element.name}</Tab>
+              )}
+            </TabList>
+            {Object.values(weddingEvents).map(() => (
+              <TabPanel>
+                {Object.values(weddingEvents).filter(el => el.name === selectedWeddingType).map((el, index) =>
+                  <div key={index} className='invitation-details'>
+                    <div>
+                      {Object.keys(el).map(newel => (`${capitalize(newel)}: ${el[newel]}\n`)).join('\n')}
+                    </div>
+                    <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
+                  </div>
+                )}
+            </TabPanel>
+            ))} 
+        </Tabs>
+
+          {/* {Object.values(weddingEvents).map((el, index) =>
             <div key={index} className='invitation-details'>
               <div>
                 {Object.keys(el).map(newel => (`${capitalize(newel)}: ${el[newel]}\n`)).join()}
               </div>
               <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
             </div>
-          )}
+          )} */}
           <div className='invitation-details'>
             <h5>Invitation Details</h5>
             <form onSubmit={handleSubmitInvitation}>
@@ -187,7 +224,7 @@ const EnterDetails = (props) => {
               </select>
               <span>{errorsInvitation['name']}</span>
               <div>
-                <label for='couple-name'>Wedding Couple Name</label><br />
+                {/* <label for='couple-name'>Wedding Couple Name</label><br /> */}
                 {/* <div className="d-flex flex-row ">
                     <div className="d-flex flex-column invitation-row">
                       <input className='couple-name' name='couple-name' type='text' placeholder='Groom name' onChange={(value) => saveData('groom_name', value)} />
@@ -199,13 +236,9 @@ const EnterDetails = (props) => {
                     </div>
 
                   </div> */}
-                <div className="d-flex justify-content-around">
-
-
-                </div>
-
+                
                 <label for='dateNtime'>Date & time</label><br />
-                <div className="d-flex flex-row ">
+                <div className="d-flex flex-row date-time">
                   <div className="d-flex flex-column invitation-row">
                     <input className='date' name='dateNtime' type='date' placeholder='date here' onChange={(value) => saveData('date', value)} />
                     <span>{errorsInvitation['date']}</span>
@@ -229,9 +262,16 @@ const EnterDetails = (props) => {
         </div>
         <div className="wedding-invitation">
           <div className='card-heading' align='center'>Preview of the selected card</div>
-          <div className='card-preview'>
+          {/* <div className='card-preview'>
             <img src='src/assets/wedding-card.png' />
+          </div> */}
+          <div style={{flex: 1, display: 'flex',justifyContent: 'center'}}>
+          <div dangerouslySetInnerHTML={{
+              __html: preview
+            }}/>
           </div>
+            
+          
         </div>
       </div>
     </div>
