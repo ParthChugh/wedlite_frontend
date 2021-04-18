@@ -1,13 +1,11 @@
 .text-invitation {
-  text-align: left;
-  font: normal normal bold 24px/26px Segoe UI;
+  font-size: 25px;
   letter-spacing: 0px;
   color: #4A4A4A;
   opacity: 1;
 }
 .text-invitation-sub {
-  text-align: left;
-  font: normal normal normal 12px/30px Segoe UI;
+  font-size: 14px;
   letter-spacing: 0px;
   color: #808080;
   opacity: 1;
@@ -21,16 +19,15 @@
   margin: 40px;
 }
 .heading-invitation {
-  font: normal normal 400 30px Segoe UI;
+  font-size: 25px;
   letter-spacing: 0px;
   color: #A63A67;
   opacity: 1;
 }
 .sub-heading-invitation {
   text-align: left;
-  font: normal normal normal 12px/25px Segoe UI;
-  letter-spacing: 0.75px;
-  line-height: 13px;
+  letter-spacing: 0.75px; 
+  
   color: #222222;
   opacity: 1;
 }
@@ -57,6 +54,7 @@
   color: #000000;
   opacity: 1;
   margin-top: 10px;
+  margin-left: 20px;
 }
 
 @media (min-width: 600px) {    
@@ -132,7 +130,7 @@ label {
 
 .invitation-details {
   position: relative;
-  margin-top: 20px;
+  
   margin-right: 20px;
   
   padding: 30px;
@@ -320,13 +318,35 @@ section {
   /* flex-wrap: wrap; */
 }
 
+.price-invitation {
+  margin-left: 20px;
+}
 
 .table-responsive-wedlite {
   width: 100%;
   margin-bottom: 50px;
 }
 
+.invitation-card-container {
+  flex-direction: row;
+}
+.thumbnail-image-invitation {
+  width: 100;
+
+}
+
+.invitation-card-text-container  {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-direction: column;
+}
+
 @media (min-width: 600px) { 
+  .invitation-card-container {
+    flex-direction: column;
+  }
+
   .event-groups {
     width: 30%
     
@@ -334,5 +354,18 @@ section {
   .table-responsive-wedlite {
     width: 70%;
     margin-bottom: 50px;
+  }
+  .name-invitation {
+    display: grid;
+    text-align: left;
+    font: normal normal 600 15px Segoe UI;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+  .price-invitation {
+    margin-left: 0px;
   }
 }

@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 
 const SelectCardView = (props) => {
   const history = useHistory();
-  const {setSelectedCard, executeScroll, selectCard, invitationCards,  childrenRef, card} = props;
-  console.log('card133113',card)
-  console.log('11card133113',invitationCards?.results?.map(el => el.id))
+  const { setSelectedCard, executeScroll, selectCard, invitationCards, childrenRef, card } = props;
+  console.log('card133113', card)
+  console.log('11card133113', invitationCards?.results?.map(el => el.id))
   return (
     <div>
       <div className="d-flex flex-row " style={{ alignItems: 'center', marginLeft: 20, paddingTop: 20 }}>
@@ -34,7 +34,7 @@ const SelectCardView = (props) => {
               Wedding Cards
               </div>
             <p className="sub-heading-invitation">
-              Varied type cards of listed below select any of the cards<br /> which suits your wedding theme
+              Varied type cards of listed below select any of the card which suits your wedding theme
               </p>
           </div>
 
@@ -52,37 +52,40 @@ const SelectCardView = (props) => {
         </div>
         <div className="d-flex flex-row flex-wrap " style={{ marginTop: 20 }}>
           {invitationCards?.results?.map(el => (
-            <div className="d-flex flex-column" key={el.id} style={{ marginLeft: 20, marginRight: 20, marginTop: 20, }}>
-              <img style={{ width: 170, height: 170 }} alt={el.name} src={el.card_thumbnail_image} />
-              <span className="name-invitation">{el.card_name}</span>
-              <span style={{ color: "#A63A67", fontSize: 14 }}>₹ {el.product.price} per card</span>
-              {card !== el.id ?
-                <button
-                  className="fill-button"
-                  style={{ marginLeft: 10, }}
-                  onClick={() => {
-                    console.log('el313131', el)
-                    selectCard(el.id, history)
-                    executeScroll(childrenRef)
-                    setSelectedCard(el.id)
-                  }}>
+            <div className="d-flex invitation-card-container" key={el.id} style={{ marginLeft: 20, marginRight: 20, marginTop: 20, }}>
+              <img style={{ width: 200, height: 300 }} alt={el.name} src={el.card_thumbnail_image} />
+              <div className="invitation-card-text-container">
+                <span className="name-invitation">{el.card_name}</span>
+                <span className="price-invitation" style={{ color: "#A63A67", fontSize: 14 }}>₹ {el.product.price} per card</span>
+                {card !== el.id ?
+                  <button
+                    className="fill-button"
+                    style={{ marginLeft: 10, paddingLeft: 40, paddingRight: 40 }}
+                    onClick={() => {
+                      console.log('el313131', el)
+                      selectCard(el.id, history)
+                      executeScroll(childrenRef)
+                      setSelectedCard(el.id)
+                    }}>
 
-                  <span style={{ fontSize: 12 }}>
-                    Select card
+                    <span style={{ fontSize: 12 }}>
+                      Select card
                     </span>
-                </button>
-                :
-                <button
-                  className="blank-button"
-                  style={{ marginLeft: 10, marginTop: 10 }}
-                  onClick={() => {
+                  </button>
+                  :
+                  <button
+                    className="blank-button"
+                    style={{ marginLeft: 10, marginTop: 10 , paddingLeft: 30, paddingRight: 30}}
+                    onClick={() => {
 
-                  }}>
-                  <span style={{ fontSize: 12 }}>
-                    Selected Card
+                    }}>
+                    <span style={{ fontSize: 12 }}>
+                      Selected Card
                     </span>
-                </button>
-              }
+                  </button>
+                }
+              </div>
+
             </div>
           ))}
         </div>

@@ -32,7 +32,7 @@ const AddGuest = (props) => {
           <div className="flex-column d-flex margin-10" style={{ marginBottom: 10, marginRight: 10 }}>
             <label className="sub-heading-invitation" style={{ marginVertical: 20 }}>Members Invited</label>
             <div style={{ display: 'flex', flexDirection: 'column' }} >
-              <select  ref={register} name="members_invited">
+              <select style={{borderColor: 'lightgray', borderRadius: 10, width: 190}} ref={register} name="members_invited">
                 <option value="Single">Single</option>
                 <option value="Couple">Couple</option>
                 <option value="Family">Family</option>

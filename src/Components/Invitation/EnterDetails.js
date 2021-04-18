@@ -11,21 +11,21 @@ import { connect } from 'react-redux';
 
 const EnterDetails = (props) => {
   const { weddingEvents,
-    invitation: { 
-      selectedCard, 
+    invitation: {
+      selectedCard,
       personalInvitation,
-      preview 
-    }, 
+      preview
+    },
     auth,
     InvitationActions: {
-      handlePersonalDetils, 
-      addEvent, 
-      deleteCustomEvent, 
-      submitPersonalDetails, 
-      getCustomEvents, 
-      getWeddingEvents, 
+      handlePersonalDetils,
+      addEvent,
+      deleteCustomEvent,
+      submitPersonalDetails,
+      getCustomEvents,
+      getWeddingEvents,
       getPreview
-    }, children} = props;
+    }, children } = props;
   console.log("preview13313", preview)
   const { register, handleSubmit, errors } = useForm()
   const [state, setState] = useState({})
@@ -38,23 +38,23 @@ const EnterDetails = (props) => {
     console.log('Object.values(weddingEvents)[index].name', Object.values(weddingEvents)[index].name)
     setSelectedWeddingType(Object.values(weddingEvents)[index].name)
   }
-  
+
   useEffect(() => {
-    if(Object.values(weddingEvents).length > 0) {
+    if (Object.values(weddingEvents).length > 0) {
       setSelectedWeddingType(Object.values(weddingEvents)[0].name)
     }
-  },[Object.values(weddingEvents).length > 0])
+  }, [Object.values(weddingEvents).length > 0])
 
   useEffect(() => {
     getCustomEvents(selectedCard.id)
     getWeddingEvents(selectedCard.id)
-  },[selectedCard.id])
+  }, [selectedCard.id])
   useEffect(() => {
-    if(personalInvitation.id && selectedCard.id && Object.values(weddingEvents).length > 0) {
+    if (personalInvitation.id && selectedCard.id && Object.values(weddingEvents).length > 0) {
       // fields.event_id}&invitee_id=${fields.invitee_id.id}&grand_event=${fields.grand_event.id}
-      getPreview({invitee_id: personalInvitation.id, grand_event: selectedCard.id, event_id: Object.values(weddingEvents)[0]?.id})
+      getPreview({ invitee_id: personalInvitation.id, grand_event: selectedCard.id, event_id: Object.values(weddingEvents)[0]?.id })
     }
-  },[personalInvitation.id, selectedCard.id, Object.values(weddingEvents).length > 0 ])
+  }, [personalInvitation.id, selectedCard.id, Object.values(weddingEvents).length > 0])
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -72,17 +72,17 @@ const EnterDetails = (props) => {
       }
     })
 
-    
+
     setErrors(errorsInvitation);
     if (Object.values(errorsInvitation).length === 0) {
-      addEvent({...state, grand_event: selectedCard.id}, selectedCard.id)
+      addEvent({ ...state, grand_event: selectedCard.id }, selectedCard.id)
     } else {
       return;
     }
 
   }
-  
-  
+
+
 
   const saveData = (key, value) => {
     setState({ ...state, [key]: value.target.value })
@@ -115,17 +115,18 @@ const EnterDetails = (props) => {
             Wedding Card Information
             </div>
           <p className="sub-heading-invitation">
-            It holds the basic information of the wedding card  which includes <br />name of the couple , venue , date & time etc
+            It holds the basic information of the wedding card  which includes name of the couple, venue, date & time etc
             </p>
+          <label className="font-size-label" style={{ fontWeight: 'bold', marginVertical: 20 }}>Personal Details.</label>
           <div className="invitation-details">
             {Object.values(personalInvitation).length === 0 ?
-              <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit((data, e) => {personalDetailsUpdate(data);  e.target.reset()})}>
-                <label className="font-size-label" style={{ fontWeight: 'bold', marginVertical: 20 }}>Personal Details.</label>
+              <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit((data, e) => { personalDetailsUpdate(data); e.target.reset() })}>
+                
 
                 <div>
                   <div className="d-flex margin-10">
                     <label className="font-size-label" style={{ width: "30%" }}>Groom name</label>
-                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 10, width: "70%" }} >
                       <input name="groom_name" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                         register({
                           required: true,
@@ -135,7 +136,7 @@ const EnterDetails = (props) => {
                   </div>
                   <div className="d-flex margin-10" style={{ marginBottom: 10 }}>
                     <label className="font-size-label" style={{ width: "30%", marginVertical: 20 }}>Bride name</label>
-                    <div style={{ display: 'flex', flexDirection: 'column' }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%"  }} >
                       <input name="bride_name" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                         register({
                           required: true,
@@ -146,7 +147,7 @@ const EnterDetails = (props) => {
 
                   <div className="d-flex margin-10">
                     <label className="font-size-label" style={{ width: "30%" }}>Guest Invitee name</label>
-                    <div style={{ display: 'flex', flexDirection: 'column' }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%"  }} >
                       <input name="guest_invitee_name" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                         register({
                           required: true,
@@ -160,8 +161,10 @@ const EnterDetails = (props) => {
                       type="submit"
                       style={{ marginLeft: 10, paddingLeft: 40, paddingRight: 30, marginTop: 30 }}
                     >
-                      Submit details
-                      </button>
+                      <span style={{ fontSize: 14 }}>
+                        Submit details
+                      </span>
+                    </button>
                   </div>
                 </div>
               </form>
@@ -172,7 +175,7 @@ const EnterDetails = (props) => {
                 <span>Groom Name: {personalInvitation.groom_name}</span>
                 <button
                   className="fill-button "
-                  onClick={() => { 
+                  onClick={() => {
                     handlePersonalDetils({})
                   }}
                   style={{ marginLeft: 10, paddingLeft: 40, paddingRight: 30, marginTop: 30 }}
@@ -182,7 +185,9 @@ const EnterDetails = (props) => {
               </div>
             }
           </div>
-
+          {Object.values(weddingEvents).length > 0 && 
+            <label className="font-size-label" style={{ fontWeight: 'bold',  marginTop: 20}}>Invitation Types.</label>
+          }
           <Tabs onSelect={onIndexChange}>
             <TabList>
               {Object.values(weddingEvents).map((element, index) =>
@@ -199,9 +204,9 @@ const EnterDetails = (props) => {
                     <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
                   </div>
                 )}
-            </TabPanel>
-            ))} 
-        </Tabs>
+              </TabPanel>
+            ))}
+          </Tabs>
 
           {/* {Object.values(weddingEvents).map((el, index) =>
             <div key={index} className='invitation-details'>
@@ -211,8 +216,9 @@ const EnterDetails = (props) => {
               <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
             </div>
           )} */}
-          <div className='invitation-details'>
-            <h5>Invitation Details</h5>
+          <label className="font-size-label" style={{ fontWeight: 'bold',  marginTop: 20}}>Invitation Details</label>
+          <div className='invitation-details' style={{marginTop: 10 }}>
+            
             <form onSubmit={handleSubmitInvitation}>
               <label for='event-name' className='text'>Event Name</label><br />
               <select className='event-form' name='event-name' onChange={(value) => { saveData('name', value) }}>
@@ -236,7 +242,7 @@ const EnterDetails = (props) => {
                     </div>
 
                   </div> */}
-                
+
                 <label for='dateNtime'>Date & time</label><br />
                 <div className="d-flex flex-row date-time">
                   <div className="d-flex flex-column invitation-row">
@@ -256,7 +262,11 @@ const EnterDetails = (props) => {
                 <span>{errorsInvitation['venue_address']}</span>
 
               </div>
-              <button className='submit-btn'>Submit</button>
+              <button className='fill-button' style={{ paddingLeft: 20, paddingRight: 20, }}>
+                <span style={{ fontSize: 14 }}>
+                  Submit
+                </span>
+              </button>
             </form>
           </div>
         </div>
@@ -265,13 +275,13 @@ const EnterDetails = (props) => {
           {/* <div className='card-preview'>
             <img src='src/assets/wedding-card.png' />
           </div> */}
-          <div style={{flex: 1, display: 'flex',justifyContent: 'center'}}>
-          <div dangerouslySetInnerHTML={{
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <div dangerouslySetInnerHTML={{
               __html: preview
-            }}/>
+            }} />
           </div>
-            
-          
+
+
         </div>
       </div>
     </div>
