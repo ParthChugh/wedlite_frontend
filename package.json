@@ -21,6 +21,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "helmet": "^4.1.0",
+    "html-react-parser": "^1.2.6",
     "ignore-styles": "^5.0.1",
     "immutable": "^4.0.0-rc.12",
     "match-sorter": "^6.3.0",

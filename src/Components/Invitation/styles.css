@@ -16,7 +16,7 @@
   border-radius: 17px;
   opacity: 1;
   padding: 20px;
-  margin: 40px;
+  margin: 10px;  
 }
 .heading-invitation {
   font-size: 25px;
@@ -59,8 +59,18 @@
 
 @media (min-width: 600px) {    
   .wedding-invitation {
-    width: 50%
+    width: 50%;
+    /* height: 700px; */
+    /* display: flex; */
+    /* flex: 1; */
   } 
+  .wedding-invitation-html-container {
+    width: 100%;
+    height: 500px;
+    display: flex; 
+    
+    /* flex: 1; */
+  }
 }
 
 label {
@@ -85,6 +95,10 @@ label {
   background: #F7F7F7 0% 0% no-repeat padding-box;
   border-radius: 0px 0px 15px 15px;
   opacity: 1;
+}
+.image-invitation {
+  width: 100px; 
+  height: 150px;
 }
 
 .event-form {
@@ -342,11 +356,26 @@ section {
   flex-direction: column;
 }
 
-@media (min-width: 600px) { 
+.invitation-card-html {
+  /* height: 500px; */
+  /* width: 600px; */
+  display: flex;
+  flex: 1;
+  /* justify-content: center; */
+  height: 400px;
+  width: 600px;
+}
+@media (min-width: 1000px) { 
   .invitation-card-container {
     flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
+  .image-invitation {
+    width: 200px; 
+    height: 300px;
+  }
   .event-groups {
     width: 30%
     
@@ -367,5 +396,9 @@ section {
   }
   .price-invitation {
     margin-left: 0px;
+  }
+  .invitation-container {
+    margin-left: 40px;
+    margin-right: 40px;
   }
 }

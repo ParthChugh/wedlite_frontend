@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import * as InvitationActionsCreators from '../../actions/invitationActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilRuler } from '@fortawesome/free-solid-svg-icons'
+
+import parse from 'html-react-parser';
+
 import { useForm } from 'react-hook-form';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -121,7 +124,7 @@ const EnterDetails = (props) => {
           <div className="invitation-details">
             {Object.values(personalInvitation).length === 0 ?
               <form className="margin-top-10 d-flex flex-column " onSubmit={handleSubmit((data, e) => { personalDetailsUpdate(data); e.target.reset() })}>
-                
+
 
                 <div>
                   <div className="d-flex margin-10">
@@ -136,7 +139,7 @@ const EnterDetails = (props) => {
                   </div>
                   <div className="d-flex margin-10" style={{ marginBottom: 10 }}>
                     <label className="font-size-label" style={{ width: "30%", marginVertical: 20 }}>Bride name</label>
-                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%"  }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%" }} >
                       <input name="bride_name" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                         register({
                           required: true,
@@ -147,7 +150,7 @@ const EnterDetails = (props) => {
 
                   <div className="d-flex margin-10">
                     <label className="font-size-label" style={{ width: "30%" }}>Guest Invitee name</label>
-                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%"  }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', width: "70%" }} >
                       <input name="guest_invitee_name" type="tel" tabIndex="1" className="form-control" style={{ borderRadius: 10 }} placeholder="" ref={
                         register({
                           required: true,
@@ -185,8 +188,8 @@ const EnterDetails = (props) => {
               </div>
             }
           </div>
-          {Object.values(weddingEvents).length > 0 && 
-            <label className="font-size-label" style={{ fontWeight: 'bold',  marginTop: 20}}>Invitation Types.</label>
+          {Object.values(weddingEvents).length > 0 &&
+            <label className="font-size-label" style={{ fontWeight: 'bold', marginTop: 20 }}>Invitation Types.</label>
           }
           <Tabs onSelect={onIndexChange}>
             <TabList>
@@ -216,9 +219,9 @@ const EnterDetails = (props) => {
               <button onClick={() => { deleteCustomEvent(selectedCard.id, el.id) }} className='remove-event-btn'>Remove Event</button>
             </div>
           )} */}
-          <label className="font-size-label" style={{ fontWeight: 'bold',  marginTop: 20}}>Invitation Details</label>
-          <div className='invitation-details' style={{marginTop: 10 }}>
-            
+          <label className="font-size-label" style={{ fontWeight: 'bold', marginTop: 20 }}>Invitation Details</label>
+          <div className='invitation-details' style={{ marginTop: 10 }}>
+
             <form onSubmit={handleSubmitInvitation}>
               <label for='event-name' className='text'>Event Name</label><br />
               <select className='event-form' name='event-name' onChange={(value) => { saveData('name', value) }}>
@@ -270,7 +273,7 @@ const EnterDetails = (props) => {
             </form>
           </div>
         </div>
-        <div className="wedding-invitation">
+        <div className="wedding-invitation-html-container">
           <div className='card-heading' align='center'>Preview of the selected card</div>
           {/* <div className='card-preview'>
             <img src='src/assets/wedding-card.png' />
@@ -288,13 +291,13 @@ const EnterDetails = (props) => {
   )
 }
 const mapStateToProps = state => {
-  const { auth, invitation } = state;
+  const { auth, invitation} = state;
   return { auth, invitation: invitation.toJS() };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    InvitationActions: bindActionCreators(InvitationActionsCreators, dispatch),
+        InvitationActions: bindActionCreators(InvitationActionsCreators, dispatch),
   };
 };
 

@@ -63,7 +63,7 @@ const Invitation = (props) => {
           {card && 
           <EnterDetails card={card} weddingEvents={weddingEvents} /> }
         </div>
-        <div className="invitation-container flex-column" style={{ padding: 20, marginLeft: 40, marginRight: 40, marginTop: 20 }}>
+        <div className="d-flex invitation-container flex-column" style={{ padding: 20, marginTop: 20 }}>
           <div>
             <div className="heading-invitation">
               Guest Information
@@ -84,6 +84,18 @@ const Invitation = (props) => {
             />
             
             
+          }
+
+          {card && Object.values(weddingEvents).length > 0 && 
+          <button
+            className="fill-button "
+            // type="submit"
+            style={{ marginLeft: 10, paddingLeft: 40, paddingRight: 30, marginTop: 30 }}
+          >
+            <span style={{ fontSize: 14 }}>
+              Add to Card
+            </span>
+          </button>  
           }
           
         </div>

@@ -1,4 +1,4 @@
-import {WEDDING_INVITATION} from '../urls';
+import {WEDDING_INVITATION, CART_ITEMS} from '../urls';
 import {
   UPDATE_WEDDING_CARDS, 
   UPDATE_EVENTS, 
@@ -507,4 +507,40 @@ export const getPeronalDetails = (grand_event) => {
       .catch(() => {
     });
   } 
+}
+
+export const addToCart = (id) => {
+  return (dispatch, getState) => {
+    const {auth} = getState();
+    if(auth.get('isLoggedIn')) {
+      fetch(CART_ITEMS, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization' : `Token ${auth.getIn([
+            'response', 'token'
+          ])}`,
+        },
+        body: JSON.stringify({
+          "quantity": 1,
+          "product_id": id
+        })
+      })
+        .then((response) => {
+          if(response.status === 201) {
+            response.json().then((json) => {
+              // history.push('/login')
+              // console.log(json);
+              // getCartItems({callbackFunction: () => {}})
+            })
+          } 
+          
+        })
+        .catch(() => {
+      });
+    } else {
+      // toast('Please Login')
+      // history.push('/login')
+    }
+  }
 }
