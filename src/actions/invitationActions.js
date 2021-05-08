@@ -511,6 +511,10 @@ export const getPeronalDetails = (grand_event) => {
 
 export const addToCart = (id) => {
   return (dispatch, getState) => {
+    console.log({
+      // "quantity": 1,
+      "product_id": id
+    })
     const {auth} = getState();
     if(auth.get('isLoggedIn')) {
       fetch(CART_ITEMS, {

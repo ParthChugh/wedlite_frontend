@@ -49,6 +49,14 @@ const App = (props) => {
   const items = shop.getIn(['items', 'results']);
   const theme = useTheme();
   const venue = useRef(null);
+  const history = useHistory();
+  useEffect(() => {
+    let path = localStorage.getItem('path');
+    if(path) {
+      localStorage.removeItem('path');
+      history.push(path)
+    }
+  },[])
   const isLoggedIn = auth.get('isLoggedIn');
   const [state, updateState] = useState(false);
   const [value, setValue] = React.useState(0);
@@ -76,7 +84,6 @@ const App = (props) => {
 
   const cities = auth.get('cities');
   const venues = auth.get('popularVenues');
-  const history = useHistory();
   const handleSearch = (cityObject, categoryObject) => {
     history.push(`/venue/category/${categoryObject.id}/city/${cityObject.id}`)
   }
